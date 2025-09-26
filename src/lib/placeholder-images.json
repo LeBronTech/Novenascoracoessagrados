@@ -1,3 +1,46 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "logo",
+      "description": "Sacred Heart logo",
+      "imageUrl": "https://images.unsplash.com/photo-1655603634371-6012a765baae?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxzYWNyZWQlMjBoZWFydHxlbnwwfHx8fDE3NTg4OTI4NzR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "sacred heart"
+    },
+    {
+      "id": "saint-francis",
+      "description": "Portrait of Saint Francis of Assisi",
+      "imageUrl": "https://images.unsplash.com/photo-1701180349605-2444133613ab?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8c2FpbnQlMjBmcmFuY2lzfGVufDB8fHx8MTc1ODg5Mjg3NHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "saint francis"
+    },
+    {
+      "id": "saint-clare",
+      "description": "Portrait of Saint Clare of Assisi",
+      "imageUrl": "https://images.unsplash.com/photo-1625397946432-f7b7996349cb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxzYWludCUyMGNsYXJlfGVufDB8fHx8MTc1ODg5Mjg3NHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "saint clare"
+    },
+    {
+      "id": "saint-anthony",
+      "description": "Portrait of Saint Anthony of Padua",
+      "imageUrl": "https://images.unsplash.com/photo-1552766990-c63f02cf3c5a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzYWludCUyMGFudGhvbnl8ZW58MHx8fHwxNzU4ODkyODc0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "saint anthony"
+    },
+    {
+      "id": "saint-therese",
+      "description": "Portrait of Saint Thérèse of Lisieux",
+      "imageUrl": "https://images.unsplash.com/photo-1637331664385-17bbf6be1d93?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxzYWludCUyMHRoZXJlc2V8ZW58MHx8fHwxNzU4ODkyODc0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "saint therese"
+    },
+    {
+      "id": "footer-logo-1",
+      "description": "A church-related logo for the footer",
+      "imageUrl": "https://images.unsplash.com/photo-1687524575655-6c3baf6aada6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxjaHVyY2glMjBzZWFsfGVufDB8fHx8MTc1ODg5Mjg3NHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "church seal"
+    },
+    {
+      "id": "footer-logo-2",
+      "description": "Another church-related logo for the footer",
+      "imageUrl": "https://images.unsplash.com/photo-1622294172324-5d95fecd7bfc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHx2YXRpY2FuJTIwbG9nb3xlbnwwfHx8fDE3NTg4OTI4NzR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "vatican logo"
+    }
+  ]
 }
