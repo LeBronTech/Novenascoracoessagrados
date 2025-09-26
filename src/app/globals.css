@@ -97,4 +97,9 @@
     margin-right: 0.1em;
     transition: color 0.4s ease;
   }
+
+  .prose blockquote p {
+    color: inherit !important;
+    opacity: 0.8;
+  }
 }
