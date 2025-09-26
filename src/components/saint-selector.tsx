@@ -1,15 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from '@/components/ui/carousel';
 import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 import type { Saint } from '@/lib/data';
 
@@ -30,68 +22,53 @@ export default function SaintSelector({
   selectedSaintId,
   onSaintSelect,
 }: SaintSelectorProps) {
+
+  const saintsForMonth = saints.filter(s => s.month === selectedMonth);
+
   return (
     <section className="w-full">
-      <div className="flex justify-center gap-2 mb-6">
+      <nav id="month-nav" className="flex justify-center gap-6 mb-4 border-b border-gray-300 pb-3">
         {months.map((month) => (
-          <Button
+          <button
             key={month}
-            variant={selectedMonth === month ? 'default' : 'outline'}
+            className={cn('month-nav-btn text-lg font-brand text-gray-600', selectedMonth === month && 'active')}
             onClick={() => onMonthChange(month)}
-            className="font-headline tracking-wider"
           >
             {month}
-          </Button>
+          </button>
+        ))}
+      </nav>
+      <div className="saints-nav-container flex items-start gap-x-4 overflow-x-auto pb-2">
+        {saintsForMonth.map((saint) => (
+            <div
+              key={saint.id}
+              className={cn(
+                'saint-nav-item flex flex-col items-center gap-1 text-center opacity-70 hover:opacity-100 hover:scale-105 transform-gpu transition-transform duration-200 w-[100px] shrink-0 cursor-pointer',
+                selectedSaintId === saint.id && 'active opacity-100'
+              )}
+              onClick={() => onSaintSelect(saint.id)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => e.key === 'Enter' && onSaintSelect(saint.id)}
+            >
+              <Image
+                src={saint.imageUrl}
+                alt={saint.name}
+                width={80}
+                height={80}
+                className={cn(
+                  'w-20 h-20 rounded-full object-cover shadow-md border-4 border-transparent transition-all duration-300',
+                  selectedSaintId === saint.id && 'border-primary shadow-lg'
+                )}
+              />
+              <p className="text-sm font-semibold text-gray-700 font-brand leading-tight mt-1">{saint.name}</p>
+              <p className="text-xs text-gray-500">Início: {saint.startDate}</p>
+              <div className="mt-1 bg-primary text-primary-foreground px-4 py-1 rounded-full text-xs font-bold leading-tight">
+                Dia {saint.feastDay.split('/')[0]}
+              </div>
+            </div>
         ))}
       </div>
-      <Carousel
-        opts={{
-          align: 'start',
-          dragFree: true,
-        }}
-        className="w-full"
-      >
-        <CarouselContent className="-ml-2">
-          {saints.map((saint) => (
-            <CarouselItem key={saint.id} className="basis-1/4 md:basis-1/6 lg:basis-1/8 xl:basis-1/10 pl-2">
-              <div
-                className="flex flex-col items-center gap-2 cursor-pointer group"
-                onClick={() => onSaintSelect(saint.id)}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => e.key === 'Enter' && onSaintSelect(saint.id)}
-              >
-                <div
-                  className={cn(
-                    'relative w-20 h-20 rounded-full overflow-hidden transition-all duration-300 ring-2 ring-offset-2 ring-offset-background',
-                    selectedSaintId === saint.id
-                      ? 'ring-primary scale-110'
-                      : 'ring-transparent group-hover:ring-accent'
-                  )}
-                >
-                  <Image
-                    src={saint.imageUrl}
-                    alt={`Imagem de ${saint.name}`}
-                    fill
-                    sizes="80px"
-                    className="object-cover"
-                  />
-                </div>
-                <p
-                  className={cn(
-                    'text-xs text-center font-semibold font-body transition-colors',
-                    selectedSaintId === saint.id ? 'text-primary' : 'text-muted-foreground group-hover:text-foreground'
-                  )}
-                >
-                  {saint.name}
-                </p>
-              </div>
-            </CarouselItem>
-          ))}
-        </CarouselContent>
-        <CarouselPrevious className="hidden md:flex" />
-        <CarouselNext className="hidden md:flex" />
-      </Carousel>
     </section>
   );
 }

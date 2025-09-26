@@ -1,108 +1,139 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Button } from '@/components/ui/button';
-import { ScrollArea } from '@/components/ui/scroll-area';
 import { cn } from '@/lib/utils';
-import type { Saint } from '@/lib/data';
+import type { Saint, Novena } from '@/lib/data';
 import ReflectionGenerator from './reflection-generator';
 import PrayerAudioPlayer from './prayer-audio-player';
 
-type Theme = 'default' | 'dark-gray' | 'light-gray' | 'red';
+type Theme = 'theme-default' | 'theme-dark-gray' | 'theme-light-gray' | 'theme-red';
 
 const themeClasses: Record<Theme, string> = {
-  default: 'bg-card text-card-foreground',
-  'dark-gray': 'bg-zinc-800 text-zinc-100 border-zinc-700',
-  'light-gray': 'bg-zinc-100 text-zinc-900 border-zinc-200',
-  red: 'bg-primary/10 text-primary-foreground border-primary/20 dark:bg-red-950/40 dark:text-red-100 dark:border-red-900',
+  'theme-default': 'bg-[#949da4] text-gray-50',
+  'theme-dark-gray': 'bg-gray-700 text-gray-100',
+  'theme-light-gray': 'bg-gray-100 text-gray-800',
+  'theme-red': 'bg-primary text-gray-100',
 };
 
-const themeCircleClasses: Record<Theme, string> = {
-  default: 'bg-white border-gray-300',
-  'dark-gray': 'bg-zinc-800',
-  'light-gray': 'bg-zinc-100',
-  red: 'bg-primary/20 dark:bg-red-950/40',
-}
+const themeDotClasses: Record<Theme, string> = {
+  'theme-default': 'bg-[#949da4]',
+  'theme-dark-gray': 'bg-gray-700',
+  'theme-light-gray': 'bg-gray-100',
+  'theme-red': 'bg-primary',
+};
 
 interface NovenaDisplayProps {
   saint: Saint | null;
+  novena: Novena | null;
 }
 
 function ThemeSelector({ theme, setTheme }: { theme: Theme, setTheme: (theme: Theme) => void }) {
-  return (
-    <div className="absolute top-4 right-4 flex items-center gap-2">
-      {(['default', 'dark-gray', 'light-gray', 'red'] as Theme[]).map((t) => (
-        <button
-          key={t}
-          onClick={() => setTheme(t)}
-          className={cn(
-            'w-5 h-5 rounded-full border-2 transition-transform duration-200 hover:scale-110',
-            theme === t ? 'ring-2 ring-offset-2 ring-offset-background ring-accent' : 'ring-0',
-            themeCircleClasses[t]
-          )}
-          aria-label={`Mudar para tema ${t}`}
-        />
-      ))}
-    </div>
-  );
+    return (
+        <div className="absolute top-[-14px] right-5 flex gap-2.5 bg-background/50 backdrop-blur-sm px-3 py-1.5 rounded-full">
+            {(['theme-dark-gray', 'theme-default', 'theme-light-gray', 'theme-red'] as Theme[]).map((t) => (
+                <button
+                    key={t}
+                    onClick={() => setTheme(t)}
+                    title={`Tema ${t.split('-')[1]}`}
+                    className={cn(
+                        'w-5 h-5 rounded-full cursor-pointer transition-all duration-200 border-2 border-white/70 shadow-md',
+                        'hover:scale-115',
+                        theme === t ? 'scale-125 shadow-lg ring-2 ring-white/90 ring-offset-2 ring-offset-transparent' : '',
+                        themeDotClasses[t]
+                    )}
+                />
+            ))}
+        </div>
+    );
 }
 
-export default function NovenaDisplay({ saint }: NovenaDisplayProps) {
-  const [theme, setTheme] = useState<Theme>('default');
+function NovenaContent({ htmlContent }: { htmlContent: string }) {
+  return <div dangerouslySetInnerHTML={{ __html: htmlContent }} />;
+}
 
-  if (!saint) {
+
+export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
+  const [theme, setTheme] = useState<Theme>('theme-default');
+  const [activeTab, setActiveTab] = useState('day-1');
+
+  useEffect(() => {
+    setActiveTab('day-1');
+  }, [saint, novena]);
+
+  if (!novena || !saint) {
     return (
-      <Card className="mt-8 flex flex-col items-center justify-center p-16 text-center bg-transparent border-2 border-dashed">
+      <main className="flex flex-col items-center justify-center p-16 text-center bg-transparent border-2 border-dashed rounded-2xl">
         <div className="font-headline text-5xl text-primary/50 mb-4">✝</div>
         <h2 className="font-headline text-2xl tracking-wide">Bem-vindo ao Portal Corações Sagrados</h2>
         <p className="mt-2 text-muted-foreground max-w-md">
-          Selecione um santo na barra acima para iniciar sua jornada de oração e reflexão.
+          Selecione uma novena na barra acima para iniciar sua jornada de oração e reflexão.
         </p>
-      </Card>
+      </main>
     );
   }
 
-  const { novena } = saint;
+  const { novenaTitle, description, days, initialPrayer, finalPrayer } = novena;
+
+  // Function to extract plain text for AI actions
+  const getPlainText = (htmlString: string) => {
+    if (typeof document === 'undefined') return ''; // Return empty on server
+    const div = document.createElement('div');
+    div.innerHTML = htmlString;
+    return div.textContent || div.innerText || '';
+  };
 
   return (
-    <Card className={cn('mt-8 w-full transition-colors duration-300 relative shadow-2xl shadow-black/10', themeClasses[theme])}>
-      <CardHeader className="pt-6 pr-24">
-        <CardTitle className="font-headline text-3xl tracking-wide">{novena.title}</CardTitle>
-      </CardHeader>
+    <main id="main-card" className={cn('main-card glass-card rounded-2xl p-6 md:p-10 relative shadow-2xl shadow-black/20', themeClasses[theme])}>
       <ThemeSelector theme={theme} setTheme={setTheme} />
-      <CardContent>
-        <Tabs defaultValue="day-0" className="w-full">
-          <TabsList className="grid w-full grid-cols-3 md:grid-cols-5 lg:grid-cols-9">
-            {novena.days.map((day, index) => (
-              <TabsTrigger key={`trigger-${day.day}`} value={`day-${index}`}>
-                Dia {day.day}
+       <header id="novena-header" className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-6 mb-8 text-center sm:text-left">
+          <img src={saint.imageUrl} alt={saint.name} className="w-28 h-28 md:w-32 md:h-32 rounded-full object-cover border-2 border-stone-400/50 shadow-lg flex-shrink-0" />
+          <div>
+            <h2 className="text-3xl md:text-4xl font-bold font-brand text-white">{novenaTitle}</h2>
+            <p className="text-stone-200 italic mt-1">{description || ''}</p>
+            {saint.startDate && (
+              <div className="mt-3">
+                <span className="inline-block bg-primary text-white text-xs font-bold px-4 py-1 rounded-full">
+                  Novena: {saint.startDate} a {saint.endDate}
+                </span>
+              </div>
+            )}
+          </div>
+       </header>
+
+      <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+          <TabsList className="grid w-full grid-cols-3 md:grid-cols-5 lg:grid-cols-9 bg-transparent border-b border-white/20 rounded-none p-0">
+            {days.map((day, index) => (
+              <TabsTrigger key={`trigger-${index}`} value={`day-${index + 1}`} className="py-3 px-2 md:px-4 text-sm md:text-base bg-transparent text-stone-200 rounded-none border-b-[3px] border-transparent data-[state=active]:text-white data-[state=active]:border-white data-[state=active]:shadow-none hover:text-white">
+                Dia {index + 1}
               </TabsTrigger>
             ))}
           </TabsList>
-          {novena.days.map((day, index) => (
-            <TabsContent key={`content-${day.day}`} value={`day-${index}`}>
-              <Card className={cn('mt-4', themeClasses[theme], 'border-none shadow-none bg-transparent')}>
-                <CardHeader>
-                  <CardTitle className="font-headline text-xl">{day.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <ScrollArea className="h-48 pr-4">
-                    <p className="text-base font-body whitespace-pre-wrap leading-relaxed">
-                      {day.prayer}
-                    </p>
-                  </ScrollArea>
-                  <div className="mt-6 flex flex-col sm:flex-row gap-4">
-                    <ReflectionGenerator prayerText={day.prayer} />
-                    <PrayerAudioPlayer prayerText={day.prayer} />
+          {days.map((day, index) => (
+            <TabsContent key={`content-${index}`} value={`day-${index + 1}`} className="mt-8">
+                <div className="prose max-w-none text-inherit">
+                  {initialPrayer && <NovenaContent htmlContent={initialPrayer} />}
+                  
+                  <div className="w-16 h-px bg-white/20 my-8 mx-auto"></div>
+
+                  <h3 className="text-2xl font-bold font-brand text-white mb-2">{day.day}</h3>
+                  <p className="text-xl italic text-stone-200 mb-4">{day.title}</p>
+                  
+                  <div className="day-specific-content">
+                    <NovenaContent htmlContent={day.content} />
                   </div>
-                </CardContent>
-              </Card>
+                  
+                  {finalPrayer && <NovenaContent htmlContent={finalPrayer} />}
+                </div>
+
+                <div className="mt-6 flex flex-col sm:flex-row gap-4">
+                  <ReflectionGenerator prayerText={getPlainText(day.content)} />
+                  <PrayerAudioPlayer prayerText={getPlainText(day.content)} />
+                </div>
             </TabsContent>
           ))}
-        </Tabs>
-      </CardContent>
-    </Card>
+      </Tabs>
+    </main>
   );
 }

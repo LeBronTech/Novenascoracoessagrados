@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --background: 240 4% 96%; /* #f2f2f5 */
     --foreground: 240 10% 3.9%;
     --card: 0 0% 100%;
     --card-foreground: 240 10% 3.9%;
@@ -32,24 +32,24 @@
   }
 
   .dark {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
     --primary: 0 72.2% 50.6%;
     --primary-foreground: 0 85.7% 97.3%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
     --accent: 45 76% 47%;
-    --accent-foreground: 240 10% 3.9%;
+    --accent-foreground: 210 40% 98%;
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
     --ring: 0 72.2% 50.6%;
   }
 }
@@ -60,6 +60,41 @@
   }
   body {
     @apply bg-background text-foreground;
-    background-image: linear-gradient(to bottom right, hsl(0, 0%, 98%), hsl(0, 0%, 92%));
+    background-image: linear-gradient(to bottom, #ffffff 0%, #e0e0e0 25%, #c3c3c3 50%, #949da4 100%);
+  }
+
+  .font-brand {
+    font-family: 'Cinzel Decorative', serif;
+  }
+  
+  .saints-nav-container {
+    scrollbar-width: auto;
+    scrollbar-color: hsl(var(--primary)) #e5e7eb;
+  }
+  .saints-nav-container::-webkit-scrollbar { height: 10px; }
+  .saints-nav-container::-webkit-scrollbar-track { background: #e5e7eb; }
+  .saints-nav-container::-webkit-scrollbar-thumb {
+      background-color: hsl(var(--primary));
+      border-radius: 0;
+  }
+
+  .month-nav-btn {
+    @apply transition-all duration-200 ease-in-out border-b-[3px] border-transparent font-bold pb-1;
+  }
+  .month-nav-btn.active, .month-nav-btn:hover {
+    @apply border-primary text-primary;
+  }
+  
+  .day-specific-content > p:first-child::first-letter,
+  .prose > h4 + p::first-letter,
+  .prose > blockquote:first-of-type + p::first-letter {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 4.5em; 
+    font-weight: bold; 
+    float: left;
+    line-height: 0.8; 
+    padding-top: 0.1em; 
+    margin-right: 0.1em;
+    transition: color 0.4s ease;
   }
 }
