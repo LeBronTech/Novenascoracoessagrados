@@ -105,7 +105,7 @@ export default {
         'fade-out': 'fade-out 0.2s ease-out forwards',
         'slide-up-fade-in': 'slide-up-fade-in 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards',
       },
-      typography: ({ theme }) => ({
+      typography: ({ theme }: { theme: any }) => ({
         DEFAULT: {
           css: {
             blockquote: {
