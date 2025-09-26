@@ -87,8 +87,18 @@
   
   .day-specific-content > p:first-child::first-letter,
   .prose > h4 + p::first-letter,
-  .prose > blockquote:first-of-type + p::first-letter,
-  .prose > .prayer-block + p::first-letter {
+  .prose > blockquote:first-of-type + p::first-letter {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 4.5em; 
+    font-weight: bold; 
+    float: left;
+    line-height: 0.8; 
+    padding-top: 0.1em; 
+    margin-right: 0.1em;
+    transition: color 0.4s ease;
+  }
+  
+  .final-prayer-text > .prose > p:first-of-type::first-letter {
     font-family: 'Cinzel Decorative', serif;
     font-size: 4.5em; 
     font-weight: bold; 

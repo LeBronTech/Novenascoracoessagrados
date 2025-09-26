@@ -132,30 +132,32 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
             <TabsContent key={`content-${index}`} value={`day-${index + 1}`} className="mt-8 animate-fade-in">
                 <div className={cn("prose max-w-none", 
                     isLight ? "text-black" : "text-white",
+
                     // Titles (h3, h4)
                     {"[&_h3]:text-primary [&_h4]:text-primary": !isRedTheme},
                     {"[&_h3]:text-white [&_h4]:text-white": isRedTheme},
                     
                     // Blockquote text and italic text
-                    {"prose-blockquote:text-primary [&_p>i]:text-primary": isLight},
+                    {"prose-blockquote:text-primary/90 [&_p>i]:text-primary/90": isLight},
                     {"prose-blockquote:text-white/80 [&_p>i]:text-white/80": !isLight},
 
-                    // Specific italic prayer text color
+                    // Specific italic prayer request color
                     {"[&_.prayer-request>i]:text-white": !isLight},
                     {"[&_.prayer-request>i]:text-primary": isLight},
+                    {"[&_.prayer-request]:text-white": theme === 'theme-dark-gray' || isRedTheme},
+                    {"[&_.prayer-request]:text-primary": theme === 'theme-light-gray' },
 
                     // First letter styling
-                    {"[&_.day-specific-content>p:first-child::first-letter]:text-primary": !isRedTheme},
-                    {"[&_.day-specific-content>p:first-child::first-letter]:text-white": isRedTheme},
-                    {"[&_h4+p::first-letter]:text-primary": !isRedTheme},
-                    {"[&_h4+p::first-letter]:text-white": isRedTheme},
-                    // Specific fix for "Deus Misericordioso"
-                    {"[&_.prayer-block+p::first-letter]:text-primary": !isRedTheme},
-                    {"[&_.prayer-block+p::first-letter]:text-white": isRedTheme},
+                    {"[&_p:first-child::first-letter]:text-primary": !isRedTheme},
+                    {"[&_p:first-child::first-letter]:text-white": isRedTheme},
 
                     // Litany responses
                     {"[&_.litany-response]:text-primary/90": isLight},
                     {"[&_.litany-response]:text-white/80": !isLight},
+
+                    // Specific prayer text colors
+                    {"[&_.initial-prayer-text>p]:text-white": theme === 'theme-dark-gray' || isRedTheme},
+                    {"[&_.final-prayer-text>p]:text-white": theme === 'theme-dark-gray' || isRedTheme},
                 )}>
                   {initialPrayer && <NovenaContent htmlContent={initialPrayer} />}
                   
