@@ -147,7 +147,7 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
 
                   // Citações (Blockquote)
                   isDarkGrayTheme ? "[&_blockquote]:bg-black/10 [&_blockquote]:px-4 [&_blockquote]:py-2 [&_blockquote]:rounded-lg [&_blockquote]:border-l-4 [&_blockquote]:border-primary" : "",
-                  isDarkGrayTheme ? "[&_blockquote_p]:text-white" : "",
+                  isDarkGrayTheme ? "[&_blockquote_p]:text-primary" : "",
                    isLightTheme ? "[&_blockquote_p]:text-primary" : "text-white/90",
                   
                   // Regras para Primeira Letra
