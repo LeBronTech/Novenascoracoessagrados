@@ -108,19 +108,21 @@ export const saints: Saint[] = [
   { id: 'faustina', name: 'Santa Faustina', imageUrl: 'https://i.postimg.cc/qBKkbHTj/39a80df1d720976f7e55e00f40eadc90-1.jpg', month: 'Outubro', startDate: '26/Set', endDate: '04/Out', feastDay: '05/Out' },
   { id: 'rosario', name: 'N. S. do Rosário', imageUrl: 'https://i.postimg.cc/2669v1gr/nsr.jpg', month: 'Outubro', startDate: '28/Set', endDate: '06/Out', feastDay: '07/Out' },
   { id: 'aparecida', name: 'N. S. Aparecida', imageUrl: 'https://i.postimg.cc/Zn3jMzpz/Pin-de-Alzira-Mattos-em-RELIGIOSO-Nosssa-senhora.jpg', month: 'Outubro', startDate: '03/Out', endDate: '11/Out', feastDay: '12/Out' },
-  { id: 'teresa_avila', name: 'Sta. Teresa de Ávila', imageUrl: 'https://placehold.co/80x80/ccc/7c0909?text=STA', month: 'Outubro', startDate: '06/Out', endDate: '14/Out', feastDay: '15/Out' },
-  { id: 'margarida_alacoque', name: 'Sta. Margarida M.A.', imageUrl: 'https://placehold.co/80x80/ccc/7c0909?text=SMA', month: 'Outubro', startDate: '07/Out', endDate: '15/Out', feastDay: '16/Out' },
-  { id: 'geraldo_majela', name: 'São Geraldo', imageUrl: 'https://placehold.co/80x80/ccc/7c0909?text=SG', month: 'Outubro', startDate: '07/Out', endDate: '15/Out', feastDay: '16/Out' },
-  { id: 'inacio_antioquia', name: 'Sto. Inácio de A.', imageUrl: 'https://placehold.co/80x80/ccc/7c0909?text=SIA', month: 'Outubro', startDate: '08/Out', endDate: '16/Out', feastDay: '17/Out' },
-  { id: 'pedro_alcantara', name: 'São Pedro de A.', imageUrl: 'https://placehold.co/80x80/ccc/7c0909?text=SPA', month: 'Outubro', startDate: '10/Out', endDate: '18/Out', feastDay: '19/Out' },
-  { id: 'jp2', name: 'São João Paulo II', imageUrl: 'https://placehold.co/80x80/ccc/7c0909?text=JP+II', month: 'Outubro', startDate: '13/Out', endDate: '21/Out', feastDay: '22/Out' },
-  { id: 'frei_galvao', name: 'Sto. Antônio Galvão', imageUrl: 'https://placehold.co/80x80/ccc/7c0909?text=SAG', month: 'Outubro', startDate: '16/Out', endDate: '24/Out', feastDay: '25/Out' },
-  { id: 'judas_tadeu', name: 'São Judas Tadeu', imageUrl: 'https://placehold.co/80x80/ccc/7c0909?text=SJT', month: 'Outubro', startDate: '19/Out', endDate: '27/Out', feastDay: '28/Out' },
-  { id: 'todos_santos', name: 'Todos os Santos', imageUrl: 'https://placehold.co/80x80/ccc/7c0909?text=TS', month: 'Outubro', startDate: '23/Out', endDate: '31/Out', feastDay: '01/Nov' },
-  { id: 'almas', name: 'Almas', imageUrl: 'https://placehold.co/80x80/ccc/7c0909?text=Almas', month: 'Novembro', startDate: '24/Out', endDate: '01/Nov', feastDay: '02/Nov' },
-  { id: 'gracas', name: 'N. S. das Graças', imageUrl: 'https://placehold.co/80x80/ccc/7c0909?text=NSG', month: 'Novembro', startDate: '18/Nov', endDate: '26/Nov', feastDay: '27/Nov' }
+  { id: 'teresa_avila', name: 'Sta. Teresa de Ávila', imageUrl: 'https://i.postimg.cc/tJ01vGqY/10-extra-large.jpg', month: 'Outubro', startDate: '06/Out', endDate: '14/Out', feastDay: '15/Out' },
+  { id: 'margarida_alacoque', name: 'Sta. Margarida M.A.', imageUrl: 'https://i.postimg.cc/X7Y0gG6G/st-margaret-mary-alacoque-8x10-print-on-canvas-gallery-wrap-st-margaret-mary-alacoque-fine-art-canv.jpg', month: 'Outubro', startDate: '07/Out', endDate: '15/Out', feastDay: '16/Out' },
+  { id: 'geraldo_majela', name: 'São Geraldo', imageUrl: 'https://i.postimg.cc/y8SST3Pj/S-o-Geraldo-Majella-CSs-R-padroeiro-dos-irm-os-redentoristas.jpg', month: 'Outubro', startDate: '07/Out', endDate: '15/Out', feastDay: '16/Out' },
+  { id: 'inacio_antioquia', name: 'Sto. Inácio de A.', imageUrl: 'https://i.postimg.cc/yN6YwPBy/Santo-In-cio-de-Antioquia.jpg', month: 'Outubro', startDate: '08/Out', endDate: '16/Out', feastDay: '17/Out' },
+  { id: 'pedro_alcantara', name: 'São Pedro de A.', imageUrl: 'https://i.postimg.cc/Kz4Ygrt5/S-o-Pedro-de-Alc-ntara-1.jpg', month: 'Outubro', startDate: '10/Out', endDate: '18/Out', feastDay: '19/Out' },
+  { id: 'jp2', name: 'São João Paulo II', imageUrl: 'https://i.postimg.cc/Vv02s7Lq/jo-o-paulo-ii-sao-joao-paulo-ii-JMJ-shutterstock-167623199-1.jpg', month: 'Outubro', startDate: '13/Out', endDate: '21/Out', feastDay: '22/Out' },
+  { id: 'frei_galvao', name: 'Sto. Antônio Galvão', imageUrl: 'https://i.postimg.cc/50t05mY2/1698246087964.jpg', month: 'Outubro', startDate: '16/Out', endDate: '24/Out', feastDay: '25/Out' },
+  { id: 'judas_tadeu', name: 'São Judas Tadeu', imageUrl: 'https://i.postimg.cc/7ZbjWjJv/S-o-Judas-Tadeu.jpg', month: 'Outubro', startDate: '19/Out', endDate: '27/Out', feastDay: '28/Out' },
+  { id: 'todos_santos', name: 'Todos os Santos', imageUrl: 'https://i.postimg.cc/8z7zKq1g/solenidade-de-todos-os-santos.jpg', month: 'Outubro', startDate: '23/Out', endDate: '31/Out', feastDay: '01/Nov' },
+  { id: 'almas', name: 'Almas', imageUrl: 'https://i.postimg.cc/t4G8F8fD/almas-do-purgatorio-750x430.jpg', month: 'Novembro', startDate: '24/Out', endDate: '01/Nov', feastDay: '02/Nov' },
+  { id: 'gracas', name: 'N. S. das Graças', imageUrl: 'https://i.postimg.cc/J4ymk5Lw/Nossa-Senhora-das-Gra-as-2.jpg', month: 'Novembro', startDate: '18/Nov', endDate: '26/Nov', feastDay: '27/Nov' }
 ];
 
 export const months: string[] = ['Outubro', 'Novembro'];
+
+    
 
     
