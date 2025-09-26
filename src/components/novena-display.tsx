@@ -106,7 +106,7 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
           <img src={saint.imageUrl} alt={saint.name} className="w-28 h-28 md:w-32 md:h-32 rounded-full object-cover border-2 border-stone-400/50 shadow-lg flex-shrink-0" />
           <div>
             <h2 className={cn("text-3xl md:text-4xl font-bold font-brand", 
-              (isRedTheme || isDarkGrayTheme) ? 'text-white' : 'text-primary'
+              isRedTheme ? 'text-white' : 'text-primary'
             )}>{novenaTitle}</h2>
             <p className={cn(
                 "italic mt-1", 
@@ -141,9 +141,11 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
                     isLightTheme ? "text-black" : "text-white",
 
                     // TÍTULOS E CITAÇÕES
-                    isRedTheme ? "[&_h3]:text-white [&_blockquote]:text-white" : "[&_h3]:text-primary [&_blockquote]:text-primary",
-                    isDarkGrayTheme && "[&_h3]:text-white [&_blockquote]:text-white",
-                    isLightTheme && "[&_h3]:text-primary [&_blockquote]:text-primary/90",
+                    isRedTheme ? "[&_h3]:text-white" : "[&_h3]:text-primary",
+                    isDarkGrayTheme && "[&_blockquote]:text-white",
+                    isLightTheme && "[&_blockquote]:text-primary/90",
+                    !isRedTheme && "[&_blockquote]:text-primary",
+
 
                     // PRIMEIRA LETRA
                     isRedTheme ? "[.day-specific-content>p:first-child::first-letter]:text-white" : "[.day-specific-content>p:first-child::first-letter]:text-primary",
@@ -151,8 +153,7 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
                     // ORAÇÃO INICIAL (Ó Jesus, que fizeste...)
                     (isRedTheme || isDarkGrayTheme) && "[&_.initial-prayer-text]:text-white",
                     isLightTheme && "[&_.initial-prayer-text_.prayer-request>i]:text-primary",
-                    (isRedTheme || isDarkGrayTheme) && "[&_.initial-prayer-text_h4]:text-white",
-                    isLightTheme && "[&_.initial-prayer-text_h4]:text-primary",
+                    isRedTheme ? "[&_.initial-prayer-text_h4]:text-white" : "[&_.initial-prayer-text_h4]:text-primary",
                     
 
                     // ORAÇÃO FINAL (Deus Misericordioso...)
@@ -160,7 +161,7 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
                     isRedTheme ? "[.final-prayer-text_.prayer-block+p::first-letter]:text-black" : "[.final-prayer-text_.prayer-block+p::first-letter]:text-primary",
 
                     // LADAINHA FINAL E JACULATÓRIAS
-                    (isRedTheme || isDarkGrayTheme) && "[&_.final-prayer-text_.jaculatory-prayers>p]:text-white",
+                    (isRedTheme || isDarkGrayTheme) && "[&_.jaculatory-prayers>p]:text-white",
                     isLightTheme && "[&_.litany-response]:text-primary/90"
 
 
