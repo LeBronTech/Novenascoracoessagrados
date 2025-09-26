@@ -105,4 +105,9 @@
     color: inherit !important;
     opacity: 0.8;
   }
+  
+  .prose .section-title {
+    color: hsl(var(--primary));
+  }
 }
+
