@@ -60,7 +60,7 @@ export default function Home() {
   );
 
   const selectedSaint = useMemo(
-    () => saints.find(saint => saint.id === selectedSaintId),
+    () => saints.find(saint => saint.id === selectedSaintId) || null,
     [selectedSaintId]
   );
 
