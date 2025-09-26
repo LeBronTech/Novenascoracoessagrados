@@ -82,7 +82,7 @@ export const novenaData: Record<string, Novena> = {
                                   </div>`,
       days: [
           { day: 'Primeiro Dia', title: 'Eleita Mãe do Verbo Eterno', content: '<div class="day-specific-content"><p>Eis-me aqui aos vossos santíssimos pés, ó Virgem Imaculada! Convosco me alegro sumamente, porque desde a eternidade fostes eleita Mãe do Verbo eterno e preservada da culpa original. Eu bendigo e dou graças à Santíssima Trindade, que vos enriqueceu com este privilégio em vossa Conceição, e humildemente vos suplicamos me alcanceis a graça de vencer os tristes efeitos que em mim produziu o pecado. Ah! Senhor, fazei que eu os vença e jamais deixe de amar a meu Deus.</p></div>' },
-          { day: 'Segundo Dia', title: 'Lírio Imaculado de Pureza', content: '<div class="day-specific-content"><p>Ó Maria, lírio imaculado de pureza, eu me congratulo convosco, porque desde o primeiro instante da vossa Conceição fostes cheia de graça e além disto vos foi conferido o perfeito uso da razão. Dou graças e adoro a Santíssima Trindade, que vos concedeu tão sublimes dons; e me confundo totalmente na vossa presença ao ver-me tão pobre de graça. Vós, que de graça celeste fostes tão copiosamente enriquecida, reparti-a com a minha alma e fazei-me participante dos tesouros que começastes a possuir em vossa imaculada Conceição.</p></div>' },
+          { day: 'Segundo Dia', title: 'Lírio Imaculado de Pureza', content: '<div class="day-specific-content"><p>Ó Maria, lírio imaculado de pureza, eu me congratulo convosco, because desde o primeiro instante da vossa Conceição fostes cheia de graça e além disto vos foi conferido o perfeito uso da razão. Dou graças e adoro a Santíssima Trindade, que vos concedeu tão sublimes dons; e me confundo totalmente na vossa presença ao ver-me tão pobre de graça. Vós, que de graça celeste fostes tão copiosamente enriquecida, reparti-a com a minha alma e fazei-me participante dos tesouros que começastes a possuir em vossa imaculada Conceição.</p></div>' },
           { day: 'Terceiro Dia', title: 'Rosa Mística de Pureza', content: '<div class="day-specific-content"><p>Ó Maria, mística rosa de pureza, eu me alegro convosco, que gloriosamente triunfastes da infernal serpente, na vossa imaculada Conceição, e que fostes concebida sem mácula de pecado. Dou graças e louvo a Santíssima Trindade, que tal privilégio vos concedeu e vos suplico que me alcanceis força para superar todas as tradições do comum inimigo, e para não manchar minha alma com o pecado. Ah! Senhora, ajudai-me sempre, e fazei quem com a vossa proteção, sempre triunfe de todos os inimigos de nossa eterna salvação.</p></div>' },
           { day: 'Quarto Dia', title: 'Espelho de Pureza', content: '<div class="day-specific-content"><p>Ó espelho de pureza, Imaculada Virgem Maria, eu me encho de sumo gozo ao ver que desde a vossa Conceição, foram em vós infundidas as mais sublimes virtudes e, ao mesmo tmepo, todos os dons do Espírito Santo. Dou graças e louvo a Santíssima Trindade que com estes privilégios vos favoreceu; e suplico-vos, ó benigna Mãe, que me alcanceis a prática das virtudes, e me façais também digno e receber os dons e a graça do Espírito Santo.</p></div>' },
           { day: 'Quinto Dia', title: 'Refulgente Lua de Pureza', content: '<div class="day-specific-content"><p>Ó Maria, refulgente lua de pureza, eu me congratulo convosco, porque o mistério de vossa Imaculada Conceição foi o princípio da salvação de todo o mundo. Dou graças e bendigo à Santíssima Trindade, que assim magnificou e glorificou vossa pessoa, e vos suplico me alcanceis a graça de saber aproveitar-me da Paixão e Morte do vosso Jesus, e que não seja para mim inútil o seu sangue derramado na cruz, mas que viva santamente e salve a minha alma.</p></div>' },
@@ -111,14 +111,14 @@ export const saints: Saint[] = [
   { id: 'teresa_avila', name: 'Sta. Teresa de Ávila', imageUrl: 'https://i.postimg.cc/ht19wsyQ/32654687eb30f846f1f2e9e3edb6f4af.jpg', month: 'Outubro', startDate: '06/Out', endDate: '14/Out', feastDay: '15/Out' },
   { id: 'margarida_alacoque', name: 'Sta. Margarida M.A.', imageUrl: 'https://i.postimg.cc/J7QHR03S/66339fa28370276f90d041991767bebd.jpg', month: 'Outubro', startDate: '07/Out', endDate: '15/Out', feastDay: '16/Out' },
   { id: 'geraldo_majela', name: 'São Geraldo', imageUrl: 'https://i.postimg.cc/133rM9yP/saogeraldomajella2.jpg', month: 'Outubro', startDate: '07/Out', endDate: '15/Out', feastDay: '16/Out' },
-  { id: 'inacio_antioquia', name: 'Sto. Inácio de A.', imageUrl: 'https://i.postimg.cc/pT3wF3X3/Inacio-de-Antioquia.jpg', month: 'Outubro', startDate: '08/Out', endDate: '16/Out', feastDay: '17/Out' },
-  { id: 'pedro_alcantara', name: 'São Pedro de A.', imageUrl: 'https://i.postimg.cc/k4xY3vC0/S-Pedro-de-Alcantara-2.jpg', month: 'Outubro', startDate: '10/Out', endDate: '18/Out', feastDay: '19/Out' },
-  { id: 'jp2', name: 'São João Paulo II', imageUrl: 'https://i.postimg.cc/d11K81X1/joaopauloii.jpg', month: 'Outubro', startDate: '13/Out', endDate: '21/Out', feastDay: '22/Out' },
-  { id: 'frei_galvao', name: 'Sto. Antônio Galvão', imageUrl: 'https://i.postimg.cc/BvS2fgS0/Santo-Ant-nio-de-Sant-Ana-Galv-o.jpg', month: 'Outubro', startDate: '16/Out', endDate: '24/Out', feastDay: '25/Out' },
-  { id: 'judas_tadeu', name: 'São Judas Tadeu', imageUrl: 'https://i.postimg.cc/50d3d51f/S-o-Judas-Tadeu.jpg', month: 'Outubro', startDate: '19/Out', endDate: '27/Out', feastDay: '28/Out' },
-  { id: 'todos_santos', name: 'Todos os Santos', imageUrl: 'https://i.postimg.cc/qvN1zG14/solenidade-de-todos-os-santos.jpg', month: 'Outubro', startDate: '23/Out', endDate: '31/Out', feastDay: '01/Nov' },
-  { id: 'almas', name: 'Almas', imageUrl: 'https://i.postimg.cc/t4G8F8fD/almas-do-purgatorio-750x430.jpg', month: 'Novembro', startDate: '24/Out', endDate: '01/Nov', feastDay: '02/Nov' },
-  { id: 'gracas', name: 'N. S. das Graças', imageUrl: 'https://i.postimg.cc/J4ymk5Lw/Nossa-Senhora-das-Gra-as-2.jpg', month: 'Novembro', startDate: '18/Nov', endDate: '26/Nov', feastDay: '27/Nov' }
+  { id: 'inacio_antioquia', name: 'Sto. Inácio de A.', imageUrl: 'https://placehold.co/80x80/c27a2f/FFFFFF/png?text=Sto.+Inácio', month: 'Outubro', startDate: '08/Out', endDate: '16/Out', feastDay: '17/Out' },
+  { id: 'pedro_alcantara', name: 'São Pedro de A.', imageUrl: 'https://placehold.co/80x80/c27a2f/FFFFFF/png?text=S.+Pedro', month: 'Outubro', startDate: '10/Out', endDate: '18/Out', feastDay: '19/Out' },
+  { id: 'jp2', name: 'São João Paulo II', imageUrl: 'https://placehold.co/80x80/c27a2f/FFFFFF/png?text=SJP+II', month: 'Outubro', startDate: '13/Out', endDate: '21/Out', feastDay: '22/Out' },
+  { id: 'frei_galvao', name: 'Sto. Antônio Galvão', imageUrl: 'https://placehold.co/80x80/c27a2f/FFFFFF/png?text=Frei+Galvão', month: 'Outubro', startDate: '16/Out', endDate: '24/Out', feastDay: '25/Out' },
+  { id: 'judas_tadeu', name: 'São Judas Tadeu', imageUrl: 'https://placehold.co/80x80/c27a2f/FFFFFF/png?text=S.+Judas', month: 'Outubro', startDate: '19/Out', endDate: '27/Out', feastDay: '28/Out' },
+  { id: 'todos_santos', name: 'Todos os Santos', imageUrl: 'https://placehold.co/80x80/c27a2f/FFFFFF/png?text=Santos', month: 'Outubro', startDate: '23/Out', endDate: '31/Out', feastDay: '01/Nov' },
+  { id: 'almas', name: 'Almas', imageUrl: 'https://placehold.co/80x80/c27a2f/FFFFFF/png?text=Almas', month: 'Novembro', startDate: '24/Out', endDate: '01/Nov', feastDay: '02/Nov' },
+  { id: 'gracas', name: 'N. S. das Graças', imageUrl: 'https://placehold.co/80x80/c27a2f/FFFFFF/png?text=N.S.+Graças', month: 'Novembro', startDate: '18/Nov', endDate: '26/Nov', feastDay: '27/Nov' }
 ];
 
 export const months: string[] = ['Outubro', 'Novembro'];
@@ -126,6 +126,7 @@ export const months: string[] = ['Outubro', 'Novembro'];
     
 
     
+
 
 
 
