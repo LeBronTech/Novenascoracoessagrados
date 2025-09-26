@@ -64,7 +64,6 @@
     "@types/wav": "^1.0.2",
     "genkit-cli": "^1.14.1",
     "postcss": "^8",
-    "sharp": "^0.33.4",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
   }
