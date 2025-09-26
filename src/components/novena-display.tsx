@@ -102,7 +102,7 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
           <img src={saint.imageUrl} alt={saint.name} className="w-28 h-28 md:w-32 md:h-32 rounded-full object-cover border-2 border-stone-400/50 shadow-lg flex-shrink-0" />
           <div>
             <h2 className={cn("text-3xl md:text-4xl font-bold font-brand", theme === 'theme-light-gray' ? 'text-primary' : 'text-white')}>{novenaTitle}</h2>
-            <p className={cn("italic mt-1", theme === 'theme-light-gray' ? 'text-stone-600' : 'text-stone-200')}>{description || ''}</p>
+            <p className={cn("italic mt-1", theme === 'theme-light-gray' ? 'text-stone-600' : 'text-stone-300')}>{description || ''}</p>
             {saint.startDate && (
               <div className="mt-3">
                 <span className="inline-block bg-primary text-white text-xs font-bold px-4 py-1 rounded-full">
@@ -123,7 +123,7 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
           </TabsList>
           {days.map((day, index) => (
             <TabsContent key={`content-${index}`} value={`day-${index + 1}`} className="mt-8 animate-fade-in">
-                <div className={cn("prose max-w-none", theme === 'theme-light-gray' ? 'text-stone-800' : 'text-inherit')}>
+                <div className={cn("prose max-w-none prose-blockquote:text-stone-500", theme === 'theme-light-gray' ? 'text-stone-800' : 'text-inherit prose-blockquote:text-stone-200')}>
                   {initialPrayer && <NovenaContent htmlContent={initialPrayer} />}
                   
                   <div className="w-16 h-px bg-white/20 my-8 mx-auto"></div>

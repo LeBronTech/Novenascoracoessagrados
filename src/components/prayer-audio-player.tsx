@@ -86,9 +86,7 @@ export default function PrayerAudioPlayer({ prayerText, theme }: PrayerAudioPlay
         variant="outline" 
         className={cn(
             "w-full sm:w-auto",
-            theme === 'theme-light-gray'
-              ? 'text-primary border-primary/50 hover:bg-primary/10 hover:text-primary'
-              : 'text-white border-white/50 hover:bg-white/10 hover:text-white'
+            "bg-white/90 text-primary hover:bg-white border-transparent"
         )}
       >
         <Icon className={`mr-2 h-4 w-4 ${isLoading ? 'animate-spin' : ''}`} />

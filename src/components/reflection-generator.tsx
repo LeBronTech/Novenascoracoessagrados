@@ -41,8 +41,7 @@ export default function ReflectionGenerator({ prayerText, theme }: ReflectionGen
         onClick={handleGenerate} 
         disabled={isLoading} 
         className={cn(
-            "w-full sm:w-auto",
-            theme === 'theme-red' && 'bg-white/90 text-primary hover:bg-white'
+            "w-full sm:w-auto bg-white/90 text-primary hover:bg-white"
         )}
       >
         {isLoading ? (
