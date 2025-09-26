@@ -103,7 +103,7 @@ export default {
         'accordion-up': 'accordion-up 0.2s ease-out',
         'fade-in': 'fade-in 0.3s ease-in-out',
         'fade-out': 'fade-out 0.15s ease-out forwards',
-        'slide-up-fade-in': 'slide-up-fade-in 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards',
+        'slide-up-fade-in': 'slide-up-fade-in 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards',
       },
       typography: ({ theme }: { theme: any }) => ({
         DEFAULT: {

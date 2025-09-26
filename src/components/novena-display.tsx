@@ -68,7 +68,7 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
 
         const inTimer = setTimeout(() => {
             setAnimationState('idle');
-        }, 150 + 400); // fade-out + slide-in duration
+        }, 150 + 800); // fade-out + slide-in duration
 
         return () => {
             clearTimeout(outTimer);
