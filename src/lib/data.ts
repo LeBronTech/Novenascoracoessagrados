@@ -107,9 +107,9 @@ judas_tadeu: { novenaTitle: 'Novena a São Judas Tadeu', description: 'Considera
 export const saints: Saint[] = [
   { id: 'faustina', name: 'Santa Faustina', imageUrl: 'https://i.postimg.cc/qBKkbHTj/39a80df1d720976f7e55e00f40eadc90-1.jpg', month: 'Outubro', startDate: '26/Set', endDate: '04/Out', feastDay: '05/Out' },
   { id: 'rosario', name: 'N. S. do Rosário', imageUrl: 'https://i.postimg.cc/2669v1gr/nsr.jpg', month: 'Outubro', startDate: '28/Set', endDate: '06/Out', feastDay: '07/Out' },
-  { id: 'aparecida', name: 'N. S. Aparecida', imageUrl: 'https://i.postimg.cc/Zn3jMzpz/Pin-de-Alzira-Mattos-em-RELIGIOSO-Nosssa-senhora.jpg', month: 'Outubro', startDate: '03/Out', endDate: '11/Out', feastDay: '12/Out' },
+  { id: 'aparecida', name: 'N. S. Aparecida', imageUrl: 'https://i.postimg.cc/C143B7B8/nossa-senhora-aparecida-12.jpg', month: 'Outubro', startDate: '03/Out', endDate: '11/Out', feastDay: '12/Out' },
   { id: 'teresa_avila', name: 'Sta. Teresa de Ávila', imageUrl: 'https://i.postimg.cc/tJ01vGqY/10-extra-large.jpg', month: 'Outubro', startDate: '06/Out', endDate: '14/Out', feastDay: '15/Out' },
-  { id: 'margarida_alacoque', name: 'Sta. Margarida M.A.', imageUrl: 'https://i.postimg.cc/X7Y0gG6G/st-margaret-mary-alacoque-8x10-print-on-canvas-gallery-wrap-st-margaret-mary-alacoque-fine-art-canv.jpg', month: 'Outubro', startDate: '07/Out', endDate: '15/Out', feastDay: '16/Out' },
+  { id: 'margarida_alacoque', name: 'Sta. Margarida M.A.', imageUrl: 'https://i.postimg.cc/d1G5M48v/st-margaret-mary-alacoque-8x10-print-on-canvas-gallery-wrap-st-margaret-mary-alacoque-fine-art-canv.jpg', month: 'Outubro', startDate: '07/Out', endDate: '15/Out', feastDay: '16/Out' },
   { id: 'geraldo_majela', name: 'São Geraldo', imageUrl: 'https://i.postimg.cc/y8SST3Pj/S-o-Geraldo-Majella-CSs-R-padroeiro-dos-irm-os-redentoristas.jpg', month: 'Outubro', startDate: '07/Out', endDate: '15/Out', feastDay: '16/Out' },
   { id: 'inacio_antioquia', name: 'Sto. Inácio de A.', imageUrl: 'https://i.postimg.cc/yN6YwPBy/Santo-In-cio-de-Antioquia.jpg', month: 'Outubro', startDate: '08/Out', endDate: '16/Out', feastDay: '17/Out' },
   { id: 'pedro_alcantara', name: 'São Pedro de A.', imageUrl: 'https://i.postimg.cc/Kz4Ygrt5/S-o-Pedro-de-Alc-ntara-1.jpg', month: 'Outubro', startDate: '10/Out', endDate: '18/Out', feastDay: '19/Out' },
