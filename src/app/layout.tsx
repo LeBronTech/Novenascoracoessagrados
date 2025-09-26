@@ -5,9 +5,6 @@ import './globals.css';
 export const metadata: Metadata = {
   title: 'Corações Sagrados - Portal de Novenas',
   description: 'Um local centralizado e elegante para os fiéis rezarem diversas novenas católicas.',
-  icons: {
-    icon: '/favicon.ico',
-  },
 };
 
 export default function RootLayout({
