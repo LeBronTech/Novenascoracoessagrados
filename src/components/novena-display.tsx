@@ -104,8 +104,8 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
        <header id="novena-header" className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-6 mb-8 text-center sm:text-left">
           <img src={saint.imageUrl} alt={saint.name} className="w-28 h-28 md:w-32 md:h-32 rounded-full object-cover border-2 border-stone-400/50 shadow-lg flex-shrink-0" />
           <div>
-            <h2 className={cn("text-3xl md:text-4xl font-bold font-brand", isLight ? 'text-primary' : 'text-white')}>{novenaTitle}</h2>
-            <p className={cn("italic mt-1", isLight ? 'text-stone-600' : 'text-white font-bold')}>{description || ''}</p>
+            <h2 className={cn("text-3xl md:text-4xl font-bold font-brand", isRedTheme ? 'text-white' : 'text-primary')}>{novenaTitle}</h2>
+            <p className={cn("italic mt-1", isLight ? 'text-stone-600' : 'text-white/90 font-semibold')}>{description || ''}</p>
             {saint.startDate && (
               <div className="mt-3">
                 <span className="inline-block bg-primary text-white text-xs font-bold px-4 py-1 rounded-full">
@@ -132,23 +132,30 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
             <TabsContent key={`content-${index}`} value={`day-${index + 1}`} className="mt-8 animate-fade-in">
                 <div className={cn("prose max-w-none", 
                     isLight ? "text-black" : "text-white",
-                    // Blockquote text color
-                    {"prose-blockquote:text-primary": isLight},
-                    {"prose-blockquote:text-white": !isLight && theme !== 'theme-dark-gray'},
-                    {"prose-blockquote:text-white/90": theme === 'theme-dark-gray'},
                     // Titles (h3, h4)
-                    {"[&_h3]:text-primary": isLight || !isRedTheme },
-                    {"[&_h3]:text-white": isRedTheme},
-                    {"[&_h4]:text-primary": isLight || !isRedTheme},
-                    {"[&_h4]:text-white": isRedTheme},
-                    // Italic text inside paragraphs
-                    {"[&_p>i]:text-primary": isLight},
-                    {"[&_p>i]:text-white/90": !isLight},
-                    // First letter
+                    {"[&_h3]:text-primary [&_h4]:text-primary": !isRedTheme},
+                    {"[&_h3]:text-white [&_h4]:text-white": isRedTheme},
+                    
+                    // Blockquote text and italic text
+                    {"prose-blockquote:text-primary [&_p>i]:text-primary": isLight},
+                    {"prose-blockquote:text-white/80 [&_p>i]:text-white/80": !isLight},
+
+                    // Specific italic prayer text color
+                    {"[&_.prayer-request>i]:text-white": !isLight},
+                    {"[&_.prayer-request>i]:text-primary": isLight},
+
+                    // First letter styling
                     {"[&_.day-specific-content>p:first-child::first-letter]:text-primary": !isRedTheme},
                     {"[&_.day-specific-content>p:first-child::first-letter]:text-white": isRedTheme},
                     {"[&_h4+p::first-letter]:text-primary": !isRedTheme},
-                    {"[&_h4+p::first-letter]:text-white": isRedTheme}
+                    {"[&_h4+p::first-letter]:text-white": isRedTheme},
+                    // Specific fix for "Deus Misericordioso"
+                    {"[&_.prayer-block+p::first-letter]:text-primary": !isRedTheme},
+                    {"[&_.prayer-block+p::first-letter]:text-white": isRedTheme},
+
+                    // Litany responses
+                    {"[&_.litany-response]:text-primary/90": isLight},
+                    {"[&_.litany-response]:text-white/80": !isLight},
                 )}>
                   {initialPrayer && <NovenaContent htmlContent={initialPrayer} />}
                   
