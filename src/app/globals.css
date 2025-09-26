@@ -107,7 +107,7 @@
   }
 
   .main-card.theme-dark-gray blockquote p {
-    color: hsl(var(--primary)) !important;
+    color: hsl(210 40% 98% / 0.8) !important;
     opacity: 1;
   }
   
