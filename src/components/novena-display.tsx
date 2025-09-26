@@ -105,7 +105,7 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
           <TabsList className="grid w-full grid-cols-3 md:grid-cols-5 lg:grid-cols-9 bg-transparent border-b border-white/20 rounded-none p-0">
             {days.map((day, index) => (
-              <TabsTrigger key={`trigger-${index}`} value={`day-${index + 1}`} className="py-3 px-2 md:px-4 text-sm md:text-base bg-transparent text-stone-200 rounded-none border-b-[3px] border-transparent data-[state=active]:text-white data-[state=active]:border-white data-[state=active]:shadow-none hover:text-white">
+              <TabsTrigger key={`trigger-${index}`} value={`day-${index + 1}`} className="py-3 px-2 md:px-4 text-sm md:text-base bg-transparent text-stone-200 rounded-t-md rounded-b-none border-b-[3px] border-transparent data-[state=active]:text-white data-[state=active]:border-white data-[state=active]:bg-black/10 data-[state=active]:shadow-none hover:text-white">
                 Dia {index + 1}
               </TabsTrigger>
             ))}
