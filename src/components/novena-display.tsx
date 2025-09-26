@@ -6,8 +6,6 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { cn } from '@/lib/utils';
 import type { Saint, Novena } from '@/lib/data';
-import ReflectionGenerator from './reflection-generator';
-import PrayerAudioPlayer from './prayer-audio-player';
 
 type Theme = 'theme-default' | 'theme-dark-gray' | 'theme-light-gray' | 'theme-red';
 
@@ -80,14 +78,6 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
   }
 
   const { novenaTitle, description, days, initialPrayer, finalPrayer } = novena;
-
-  // Function to extract plain text for AI actions
-  const getPlainText = (htmlString: string) => {
-    if (typeof document === 'undefined') return ''; // Return empty on server
-    const div = document.createElement('div');
-    div.innerHTML = htmlString;
-    return div.textContent || div.innerText || '';
-  };
   
   const isLightTheme = theme === 'theme-light-gray';
   const isRedTheme = theme === 'theme-red';
@@ -192,11 +182,6 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
                       <NovenaContent htmlContent={finalPrayer} />
                     </div>
                   )}
-                </div>
-
-                <div className="mt-6 flex flex-col sm:flex-row gap-4">
-                  <ReflectionGenerator prayerText={getPlainText(day.content)} theme={theme} />
-                  <PrayerAudioPlayer prayerText={getPlainText(day.content)} theme={theme}/>
                 </div>
             </TabsContent>
           ))}
