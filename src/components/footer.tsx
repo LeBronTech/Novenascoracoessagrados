@@ -17,7 +17,7 @@ export default function Footer() {
           <span className="sr-only">Instagram</span>
         </a>
         <a href="https://chat.whatsapp.com/La88Os582PHKICHfuxFE09" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity duration-300" title="Entre no nosso grupo do WhatsApp">
-          <Image src="https://i.postimg.cc/QdgSCt01/image.png" alt="WhatsApp" width={32} height={32} className="w-8 h-8" />
+          <Image src="https://i.postimg.cc/QdgSCt01/image.png" alt="WhatsApp" width={36} height={36} className="w-9 h-9" />
           <span className="sr-only">WhatsApp</span>
         </a>
         <a href="https://lebrontech.github.io/Portfolio/" target="_blank" rel="noopener noreferrer" className="text-[#333] hover:opacity-80 transition-opacity duration-300" title="Veja nosso trabalho no GitHub">
