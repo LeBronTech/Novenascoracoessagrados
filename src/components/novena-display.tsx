@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -90,8 +91,6 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
   
   const isLightTheme = theme === 'theme-light-gray';
   const isRedTheme = theme === 'theme-red';
-  const isDarkGrayTheme = theme === 'theme-dark-gray';
-  const isDefaultTheme = theme === 'theme-default';
 
   return (
     <main 
@@ -109,10 +108,9 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
             <h2 className={cn("text-3xl md:text-4xl font-bold font-brand", 
               isRedTheme ? 'text-white' : 'text-primary'
             )}>{novenaTitle}</h2>
-            <p className={cn(
-                "italic mt-1", 
-                isLightTheme ? 'text-stone-600' : 'text-white/90',
-             )}>{description || ''}</p>
+            <p className={cn("italic mt-1", isLightTheme ? 'text-stone-600' : 'text-white/90')}>
+              {description || ''}
+            </p>
             {saint.startDate && (
               <div className="mt-3">
                 <span className="inline-block bg-primary text-white text-xs font-bold px-4 py-1 rounded-full">
@@ -137,34 +135,28 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
           </TabsList>
           {days.map((day, index) => (
             <TabsContent key={`content-${index}`} value={`day-${index + 1}`} className="mt-8 animate-fade-in">
-                <div className={cn("prose max-w-none", 
-                    // Regra Geral de Texto
-                    isLightTheme ? "text-black" : "text-white",
+                <div className={cn(
+                  "prose max-w-none",
+                  isLightTheme ? "text-stone-800" : "text-white",
+                  isLightTheme ? "[&_h3]:text-primary" : "[&_h3]:text-white",
+                  isLightTheme ? "[&_blockquote]:text-primary" : "[&_blockquote]:text-white/80",
+                  
+                  // Regras para Primeira Letra
+                  isRedTheme ? "[&_.day-specific-content>p:first-child::first-letter]:text-black" : "[&_.day-specific-content>p:first-child::first-letter]:text-primary",
+                  isRedTheme ? "[&_.prayer-request>p:first-child::first-letter]:text-black" : "[&_.prayer-request>p:first-child::first-letter]:text-primary",
+                  isRedTheme ? "[&_.prayer-block>p:first-child::first-letter]:text-black" : "[&_.prayer-block>p:first-child::first-letter]:text-primary",
+                  
+                  // Regras para Textos de Orações
+                  isLightTheme ? "[&_.prayer-request]:text-stone-700" : "[&_.prayer-request]:text-white",
+                  isLightTheme ? "[&_.prayer-request_h4]:text-primary" : "[&_.prayer-request_h4]:text-white",
 
-                    // Títulos, Primeira Letra, Citações
-                    "[&_h3]:text-primary",
-                    "[&_blockquote]:text-primary",
-                    "[&_blockquote_p]:text-primary",
-                    "[.day-specific-content>p:first-child::first-letter]:text-primary",
-                    "[.prayer-request>p:first-child::first-letter]:text-primary",
-                    
-                    // Tema Vermelho - Overrides
-                    isRedTheme && "[&_h3]:text-white",
-                    isRedTheme && "[&_blockquote]:text-white",
-                    isRedTheme && "[&_blockquote_p]:text-white",
-                    isRedTheme && "[.day-specific-content>p:first-child::first-letter]:text-white",
-                    isRedTheme && "[.prayer-request>p:first-child::first-letter]:text-black",
-                    
-                    // Orações Específicas
-                    (isDarkGrayTheme || isDefaultTheme || isRedTheme) && "[&_.initial-prayer-text]:text-white",
-                    isLightTheme && "[&_.initial-prayer-text_.prayer-request>i]:text-primary",
-                    
-                    (isDarkGrayTheme || isDefaultTheme || isRedTheme) && "[&_.final-prayer-text]:text-white",
-                    isRedTheme ? "[&_.final-prayer-text_.prayer-block+p::first-letter]:text-black" : "[&_.final-prayer-text_.prayer-block+p::first-letter]:text-primary",
-                    
-                    // Ladainha e Jaculatórias
-                    isLightTheme && "[&_.litany-response]:text-primary/90",
-                    (isDarkGrayTheme || isDefaultTheme || isRedTheme) && "[&_.jaculatory-prayers>p]:text-white"
+                  isLightTheme ? "[&_.prayer-block]:text-stone-700" : "[&_.prayer-block]:text-white",
+                  isLightTheme ? "[&_.final-prayer-text_h4]:text-primary" : "[&_.final-prayer-text_h4]:text-white",
+                  
+                  isLightTheme ? "[&_.jaculatory-prayers]:text-stone-700" : "[&_.jaculatory-prayers]:text-white",
+
+                  // Outros
+                  isLightTheme ? "[&_.litany-response]:text-primary/90" : "[&_.litany-response]:text-white/80"
                 )}>
                   {initialPrayer && (
                     <NovenaContent htmlContent={initialPrayer} />
@@ -194,5 +186,3 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
     </main>
   );
 }
-
-    
