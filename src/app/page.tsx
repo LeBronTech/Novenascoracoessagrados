@@ -18,8 +18,10 @@ export default function Home() {
     // It reads the initial state from the URL hash.
     const hash = window.location.hash.substring(1);
     let initialMonth = 'Outubro';
-    let initialNovenaId = saints.find(s => s.month === 'Outubro')?.id || null;
-
+    let initialNovenaId: string | null = null;
+    
+    const firstSaintOfOctober = saints.find(s => s.month === 'Outubro');
+    
     if (hash) {
       for (const month of months) {
         if (saints.some(saint => saint.id === hash && saint.month === month)) {
@@ -30,6 +32,10 @@ export default function Home() {
       }
     }
     
+    if (!initialNovenaId && firstSaintOfOctober) {
+        initialNovenaId = firstSaintOfOctober.id;
+    }
+
     setSelectedMonth(initialMonth);
     setSelectedSaintId(initialNovenaId);
     setHydrated(true); // Mark as hydrated

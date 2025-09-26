@@ -57,9 +57,13 @@ function NovenaContent({ htmlContent }: { htmlContent: string }) {
 export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
   const [theme, setTheme] = useState<Theme>('theme-default');
   const [activeTab, setActiveTab] = useState('day-1');
+  const [isFading, setIsFading] = useState(false);
 
   useEffect(() => {
     setActiveTab('day-1');
+    setIsFading(true);
+    const timer = setTimeout(() => setIsFading(false), 150); // Match animation duration
+    return () => clearTimeout(timer);
   }, [saint, novena]);
 
   if (!novena || !saint) {
@@ -85,7 +89,14 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
   };
 
   return (
-    <main id="main-card" className={cn('main-card glass-card rounded-2xl p-6 md:p-10 relative shadow-2xl shadow-black/20', themeClasses[theme])}>
+    <main 
+      id="main-card" 
+      className={cn(
+        'main-card glass-card rounded-2xl p-6 md:p-10 relative shadow-2xl shadow-black/20 transition-opacity duration-300', 
+        themeClasses[theme],
+        isFading ? 'opacity-0' : 'opacity-100'
+        )}
+    >
       <ThemeSelector theme={theme} setTheme={setTheme} />
        <header id="novena-header" className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-6 mb-8 text-center sm:text-left">
           <img src={saint.imageUrl} alt={saint.name} className="w-28 h-28 md:w-32 md:h-32 rounded-full object-cover border-2 border-stone-400/50 shadow-lg flex-shrink-0" />
@@ -103,7 +114,7 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
        </header>
 
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-3 sm:grid-cols-5 md:grid-cols-9 bg-transparent border-b border-white/20 rounded-none p-0">
+          <TabsList className="flex flex-wrap h-auto justify-center bg-transparent border-b border-white/20 rounded-none p-0">
             {days.map((day, index) => (
               <TabsTrigger key={`trigger-${index}`} value={`day-${index + 1}`} className={cn("py-3 px-2 md:px-4 text-sm md:text-base rounded-t-md rounded-b-none border-b-[3px] border-transparent data-[state=active]:bg-black/10 data-[state=active]:shadow-none", theme === 'theme-light-gray' ? 'text-stone-700 data-[state=active]:text-primary data-[state=active]:border-primary hover:text-primary' : 'text-stone-200 data-[state=active]:text-white data-[state=active]:border-white hover:text-white')}>
                 Dia {index + 1}
@@ -111,7 +122,7 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
             ))}
           </TabsList>
           {days.map((day, index) => (
-            <TabsContent key={`content-${index}`} value={`day-${index + 1}`} className="mt-8">
+            <TabsContent key={`content-${index}`} value={`day-${index + 1}`} className="mt-8 animate-fade-in">
                 <div className={cn("prose max-w-none", theme === 'theme-light-gray' ? 'text-stone-800' : 'text-inherit')}>
                   {initialPrayer && <NovenaContent htmlContent={initialPrayer} />}
                   
