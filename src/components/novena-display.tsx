@@ -56,13 +56,25 @@ function NovenaContent({ htmlContent }: { htmlContent: string }) {
 export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
   const [theme, setTheme] = useState<Theme>('theme-default');
   const [activeTab, setActiveTab] = useState('day-1');
-  const [isFading, setIsFading] = useState(false);
+  const [animationState, setAnimationState] = useState<'idle' | 'out' | 'in'>('idle');
 
   useEffect(() => {
-    setActiveTab('day-1');
-    setIsFading(true);
-    const timer = setTimeout(() => setIsFading(false), 150); // Match animation duration
-    return () => clearTimeout(timer);
+    if (novena) {
+        setAnimationState('out');
+        const outTimer = setTimeout(() => {
+            setActiveTab('day-1');
+            setAnimationState('in');
+        }, 150); // Duration of fade-out animation
+
+        const inTimer = setTimeout(() => {
+            setAnimationState('idle');
+        }, 150 + 400); // fade-out + slide-in duration
+
+        return () => {
+            clearTimeout(outTimer);
+            clearTimeout(inTimer);
+        };
+    }
   }, [saint, novena]);
 
   if (!novena || !saint) {
@@ -82,6 +94,14 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
   const isLightTheme = theme === 'theme-light-gray';
   const isRedTheme = theme === 'theme-red';
   const isDarkGrayTheme = theme === 'theme-dark-gray';
+  
+  const getAnimationClass = () => {
+    switch(animationState) {
+        case 'out': return 'animate-fade-out';
+        case 'in': return 'animate-slide-up-fade-in';
+        default: return '';
+    }
+  }
 
   return (
     <main 
@@ -90,7 +110,7 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
         'main-card glass-card rounded-2xl p-6 md:p-10 relative shadow-2xl shadow-black/20', 
         theme,
         themeClasses[theme],
-        isFading ? 'animate-fade-out' : 'animate-slide-up-fade-in'
+        getAnimationClass()
         )}
     >
       <ThemeSelector theme={theme} setTheme={setTheme} />
