@@ -5,12 +5,14 @@ import { Button } from './ui/button';
 import { Volume2, Loader2, Play, Pause } from 'lucide-react';
 import { generateAudioAction } from '@/app/actions';
 import { useToast } from '@/hooks/use-toast';
+import { cn } from '@/lib/utils';
 
 interface PrayerAudioPlayerProps {
   prayerText: string;
+  theme: string;
 }
 
-export default function PrayerAudioPlayer({ prayerText }: PrayerAudioPlayerProps) {
+export default function PrayerAudioPlayer({ prayerText, theme }: PrayerAudioPlayerProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [audioSrc, setAudioSrc] = useState<string | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -78,7 +80,15 @@ export default function PrayerAudioPlayer({ prayerText }: PrayerAudioPlayerProps
 
   return (
     <div className="w-full">
-      <Button onClick={handleGenerateAndPlay} disabled={isLoading} variant="outline" className="w-full sm:w-auto">
+      <Button 
+        onClick={handleGenerateAndPlay} 
+        disabled={isLoading} 
+        variant="outline" 
+        className={cn(
+            "w-full sm:w-auto",
+            theme === 'theme-light-gray' ? 'text-primary border-primary/50 hover:bg-primary/10 hover:text-primary' : 'text-white'
+        )}
+      >
         <Icon className={`mr-2 h-4 w-4 ${isLoading ? 'animate-spin' : ''}`} />
         {buttonText}
       </Button>

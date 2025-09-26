@@ -90,8 +90,8 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
        <header id="novena-header" className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-6 mb-8 text-center sm:text-left">
           <img src={saint.imageUrl} alt={saint.name} className="w-28 h-28 md:w-32 md:h-32 rounded-full object-cover border-2 border-stone-400/50 shadow-lg flex-shrink-0" />
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold font-brand text-white">{novenaTitle}</h2>
-            <p className="text-stone-200 italic mt-1">{description || ''}</p>
+            <h2 className={cn("text-3xl md:text-4xl font-bold font-brand", theme === 'theme-light-gray' ? 'text-primary' : 'text-white')}>{novenaTitle}</h2>
+            <p className={cn("italic mt-1", theme === 'theme-light-gray' ? 'text-stone-600' : 'text-stone-200')}>{description || ''}</p>
             {saint.startDate && (
               <div className="mt-3">
                 <span className="inline-block bg-primary text-white text-xs font-bold px-4 py-1 rounded-full">
@@ -103,22 +103,22 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
        </header>
 
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-3 md:grid-cols-5 lg:grid-cols-9 bg-transparent border-b border-white/20 rounded-none p-0">
+          <TabsList className="grid w-full grid-cols-3 sm:grid-cols-5 md:grid-cols-9 bg-transparent border-b border-white/20 rounded-none p-0">
             {days.map((day, index) => (
-              <TabsTrigger key={`trigger-${index}`} value={`day-${index + 1}`} className="py-3 px-2 md:px-4 text-sm md:text-base bg-transparent text-stone-200 rounded-t-md rounded-b-none border-b-[3px] border-transparent data-[state=active]:text-white data-[state=active]:border-white data-[state=active]:bg-black/10 data-[state=active]:shadow-none hover:text-white">
+              <TabsTrigger key={`trigger-${index}`} value={`day-${index + 1}`} className={cn("py-3 px-2 md:px-4 text-sm md:text-base rounded-t-md rounded-b-none border-b-[3px] border-transparent data-[state=active]:bg-black/10 data-[state=active]:shadow-none", theme === 'theme-light-gray' ? 'text-stone-700 data-[state=active]:text-primary data-[state=active]:border-primary hover:text-primary' : 'text-stone-200 data-[state=active]:text-white data-[state=active]:border-white hover:text-white')}>
                 Dia {index + 1}
               </TabsTrigger>
             ))}
           </TabsList>
           {days.map((day, index) => (
             <TabsContent key={`content-${index}`} value={`day-${index + 1}`} className="mt-8">
-                <div className="prose max-w-none text-inherit">
+                <div className={cn("prose max-w-none", theme === 'theme-light-gray' ? 'text-stone-800' : 'text-inherit')}>
                   {initialPrayer && <NovenaContent htmlContent={initialPrayer} />}
                   
                   <div className="w-16 h-px bg-white/20 my-8 mx-auto"></div>
 
-                  <h3 className="text-2xl font-bold font-brand text-white mb-2">{day.day}</h3>
-                  <p className="text-xl italic text-stone-200 mb-4">{day.title}</p>
+                  <h3 className={cn("text-2xl font-bold font-brand mb-2", theme === 'theme-light-gray' ? 'text-primary' : 'text-white')}>{day.day}</h3>
+                  <p className={cn("text-xl italic mb-4", theme === 'theme-light-gray' ? 'text-stone-600' : 'text-stone-200')}>{day.title}</p>
                   
                   <div className="day-specific-content">
                     <NovenaContent htmlContent={day.content} />
@@ -129,7 +129,7 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
 
                 <div className="mt-6 flex flex-col sm:flex-row gap-4">
                   <ReflectionGenerator prayerText={getPlainText(day.content)} />
-                  <PrayerAudioPlayer prayerText={getPlainText(day.content)} />
+                  <PrayerAudioPlayer prayerText={getPlainText(day.content)} theme={theme}/>
                 </div>
             </TabsContent>
           ))}
