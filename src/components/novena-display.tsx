@@ -98,6 +98,7 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
       id="main-card" 
       className={cn(
         'main-card glass-card rounded-2xl p-6 md:p-10 relative shadow-2xl shadow-black/20', 
+        theme,
         themeClasses[theme],
         isFading ? 'animate-fade-out' : 'animate-slide-up-fade-in'
         )}
@@ -147,7 +148,6 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
 
                   // Citações (Blockquote)
                   isDarkGrayTheme ? "[&_blockquote]:bg-black/10 [&_blockquote]:px-4 [&_blockquote]:py-2 [&_blockquote]:rounded-lg [&_blockquote]:border-l-4 [&_blockquote]:border-primary" : "",
-                  isDarkGrayTheme ? "[&_blockquote_p]:text-primary" : "",
                    isLightTheme ? "[&_blockquote_p]:text-primary" : "text-white/90",
                   
                   // Regras para Primeira Letra

@@ -105,9 +105,13 @@
     color: inherit !important;
     opacity: 0.8;
   }
+
+  .main-card.theme-dark-gray blockquote p {
+    color: hsl(var(--primary)) !important;
+    opacity: 1;
+  }
   
   .prose .section-title {
     color: hsl(var(--primary));
   }
 }
-
