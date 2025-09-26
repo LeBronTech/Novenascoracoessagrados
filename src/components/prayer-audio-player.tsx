@@ -76,7 +76,7 @@ export default function PrayerAudioPlayer({ prayerText, theme }: PrayerAudioPlay
   }, [audioRef.current]);
 
   const Icon = isLoading ? Loader2 : audioSrc ? (isPlaying ? Pause : Play) : Volume2;
-  const buttonText = isLoading ? "Gerando Áudio" : audioSrc ? (isPlaying ? "Pausar" : "Ouvir") : "Ouvir Oração";
+  const buttonText = isLoading ? "Gerando Áudio..." : audioSrc ? (isPlaying ? "Pausar" : "Ouvir") : "Ouvir Oração";
 
   return (
     <div className="w-full">

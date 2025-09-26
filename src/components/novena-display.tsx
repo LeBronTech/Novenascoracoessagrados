@@ -92,9 +92,9 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
     <main 
       id="main-card" 
       className={cn(
-        'main-card glass-card rounded-2xl p-6 md:p-10 relative shadow-2xl shadow-black/20 transition-opacity duration-300', 
+        'main-card glass-card rounded-2xl p-6 md:p-10 relative shadow-2xl shadow-black/20', 
         themeClasses[theme],
-        isFading ? 'opacity-0' : 'opacity-100'
+        isFading ? 'animate-fade-out' : 'animate-slide-up-fade-in'
         )}
     >
       <ThemeSelector theme={theme} setTheme={setTheme} />
