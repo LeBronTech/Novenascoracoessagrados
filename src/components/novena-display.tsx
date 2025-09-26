@@ -90,6 +90,7 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
   
   const isLightTheme = theme === 'theme-light-gray';
   const isRedTheme = theme === 'theme-red';
+  const isDarkGrayTheme = theme === 'theme-dark-gray';
 
   return (
     <main 
@@ -110,7 +111,6 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
             <p className={cn(
                 "italic mt-1", 
                 isLightTheme ? 'text-stone-600' : 'text-white/90',
-                isRedTheme && 'font-bold'
              )}>{description || ''}</p>
             {saint.startDate && (
               <div className="mt-3">
@@ -137,42 +137,40 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
           {days.map((day, index) => (
             <TabsContent key={`content-${index}`} value={`day-${index + 1}`} className="mt-8 animate-fade-in">
                 <div className={cn("prose max-w-none", 
+                    // TEXTOS
                     isLightTheme ? "text-black" : "text-white",
 
-                    // Titles
-                    { "[&_h3]:text-primary [&_h4]:text-primary": isLightTheme },
-                    { "[&_h3]:text-white [&_h4]:text-white": !isLightTheme },
-                    
-                    // Blockquote and italic text
-                    { "prose-blockquote:text-primary/90 [&_p>i]:text-primary/90": isLightTheme },
-                    { "prose-blockquote:text-white/80 [&_p>i]:text-white/80": isRedTheme || theme === 'theme-default'},
-                    { "prose-blockquote:text-white [&_p>i]:text-white": theme === 'theme-dark-gray' },
+                    // TÍTULOS
+                    isLightTheme ? "[&_h3]:text-primary [&_h4]:text-primary" : "[&_h3]:text-white [&_h4]:text-white",
 
-                    // Prayer Request
-                    { "[&_.prayer-request>i]:text-primary": isLightTheme },
-                    { "[&_.prayer-request>p]:text-primary": isLightTheme },
-                    { "[&_.prayer-request>i]:text-white": !isLightTheme },
-                    { "[&_.prayer-request>p]:text-white": theme !== 'theme-light-gray' },
-                    { "[&_.prayer-request>h4]:text-primary": isLightTheme },
-                    { "[&_.prayer-request>h4]:text-white": !isLightTheme },
+                    // CITAÇÕES e ITÁLICOS
+                    isLightTheme ? "prose-blockquote:text-primary/90 [&_p>i]:text-primary/90" : "prose-blockquote:text-white/80 [&_p>i]:text-white/80",
+                    isDarkGrayTheme && "prose-blockquote:text-white",
 
-                    // Final Prayer specific text
-                    { "[&_.final-prayer-text_p]:text-white": theme === 'theme-dark-gray' || isRedTheme },
-                    { "[&_.final-prayer-text_p]:text-black": isLightTheme },
-                    { "[&_.final-prayer-text_.prayer-block+p]:!text-white" : isRedTheme || theme === 'theme-dark-gray' },
-                    
-                    // Litany responses
-                    { "[&_.litany-response]:text-primary/90": isLightTheme },
-                    { "[&_.litany-response]:text-white/80": !isLightTheme },
+                    // PEDIDO DE GRAÇAS
+                    isLightTheme ? "[&_.prayer-request_p]:text-primary" : "[&_.prayer-request_p]:text-white",
+                    isLightTheme ? "[&_.prayer-request>i]:text-primary" : "[&_.prayer-request>i]:text-white",
+                    isLightTheme ? "[&_.prayer-request>h4]:text-primary" : "[&_.prayer-request>h4]:text-white",
 
-                    // First letter styling
-                    { "[.day-specific-content>p:first-child::first-letter]:text-primary" : !isRedTheme },
-                    { "[.day-specific-content>p:first-child::first-letter]:text-white" : isRedTheme },
+                    // RESPOSTAS DA LADAINHA
+                    isLightTheme ? "[&_.litany-response]:text-primary/90" : "[&_.litany-response]:text-white/80",
+
+                    // PRIMEIRA LETRA
+                    isRedTheme ? "[.day-specific-content>p:first-child::first-letter]:text-white" : "[.day-specific-content>p:first-child::first-letter]:text-primary",
+
+                    // ORAÇÃO INICIAL (Ó Jesus, que fizeste...)
+                    (isRedTheme || isDarkGrayTheme) && "[&_.initial-prayer-text_p]:text-white",
                     
-                    { "[.final-prayer-text_.prayer-block+p::first-letter]:text-primary": !isRedTheme },
-                    { "[.final-prayer-text_.prayer-block+p::first-letter]:text-black": isRedTheme },
+                    // ORAÇÃO FINAL (Deus Misericordioso...)
+                    (isRedTheme || isDarkGrayTheme) && "[&_.final-prayer-text_.prayer-block+p]:text-white",
+                    isRedTheme ? "[.final-prayer-text_.prayer-block+p::first-letter]:text-black" : "[.final-prayer-text_.prayer-block+p::first-letter]:text-primary"
+
                 )}>
-                  {initialPrayer && <NovenaContent htmlContent={initialPrayer} />}
+                  {initialPrayer && (
+                    <div className="initial-prayer-text">
+                        <NovenaContent htmlContent={initialPrayer} />
+                    </div>
+                  )}
                   
                   <div className="w-16 h-px bg-white/20 my-8 mx-auto"></div>
 
@@ -183,7 +181,11 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
                     <NovenaContent htmlContent={day.content} />
                   </div>
                   
-                  {finalPrayer && <NovenaContent htmlContent={finalPrayer} />}
+                  {finalPrayer && (
+                    <div className="final-prayer-text">
+                        <NovenaContent htmlContent={finalPrayer} />
+                    </div>
+                  )}
                 </div>
 
                 <div className="mt-6 flex flex-col sm:flex-row gap-4">
