@@ -106,7 +106,7 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
           <img src={saint.imageUrl} alt={saint.name} className="w-28 h-28 md:w-32 md:h-32 rounded-full object-cover border-2 border-stone-400/50 shadow-lg flex-shrink-0" />
           <div>
             <h2 className={cn("text-3xl md:text-4xl font-bold font-brand", 
-              isRedTheme ? 'text-white' : 'text-primary'
+              (isRedTheme || isDarkGrayTheme) ? 'text-white' : 'text-primary'
             )}>{novenaTitle}</h2>
             <p className={cn(
                 "italic mt-1", 
@@ -137,33 +137,32 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
           {days.map((day, index) => (
             <TabsContent key={`content-${index}`} value={`day-${index + 1}`} className="mt-8 animate-fade-in">
                 <div className={cn("prose max-w-none", 
-                    // TEXTOS
+                    // TEXTOS GERAIS
                     isLightTheme ? "text-black" : "text-white",
 
-                    // TÍTULOS
-                    isLightTheme ? "[&_h3]:text-primary [&_h4]:text-primary" : "[&_h3]:text-white [&_h4]:text-white",
-
-                    // CITAÇÕES e ITÁLICOS
-                    isLightTheme ? "prose-blockquote:text-primary/90 [&_p>i]:text-primary/90" : "prose-blockquote:text-white/80 [&_p>i]:text-white/80",
-                    isDarkGrayTheme && "prose-blockquote:text-white",
-
-                    // PEDIDO DE GRAÇAS
-                    isLightTheme ? "[&_.prayer-request_p]:text-primary" : "[&_.prayer-request_p]:text-white",
-                    isLightTheme ? "[&_.prayer-request>i]:text-primary" : "[&_.prayer-request>i]:text-white",
-                    isLightTheme ? "[&_.prayer-request>h4]:text-primary" : "[&_.prayer-request>h4]:text-white",
-
-                    // RESPOSTAS DA LADAINHA
-                    isLightTheme ? "[&_.litany-response]:text-primary/90" : "[&_.litany-response]:text-white/80",
+                    // TÍTULOS E CITAÇÕES
+                    isRedTheme ? "[&_h3]:text-white [&_blockquote]:text-white" : "[&_h3]:text-primary [&_blockquote]:text-primary",
+                    isDarkGrayTheme && "[&_h3]:text-white [&_blockquote]:text-white",
+                    isLightTheme && "[&_h3]:text-primary [&_blockquote]:text-primary/90",
 
                     // PRIMEIRA LETRA
                     isRedTheme ? "[.day-specific-content>p:first-child::first-letter]:text-white" : "[.day-specific-content>p:first-child::first-letter]:text-primary",
-
-                    // ORAÇÃO INICIAL (Ó Jesus, que fizeste...)
-                    (isRedTheme || isDarkGrayTheme) && "[&_.initial-prayer-text_p]:text-white",
                     
+                    // ORAÇÃO INICIAL (Ó Jesus, que fizeste...)
+                    (isRedTheme || isDarkGrayTheme) && "[&_.initial-prayer-text]:text-white",
+                    isLightTheme && "[&_.initial-prayer-text_.prayer-request>i]:text-primary",
+                    (isRedTheme || isDarkGrayTheme) && "[&_.initial-prayer-text_h4]:text-white",
+                    isLightTheme && "[&_.initial-prayer-text_h4]:text-primary",
+                    
+
                     // ORAÇÃO FINAL (Deus Misericordioso...)
                     (isRedTheme || isDarkGrayTheme) && "[&_.final-prayer-text_.prayer-block+p]:text-white",
-                    isRedTheme ? "[.final-prayer-text_.prayer-block+p::first-letter]:text-black" : "[.final-prayer-text_.prayer-block+p::first-letter]:text-primary"
+                    isRedTheme ? "[.final-prayer-text_.prayer-block+p::first-letter]:text-black" : "[.final-prayer-text_.prayer-block+p::first-letter]:text-primary",
+
+                    // LADAINHA FINAL E JACULATÓRIAS
+                    (isRedTheme || isDarkGrayTheme) && "[&_.final-prayer-text_.jaculatory-prayers>p]:text-white",
+                    isLightTheme && "[&_.litany-response]:text-primary/90"
+
 
                 )}>
                   {initialPrayer && (
