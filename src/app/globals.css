@@ -106,7 +106,8 @@
     opacity: 0.8;
   }
 
-  .main-card.theme-dark-gray blockquote p {
+  .main-card.theme-dark-gray blockquote p,
+  .main-card.theme-red blockquote p {
     color: hsl(210 40% 98% / 0.8) !important;
     opacity: 1;
   }
