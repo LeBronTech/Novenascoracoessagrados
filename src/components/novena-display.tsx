@@ -139,7 +139,7 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
                 </div>
 
                 <div className="mt-6 flex flex-col sm:flex-row gap-4">
-                  <ReflectionGenerator prayerText={getPlainText(day.content)} />
+                  <ReflectionGenerator prayerText={getPlainText(day.content)} theme={theme} />
                   <PrayerAudioPlayer prayerText={getPlainText(day.content)} theme={theme}/>
                 </div>
             </TabsContent>

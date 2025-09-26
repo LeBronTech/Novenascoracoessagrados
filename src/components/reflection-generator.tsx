@@ -6,12 +6,14 @@ import { Card, CardContent } from './ui/card';
 import { WandSparkles, Loader2 } from 'lucide-react';
 import { generateReflectionAction } from '@/app/actions';
 import { useToast } from '@/hooks/use-toast';
+import { cn } from '@/lib/utils';
 
 interface ReflectionGeneratorProps {
   prayerText: string;
+  theme: string;
 }
 
-export default function ReflectionGenerator({ prayerText }: ReflectionGeneratorProps) {
+export default function ReflectionGenerator({ prayerText, theme }: ReflectionGeneratorProps) {
   const [reflection, setReflection] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
@@ -35,7 +37,14 @@ export default function ReflectionGenerator({ prayerText }: ReflectionGeneratorP
 
   return (
     <div className="w-full">
-      <Button onClick={handleGenerate} disabled={isLoading} className="w-full sm:w-auto">
+      <Button 
+        onClick={handleGenerate} 
+        disabled={isLoading} 
+        className={cn(
+            "w-full sm:w-auto",
+            theme === 'theme-red' && 'bg-white/90 text-primary hover:bg-white'
+        )}
+      >
         {isLoading ? (
           <Loader2 className="mr-2 h-4 w-4 animate-spin" />
         ) : (
