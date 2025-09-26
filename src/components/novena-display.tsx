@@ -150,7 +150,8 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
                   isLightTheme ? "[&_blockquote]:text-primary" : "text-white/90",
                   isRedTheme ? "[&_blockquote]:text-white" : "",
                   isLightTheme ? "[&_blockquote_p]:text-primary" : "",
-                   isDarkGrayTheme ? "[&_blockquote]:bg-black/10 [&_blockquote]:px-4 [&_blockquote]:py-2 [&_blockquote]:rounded-lg [&_blockquote]:border-l-4 [&_blockquote]:border-primary [&_blockquote_p]:text-white/90" : "",
+                  isDarkGrayTheme ? "[&_blockquote_p]:text-white" : "",
+                   isDarkGrayTheme ? "[&_blockquote]:bg-black/10 [&_blockquote]:px-4 [&_blockquote]:py-2 [&_blockquote]:rounded-lg [&_blockquote]:border-l-4 [&_blockquote]:border-primary" : "",
                   
                   // Regras para Primeira Letra
                   isRedTheme ? "[&_.day-specific-content>p:first-child::first-letter]:text-black" : "[&_.day-specific-content>p:first-child::first-letter]:text-primary",
