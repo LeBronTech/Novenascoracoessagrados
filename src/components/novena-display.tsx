@@ -87,8 +87,8 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
     div.innerHTML = htmlString;
     return div.textContent || div.innerText || '';
   };
-
-  const isLight = theme === 'theme-light-gray';
+  
+  const isLightTheme = theme === 'theme-light-gray';
   const isRedTheme = theme === 'theme-red';
 
   return (
@@ -104,8 +104,14 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
        <header id="novena-header" className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-6 mb-8 text-center sm:text-left">
           <img src={saint.imageUrl} alt={saint.name} className="w-28 h-28 md:w-32 md:h-32 rounded-full object-cover border-2 border-stone-400/50 shadow-lg flex-shrink-0" />
           <div>
-            <h2 className={cn("text-3xl md:text-4xl font-bold font-brand", isRedTheme ? 'text-white' : 'text-primary')}>{novenaTitle}</h2>
-            <p className={cn("italic mt-1", isLight ? 'text-stone-600' : 'text-white/90 font-semibold')}>{description || ''}</p>
+            <h2 className={cn("text-3xl md:text-4xl font-bold font-brand", 
+              isRedTheme ? 'text-white' : 'text-primary'
+            )}>{novenaTitle}</h2>
+            <p className={cn(
+                "italic mt-1", 
+                isLightTheme ? 'text-stone-600' : 'text-white/90',
+                isRedTheme && 'font-bold'
+             )}>{description || ''}</p>
             {saint.startDate && (
               <div className="mt-3">
                 <span className="inline-block bg-primary text-white text-xs font-bold px-4 py-1 rounded-full">
@@ -121,7 +127,7 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
             {days.map((day, index) => (
               <TabsTrigger key={`trigger-${index}`} value={`day-${index + 1}`} className={cn(
                 "py-3 px-2 md:px-4 text-sm md:text-base rounded-t-md rounded-b-none border-b-[3px] border-transparent data-[state=active]:bg-black/10 data-[state=active]:shadow-none",
-                isLight ? 'text-stone-700 data-[state=active]:text-primary data-[state=active]:border-primary hover:text-primary'
+                isLightTheme ? 'text-stone-700 data-[state=active]:text-primary data-[state=active]:border-primary hover:text-primary'
                         : 'text-stone-200 data-[state=active]:text-white data-[state=active]:border-white hover:text-white'
                 )}>
                 Dia {index + 1}
@@ -131,40 +137,47 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
           {days.map((day, index) => (
             <TabsContent key={`content-${index}`} value={`day-${index + 1}`} className="mt-8 animate-fade-in">
                 <div className={cn("prose max-w-none", 
-                    isLight ? "text-black" : "text-white",
+                    isLightTheme ? "text-black" : "text-white",
 
-                    // Titles (h3, h4)
-                    {"[&_h3]:text-primary [&_h4]:text-primary": !isRedTheme},
-                    {"[&_h3]:text-white [&_h4]:text-white": isRedTheme},
+                    // Titles
+                    { "[&_h3]:text-primary [&_h4]:text-primary": isLightTheme },
+                    { "[&_h3]:text-white [&_h4]:text-white": !isLightTheme },
                     
-                    // Blockquote text and italic text
-                    {"prose-blockquote:text-primary/90 [&_p>i]:text-primary/90": isLight},
-                    {"prose-blockquote:text-white/80 [&_p>i]:text-white/80": !isLight},
+                    // Blockquote and italic text
+                    { "prose-blockquote:text-primary/90 [&_p>i]:text-primary/90": isLightTheme },
+                    { "prose-blockquote:text-white/80 [&_p>i]:text-white/80": isRedTheme || theme === 'theme-default'},
+                    { "prose-blockquote:text-white [&_p>i]:text-white": theme === 'theme-dark-gray' },
 
-                    // Specific italic prayer request color
-                    {"[&_.prayer-request>i]:text-white": !isLight},
-                    {"[&_.prayer-request>i]:text-primary": isLight},
-                    {"[&_.prayer-request]:text-white": theme === 'theme-dark-gray' || isRedTheme},
-                    {"[&_.prayer-request]:text-primary": theme === 'theme-light-gray' },
+                    // Prayer Request
+                    { "[&_.prayer-request>i]:text-primary": isLightTheme },
+                    { "[&_.prayer-request>p]:text-primary": isLightTheme },
+                    { "[&_.prayer-request>i]:text-white": !isLightTheme },
+                    { "[&_.prayer-request>p]:text-white": theme !== 'theme-light-gray' },
+                    { "[&_.prayer-request>h4]:text-primary": isLightTheme },
+                    { "[&_.prayer-request>h4]:text-white": !isLightTheme },
+
+                    // Final Prayer specific text
+                    { "[&_.final-prayer-text_p]:text-white": theme === 'theme-dark-gray' || isRedTheme },
+                    { "[&_.final-prayer-text_p]:text-black": isLightTheme },
+                    { "[&_.final-prayer-text_.prayer-block+p]:!text-white" : isRedTheme || theme === 'theme-dark-gray' },
+                    
+                    // Litany responses
+                    { "[&_.litany-response]:text-primary/90": isLightTheme },
+                    { "[&_.litany-response]:text-white/80": !isLightTheme },
 
                     // First letter styling
-                    {"[&_p:first-child::first-letter]:text-primary": !isRedTheme},
-                    {"[&_p:first-child::first-letter]:text-white": isRedTheme},
-
-                    // Litany responses
-                    {"[&_.litany-response]:text-primary/90": isLight},
-                    {"[&_.litany-response]:text-white/80": !isLight},
-
-                    // Specific prayer text colors
-                    {"[&_.initial-prayer-text>p]:text-white": theme === 'theme-dark-gray' || isRedTheme},
-                    {"[&_.final-prayer-text>p]:text-white": theme === 'theme-dark-gray' || isRedTheme},
+                    { "[.day-specific-content>p:first-child::first-letter]:text-primary" : !isRedTheme },
+                    { "[.day-specific-content>p:first-child::first-letter]:text-white" : isRedTheme },
+                    
+                    { "[.final-prayer-text_.prayer-block+p::first-letter]:text-primary": !isRedTheme },
+                    { "[.final-prayer-text_.prayer-block+p::first-letter]:text-black": isRedTheme },
                 )}>
                   {initialPrayer && <NovenaContent htmlContent={initialPrayer} />}
                   
                   <div className="w-16 h-px bg-white/20 my-8 mx-auto"></div>
 
                   <h3 className={cn("text-2xl font-bold font-brand mb-2")}>{day.day}</h3>
-                  <p className={cn("text-xl italic mb-4", isLight ? "text-stone-500" : "text-white/80")}>{day.title}</p>
+                  <p className={cn("text-xl italic mb-4", isLightTheme ? "text-stone-500" : "text-white/80")}>{day.title}</p>
                   
                   <div className="day-specific-content">
                     <NovenaContent htmlContent={day.content} />
