@@ -6,7 +6,7 @@ export default function Footer() {
     <footer className="text-center mt-8 text-stone-600">
       <div className="flex justify-center items-center gap-4 mb-4">
         <Image src="https://i.postimg.cc/NGx77nBh/3-20250926-040914-0001.png" alt="Corações Sagrados Logo 1" width={96} height={96} className="w-24 h-24 rounded-full object-cover shadow-md border-2 border-white" />
-        <a href="https://lebrontech.github.io/Portfolio/" target="_blank" rel="noopener noreferrer" title="Visitar Portfólio LeBronDev-Designe™">
+        <a href="https://lebrontech.github.io/Portfolio/" target="_blank" rel="noopener noreferrer" title="Visitar Portfólio LeBronDev-Designer™">
           <Image src="https://i.postimg.cc/MHZBFWxC/4-20250926-040914-0002.png" alt="LeBronDev-Designe Logo" width={96} height={96} className="w-24 h-24 rounded-full object-cover shadow-md border-2 border-white transition-transform duration-200 hover:scale-105" />
         </a>
       </div>
@@ -26,10 +26,10 @@ export default function Footer() {
         </a>
       </div>
 
-      <p>&copy; {new Date().getFullYear()} Corações Sagrados. Todos os direitos reservados.</p>
+      <p>&copy; {new Date().getFullYear()} Corações Sagrados BSB. Todos os direitos reservados.</p>
       <p className="mt-2 text-sm">
         <a href="https://lebrontech.github.io/Portfolio/" target="_blank" rel="noopener noreferrer" className="hover:text-sky-700 transition-colors">
-          Desenvolvido por: LeBronDev-Designe™
+          Desenvolvido por: LeBronDev-Designer™
         </a>
       </p>
     </footer>
