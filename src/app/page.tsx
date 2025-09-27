@@ -15,44 +15,31 @@ export default function Home() {
   const [hydrated, setHydrated] = useState(false);
 
   useEffect(() => {
-    // This effect runs once on the client after hydration.
-    // It reads the initial state from the URL hash.
     const hash = window.location.hash.substring(1);
     let initialMonth = 'Outubro';
     let initialNovenaId: string | null = null;
     
-    const firstSaintOfOctober = saints.find(s => s.month === 'Outubro');
-    
-    if (hash) {
-      for (const month of months) {
-        if (saints.some(saint => saint.id === hash && saint.month === month)) {
-          initialMonth = month;
-          initialNovenaId = hash;
-          break;
-        }
+    if (hash && saints.some(s => s.id === hash)) {
+      const saint = saints.find(s => s.id === hash)!;
+      initialMonth = saint.month;
+      initialNovenaId = saint.id;
+    } else {
+      const firstSaint = saints.find(s => s.month === 'Outubro');
+      if (firstSaint) {
+        initialNovenaId = firstSaint.id;
       }
-    }
-    
-    if (!initialNovenaId && firstSaintOfOctober) {
-        initialNovenaId = firstSaintOfOctober.id;
     }
 
     setSelectedMonth(initialMonth);
     setSelectedSaintId(initialNovenaId);
-    setHydrated(true); // Mark as hydrated
+    setHydrated(true); 
   }, []);
 
   useEffect(() => {
-    // This effect updates the URL hash when the selected saint changes.
     if (selectedSaintId && hydrated) {
       history.pushState({ novenaId: selectedSaintId }, '', '#' + selectedSaintId);
     }
   }, [selectedSaintId, hydrated]);
-
-  const saintsForMonth = useMemo(
-    () => saints.filter((saint) => saint.month === selectedMonth),
-    [selectedMonth]
-  );
 
   const selectedNovena = useMemo(
     () => (selectedSaintId ? novenaData[selectedSaintId] : null),

@@ -54,7 +54,7 @@ function NovenaContent({ htmlContent }: { htmlContent: string }) {
 
 
 export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
-  const [theme, setTheme] = useState<Theme>('theme-default');
+  const [theme, setTheme] = useState<Theme>('theme-dark-gray');
   const [activeTab, setActiveTab] = useState('day-1');
   const [animationState, setAnimationState] = useState<'idle' | 'out' | 'in'>('idle');
 
@@ -118,7 +118,7 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
           <img src={saint.imageUrl} alt={saint.name} className="w-28 h-28 md:w-32 md:h-32 rounded-full object-cover border-2 border-stone-400/50 shadow-lg flex-shrink-0" />
           <div>
             <h2 className={cn("text-3xl md:text-4xl font-bold font-brand", 
-              isRedTheme ? 'text-white' : 'text-primary'
+              isRedTheme || isDarkGrayTheme ? 'text-white' : 'text-primary'
             )}>{novenaTitle}</h2>
             <p className={cn("italic mt-1",
                isRedTheme || isDarkGrayTheme ? 'text-white/90' : isLightTheme ? 'text-stone-600' : 'text-white/90'
@@ -154,16 +154,16 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
                   isLightTheme ? "text-stone-800" : "text-white",
                   
                   // Títulos
-                  isRedTheme ? "[&_h3.section-title]:text-white [&_h4.section-title]:text-white" : "[&_h3.section-title]:text-primary [&_h4.section-title]:text-primary",
+                  isRedTheme || isDarkGrayTheme ? "[&_h3.section-title]:text-white [&_h4.section-title]:text-white" : "[&_h3.section-title]:text-primary [&_h4.section-title]:text-primary",
 
                   // Citações (Blockquote)
                   isDarkGrayTheme ? "[&_blockquote]:bg-black/10 [&_blockquote]:px-4 [&_blockquote]:py-2 [&_blockquote]:rounded-lg [&_blockquote]:border-l-4 [&_blockquote]:border-primary" : "",
                    isLightTheme ? "[&_blockquote_p]:text-primary" : "text-white/90",
                   
                   // Regras para Primeira Letra
-                  isRedTheme ? "[&_.day-specific-content>p:first-child::first-letter]:text-black" : "[&_.day-specific-content>p:first-child::first-letter]:text-primary",
-                  isRedTheme ? "[&_.prayer-request>p:first-child::first-letter]:text-black" : "[&_.prayer-request>p:first-child::first-letter]:text-primary",
-                  isRedTheme ? "[&_.prayer-block>p:first-child::first-letter]:text-black" : "[&_.prayer-block>p:first-child::first-letter]:text-primary",
+                  isRedTheme || isDarkGrayTheme ? "[&_.day-specific-content>p:first-child::first-letter]:text-white" : "[&_.day-specific-content>p:first-child::first-letter]:text-primary",
+                  isRedTheme || isDarkGrayTheme ? "[&_.prayer-request>p:first-child::first-letter]:text-white" : "[&_.prayer-request>p:first-child::first-letter]:text-primary",
+                  isRedTheme || isDarkGrayTheme ? "[&_.prayer-block>p:first-child::first-letter]:text-white" : "[&_.prayer-block>p:first-child::first-letter]:text-primary",
                   isLightTheme ? "[&_.day-specific-content>p:first-child::first-letter]:text-primary" : "",
                   isLightTheme ? "[&_.prayer-request>p:first-child::first-letter]:text-primary" : "",
                   isLightTheme ? "[&_.prayer-block>p:first-child::first-letter]:text-primary" : "",
@@ -189,7 +189,7 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
                   <div className="w-16 h-px bg-white/20 my-8 mx-auto"></div>
 
                   <h3 className={cn("section-title text-2xl font-bold font-brand mb-2",
-                    isRedTheme ? 'text-white' : 'text-primary'
+                    isRedTheme || isDarkGrayTheme ? 'text-white' : 'text-primary'
                   )}>{day.day}</h3>
                   <p className={cn("text-xl italic mb-4", isLightTheme ? "text-stone-500" : "text-white/80")}>{day.title}</p>
                   
