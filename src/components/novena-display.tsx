@@ -3,7 +3,9 @@
 
 import { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, type CarouselApi } from '@/components/ui/carousel';
+import { Button } from '@/components/ui/button';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import type { Saint, Novena } from '@/lib/data';
 
@@ -30,7 +32,7 @@ interface NovenaDisplayProps {
 
 function ThemeSelector({ theme, setTheme }: { theme: Theme, setTheme: (theme: Theme) => void }) {
     return (
-        <div className="absolute top-[-14px] right-5 flex gap-2.5 bg-background/50 backdrop-blur-sm px-3 py-1.5 rounded-full">
+        <div className="absolute top-[-14px] right-5 flex gap-2.5 bg-background/50 backdrop-blur-sm px-3 py-1.5 rounded-full z-10">
             {(['theme-dark-gray', 'theme-default', 'theme-light-gray', 'theme-red'] as Theme[]).map((t) => (
                 <button
                     key={t}
@@ -52,30 +54,46 @@ function NovenaContent({ htmlContent }: { htmlContent: string }) {
   return <div dangerouslySetInnerHTML={{ __html: htmlContent }} />;
 }
 
-
 export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
   const [theme, setTheme] = useState<Theme>('theme-dark-gray');
-  const [activeTab, setActiveTab] = useState('day-1');
   const [animationState, setAnimationState] = useState<'idle' | 'out' | 'in'>('idle');
+  const [api, setApi] = useState<CarouselApi>();
+  const [current, setCurrent] = useState(0);
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
     if (novena) {
-        setAnimationState('out');
-        const outTimer = setTimeout(() => {
-            setActiveTab('day-1');
-            setAnimationState('in');
-        }, 150); // Duration of fade-out animation
+      setAnimationState('out');
+      const outTimer = setTimeout(() => {
+        setAnimationState('in');
+        if (api) {
+          api.scrollTo(0);
+        }
+      }, 150);
 
-        const inTimer = setTimeout(() => {
-            setAnimationState('idle');
-        }, 150 + 800); // fade-out + slide-in duration
+      const inTimer = setTimeout(() => {
+        setAnimationState('idle');
+      }, 150 + 800);
 
-        return () => {
-            clearTimeout(outTimer);
-            clearTimeout(inTimer);
-        };
+      return () => {
+        clearTimeout(outTimer);
+        clearTimeout(inTimer);
+      };
     }
-  }, [saint, novena]);
+  }, [saint, novena, api]);
+  
+  useEffect(() => {
+    if (!api) {
+      return;
+    }
+    setCount(api.scrollSnapList().length);
+    setCurrent(api.selectedScrollSnap() + 1);
+
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap() + 1);
+    });
+  }, [api]);
+
 
   if (!novena || !saint) {
     return (
@@ -108,7 +126,6 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
       id="main-card" 
       className={cn(
         'main-card glass-card rounded-2xl p-6 md:p-10 relative shadow-2xl shadow-black/20', 
-        theme,
         themeClasses[theme],
         getAnimationClass()
         )}
@@ -135,31 +152,19 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
           </div>
        </header>
 
-      <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="flex flex-wrap h-auto justify-center bg-transparent border-b border-white/20 rounded-none p-0">
-            {days.map((day, index) => (
-              <TabsTrigger key={`trigger-${index}`} value={`day-${index + 1}`} className={cn(
-                "py-3 px-2 md:px-4 text-sm md:text-base rounded-t-md rounded-b-none border-b-[3px] border-transparent data-[state=active]:bg-black/10 data-[state=active]:shadow-none",
-                isLightTheme ? 'text-stone-700 data-[state=active]:text-primary data-[state=active]:border-primary hover:text-primary'
-                        : 'text-stone-200 data-[state=active]:text-white data-[state=active]:border-white hover:text-white'
-                )}>
-                Dia {index + 1}
-              </TabsTrigger>
-            ))}
-          </TabsList>
+      <Carousel setApi={setApi} className="w-full">
+        <CarouselContent>
           {days.map((day, index) => (
-            <TabsContent key={`content-${index}`} value={`day-${index + 1}`} className="mt-8 animate-fade-in">
+            <CarouselItem key={`content-${index}`}>
+              <div className="animate-fade-in">
                 <div className={cn(
                   "prose max-w-none",
                   isLightTheme ? "text-stone-800" : "text-white",
-                  
                   // Títulos
                   isRedTheme || isDarkGrayTheme ? "[&_h3.section-title]:text-white [&_h4.section-title]:text-white" : "[&_h3.section-title]:text-primary [&_h4.section-title]:text-primary",
-
                   // Citações (Blockquote)
                   isDarkGrayTheme ? "[&_blockquote]:bg-black/10 [&_blockquote]:px-4 [&_blockquote]:py-2 [&_blockquote]:rounded-lg [&_blockquote]:border-l-4 [&_blockquote]:border-primary" : "",
                    isLightTheme ? "[&_blockquote_p]:text-primary" : "text-white/90",
-                  
                   // Regras para Primeira Letra
                   isRedTheme || isDarkGrayTheme ? "[&_.day-specific-content>p:first-child::first-letter]:text-white" : "[&_.day-specific-content>p:first-child::first-letter]:text-primary",
                   isRedTheme || isDarkGrayTheme ? "[&_.prayer-request>p:first-child::first-letter]:text-white" : "[&_.prayer-request>p:first-child::first-letter]:text-primary",
@@ -167,17 +172,14 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
                   isLightTheme ? "[&_.day-specific-content>p:first-child::first-letter]:text-primary" : "",
                   isLightTheme ? "[&_.prayer-request>p:first-child::first-letter]:text-primary" : "",
                   isLightTheme ? "[&_.prayer-block>p:first-child::first-letter]:text-primary" : "",
-                  
                   // Textos Gerais
                   isRedTheme ? "[&_p]:text-white" : "",
                   isDarkGrayTheme ? "[&_p]:text-white/90" : "",
                   isLightTheme ? "[&_p]:text-stone-700" : "",
-                  
                   // Jaculatória
                   isRedTheme ? "[&_.jaculatory-prayers_p]:text-white" : "",
                   isLightTheme ? "[&_.jaculatory-prayers]:text-stone-700" : "[&_.jaculatory-prayers]:text-white",
                   isRedTheme ? "[&_.jaculatory-prayers]:font-bold" : "",
-                  
                   isLightTheme ? "[&_.litany-response]:text-primary/90" : "[&_.litany-response]:text-white/80"
                 )}>
                   {initialPrayer && (
@@ -203,9 +205,18 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
                     </div>
                   )}
                 </div>
-            </TabsContent>
+              </div>
+            </CarouselItem>
           ))}
-      </Tabs>
+        </CarouselContent>
+        <div className="flex items-center justify-center gap-4 mt-8">
+            <CarouselPrevious className={cn("relative -left-0 top-0 translate-y-0", isLightTheme ? "text-primary border-primary/50 hover:bg-primary hover:text-white" : "text-white border-white/50 hover:bg-white hover:text-primary")} />
+            <p className="text-sm font-bold">
+                Dia {current} de {count}
+            </p>
+            <CarouselNext className={cn("relative -right-0 top-0 translate-y-0", isLightTheme ? "text-primary border-primary/50 hover:bg-primary hover:text-white" : "text-white border-white/50 hover:bg-white hover:text-primary")} />
+        </div>
+      </Carousel>
     </main>
   );
 }
