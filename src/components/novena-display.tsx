@@ -144,7 +144,10 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
             </p>
             {saint.startDate && (
               <div className="mt-3">
-                <span className="inline-block bg-primary text-white text-xs font-bold px-4 py-1 rounded-full">
+                <span className={cn(
+                  "inline-block text-xs font-bold px-4 py-1 rounded-full",
+                  isRedTheme ? "bg-white text-primary" : "bg-primary text-white"
+                )}>
                   Novena: {saint.startDate} a {saint.endDate}
                 </span>
               </div>
