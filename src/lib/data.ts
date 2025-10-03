@@ -80,22 +80,22 @@ export const novenaData: Record<string, Novena> = {
       ]
   },
   carlo_acutis: { 
-      saintName: 'Beato Carlo Acutis',
-      novenaTitle: 'Novena ao Beato Carlo Acutis', 
-      description: 'O "Anjo da Juventude", padroeiro da internet, intercede por nós.',
+      saintName: 'São Carlo Acutis',
+      novenaTitle: 'Novena a São Carlo Acutis', 
+      description: 'Jovem beato que usou a internet para evangelizar, é um modelo de santidade na vida cotidiana e um poderoso intercessor pela juventude.',
       days: [
-          { day: 'Primeiro Dia', title: 'A Eucaristia como autoestrada para o Céu', content: '<div class="day-specific-content"><p>Oração do dia virá em breve...</p></div>' },
-          { day: 'Segundo Dia', title: 'Oração do dia virá em breve...', content: '<div class="day-specific-content"><p>Oração do dia virá em breve...</p></div>' },
-          { day: 'Terceiro Dia', title: 'Oração do dia virá em breve...', content: '<div class="day-specific-content"><p>Oração do dia virá em breve...</p></div>' },
-          { day: 'Quarto Dia', title: 'Oração do dia virá em breve...', content: '<div class="day-specific-content"><p>Oração do dia virá em breve...</p></div>' },
-          { day: 'Quinto Dia', title: 'Oração do dia virá em breve...', content: '<div class="day-specific-content"><p>Oração do dia virá em breve...</p></div>' },
-          { day: 'Sexto Dia', title: 'Oração do dia virá em breve...', content: '<div class="day-specific-content"><p>Oração do dia virá em breve...</p></div>' },
-          { day: 'Sétimo Dia', title: 'Oração do dia virá em breve...', content: '<div class="day-specific-content"><p>Oração do dia virá em breve...</p></div>' },
-          { day: 'Oitavo Dia', title: 'Oração do dia virá em breve...', content: '<div class="day-specific-content"><p>Oração do dia virá em breve...</p></div>' },
-          { day: 'Nono Dia', title: 'Oração do dia virá em breve...', content: '<div class="day-specific-content"><p>Oração do dia virá em breve...</p></div>' }
-      ],
-      initialPrayer: `<div class="initial-prayer-text"><h4 class="section-title text-xl font-bold mb-2">Oração para todos os dias</h4><div class="prayer-block"><p>O conteúdo da oração inicial será adicionado em breve.</p></div></div>`,
-      finalPrayer: `<div class="final-prayer-text"><div class="w-16 h-px bg-white/20 my-6 mx-auto"></div><h4 class="section-title text-xl font-bold mb-2">Oração final</h4><div class="prayer-block"><p>O conteúdo da oração final será adicionado em breve.</p></div></div>`
+        { day: 'Primeiro Dia', title: '“Não eu, mas Deus”', content: '<div class="day-specific-content"><p>São Carlo Acutis, que fizeste de tua vida uma contínua renúncia e aniquilamento, dá-me a graça de buscar as coisas do Céu e desprezar as que passam. Assim seja. Amém.</p><p class="mt-4 font-semibold">5 Pai-Nossos, 5 Ave-Marias e 5 Glórias ao Pai, em honra dos 15 anos de vida de Carlo Acutis nesta terra.</p></div>' },
+        { day: 'Segundo Dia', title: '“Estar sempre com Jesus, este é o meu projeto de vida”', content: '<div class="day-specific-content"><p>São Carlo Acutis, que viveste na intimidade do Sagrado Coração de Jesus, dá-me a graça de realizar, em tudo, a vontade de Deus em minha vida. Assim seja. Amém.</p><p class="mt-4 font-semibold">5 Pai-Nossos, 5 Ave-Marias e 5 Glórias ao Pai, em honra dos 15 anos de vida de Carlo Acutis nesta terra.</p></div>' },
+        { day: 'Terceiro Dia', title: '“Peça ao seu Anjo da Guarda para ajudá-lo continuamente, de modo que ele se torne seu melhor amigo”', content: '<div class="day-specific-content"><p>São Carlo Acutis, que buscaste, já neste mundo, a companhia dos santos anjos, dá-me a graça de viver na retidão que o meu santo anjo deseja. Assim seja. Amém.</p><p class="mt-4 font-semibold">5 Pai-Nossos, 5 Ave-Marias e 5 Glórias ao Pai, em honra dos 15 anos de vida de Carlo Acutis nesta terra.</p></div>' },
+        { day: 'Quarto Dia', title: '“Nossa alma é como um balão aerostático… Se por acaso existe um pecado mortal, a alma cai por terra. A confissão é como o fogo embaixo do balão que permite que a alma se levante novamente. É importante confessar-se com frequência”', content: '<div class="day-specific-content"><p>São Carlo Acutis, que tão bem viveste este sacramento da Reconciliação, dá-me a graça de buscar sempre a confissão com uma contrição profunda. Assim seja. Amém.</p><p class="mt-4 font-semibold">5 Pai-Nossos, 5 Ave-Marias e 5 Glórias ao Pai, em honra dos 15 anos de vida de Carlo Acutis nesta terra.</p></div>' },
+        { day: 'Quinto Dia', title: '“A felicidade é olhar para Deus e a tristeza é olhar para si mesmo”', content: '<div class="day-specific-content"><p>São Carlo Acutis, que jamais desviaste o teu olhar de Jesus, teu grande amor, dá-me a graça de viver já neste mundo esta verdadeira felicidade. Assim seja. Amém.</p><p class="mt-4 font-semibold">5 Pai-Nossos, 5 Ave-Marias e 5 Glórias ao Pai, em honra dos 15 anos de vida de Carlo Acutis nesta terra.</p></div>' },
+        { day: 'Sexto Dia', title: '“A única coisa que devemos pedir a Deus em oração é o desejo de ser santos”', content: '<div class="day-specific-content"><p>São Carlo Acutis, que soubeste sempre pedir a Deus o essencial, dá-me a graça de um profundo desejo do Céu. Assim seja. Amém.</p><p class="mt-4 font-semibold">5 Pai-Nossos, 5 Ave-Marias e 5 Glórias ao Pai, em honra dos 15 anos de vida de Carlo Acutis nesta terra.</p></div>' },
+        { day: 'Sétimo Dia', title: '“A Virgem Maria é a única mulher na minha vida”', content: '<div class="day-specific-content"><p>São Carlo Acutis, que amaste a Virgem Maria com devoção filial, dá-me a graça de corresponder ao amor desta tão terna e boa Mãe. Assim seja. Amém.</p><p class="mt-4 font-semibold">5 Pai-Nossos, 5 Ave-Marias e 5 Glórias ao Pai, em honra dos 15 anos de vida de Carlo Acutis nesta terra.</p></div>' },
+        { day: 'Oitavo Dia', title: '“A Eucaristia é a minha estrada para o Céu”', content: '<div class="day-specific-content"><p>São Carlo Acutis, que buscavas sempre teu Jesus escondido no sacrário, dá-me a graça de um profundo ardor eucarístico. Assim seja. Amém.</p><p class="mt-4 font-semibold">5 Pai-Nossos, 5 Ave-Marias e 5 Glórias ao Pai, em honra dos 15 anos de vida de Carlo Acutis nesta terra.</p></div>' },
+        { day: 'Nono Dia', title: '“Eu estou feliz por morrer, porque vivi a minha vida sem perder nem mesmo um minuto dela com coisas que não agradam a Deus”', content: '<div class="day-specific-content"><p>São Carlo Acutis, dá-me a graça das graças, que é a perseverança final e uma morte santa. Assim seja. Amém.</p><p class="mt-4 font-semibold">5 Pai-Nossos, 5 Ave-Marias e 5 Glórias ao Pai, em honra dos 15 anos de vida de Carlo Acutis nesta terra.</p></div>' }
+    ],
+    initialPrayer: `<div class="initial-prayer-text"><h4 class="section-title text-xl font-bold mb-2">Oração inicial para todos os dias</h4><div class="prayer-block"><p>Santíssima Trindade, Pai, Filho e Espírito Santo, eu Vos agradeço todos os favores, todas as graças com que enriquecestes a alma de São Carlo Acutis durante os 15 anos que passou nesta terra e pelos méritos, em Cristo Jesus, deste tão querido exemplo para a juventude, concedei-me a graça que ardentemente Vos peço… <i>(faça o pedido da graça que deseja)</i>.</p></div></div>`,
+    finalPrayer: `<div class="final-prayer-text"><div class="w-16 h-px bg-white/20 my-6 mx-auto"></div><h4 class="section-title text-xl font-bold mb-2">Oração final</h4><div class="prayer-block"><p>Deus Pai de Misericórdia, pelos méritos do Vosso Filho Nosso Senhor Jesus Cristo, por intercessão de São Carlo Acutis, a fim de que, por ele, Vós sejais mais glorificado, dai-nos chamar de Santo este que em tudo viveu a Vossa vontade e, se for do Vosso agrado, concedei-me a graça que ardentemente desejo. Assim seja. Amém.</p></div></div>`
   },
   teresa_avila: { novenaTitle: 'Novena a Santa Teresa de Jesus (Ávila)', description: 'Padroeira dos místicos e Doutora da Igreja, Santa Teresa intercede para que possamos aprofundar nossa vida de oração.', saintName: 'Santa Teresa de Ávila', days: [], },
   margarida_alacoque: { novenaTitle: 'Novena a Santa Margarida Maria Alacoque', description: 'A grande mensageira do Sagrado Coração de Jesus, Santa Margarida intercede pela devoção e reparação ao Coração de Cristo.', saintName: 'Santa Margarida M.A.', days: [], },
@@ -113,7 +113,7 @@ export const saints: Saint[] = [
   { id: 'faustina', name: 'Santa Faustina', imageUrl: 'https://i.postimg.cc/qBKkbHTj/39a80df1d720976f7e55e00f40eadc90-1.jpg', month: 'Outubro', startDate: '26/Set', endDate: '04/Out', feastDay: '05/Out' },
   { id: 'rosario', name: 'N. S. do Rosário', imageUrl: 'https://i.postimg.cc/2669v1gr/nsr.jpg', month: 'Outubro', startDate: '28/Set', endDate: '06/Out', feastDay: '07/Out' },
   { id: 'aparecida', name: 'N. S. Aparecida', imageUrl: 'https://i.postimg.cc/Lsyj4XMh/4011bde1376c5422265a41f3a652c540.jpg', month: 'Outubro', startDate: '03/Out', endDate: '11/Out', feastDay: '12/Out' },
-  { id: 'carlo_acutis', name: 'B. Carlo Acutis', imageUrl: 'https://i.postimg.cc/CKrbWHjb/8a6ca2d967cbe5b8b65b068da82f495e.jpg', month: 'Outubro', startDate: '03/Out', endDate: '11/Out', feastDay: '12/Out' },
+  { id: 'carlo_acutis', name: 'S. Carlo Acutis', imageUrl: 'https://i.postimg.cc/CKrbWHjb/8a6ca2d967cbe5b8b65b068da82f495e.jpg', month: 'Outubro', startDate: '03/Out', endDate: '11/Out', feastDay: '12/Out' },
   { id: 'teresa_avila', name: 'Sta. Teresa de Ávila', imageUrl: 'https://i.postimg.cc/ht19wsyQ/32654687eb30f846f1f2e9e3edb6f4af.jpg', month: 'Outubro', startDate: '06/Out', endDate: '14/Out', feastDay: '15/Out' },
   { id: 'margarida_alacoque', name: 'Sta. Margarida M.A.', imageUrl: 'https://i.postimg.cc/J7QHR03S/66339fa28370276f90d041991767bebd.jpg', month: 'Outubro', startDate: '07/Out', endDate: '15/Out', feastDay: '16/Out' },
   { id: 'geraldo_majela', name: 'São Geraldo', imageUrl: 'https://i.postimg.cc/133rM9yP/saogeraldomajella2.jpg', month: 'Outubro', startDate: '07/Out', endDate: '15/Out', feastDay: '16/Out' },
@@ -132,6 +132,7 @@ export const months: string[] = ['Outubro', 'Novembro'];
     
 
     
+
 
 
 
