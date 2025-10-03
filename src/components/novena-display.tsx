@@ -158,32 +158,20 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
             <CarouselItem key={`content-${index}`}>
               <div className="animate-fade-in">
                 <div className={cn(
-                  "prose max-w-none",
+                  "prose max-w-none prose-blockquote:text-inherit",
                   isLightTheme ? "text-stone-800" : "text-white",
-                  // Títulos
                   isRedTheme || isDarkGrayTheme ? "[&_h3.section-title]:text-white [&_h4.section-title]:text-white" : "[&_h3.section-title]:text-primary [&_h4.section-title]:text-primary",
-                  // Citações (Blockquote)
-                  isDarkGrayTheme ? "[&_blockquote]:bg-black/10 [&_blockquote]:px-4 [&_blockquote]:py-2 [&_blockquote]:rounded-lg [&_blockquote]:border-l-4 [&_blockquote]:border-primary" : "",
-                   isLightTheme ? "[&_blockquote_p]:text-primary" : "text-white/90",
-                  // Regras para Primeira Letra
+                  isLightTheme ? "[&_blockquote_p]:text-primary/90" : "prose-blockquote:text-white/90",
                   isRedTheme || isDarkGrayTheme ? "[&_.day-specific-content>p:first-child::first-letter]:text-white" : "[&_.day-specific-content>p:first-child::first-letter]:text-primary",
                   isRedTheme || isDarkGrayTheme ? "[&_.prayer-request>p:first-child::first-letter]:text-white" : "[&_.prayer-request>p:first-child::first-letter]:text-primary",
                   isRedTheme || isDarkGrayTheme ? "[&_.prayer-block>p:first-child::first-letter]:text-white" : "[&_.prayer-block>p:first-child::first-letter]:text-primary",
                   isLightTheme ? "[&_.day-specific-content>p:first-child::first-letter]:text-primary" : "",
                   isLightTheme ? "[&_.prayer-request>p:first-child::first-letter]:text-primary" : "",
                   isLightTheme ? "[&_.prayer-block>p:first-child::first-letter]:text-primary" : "",
-                  // Textos Gerais
-                  isRedTheme ? "[&_p]:text-white" : "",
-                  isDarkGrayTheme ? "[&_p]:text-white/90" : "",
-                  isLightTheme ? "[&_p]:text-stone-700" : "",
-                  // Jaculatória
-                  isRedTheme ? "[&_.jaculatory-prayers_p]:text-white" : "",
-                  isLightTheme ? "[&_.jaculatory-prayers]:text-stone-700" : "[&_.jaculatory-prayers]:text-white",
-                  isRedTheme ? "[&_.jaculatory-prayers]:font-bold" : "",
                   isLightTheme ? "[&_.litany-response]:text-primary/90" : "[&_.litany-response]:text-white/80"
                 )}>
                   {initialPrayer && (
-                    <div className={cn('initial-prayer-text', isRedTheme || isDarkGrayTheme ? "text-white" : "")}>
+                    <div className={cn('initial-prayer-text')}>
                       <NovenaContent htmlContent={initialPrayer} />
                     </div>
                   )}
@@ -200,7 +188,7 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
                   </div>
                   
                   {finalPrayer && (
-                     <div className={cn('final-prayer-text', isRedTheme || isDarkGrayTheme ? "text-white" : "")}>
+                     <div className={cn('final-prayer-text')}>
                       <NovenaContent htmlContent={finalPrayer} />
                     </div>
                   )}
