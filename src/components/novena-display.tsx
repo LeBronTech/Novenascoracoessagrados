@@ -207,6 +207,14 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
                   )}
                   
                   <div className="w-16 h-px bg-white/20 my-8 mx-auto"></div>
+                  
+                  <div className="flex items-center justify-center gap-4 mb-8">
+                      <CarouselPrevious className={cn("relative -left-0 top-0 translate-y-0", isLightTheme ? "text-primary border-primary/50 hover:bg-primary hover:text-white" : "text-white border-white/50 hover:bg-white hover:text-primary")} />
+                      <p className="text-sm font-bold">
+                          Dia {current + 1} de {count}
+                      </p>
+                      <CarouselNext className={cn("relative -right-0 top-0 translate-y-0", isLightTheme ? "text-primary border-primary/50 hover:bg-primary hover:text-white" : "text-white border-white/50 hover:bg-white hover:text-primary")} />
+                  </div>
 
                   <h3 className={cn("section-title text-2xl font-bold font-brand mb-2",
                     isRedTheme || isDarkGrayTheme ? 'text-white' : 'text-primary'
@@ -239,4 +247,5 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
   );
 }
 
+    
     
