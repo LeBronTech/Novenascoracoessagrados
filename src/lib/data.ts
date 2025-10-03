@@ -79,6 +79,24 @@ export const novenaData: Record<string, Novena> = {
           { day: 'Nono Dia', title: '', content: '<div class="day-specific-content"><p>Ó viva luz de santidade e exemplo de pureza, Virgem e Mãe, Maria Santíssima, vós, apenas concebida, adorastes profundamente a Deus e lhe destes graças, porque, por meio de vós, levantada a antiga maldição, desceu uma grande bênção sobre os filhos de Adão.</p><p>Ah! Senhora, fazei que esta bênção acenda no meu coração um grande amor para com Deus; inflamai-o, para que, constantemente ame o mesmo Senhor, e depois goze eternamente no Paraíso, onde possa dar- lhe as mais vivas graças pelos singulares privilégios a vós concedidos e possa também ver-vos coroada de tamanha vitória.</p><p class="mt-4 font-semibold">Reza-se: Pai Nosso, Ave-Maria e Glória ao Pai.</p></div>' }
       ]
   },
+  carlo_acutis: { 
+      saintName: 'Beato Carlo Acutis',
+      novenaTitle: 'Novena ao Beato Carlo Acutis', 
+      description: 'O "Anjo da Juventude", padroeiro da internet, intercede por nós.',
+      days: [
+          { day: 'Primeiro Dia', title: 'A Eucaristia como autoestrada para o Céu', content: '<div class="day-specific-content"><p>Oração do dia virá em breve...</p></div>' },
+          { day: 'Segundo Dia', title: 'Oração do dia virá em breve...', content: '<div class="day-specific-content"><p>Oração do dia virá em breve...</p></div>' },
+          { day: 'Terceiro Dia', title: 'Oração do dia virá em breve...', content: '<div class="day-specific-content"><p>Oração do dia virá em breve...</p></div>' },
+          { day: 'Quarto Dia', title: 'Oração do dia virá em breve...', content: '<div class="day-specific-content"><p>Oração do dia virá em breve...</p></div>' },
+          { day: 'Quinto Dia', title: 'Oração do dia virá em breve...', content: '<div class="day-specific-content"><p>Oração do dia virá em breve...</p></div>' },
+          { day: 'Sexto Dia', title: 'Oração do dia virá em breve...', content: '<div class="day-specific-content"><p>Oração do dia virá em breve...</p></div>' },
+          { day: 'Sétimo Dia', title: 'Oração do dia virá em breve...', content: '<div class="day-specific-content"><p>Oração do dia virá em breve...</p></div>' },
+          { day: 'Oitavo Dia', title: 'Oração do dia virá em breve...', content: '<div class="day-specific-content"><p>Oração do dia virá em breve...</p></div>' },
+          { day: 'Nono Dia', title: 'Oração do dia virá em breve...', content: '<div class="day-specific-content"><p>Oração do dia virá em breve...</p></div>' }
+      ],
+      initialPrayer: `<div class="initial-prayer-text"><h4 class="section-title text-xl font-bold mb-2">Oração para todos os dias</h4><div class="prayer-block"><p>O conteúdo da oração inicial será adicionado em breve.</p></div></div>`,
+      finalPrayer: `<div class="final-prayer-text"><div class="w-16 h-px bg-white/20 my-6 mx-auto"></div><h4 class="section-title text-xl font-bold mb-2">Oração final</h4><div class="prayer-block"><p>O conteúdo da oração final será adicionado em breve.</p></div></div>`
+  },
   teresa_avila: { novenaTitle: 'Novena a Santa Teresa de Jesus (Ávila)', description: 'Padroeira dos místicos e Doutora da Igreja, Santa Teresa intercede para que possamos aprofundar nossa vida de oração.', saintName: 'Santa Teresa de Ávila', days: [], },
   margarida_alacoque: { novenaTitle: 'Novena a Santa Margarida Maria Alacoque', description: 'A grande mensageira do Sagrado Coração de Jesus, Santa Margarida intercede pela devoção e reparação ao Coração de Cristo.', saintName: 'Santa Margarida M.A.', days: [], },
   geraldo_majela: { novenaTitle: 'Novena a São Geraldo Majela', description: 'Padroeiro das gestantes e dos partos felizes, São Geraldo intercede pela proteção da maternidade e das famílias.', saintName: 'São Geraldo', days: [], },
@@ -95,6 +113,7 @@ export const saints: Saint[] = [
   { id: 'faustina', name: 'Santa Faustina', imageUrl: 'https://i.postimg.cc/qBKkbHTj/39a80df1d720976f7e55e00f40eadc90-1.jpg', month: 'Outubro', startDate: '26/Set', endDate: '04/Out', feastDay: '05/Out' },
   { id: 'rosario', name: 'N. S. do Rosário', imageUrl: 'https://i.postimg.cc/2669v1gr/nsr.jpg', month: 'Outubro', startDate: '28/Set', endDate: '06/Out', feastDay: '07/Out' },
   { id: 'aparecida', name: 'N. S. Aparecida', imageUrl: 'https://i.postimg.cc/Lsyj4XMh/4011bde1376c5422265a41f3a652c540.jpg', month: 'Outubro', startDate: '03/Out', endDate: '11/Out', feastDay: '12/Out' },
+  { id: 'carlo_acutis', name: 'B. Carlo Acutis', imageUrl: 'https://i.postimg.cc/CKrbWHjb/8a6ca2d967cbe5b8b65b068da82f495e.jpg', month: 'Outubro', startDate: '03/Out', endDate: '11/Out', feastDay: '12/Out' },
   { id: 'teresa_avila', name: 'Sta. Teresa de Ávila', imageUrl: 'https://i.postimg.cc/ht19wsyQ/32654687eb30f846f1f2e9e3edb6f4af.jpg', month: 'Outubro', startDate: '06/Out', endDate: '14/Out', feastDay: '15/Out' },
   { id: 'margarida_alacoque', name: 'Sta. Margarida M.A.', imageUrl: 'https://i.postimg.cc/J7QHR03S/66339fa28370276f90d041991767bebd.jpg', month: 'Outubro', startDate: '07/Out', endDate: '15/Out', feastDay: '16/Out' },
   { id: 'geraldo_majela', name: 'São Geraldo', imageUrl: 'https://i.postimg.cc/133rM9yP/saogeraldomajella2.jpg', month: 'Outubro', startDate: '07/Out', endDate: '15/Out', feastDay: '16/Out' },
@@ -113,6 +132,7 @@ export const months: string[] = ['Outubro', 'Novembro'];
     
 
     
+
 
 
 
