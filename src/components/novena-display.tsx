@@ -133,7 +133,7 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
 
   const arrowClasses = isLightTheme 
     ? "text-primary border-primary/50 hover:bg-primary hover:text-white" 
-    : "text-white border-white/50 hover:bg-primary hover:text-white";
+    : "text-primary border-primary/50 hover:bg-primary hover:text-white";
 
   return (
     <main 
@@ -252,4 +252,6 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
 }
 
     
+    
+
     
