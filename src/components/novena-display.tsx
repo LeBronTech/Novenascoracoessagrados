@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import type { Saint, Novena } from '@/lib/data';
+import Image from 'next/image';
 
 type Theme = 'theme-default' | 'theme-dark-gray' | 'theme-light-gray' | 'theme-red';
 
@@ -170,7 +171,7 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
        </header>
 
       <Carousel setApi={setApi} className="w-full">
-        <div className="flex justify-center flex-wrap gap-2 mb-8">
+        <div className="flex justify-center flex-wrap gap-2 mb-4">
             {days.map((_, index) => (
                 <button
                     key={index}
@@ -185,6 +186,21 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
                     Dia {index + 1}
                 </button>
             ))}
+        </div>
+
+        <div className="flex justify-end mb-4">
+          <a
+            href="https://chat.whatsapp.com/D08lyjhVqL8KyZfIovKYk5?mode=ems_copy_t"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={cn(
+                'inline-flex items-center gap-2 rounded-lg px-4 py-2 transition-all duration-200',
+                isLightTheme ? 'bg-black/10 hover:bg-black/20 text-stone-800' : 'bg-white/10 hover:bg-white/20 text-white'
+            )}
+            >
+            <Image src="https://i.postimg.cc/g24cJdKG/whatsapp-icone-5.png" alt="WhatsApp" width={20} height={20} className="w-5 h-5" />
+            <span className="text-sm font-semibold">Novena também disponível no nosso grupo do WhatsApp.</span>
+          </a>
         </div>
 
         <CarouselContent>
