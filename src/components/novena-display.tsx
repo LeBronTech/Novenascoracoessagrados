@@ -131,6 +131,10 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
     }
   }
 
+  const arrowClasses = isLightTheme 
+    ? "text-primary border-primary/50 hover:bg-primary hover:text-white" 
+    : "text-white border-white/50 hover:bg-primary hover:text-white";
+
   return (
     <main 
       id="main-card" 
@@ -156,7 +160,7 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
               <div className="mt-3">
                 <span className={cn(
                   "inline-block text-xs font-bold px-4 py-1 rounded-full",
-                  isRedTheme ? "bg-white text-primary" : "bg-primary text-white"
+                   isRedTheme ? "bg-white text-primary" : "bg-primary text-white"
                 )}>
                   Novena: {saint.startDate} a {saint.endDate}
                 </span>
@@ -209,11 +213,11 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
                   <div className="w-16 h-px bg-white/20 my-8 mx-auto"></div>
                   
                   <div className="flex items-center justify-center gap-4 mb-8">
-                      <CarouselPrevious className={cn("relative -left-0 top-0 translate-y-0", isLightTheme ? "text-primary border-primary/50 hover:bg-primary hover:text-white" : "text-white border-white/50 hover:bg-white hover:text-primary")} />
+                      <CarouselPrevious className={cn("relative -left-0 top-0 translate-y-0", arrowClasses)} />
                       <p className="text-sm font-bold">
                           Dia {current + 1} de {count}
                       </p>
-                      <CarouselNext className={cn("relative -right-0 top-0 translate-y-0", isLightTheme ? "text-primary border-primary/50 hover:bg-primary hover:text-white" : "text-white border-white/50 hover:bg-white hover:text-primary")} />
+                      <CarouselNext className={cn("relative -right-0 top-0 translate-y-0", arrowClasses)} />
                   </div>
 
                   <h3 className={cn("section-title text-2xl font-bold font-brand mb-2",
@@ -236,11 +240,11 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
           ))}
         </CarouselContent>
         <div className="flex items-center justify-center gap-4 mt-8">
-            <CarouselPrevious className={cn("relative -left-0 top-0 translate-y-0", isLightTheme ? "text-primary border-primary/50 hover:bg-primary hover:text-white" : "text-white border-white/50 hover:bg-white hover:text-primary")} />
+            <CarouselPrevious className={cn("relative -left-0 top-0 translate-y-0", arrowClasses)} />
             <p className="text-sm font-bold">
                 Dia {current + 1} de {count}
             </p>
-            <CarouselNext className={cn("relative -right-0 top-0 translate-y-0", isLightTheme ? "text-primary border-primary/50 hover:bg-primary hover:text-white" : "text-white border-white/50 hover:bg-white hover:text-primary")} />
+            <CarouselNext className={cn("relative -right-0 top-0 translate-y-0", arrowClasses)} />
         </div>
       </Carousel>
     </main>
