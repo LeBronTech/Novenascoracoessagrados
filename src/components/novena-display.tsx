@@ -199,7 +199,7 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
             )}
             >
             <Image src="https://i.postimg.cc/g24cJdKG/whatsapp-icone-5.png" alt="WhatsApp" width={20} height={20} className="w-5 h-5" />
-            <span className="text-sm font-semibold">Novena também disponível no nosso grupo do WhatsApp.</span>
+            <span className="text-sm font-semibold">Novena também disponível no nosso grupo do WhatsApp. (clique aqui)</span>
           </a>
         </div>
 
@@ -271,3 +271,4 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
     
 
     
+
