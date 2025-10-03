@@ -1,7 +1,7 @@
 
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, type CarouselApi } from '@/components/ui/carousel';
 import { Button } from '@/components/ui/button';
@@ -61,6 +61,15 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
   const [current, setCurrent] = useState(0);
   const [count, setCount] = useState(0);
 
+  const onSelect = useCallback(() => {
+    if (!api) return;
+    setCurrent(api.selectedScrollSnap());
+  }, [api]);
+
+  const scrollTo = useCallback((index: number) => {
+    api?.scrollTo(index);
+  }, [api]);
+
   useEffect(() => {
     if (novena) {
       setAnimationState('out');
@@ -87,12 +96,13 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
       return;
     }
     setCount(api.scrollSnapList().length);
-    setCurrent(api.selectedScrollSnap() + 1);
+    setCurrent(api.selectedScrollSnap());
+    api.on("select", onSelect);
 
-    api.on("select", () => {
-      setCurrent(api.selectedScrollSnap() + 1);
-    });
-  }, [api]);
+    return () => {
+      api.off("select", onSelect);
+    };
+  }, [api, onSelect]);
 
 
   if (!novena || !saint) {
@@ -156,6 +166,23 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
        </header>
 
       <Carousel setApi={setApi} className="w-full">
+        <div className="flex justify-center flex-wrap gap-2 mb-8">
+            {days.map((_, index) => (
+                <button
+                    key={index}
+                    onClick={() => scrollTo(index)}
+                    className={cn(
+                        'px-3 py-1 text-sm font-semibold rounded-full transition-all duration-200',
+                        current === index
+                            ? (isLightTheme ? 'bg-primary text-white' : 'bg-white text-primary')
+                            : (isLightTheme ? 'bg-black/10 text-stone-600 hover:bg-black/20' : 'bg-white/10 text-white hover:bg-white/20')
+                    )}
+                >
+                    Dia {index + 1}
+                </button>
+            ))}
+        </div>
+
         <CarouselContent>
           {days.map((day, index) => (
             <CarouselItem key={`content-${index}`}>
@@ -203,7 +230,7 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
         <div className="flex items-center justify-center gap-4 mt-8">
             <CarouselPrevious className={cn("relative -left-0 top-0 translate-y-0", isLightTheme ? "text-primary border-primary/50 hover:bg-primary hover:text-white" : "text-white border-white/50 hover:bg-white hover:text-primary")} />
             <p className="text-sm font-bold">
-                Dia {current} de {count}
+                Dia {current + 1} de {count}
             </p>
             <CarouselNext className={cn("relative -right-0 top-0 translate-y-0", isLightTheme ? "text-primary border-primary/50 hover:bg-primary hover:text-white" : "text-white border-white/50 hover:bg-white hover:text-primary")} />
         </div>
@@ -211,3 +238,5 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
     </main>
   );
 }
+
+    
