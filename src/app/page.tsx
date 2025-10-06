@@ -6,6 +6,7 @@ import Header from '@/components/header';
 import Footer from '@/components/footer';
 import SaintSelector from '@/components/saint-selector';
 import NovenaDisplay from '@/components/novena-display';
+import SaintOfTheDay from '@/components/saint-of-the-day';
 import { saints, months, novenaData } from '@/lib/data';
 import type { Saint, Novena } from '@/lib/data';
 
@@ -70,6 +71,9 @@ export default function Home() {
   return (
     <div className="container mx-auto p-4 md:p-8 max-w-5xl text-stone-900">
       <Header />
+
+      <SaintOfTheDay />
+
       <div className="bg-gray-100/70 backdrop-blur-sm rounded-xl shadow-lg p-4 my-8">
         <h2 id="saints-nav-title" className="text-xl font-brand text-center text-gray-700 mb-4">
           Novenas de {selectedMonth}
