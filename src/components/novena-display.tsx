@@ -207,6 +207,32 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
           {days.map((day, index) => (
             <CarouselItem key={`content-${index}`}>
               <div className="animate-fade-in">
+                {initialPrayer && (
+                  <div className={cn(
+                      'prose max-w-none prose-blockquote:text-inherit',
+                      isLightTheme ? "text-stone-800" : "text-white",
+                      isRedTheme || isDarkGrayTheme ? "[&_h3.section-title]:text-white [&_h4.section-title]:text-white" : "[&_h3.section-title]:text-primary [&_h4.section-title]:text-primary",
+                      isLightTheme ? "[&_blockquote_p]:text-primary/90" : "prose-blockquote:text-white/90",
+                      isRedTheme || isDarkGrayTheme ? "[&_.prayer-block>p:first-child::first-letter]:text-white" : "[&_.prayer-block>p:first-child::first-letter]:text-primary",
+                      isLightTheme ? "[&_.prayer-block>p:first-child::first-letter]:text-primary" : "",
+                      isLightTheme ? "[&_.litany-response]:text-primary/90" : "[&_.litany-response]:text-white/80"
+                  )}>
+                    <div className={cn('initial-prayer-text')}>
+                      <NovenaContent htmlContent={initialPrayer} />
+                    </div>
+                  </div>
+                )}
+                  
+                <div className="w-16 h-px bg-white/20 my-8 mx-auto"></div>
+                  
+                <div className="flex items-center justify-center gap-4 mb-8">
+                    <CarouselPrevious className={cn("relative -left-0 top-0 translate-y-0", arrowClasses)} />
+                    <p className="text-sm font-bold">
+                        Dia {current + 1} de {count}
+                    </p>
+                    <CarouselNext className={cn("relative -right-0 top-0 translate-y-0", arrowClasses)} />
+                </div>
+
                 <div className={cn(
                   "prose max-w-none prose-blockquote:text-inherit",
                   isLightTheme ? "text-stone-800" : "text-white",
@@ -220,22 +246,6 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
                   isLightTheme ? "[&_.prayer-block>p:first-child::first-letter]:text-primary" : "",
                   isLightTheme ? "[&_.litany-response]:text-primary/90" : "[&_.litany-response]:text-white/80"
                 )}>
-                  {initialPrayer && (
-                    <div className={cn('initial-prayer-text')}>
-                      <NovenaContent htmlContent={initialPrayer} />
-                    </div>
-                  )}
-                  
-                  <div className="w-16 h-px bg-white/20 my-8 mx-auto"></div>
-                  
-                  <div className="flex items-center justify-center gap-4 mb-8">
-                      <CarouselPrevious className={cn("relative -left-0 top-0 translate-y-0", arrowClasses)} />
-                      <p className="text-sm font-bold">
-                          Dia {current + 1} de {count}
-                      </p>
-                      <CarouselNext className={cn("relative -right-0 top-0 translate-y-0", arrowClasses)} />
-                  </div>
-
                   <h3 className={cn("section-title text-2xl font-bold font-brand mb-2",
                     isRedTheme || isDarkGrayTheme ? 'text-white' : 'text-primary'
                   )}>{day.day}</h3>
@@ -244,13 +254,23 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
                   <div className="day-specific-content">
                     <NovenaContent htmlContent={day.content} />
                   </div>
+                </div>
                   
-                  {finalPrayer && (
-                     <div className={cn('final-prayer-text')}>
+                {finalPrayer && (
+                   <div className={cn(
+                      'prose max-w-none prose-blockquote:text-inherit',
+                      isLightTheme ? "text-stone-800" : "text-white",
+                      isRedTheme || isDarkGrayTheme ? "[&_h3.section-title]:text-white [&_h4.section-title]:text-white" : "[&_h3.section-title]:text-primary [&_h4.section-title]:text-primary",
+                      isLightTheme ? "[&_blockquote_p]:text-primary/90" : "prose-blockquote:text-white/90",
+                      isRedTheme || isDarkGrayTheme ? "[&_.prayer-block>p:first-child::first-letter]:text-white" : "[&_.prayer-block>p:first-child::first-letter]:text-primary",
+                      isLightTheme ? "[&_.prayer-block>p:first-child::first-letter]:text-primary" : "",
+                      isLightTheme ? "[&_.litany-response]:text-primary/90" : "[&_.litany-response]:text-white/80"
+                  )}>
+                    <div className={cn('final-prayer-text')}>
                       <NovenaContent htmlContent={finalPrayer} />
                     </div>
-                  )}
-                </div>
+                  </div>
+                )}
               </div>
             </CarouselItem>
           ))}
@@ -266,9 +286,3 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
     </main>
   );
 }
-
-    
-    
-
-    
-
