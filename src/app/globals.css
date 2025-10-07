@@ -223,17 +223,17 @@
   }
   
   .group[data-state=open] .saint-image-wrapper {
-    @apply -translate-y-4 mb-[-2rem] z-20;
-    height: 6rem; /* Increase height on open to prevent cropping */
+    @apply z-20;
+    margin-bottom: -2.5rem;
   }
 
   .group[data-state=open] .saint-image-wrapper.single {
-      transform: translateY(-1rem) scale(1.8);
+      transform: translateY(-2.5rem) scale(1.8);
   }
 
   .group[data-state=open] .saint-image-wrapper.multiple {
       width: 14rem;
-      transform: translateY(-1rem);
+      transform: translateY(-2.5rem);
   }
 
   .group[data-state=open] .saint-image-wrapper.multiple .image-1,
