@@ -3,7 +3,8 @@
 
 import React, { useState, useEffect, useCallback, memo } from 'react';
 import Image from 'next/image';
-import useEmblaCarousel, { type UseEmblaCarouselType, type EmblaOptionsType } from 'embla-carousel-react';
+import useEmblaCarousel, { type UseEmblaCarouselType } from 'embla-carousel-react';
+import type { EmblaOptionsType } from 'embla-carousel-react';
 import { cn } from '@/lib/utils';
 import type { Saint } from '@/lib/data';
 import { Card, CardContent } from '@/components/ui/card';
