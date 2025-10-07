@@ -15,17 +15,28 @@ export default function SaintOfTheDay() {
   const [api, setApi] = useState<CarouselApi>();
   const [currentDate, setCurrentDate] = useState<Date | null>(null);
   const [hydrated, setHydrated] = useState(false);
+  const [openItems, setOpenItems] = useState<string[]>([]);
 
   useEffect(() => {
-    // This ensures that the component only renders on the client-side,
-    // where window and new Date() are safe to use without causing hydration mismatches.
     setHydrated(true);
     setCurrentDate(new Date());
   }, []);
+  
+  const handleValueChange = (value: string[]) => {
+      // If the user opens any accordion, we want all of them to be open conceptually.
+      // So if the new value has any item, we'll set it to all items.
+      // If the user closes the last open item, we clear the list.
+      if (value.length > 0 && openItems.length === 0) {
+        const allItemKeys = saintsForCurrentMonth.map((_, index) => `item-${index}`);
+        setOpenItems(allItemKeys);
+      } else if (value.length < openItems.length) {
+         // If user explicitly closes one, close all
+         setOpenItems([]);
+      }
+  };
 
   const currentMonthName = useMemo(() => {
     if (!currentDate) return '';
-    // Find the month name from the months array based on the current date's month index
     return months[currentDate.getMonth()];
   }, [currentDate]);
   
@@ -37,15 +48,12 @@ export default function SaintOfTheDay() {
   const startIndex = useMemo(() => {
     if (!currentDate || saintsForCurrentMonth.length === 0) return 0;
     const dayOfMonth = currentDate.getDate();
-    // Find the first saint on or after the current date
     const index = saintsForCurrentMonth.findIndex(saint => saint.day >= dayOfMonth);
-    // If no saint is found for the rest of the month, default to the first saint of the month
     return index !== -1 ? index : 0;
   }, [currentDate, saintsForCurrentMonth]);
 
   useEffect(() => {
     if (api && hydrated && saintsForCurrentMonth.length > 0) {
-      // A slight delay can help ensure the carousel is fully rendered before scrolling.
       setTimeout(() => {
         api.scrollTo(startIndex, true);
       }, 100);
@@ -53,7 +61,6 @@ export default function SaintOfTheDay() {
   }, [api, hydrated, startIndex, saintsForCurrentMonth.length]);
 
   if (!hydrated || saintsForCurrentMonth.length === 0) {
-    // Render nothing or a placeholder until the client has hydrated and data is available
     return <div className="p-4 text-center text-gray-500">A carregar santos...</div>;
   }
 
@@ -64,7 +71,7 @@ export default function SaintOfTheDay() {
           {saintsForCurrentMonth.map((saint, index) => (
             <CarouselItem key={index} className="pl-4">
               <div className="p-1">
-                <Accordion type="single" collapsible className="w-full">
+                <Accordion type="multiple" value={openItems} onValueChange={handleValueChange} className="w-full">
                   <AccordionItem value={`item-${index}`} className="border-none">
                     <AccordionTrigger className="p-4 bg-white/60 rounded-lg shadow-md hover:shadow-lg transition-shadow data-[state=open]:rounded-b-none">
                       <div className="flex items-center gap-4 text-left">
