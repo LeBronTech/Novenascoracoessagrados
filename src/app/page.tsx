@@ -100,16 +100,6 @@ export default function Home() {
 
       <Header />
       
-      <div className="flex justify-center my-8">
-        <Image 
-          src="https://i.postimg.cc/9XYtFKcq/Capa-para-facebook-arquitetura-moderno-vermelho-Logotipo.png"
-          alt="Divisor Decorativo"
-          width={250}
-          height={60}
-          className="w-48 md:w-64"
-        />
-      </div>
-
       <div className="bg-gray-100/70 backdrop-blur-sm rounded-xl shadow-lg p-4 my-8">
         <h2 id="saints-nav-title" className="text-xl font-brand text-center text-gray-700 mb-4">
           Novenas de {selectedMonth}
