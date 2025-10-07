@@ -1,7 +1,7 @@
 // Forçando a atualização para sincronização
 'use client';
 
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect, useCallback } from 'react';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
 import SaintSelector from '@/components/saint-selector';
@@ -17,6 +17,8 @@ export default function Home() {
   const [selectedMonth, setSelectedMonth] = useState<string>(months[9]); // Default to October
   const [selectedSaintId, setSelectedSaintId] = useState<string | null>(null);
   const [hydrated, setHydrated] = useState(false);
+  
+  const [animate, setAnimate] = useState(false);
 
   useEffect(() => {
     const hash = window.location.hash.substring(1);
@@ -63,7 +65,6 @@ export default function Home() {
   
   const handleMonthChange = (month: string) => {
     setSelectedMonth(month);
-    // If the currently selected saint is not in the new month, deselect it.
     const saintsInNewMonth = saints.filter(s => s.month === month);
     if (selectedSaintId && !saintsInNewMonth.some(s => s.id === selectedSaintId)) {
         setSelectedSaintId(null);
@@ -96,6 +97,13 @@ export default function Home() {
       </Sheet>
 
       <Header />
+      
+      <div className="bg-gray-100/70 backdrop-blur-sm rounded-xl shadow-lg p-4 my-8">
+        <h2 id="saints-nav-title" className="text-xl font-brand text-center text-gray-700 mb-4">
+          Santo do Dia
+        </h2>
+        <SaintOfTheDay />
+      </div>
 
       <div className="bg-gray-100/70 backdrop-blur-sm rounded-xl shadow-lg p-4 my-8">
         <h2 id="saints-nav-title" className="text-xl font-brand text-center text-gray-700 mb-4">
