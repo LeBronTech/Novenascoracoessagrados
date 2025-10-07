@@ -148,7 +148,7 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
                   <Accordion type="single" collapsible value={openAccordion} onValueChange={setOpenAccordion}>
                     <AccordionItem value={`item-${index}`} className="border-none group">
                       <AccordionTrigger className={cn(
-                        "p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow data-[state=open]:rounded-b-none saint-day-trigger",
+                        "p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow data-[state=open]:rounded-b-none saint-day-trigger data-[state=open]:pb-8",
                         "[&[data-state=open]>svg]:text-primary-foreground",
                         triggerTheme
                       )}>
