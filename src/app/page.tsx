@@ -100,6 +100,10 @@ export default function Home() {
 
       <Header />
       
+      <div className="my-8">
+        <SaintOfTheDay triggerTheme={theme} />
+      </div>
+
       <div className="bg-gray-100/70 backdrop-blur-sm rounded-xl shadow-lg p-4 my-8">
         <h2 id="saints-nav-title" className="text-xl font-brand text-center text-gray-700 mb-4">
           Novenas de {selectedMonth}
