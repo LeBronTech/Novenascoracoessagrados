@@ -26,31 +26,34 @@ const MonthCarousel = memo(({ months, selectedMonth, onMonthChange }: Pick<Saint
 
   const onSelect = useCallback((api: EmblaCarouselType) => {
     if (!api) return;
-    
+
     const newSelectedIndex = api.selectedScrollSnap();
     onMonthChange(months[newSelectedIndex]);
 
     const newSlideStates: { [key: number]: string } = {};
-    const slidesInView = api.slidesInView(true); // loop: true
+    const slidesInView = api.slidesInView(true);
     const totalSlides = api.scrollSnapList().length;
-    
+
     api.slideNodes().forEach((_, index) => {
-        let state = '';
-        if (index === newSelectedIndex) {
-            state = 'active';
-        } else if (slidesInView.includes(index)) {
-            const engine = api.internalEngine();
-            const relativeIndex = (index - newSelectedIndex + totalSlides) % totalSlides;
-            const dist = Math.min(relativeIndex, totalSlides - relativeIndex);
+      let state = '';
+      if (index === newSelectedIndex) {
+        state = 'active';
+      } else if (slidesInView.includes(index)) {
+        const engine = api.internalEngine();
+        const diffToTarget = engine.location.get() - engine.location.get(index);
+        const relativeIndex = (index - newSelectedIndex + totalSlides) % totalSlides;
+        const dist = Math.abs(index - newSelectedIndex);
 
-            if (dist === 1) state = relativeIndex < totalSlides / 2 ? 'next1' : 'prev1';
-            else if (dist === 2) state = relativeIndex < totalSlides / 2 ? 'next2' : 'prev2';
+        if (dist === 1 || dist === totalSlides -1) {
+          state = diffToTarget < 0 ? 'next1' : 'prev1';
+        } else if (dist === 2 || dist === totalSlides - 2) {
+          state = diffToTarget < 0 ? 'next2' : 'prev2';
         }
-        newSlideStates[index] = state;
+      }
+      newSlideStates[index] = state;
     });
-
     setSlideStates(newSlideStates);
-}, [onMonthChange, months]);
+  }, [onMonthChange, months]);
 
 
   useEffect(() => {
@@ -81,7 +84,7 @@ const MonthCarousel = memo(({ months, selectedMonth, onMonthChange }: Pick<Saint
         {months.map((month, index) => (
           <div
             className={cn('flex-[0_0_10rem] min-w-0 pl-4 relative', `embla__slide--${slideStates[index]}`)}
-            key={month + index} // Use index to create unique keys for looped slides
+            key={month + index}
           >
             <button
               onClick={() => handleMonthClick(index)}
@@ -167,4 +170,3 @@ export default function SaintSelector({
     </section>
   );
 }
-
