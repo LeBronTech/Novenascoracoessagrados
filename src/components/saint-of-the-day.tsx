@@ -90,6 +90,16 @@ export default function SaintOfTheDay() {
     setCurrentDate(new Date());
   }, []);
 
+  const currentMonthName = useMemo(() => {
+    if (!currentDate) return '';
+    return months[currentDate.getMonth()];
+  }, [currentDate]);
+  
+  const saintsForCurrentMonth = useMemo(() => {
+    if (!currentMonthName) return [];
+    return saintsOfTheDay.filter(day => day.month === currentMonthName);
+  }, [currentMonthName]);
+
   const handleValueChange = useCallback((value: string[]) => {
     if (value.length > openItems.length) {
       const allItemKeys = saintsForCurrentMonth.map((_, index) => `item-${index}`);
@@ -103,16 +113,6 @@ export default function SaintOfTheDay() {
     e.stopPropagation();
     setSelectedSaintIndices(prev => ({ ...prev, [dayIndex]: saintIndex }));
   };
-
-  const currentMonthName = useMemo(() => {
-    if (!currentDate) return '';
-    return months[currentDate.getMonth()];
-  }, [currentDate]);
-  
-  const saintsForCurrentMonth = useMemo(() => {
-    if (!currentMonthName) return [];
-    return saintsOfTheDay.filter(day => day.month === currentMonthName);
-  }, [currentMonthName]);
 
   const startIndex = useMemo(() => {
     if (!currentDate || saintsForCurrentMonth.length === 0) return 0;
