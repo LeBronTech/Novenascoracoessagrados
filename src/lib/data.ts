@@ -171,3 +171,5 @@ export const saintsOfTheDay: SaintStory[] = [
   { day: 1, month: 'Novembro', name: 'Solenidade de Todos os Santos', imageUrl: 'https://placehold.co/80x80/c27a2f/FFFFFF/png?text=Santos', story: '<p>Neste dia, a Igreja celebra a glória de todos os santos, conhecidos e desconhecidos, que já se encontram na presença de Deus no céu. É uma festa de esperança, que nos lembra da nossa vocação à santidade.</p>' },
   { day: 2, month: 'Novembro', name: 'Finados (Comemoração dos Fiéis Defuntos)', imageUrl: 'https://placehold.co/80x80/c27a2f/FFFFFF/png?text=Almas', story: '<p>A Igreja dedica este dia à oração por todas as almas dos fiéis defuntos que se encontram no purgatório, purificando-se para entrar na glória do céu. É um dia de sufrágio, lembrança e esperança na ressurreição.</p>' },
 ];
+
+    
