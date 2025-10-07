@@ -188,7 +188,7 @@ export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
             ))}
         </div>
 
-        <div className="flex justify-end mb-4">
+        <div className="flex justify-center mb-4">
           <a
             href="https://chat.whatsapp.com/D08lyjhVqL8KyZfIovKYk5?mode=ems_copy_t"
             target="_blank"
