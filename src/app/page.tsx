@@ -101,6 +101,9 @@ export default function Home() {
       <Header />
       
       <div className="my-8">
+        <h2 className="text-xl font-brand text-center text-gray-700 mb-4">
+          Santo do Dia
+        </h2>
         <SaintOfTheDay triggerTheme={theme} />
       </div>
 
