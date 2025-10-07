@@ -64,6 +64,8 @@ export default function SaintOfTheDay() {
     return <div className="p-4 text-center text-gray-500">A carregar santos...</div>;
   }
 
+  const arrowClasses = 'relative top-0 translate-y-0 h-auto px-4 py-2 text-sm hover:bg-primary hover:text-primary-foreground';
+
   return (
     <div className="p-4 md:p-6">
       <Carousel setApi={setApi} opts={{ startIndex, loop: true }} className="w-full">
@@ -98,8 +100,12 @@ export default function SaintOfTheDay() {
           ))}
         </CarouselContent>
         <div className="flex justify-center items-center mt-4 gap-4">
-          <CarouselPrevious className="relative left-0 top-0 translate-y-0" />
-          <CarouselNext className="relative right-0 top-0 translate-y-0" />
+          <CarouselPrevious className={cn(arrowClasses, '-left-0')}>
+            Dia anterior
+          </CarouselPrevious>
+          <CarouselNext className={cn(arrowClasses, '-right-0')}>
+            Próximo dia
+          </CarouselNext>
         </div>
       </Carousel>
     </div>

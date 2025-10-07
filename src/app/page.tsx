@@ -80,7 +80,7 @@ export default function Home() {
     <div className="container mx-auto p-4 md:p-8 max-w-5xl text-stone-900">
       <Sheet>
         <SheetTrigger asChild>
-          <Button variant="outline" size="icon" className="fixed top-4 left-4 z-20 bg-white/70 backdrop-blur-sm">
+          <Button variant="outline" size="icon" className="fixed top-4 left-4 z-20 bg-white/70 backdrop-blur-sm hover:bg-primary hover:text-primary-foreground">
             <Menu className="h-6 w-6" />
             <span className="sr-only">Abrir menu</span>
           </Button>
