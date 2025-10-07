@@ -23,14 +23,10 @@ export default function SaintOfTheDay() {
   }, []);
   
   const handleValueChange = (value: string[]) => {
-      // If the user opens any accordion, we want all of them to be open conceptually.
-      // So if the new value has any item, we'll set it to all items.
-      // If the user closes the last open item, we clear the list.
-      if (value.length > 0 && openItems.length === 0) {
+      if (value.length > 0) {
         const allItemKeys = saintsForCurrentMonth.map((_, index) => `item-${index}`);
         setOpenItems(allItemKeys);
-      } else if (value.length < openItems.length) {
-         // If user explicitly closes one, close all
+      } else {
          setOpenItems([]);
       }
   };
@@ -64,7 +60,7 @@ export default function SaintOfTheDay() {
     return <div className="p-4 text-center text-gray-500">A carregar santos...</div>;
   }
 
-  const arrowClasses = 'relative top-0 translate-y-0 h-auto px-4 py-2 text-sm hover:bg-primary hover:text-primary-foreground';
+  const arrowClasses = 'relative top-0 translate-y-0 h-auto px-4 py-2 text-sm border-0 text-primary bg-transparent hover:bg-primary hover:text-primary-foreground';
 
   return (
     <div className="p-4 md:p-6">
@@ -100,10 +96,10 @@ export default function SaintOfTheDay() {
           ))}
         </CarouselContent>
         <div className="flex justify-center items-center mt-4 gap-4">
-          <CarouselPrevious className={cn(arrowClasses, '-left-0')}>
+          <CarouselPrevious variant="outline" className={cn(arrowClasses, '-left-0')}>
             Dia anterior
           </CarouselPrevious>
-          <CarouselNext className={cn(arrowClasses, '-right-0')}>
+          <CarouselNext variant="outline" className={cn(arrowClasses, '-right-0')}>
             Próximo dia
           </CarouselNext>
         </div>
