@@ -10,7 +10,7 @@ import NovenaDisplay from '@/components/novena-display';
 import SaintOfTheDay from '@/components/saint-of-the-day';
 import { saints, months, novenaData } from '@/lib/data';
 import type { Saint, Novena } from '@/lib/data';
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetDescription } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
 import { Menu } from 'lucide-react';
 
@@ -100,12 +100,12 @@ export default function Home() {
 
       <Header />
       
-      <h2 className="text-xl font-brand text-center text-gray-700 mt-8 mb-4">
+      <h2 className="text-xl font-brand text-center text-gray-700 mt-8 mb-2">
         Santo do Dia
       </h2>
       <SaintOfTheDay triggerTheme={theme} />
 
-      <div className="bg-gray-100/70 backdrop-blur-sm rounded-xl shadow-lg p-4 my-8">
+      <div className="bg-gray-100/70 backdrop-blur-sm rounded-xl shadow-lg p-4 mt-4">
         <h2 id="saints-nav-title" className="text-xl font-brand text-center text-gray-700 mb-4">
           Novenas de {selectedMonth}
         </h2>
