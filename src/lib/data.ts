@@ -190,7 +190,7 @@ export const saintsOfTheDay: SaintStory[] = [
     day: 4,
     month: 'Outubro',
     name: 'São Francisco de Assis',
-    imageUrl: 'https://i.postimg.cc/d16pPZz0/sao-francisco-assis.jpg',
+    imageUrl: 'https://i.postimg.cc/fVs0LZz6/sao-francisco-assis.jpg',
     story: `
       <h4>O Jovem de Assis</h4>
       <p>Nascido em 1182, filho de um rico comerciante de tecidos, Francisco Bernardone viveu uma juventude de luxo e sonhos de glória militar. No entanto, uma profunda crise espiritual, marcada pela prisão durante uma guerra e um encontro transformador com um leproso, mudou o rumo de sua vida. O ponto de viragem definitivo foi quando, em oração na capela de São Damião, ouviu a voz do crucifixo que lhe dizia: "Francisco, vai e repara a minha casa que, como vês, está em ruínas".</p>
@@ -338,3 +338,4 @@ export const saintsOfTheDay: SaintStory[] = [
       <p class="mt-2 italic">Almas do purgatório, intercedei por nós.</p>`
   },
 ];
+
