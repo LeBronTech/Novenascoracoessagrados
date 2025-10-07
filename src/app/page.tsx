@@ -14,7 +14,7 @@ import { Button } from '@/components/ui/button';
 import { Menu } from 'lucide-react';
 
 export default function Home() {
-  const [selectedMonth, setSelectedMonth] = useState<string>(months[0]);
+  const [selectedMonth, setSelectedMonth] = useState<string>(months[9]); // Default to October
   const [selectedSaintId, setSelectedSaintId] = useState<string | null>(null);
   const [hydrated, setHydrated] = useState(false);
 
@@ -63,7 +63,11 @@ export default function Home() {
   
   const handleMonthChange = (month: string) => {
     setSelectedMonth(month);
-    // Do not change saint when month changes, let user decide
+    // If the currently selected saint is not in the new month, deselect it.
+    const saintsInNewMonth = saints.filter(s => s.month === month);
+    if (selectedSaintId && !saintsInNewMonth.some(s => s.id === selectedSaintId)) {
+        setSelectedSaintId(null);
+    }
   }
 
   // Prevent rendering until the client-side has determined the initial state from URL
