@@ -13,33 +13,44 @@ import { CalendarIcon } from 'lucide-react';
 
 export default function SaintOfTheDay() {
   const [api, setApi] = useState<CarouselApi>();
-  const [currentDate] = useState(new Date());
+  const [currentDate, setCurrentDate] = useState(new Date());
   const [hydrated, setHydrated] = useState(false);
 
-  const currentMonthName = useMemo(() => months.find((m, i) => i === currentDate.getMonth()), [currentDate]);
+  useEffect(() => {
+    // This ensures that the component only renders on the client-side,
+    // where window and new Date() are safe to use without causing hydration mismatches.
+    setHydrated(true);
+    setCurrentDate(new Date());
+  }, []);
+
+  const currentMonthName = useMemo(() => {
+    if (!hydrated) return '';
+    return months.find((m, i) => i === currentDate.getMonth());
+  }, [currentDate, hydrated]);
   
-  const saintsForCurrentMonth = useMemo(() => 
-    saintsOfTheDay.filter(saint => saint.month === currentMonthName)
-  , [currentMonthName]);
+  const saintsForCurrentMonth = useMemo(() => {
+    if (!hydrated) return [];
+    return saintsOfTheDay.filter(saint => saint.month === currentMonthName);
+  }, [currentMonthName, hydrated]);
 
   const startIndex = useMemo(() => {
     if (!hydrated) return 0;
     const dayOfMonth = currentDate.getDate();
+    // Find the first saint on or after the current date
     const index = saintsForCurrentMonth.findIndex(saint => saint.day >= dayOfMonth);
+    // If no saint is found for the rest of the month, default to the first saint of the month
     return index !== -1 ? index : 0;
   }, [hydrated, currentDate, saintsForCurrentMonth]);
 
   useEffect(() => {
-    setHydrated(true);
-  }, []);
-
-  useEffect(() => {
-    if (api && hydrated) {
+    if (api && hydrated && saintsForCurrentMonth.length > 0) {
+      // Ensure the carousel scrolls to the correct starting index once everything is ready.
       api.scrollTo(startIndex, true);
     }
-  }, [api, hydrated, startIndex]);
+  }, [api, hydrated, startIndex, saintsForCurrentMonth.length]);
 
-  if (!saintsForCurrentMonth.length || !hydrated) {
+  if (!hydrated || saintsForCurrentMonth.length === 0) {
+    // Render nothing or a placeholder until the client has hydrated and data is available
     return null;
   }
 
@@ -86,3 +97,5 @@ export default function SaintOfTheDay() {
     </div>
   );
 }
+
+    
