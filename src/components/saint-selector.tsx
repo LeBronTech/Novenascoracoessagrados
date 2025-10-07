@@ -3,13 +3,14 @@
 
 import React, { useState, useEffect, useCallback, memo } from 'react';
 import Image from 'next/image';
-import useEmblaCarousel, { type EmblaCarouselType, type EmblaOptionsType } from 'embla-carousel-react';
+import useEmblaCarousel, { type UseEmblaCarouselType, type EmblaOptionsType } from 'embla-carousel-react';
 import { cn } from '@/lib/utils';
 import type { Saint } from '@/lib/data';
 import { Card, CardContent } from '@/components/ui/card';
 import { Heart } from 'lucide-react';
 
 const OPTIONS: EmblaOptionsType = { loop: true, align: 'center', containScroll: false };
+type EmblaApi = UseEmblaCarouselType[1];
 
 interface SaintSelectorProps {
   saints: Saint[];
@@ -24,7 +25,7 @@ const MonthCarousel = memo(({ months, selectedMonth, onMonthChange }: Pick<Saint
   const [emblaRef, emblaApi] = useEmblaCarousel(OPTIONS);
   const [slideStates, setSlideStates] = useState<{ [key: number]: string }>({});
 
-  const onSelect = useCallback((api: EmblaCarouselType) => {
+  const onSelect = useCallback((api: EmblaApi) => {
     if (!api) return;
 
     const newSelectedIndex = api.selectedScrollSnap();
