@@ -31,23 +31,29 @@ const MonthCarousel = memo(({ months, selectedMonth, onMonthChange }: Pick<Saint
     onMonthChange(months[newSelectedIndex]);
 
     const newSlideStates: { [key: number]: string } = {};
-    api.scrollSnapList().forEach((_, index) => {
-      let state = '';
-      if (index === newSelectedIndex) {
-        state = 'active';
-      } else {
-        const totalSlides = api.scrollSnapList().length;
-        const relativeIndex = (index - newSelectedIndex + totalSlides) % totalSlides;
-        const dist = Math.min(relativeIndex, totalSlides - relativeIndex);
+    api.slideNodes().forEach((_, index) => {
+        let state = '';
+        if (index === newSelectedIndex) {
+            state = 'active';
+        } else {
+            const engine = api.internalEngine();
+            const slidesInView = engine.slidesInView.check(engine.snapGrid.body);
+            
+            if (slidesInView.includes(index)) {
+                const totalSlides = api.scrollSnapList().length;
+                const relativeIndex = (index - newSelectedIndex + totalSlides) % totalSlides;
+                const dist = Math.min(relativeIndex, totalSlides - relativeIndex);
 
-        if (dist === 1) state = relativeIndex < totalSlides / 2 ? 'next1' : 'prev1';
-        else if (dist === 2) state = relativeIndex < totalSlides / 2 ? 'next2' : 'prev2';
-      }
-      newSlideStates[index] = state;
+                if (dist === 1) state = relativeIndex < totalSlides / 2 ? 'next1' : 'prev1';
+                else if (dist === 2) state = relativeIndex < totalSlides / 2 ? 'next2' : 'prev2';
+            }
+        }
+        newSlideStates[index] = state;
     });
 
     setSlideStates(newSlideStates);
-  }, [onMonthChange, months]);
+}, [onMonthChange, months]);
+
 
   useEffect(() => {
     if (!emblaApi) return;
