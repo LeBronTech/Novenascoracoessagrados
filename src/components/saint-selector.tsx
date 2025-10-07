@@ -109,31 +109,27 @@ export default function SaintSelector({
   const saintsForMonth = saints.filter(s => s.month === selectedMonth);
 
   useEffect(() => {
+    // Trigger animation for the saints container
     setAnimate(false);
-    const timer = setTimeout(() => setAnimate(true), 50);
+    const timer = setTimeout(() => setAnimate(true), 50); // Small delay to reset animation
     return () => clearTimeout(timer);
   }, [selectedMonth]);
-
-  const getAnimationClass = (index: number) => {
-    if (!animate) return 'opacity-0';
-    const delays = ['animation-delay-100', 'animation-delay-200', 'animation-delay-300', 'animation-delay-500', 'animation-delay-700'];
-    const delayClass = delays[index] || delays[delays.length -1];
-    return `animate-fade-in ${delayClass}`;
-  };
-
+  
   return (
     <section className="w-full">
       <MonthCarousel months={months} selectedMonth={selectedMonth} onMonthChange={onMonthChange} />
       
-      <div className="saints-nav-container flex items-start gap-x-4 overflow-x-auto pb-2 mt-4 border-t border-gray-300 pt-4">
+      <div className={cn(
+          "saints-nav-container flex items-start gap-x-4 overflow-x-auto pb-2 mt-4 border-t border-gray-300 pt-4",
+           animate && "animate-fade-in"
+        )}>
         {saintsForMonth.length > 0 ? (
-          saintsForMonth.map((saint, index) => (
+          saintsForMonth.map((saint) => (
             <div
               key={saint.id}
               className={cn(
                 'saint-nav-item flex flex-col items-center gap-1 text-center opacity-70 hover:opacity-100 hover:scale-105 transform-gpu transition-all duration-200 w-[100px] shrink-0 cursor-pointer',
-                selectedSaintId === saint.id && 'opacity-100',
-                getAnimationClass(index)
+                selectedSaintId === saint.id && 'opacity-100'
               )}
               onClick={() => onSaintSelect(saint.id)}
               role="button"
