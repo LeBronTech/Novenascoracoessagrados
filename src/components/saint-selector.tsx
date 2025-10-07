@@ -27,7 +27,6 @@ const MonthCarousel = memo(({ months, selectedMonth, onMonthChange }: Pick<Saint
   const onSelect = useCallback((api: EmblaCarouselType) => {
     if (!api) return;
     
-    // For a looping carousel, the real index is determined via modulo
     const newSelectedIndex = api.selectedScrollSnap();
     onMonthChange(months[newSelectedIndex]);
 
@@ -38,7 +37,6 @@ const MonthCarousel = memo(({ months, selectedMonth, onMonthChange }: Pick<Saint
         state = 'active';
       } else {
         const totalSlides = api.scrollSnapList().length;
-        // Simplified logic for prev/next based on relative position
         const relativeIndex = (index - newSelectedIndex + totalSlides) % totalSlides;
         const dist = Math.min(relativeIndex, totalSlides - relativeIndex);
 
