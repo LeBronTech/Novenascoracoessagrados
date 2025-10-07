@@ -175,6 +175,15 @@ export const months: string[] = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Mai
 
 export const saintsOfTheDay: SaintOfTheDayData[] = [
   {
+    day: 8,
+    month: 'Fevereiro',
+    saints: [{
+      name: 'Santa Josefina Bakhita',
+      imageUrl: 'https://placehold.co/80x80/6e4a3d/FFFFFF/png?text=Bakhita',
+      story: `<p>Santa Josefina Bakhita, a escrava sudanesa que encontrou a verdadeira liberdade em Cristo, é um testemunho poderoso da dignidade humana e da esperança cristã. Sua vida mostra que nenhuma escravidão pode aprisionar uma alma que pertence a Deus.</p><p class="mt-4"><i>Santa Josefina Bakhita, rogai por nós.</i></p>`
+    }]
+  },
+  {
     day: 1,
     month: 'Outubro',
     saints: [{
@@ -279,10 +288,11 @@ export const saintsOfTheDay: SaintOfTheDayData[] = [
   {
     day: 8,
     month: 'Outubro',
-    saints: [
-      { name: 'Santa Reparata', imageUrl: 'https://i.postimg.cc/QN4QQTH8/statue-of-saint-reparata.webp', story: `<p>Santa Reparata, jovem mártir da Palestina, e Santa Josefina Bakhita, a escrava sudanesa que se tornou santa, mostram-nos a força da fé que supera qualquer sofrimento. Uma defendeu a virgindade, a outra encontrou a liberdade em Cristo.</p><p class="mt-4"><i>Santas Reparata e Josefina Bakhita, rogai por nós.</i></p>` },
-      { name: 'Santa Josefina Bakhita', imageUrl: 'https://placehold.co/80x80/6e4a3d/FFFFFF/png?text=Bakhita', story: `<p>Santa Josefina Bakhita, a escrava sudanesa que encontrou a verdadeira liberdade em Cristo, é um testemunho poderoso da dignidade humana e da esperança cristã. Sua vida mostra que nenhuma escravidão pode aprisionar uma alma que pertence a Deus.</p><p class="mt-4"><i>Santa Josefina Bakhita, rogai por nós.</i></p>`}
-    ]
+    saints: [{ 
+        name: 'Santa Reparata', 
+        imageUrl: 'https://i.postimg.cc/QN4QQTH8/statue-of-saint-reparata.webp', 
+        story: `<p>Santa Reparata, jovem mártir da Palestina, defendeu a sua virgindade e fé com uma coragem inabalável, mostrando que a força de Deus se manifesta na fraqueza humana.</p><p class="mt-4"><i>Santa Reparata, rogai por nós.</i></p>` 
+    }]
   },
   {
     day: 9,

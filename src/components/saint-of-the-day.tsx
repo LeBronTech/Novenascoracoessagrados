@@ -4,7 +4,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import Image from 'next/image';
 import { saintsOfTheDay, months } from '@/lib/data';
-import type { SaintOfTheDayData, SaintStory } from '@/lib/data';
+import type { SaintStory } from '@/lib/data';
 import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from '@/components/ui/carousel';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { cn } from '@/lib/utils';
@@ -12,40 +12,42 @@ import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 function SaintImages({ saints }: { saints: SaintStory[] }) {
-  if (saints.length === 1) {
-    return (
-      <Image
-        src={saints[0].imageUrl}
-        alt={saints[0].name}
-        width={64}
-        height={64}
-        className="w-16 h-16 rounded-full object-cover border-2 border-white shadow-sm saint-image"
-      />
-    );
-  }
+    if (saints.length === 1) {
+        return (
+            <div className="saint-image-wrapper single">
+                <Image
+                    src={saints[0].imageUrl}
+                    alt={saints[0].name}
+                    width={64}
+                    height={64}
+                    className="saint-image"
+                />
+            </div>
+        );
+    }
 
-  if (saints.length > 1) {
-    return (
-      <div className="relative w-24 h-16 flex items-center justify-center">
-        <Image
-          src={saints[0].imageUrl}
-          alt={saints[0].name}
-          width={64}
-          height={64}
-          className="w-16 h-16 rounded-full object-cover border-2 border-white shadow-sm absolute left-0 z-0 saint-image"
-        />
-        <Image
-          src={saints[1].imageUrl}
-          alt={saints[1].name}
-          width={64}
-          height={64}
-          className="w-16 h-16 rounded-full object-cover border-2 border-white shadow-sm absolute right-0 z-10 saint-image"
-        />
-      </div>
-    );
-  }
+    if (saints.length > 1) {
+        return (
+            <div className="saint-image-wrapper multiple">
+                <Image
+                    src={saints[0].imageUrl}
+                    alt={saints[0].name}
+                    width={64}
+                    height={64}
+                    className="saint-image image-1"
+                />
+                <Image
+                    src={saints[1].imageUrl}
+                    alt={saints[1].name}
+                    width={64}
+                    height={64}
+                    className="saint-image image-2"
+                />
+            </div>
+        );
+    }
 
-  return null;
+    return null;
 }
 
 
@@ -119,7 +121,7 @@ export default function SaintOfTheDay() {
                 <div className="p-1">
                   <Accordion type="multiple" value={openItems} onValueChange={handleValueChange} className="w-full">
                     <AccordionItem value={`item-${index}`} className="border-none">
-                      <AccordionTrigger className="p-4 bg-white/60 rounded-lg shadow-md hover:shadow-lg transition-shadow data-[state=open]:rounded-b-none">
+                      <AccordionTrigger className="p-4 bg-white/60 rounded-lg shadow-md hover:shadow-lg transition-shadow data-[state=open]:rounded-b-none group">
                         <div className="flex items-center gap-4 text-left w-full">
                           <SaintImages saints={dayData.saints} />
                           <div>

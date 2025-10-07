@@ -160,13 +160,51 @@
   }
 
   /* Saint of the Day Images */
-  .saint-image {
-    transition: transform 0.3s ease-in-out;
+  .saint-image-wrapper {
+    @apply relative flex items-center justify-center transition-all duration-500 ease-in-out;
+    width: 6rem; /* w-24 */
+    height: 4rem; /* h-16 */
   }
 
-  [data-state="open"] .saint-image {
-    transform: scale(1.1);
+  .saint-image-wrapper .saint-image {
+    @apply w-16 h-16 rounded-full object-cover border-2 border-white shadow-sm transition-all duration-500 ease-in-out;
   }
+
+  .saint-image-wrapper.multiple {
+    width: 7rem;
+  }
+  .saint-image-wrapper.multiple .image-1 {
+    @apply absolute left-0 top-1/2 -translate-y-1/2 z-0;
+  }
+  .saint-image-wrapper.multiple .image-2 {
+    @apply absolute right-0 top-1/2 -translate-y-1/2 z-10;
+  }
+  
+  .group[data-state="open"] .saint-image-wrapper {
+    @apply -translate-y-4 mb-[-3rem]; /* Move up and adjust margin */
+  }
+
+  .group[data-state="open"] .saint-image-wrapper.single {
+      transform: translateY(-1rem) scale(1.5);
+  }
+
+  .group[data-state="open"] .saint-image-wrapper.multiple {
+      width: 12rem; /* Expand container */
+      transform: translateY(-1rem);
+  }
+
+  .group[data-state="open"] .saint-image-wrapper.multiple .image-1,
+  .group[data-state="open"] .saint-image-wrapper.multiple .image-2 {
+      @apply scale-[1.35] relative; /* Increase size and reset position */
+  }
+  
+  .group[data-state="open"] .saint-image-wrapper.multiple .image-1 {
+      transform: translateX(-0.5rem) scale(1.35);
+  }
+  .group[data-state="open"] .saint-image-wrapper.multiple .image-2 {
+      transform: translateX(0.5rem) scale(1.35);
+  }
+
 }
 
 @layer components {
