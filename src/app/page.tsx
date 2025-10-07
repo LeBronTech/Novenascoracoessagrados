@@ -1,4 +1,3 @@
-
 // Forçando a atualização para sincronização
 'use client';
 
@@ -100,5 +99,3 @@ export default function Home() {
     </div>
   );
 }
-
-    
