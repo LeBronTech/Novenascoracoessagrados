@@ -8,7 +8,7 @@ import type { SaintStory } from '@/lib/data';
 import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from '@/components/ui/carousel';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { cn } from '@/lib/utils';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import type { Theme as NovenaTheme } from '@/app/page';
 
@@ -60,7 +60,7 @@ function SaintImages({ saints }: { saints: SaintStory[] }) {
 
 function ThemeSelector({ theme, setTheme }: { theme: Theme, setTheme: (theme: Theme) => void }) {
     return (
-        <div className="absolute top-2 right-3 flex gap-2 bg-transparent px-2 py-1 rounded-full z-10">
+        <div className="absolute top-2 right-3 flex gap-2 bg-transparent px-2 py-1 rounded-full z-20">
             {(['light', 'dark'] as Theme[]).map((t) => (
                 <button
                     key={t}
@@ -173,6 +173,14 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
                       </AccordionTrigger>
                       <AccordionContent className={cn("relative p-6 rounded-b-lg shadow-inner-top saint-day-content", `theme-${theme}`)}>
                         <ThemeSelector theme={theme} setTheme={setTheme} />
+                        
+                        <button onClick={() => api?.scrollPrev()} className="saint-day-content-nav prev">
+                            <ChevronLeft className="w-6 h-6" />
+                        </button>
+                        <button onClick={() => api?.scrollNext()} className="saint-day-content-nav next">
+                            <ChevronRight className="w-6 h-6" />
+                        </button>
+                        
                         {hasMultipleSaints && (
                           <div className="flex justify-center gap-2 mb-4">
                             {dayData.saints.map((saint, saintIdx) => (

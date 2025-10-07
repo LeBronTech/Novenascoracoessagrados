@@ -267,6 +267,22 @@
   .group[data-state=open] .saint-image-wrapper.multiple .image-2 {
       transform: translateX(1.5rem) scale(1.5);
   }
+
+  .saint-day-content-nav {
+    @apply absolute top-1/2 -translate-y-1/2 z-10 w-10 h-20 flex items-center justify-center cursor-pointer transition-all duration-200;
+  }
+  .saint-day-content-nav.prev {
+    @apply -left-5 rounded-r-full;
+  }
+  .saint-day-content-nav.next {
+    @apply -right-5 rounded-l-full;
+  }
+  .saint-day-content.theme-light .saint-day-content-nav {
+    @apply bg-gray-200/70 text-gray-600 hover:bg-gray-300 hover:text-gray-800;
+  }
+  .saint-day-content.theme-dark .saint-day-content-nav {
+    @apply bg-gray-700/70 text-gray-300 hover:bg-gray-600 hover:text-white;
+  }
 }
 
 @layer components {
