@@ -13,7 +13,7 @@ import { CalendarIcon } from 'lucide-react';
 
 export default function SaintOfTheDay() {
   const [api, setApi] = useState<CarouselApi>();
-  const [currentDate, setCurrentDate] = useState(new Date());
+  const [currentDate, setCurrentDate] = useState<Date | null>(null);
   const [hydrated, setHydrated] = useState(false);
 
   useEffect(() => {
@@ -24,23 +24,24 @@ export default function SaintOfTheDay() {
   }, []);
 
   const currentMonthName = useMemo(() => {
-    if (!hydrated) return '';
+    if (!currentDate) return '';
+    // Find the month name from the months array based on the current date's month index
     return months.find((m, i) => i === currentDate.getMonth());
-  }, [currentDate, hydrated]);
+  }, [currentDate]);
   
   const saintsForCurrentMonth = useMemo(() => {
-    if (!hydrated) return [];
+    if (!currentMonthName) return [];
     return saintsOfTheDay.filter(saint => saint.month === currentMonthName);
-  }, [currentMonthName, hydrated]);
+  }, [currentMonthName]);
 
   const startIndex = useMemo(() => {
-    if (!hydrated) return 0;
+    if (!currentDate) return 0;
     const dayOfMonth = currentDate.getDate();
     // Find the first saint on or after the current date
     const index = saintsForCurrentMonth.findIndex(saint => saint.day >= dayOfMonth);
     // If no saint is found for the rest of the month, default to the first saint of the month
     return index !== -1 ? index : 0;
-  }, [hydrated, currentDate, saintsForCurrentMonth]);
+  }, [currentDate, saintsForCurrentMonth]);
 
   useEffect(() => {
     if (api && hydrated && saintsForCurrentMonth.length > 0) {
@@ -51,7 +52,7 @@ export default function SaintOfTheDay() {
 
   if (!hydrated || saintsForCurrentMonth.length === 0) {
     // Render nothing or a placeholder until the client has hydrated and data is available
-    return null;
+    return <div className="p-4 text-center text-gray-500">A carregar santos...</div>;
   }
 
   return (
