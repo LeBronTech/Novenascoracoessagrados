@@ -3,12 +3,13 @@
 
 import React, { useState, useEffect, useCallback, memo } from 'react';
 import Image from 'next/image';
-import useEmblaCarousel, { type EmblaOptionsType, type UseEmblaCarouselType } from 'embla-carousel-react';
+import useEmblaCarousel, { type UseEmblaCarouselType } from 'embla-carousel-react';
 import { cn } from '@/lib/utils';
 import type { Saint } from '@/lib/data';
 import { Card, CardContent } from '@/components/ui/card';
 import { Heart } from 'lucide-react';
 
+type EmblaOptionsType = UseEmblaCarouselType[2];
 const OPTIONS: EmblaOptionsType = { loop: true, align: 'center', containScroll: false };
 type EmblaApi = UseEmblaCarouselType[1];
 
