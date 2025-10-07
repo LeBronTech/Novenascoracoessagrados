@@ -26,6 +26,8 @@ const MonthCarousel = memo(({ months, selectedMonth, onMonthChange }: Pick<Saint
 
   const onSelect = useCallback((api: EmblaCarouselType) => {
     if (!api) return;
+    
+    // For a looping carousel, the real index is determined via modulo
     const newSelectedIndex = api.selectedScrollSnap();
     onMonthChange(months[newSelectedIndex]);
 
@@ -116,7 +118,7 @@ export default function SaintSelector({
 
   const getAnimationClass = (index: number) => {
     if (!animate) return 'opacity-0';
-    const delays = ['delay-0', 'delay-75', 'delay-100', 'delay-150', 'delay-200', 'delay-300', 'delay-500'];
+    const delays = ['animation-delay-100', 'animation-delay-200', 'animation-delay-300', 'animation-delay-500', 'animation-delay-700'];
     const delayClass = delays[index] || delays[delays.length -1];
     return `animate-fade-in ${delayClass}`;
   };
