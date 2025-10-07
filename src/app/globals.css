@@ -239,14 +239,15 @@
   }
 
   .saint-image-wrapper.multiple {
-    width: 8rem;
+    width: 6rem; /* w-24 */
+    height: 6rem; /* h-24 */
   }
 
   .saint-image-wrapper.multiple .image-1 {
-    @apply absolute left-0 top-1/2 -translate-y-1/2 z-0 transform-gpu;
+    @apply absolute top-0 left-1/2 -translate-x-1/2 z-0 transform-gpu;
   }
   .saint-image-wrapper.multiple .image-2 {
-    @apply absolute right-0 top-1/2 -translate-y-1/2 z-10 transform-gpu;
+    @apply absolute bottom-0 left-1/2 -translate-x-1/2 z-10 transform-gpu;
   }
   
   .group[data-state=open] .saint-image-wrapper {
@@ -259,7 +260,7 @@
   }
 
   .group[data-state=open] .saint-image-wrapper.multiple {
-      width: 14rem;
+      height: 8rem;
       transform: translateY(-2.5rem);
   }
 
@@ -269,10 +270,10 @@
   }
   
   .group[data-state=open] .saint-image-wrapper.multiple .image-1 {
-      transform: translateX(-1rem) scale(1.5);
+    transform: translate(-0.5rem, -1.5rem) scale(1.5);
   }
   .group[data-state=open] .saint-image-wrapper.multiple .image-2 {
-      transform: translateX(1rem) scale(1.5);
+    transform: translate(0.5rem, 1.5rem) scale(1.5);
   }
 
   .saint-day-content-nav {
