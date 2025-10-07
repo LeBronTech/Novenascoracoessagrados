@@ -132,7 +132,7 @@ export default function SaintSelector({
               key={saint.id}
               className={cn(
                 'saint-nav-item flex flex-col items-center gap-1 text-center opacity-70 hover:opacity-100 hover:scale-105 transform-gpu transition-all duration-200 w-[100px] shrink-0 cursor-pointer',
-                selectedSaintId === saint.id && 'active opacity-100',
+                selectedSaintId === saint.id && 'opacity-100',
                 getAnimationClass(index)
               )}
               onClick={() => onSaintSelect(saint.id)}
