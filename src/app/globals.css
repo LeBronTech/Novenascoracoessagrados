@@ -158,6 +158,18 @@
     transform: scale(0.7);
     opacity: 0.5;
   }
+  
+  /* Fix for Saint of the Day Carousel Overflow */
+  .saint-day-carousel .embla__viewport:has(.group[data-state=open]) {
+      overflow: visible;
+  }
+  .saint-day-carousel .embla__container:has(.group[data-state=open]) {
+      padding-top: 3rem;
+      padding-bottom: 1rem;
+      margin-top: -3rem;
+      margin-bottom: -1rem;
+  }
+
 
   /* Saint of the Day Accordion */
   .saint-day-trigger {

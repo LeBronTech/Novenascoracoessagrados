@@ -142,7 +142,7 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
 
   return (
     <div className="p-4 md:p-6">
-      <Carousel setApi={setApi} opts={{ startIndex, loop: true }} className="w-full">
+      <Carousel setApi={setApi} opts={{ startIndex, loop: true }} className="w-full saint-day-carousel">
         <CarouselContent className="-ml-4">
           {saintsForCurrentMonth.map((dayData, index) => {
             const selectedSaintIndex = selectedSaintIndices[index] ?? 0;
@@ -153,9 +153,9 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
               <CarouselItem key={index} className="pl-4">
                 <div className="p-1">
                   <Accordion type="multiple" value={openItems} onValueChange={handleValueChange} className="w-full">
-                    <AccordionItem value={`item-${index}`} className="border-none">
+                    <AccordionItem value={`item-${index}`} className="border-none group">
                       <AccordionTrigger className={cn(
-                        "p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow data-[state=open]:rounded-b-none group saint-day-trigger",
+                        "p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow data-[state=open]:rounded-b-none saint-day-trigger",
                         "[&[data-state=open]>svg]:text-primary-foreground",
                         triggerTheme
                       )}>
