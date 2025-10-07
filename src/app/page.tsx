@@ -1,4 +1,4 @@
-// Forçando a atualização para sincronização
+
 'use client';
 
 import { useState, useMemo, useEffect, useCallback } from 'react';

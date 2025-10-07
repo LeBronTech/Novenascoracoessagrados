@@ -9,7 +9,7 @@ import type { Saint } from '@/lib/data';
 import { Card, CardContent } from '@/components/ui/card';
 import { Heart } from 'lucide-react';
 
-type EmblaOptionsType = UseEmblaCarouselType[2];
+type EmblaOptionsType = NonNullable<Parameters<typeof useEmblaCarousel>[0]>;
 const OPTIONS: EmblaOptionsType = { loop: true, align: 'center', containScroll: false };
 type EmblaApi = UseEmblaCarouselType[1];
 
