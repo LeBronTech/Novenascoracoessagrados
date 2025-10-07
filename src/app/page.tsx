@@ -2,6 +2,7 @@
 'use client';
 
 import { useState, useMemo, useEffect, useCallback } from 'react';
+import Image from 'next/image';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
 import SaintSelector from '@/components/saint-selector';
@@ -13,13 +14,14 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetDescri
 import { Button } from '@/components/ui/button';
 import { Menu } from 'lucide-react';
 
+export type Theme = 'theme-default' | 'theme-dark-gray' | 'theme-light-gray' | 'theme-red';
+
 export default function Home() {
   const [selectedMonth, setSelectedMonth] = useState<string>(months[9]); // Default to October
   const [selectedSaintId, setSelectedSaintId] = useState<string | null>(null);
   const [hydrated, setHydrated] = useState(false);
+  const [theme, setTheme] = useState<Theme>('theme-dark-gray');
   
-  const [animate, setAnimate] = useState(false);
-
   useEffect(() => {
     const hash = window.location.hash.substring(1);
     let initialMonth = 'Outubro';
@@ -91,18 +93,21 @@ export default function Home() {
             <SheetDescription className="sr-only">Navegue para ver o santo de cada dia do mês.</SheetDescription>
           </SheetHeader>
           <div className="h-[calc(100vh-80px)] overflow-y-auto">
-            <SaintOfTheDay />
+            <SaintOfTheDay triggerTheme={theme} />
           </div>
         </SheetContent>
       </Sheet>
 
       <Header />
       
-      <div className="bg-gray-100/70 backdrop-blur-sm rounded-xl shadow-lg p-4 my-8">
-        <h2 id="saints-nav-title" className="text-xl font-brand text-center text-gray-700 mb-4">
-          Santo do Dia
-        </h2>
-        <SaintOfTheDay />
+      <div className="flex justify-center my-8">
+        <Image 
+          src="https://i.postimg.cc/9XYtFKcq/Capa-para-facebook-arquitetura-moderno-vermelho-Logotipo.png"
+          alt="Divisor Decorativo"
+          width={250}
+          height={60}
+          className="w-48 md:w-64"
+        />
       </div>
 
       <div className="bg-gray-100/70 backdrop-blur-sm rounded-xl shadow-lg p-4 my-8">
@@ -123,6 +128,8 @@ export default function Home() {
         key={selectedSaintId}
         novena={selectedNovena}
         saint={selectedSaint}
+        theme={theme}
+        setTheme={setTheme}
       />
       <Footer />
     </div>

@@ -10,6 +10,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { cn } from '@/lib/utils';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import type { Theme as NovenaTheme } from '@/app/page';
 
 type Theme = 'light' | 'dark';
 
@@ -77,7 +78,11 @@ function ThemeSelector({ theme, setTheme }: { theme: Theme, setTheme: (theme: Th
     );
 }
 
-export default function SaintOfTheDay() {
+interface SaintOfTheDayProps {
+  triggerTheme: NovenaTheme;
+}
+
+export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
   const [api, setApi] = useState<CarouselApi>();
   const [currentDate, setCurrentDate] = useState<Date | null>(null);
   const [hydrated, setHydrated] = useState(false);
@@ -149,7 +154,7 @@ export default function SaintOfTheDay() {
                 <div className="p-1">
                   <Accordion type="multiple" value={openItems} onValueChange={handleValueChange} className="w-full">
                     <AccordionItem value={`item-${index}`} className="border-none">
-                      <AccordionTrigger className="p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow data-[state=open]:rounded-b-none group saint-day-trigger">
+                      <AccordionTrigger className={cn("p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow data-[state=open]:rounded-b-none group saint-day-trigger", triggerTheme)}>
                         <div className="flex items-center gap-4 text-left w-full">
                            <SaintImages saints={dayData.saints} />
                            <div className="flex flex-col items-start">

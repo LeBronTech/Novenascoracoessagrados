@@ -161,11 +161,17 @@
 
   /* Saint of the Day Accordion */
   .saint-day-trigger {
-    @apply bg-primary text-primary-foreground transition-all duration-300;
+    @apply text-primary-foreground transition-all duration-300;
   }
 
+  .saint-day-trigger.theme-red { @apply bg-primary; }
+  .saint-day-trigger.theme-dark-gray { @apply bg-gray-700; }
+  .saint-day-trigger.theme-default { @apply bg-[#949da4]; }
+  .saint-day-trigger.theme-light-gray { @apply bg-primary; } /* Fallback for light theme */
+
+
   .saint-day-trigger:hover {
-    @apply bg-primary/90;
+    @apply opacity-90;
   }
 
   .saint-day-trigger .date-capsule {

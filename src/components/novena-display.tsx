@@ -8,9 +8,9 @@ import { Button } from '@/components/ui/button';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import type { Saint, Novena } from '@/lib/data';
+import type { Theme } from '@/app/page';
 import Image from 'next/image';
 
-type Theme = 'theme-default' | 'theme-dark-gray' | 'theme-light-gray' | 'theme-red';
 
 const themeClasses: Record<Theme, string> = {
   'theme-default': 'bg-[#949da4] text-white',
@@ -29,6 +29,8 @@ const themeDotClasses: Record<Theme, string> = {
 interface NovenaDisplayProps {
   saint: Saint | null;
   novena: Novena | null;
+  theme: Theme;
+  setTheme: (theme: Theme) => void;
 }
 
 function ThemeSelector({ theme, setTheme }: { theme: Theme, setTheme: (theme: Theme) => void }) {
@@ -55,8 +57,7 @@ function NovenaContent({ htmlContent }: { htmlContent: string }) {
   return <div dangerouslySetInnerHTML={{ __html: htmlContent }} />;
 }
 
-export default function NovenaDisplay({ saint, novena }: NovenaDisplayProps) {
-  const [theme, setTheme] = useState<Theme>('theme-dark-gray');
+export default function NovenaDisplay({ saint, novena, theme, setTheme }: NovenaDisplayProps) {
   const [animationState, setAnimationState] = useState<'idle' | 'out' | 'in'>('idle');
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
