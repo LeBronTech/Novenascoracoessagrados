@@ -105,24 +105,16 @@ export default function SaintSelector({
   onSaintSelect,
 }: SaintSelectorProps) {
 
-  const [animate, setAnimate] = useState(false);
   const saintsForMonth = saints.filter(s => s.month === selectedMonth);
 
-  useEffect(() => {
-    // Trigger animation for the saints container
-    setAnimate(false);
-    const timer = setTimeout(() => setAnimate(true), 50); // Small delay to reset animation
-    return () => clearTimeout(timer);
-  }, [selectedMonth]);
-  
   return (
     <section className="w-full">
       <MonthCarousel months={months} selectedMonth={selectedMonth} onMonthChange={onMonthChange} />
       
-      <div className={cn(
-          "saints-nav-container flex items-start gap-x-4 overflow-x-auto pb-2 mt-4 border-t border-gray-300 pt-4",
-           animate && "animate-fade-in"
-        )}>
+      <div
+        key={selectedMonth}
+        className="saints-nav-container flex items-start gap-x-4 overflow-x-auto pb-2 mt-4 border-t border-gray-300 pt-4 animate-fade-in"
+      >
         {saintsForMonth.length > 0 ? (
           saintsForMonth.map((saint) => (
             <div
