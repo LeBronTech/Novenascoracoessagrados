@@ -261,39 +261,64 @@ export const saintsOfTheDay: SaintStory[] = [
       <p class="mt-2 italic">Nossa Senhora do Rosário, rogai por nós.</p>`
   },
   {
-    day: 12,
+    day: 8,
     month: 'Outubro',
-    name: 'Nossa Senhora Aparecida',
-    imageUrl: 'https://i.postimg.cc/Lsyj4XMh/4011bde1376c5422265a41f3a652c540.jpg',
-    story: `
-      <h4>O Encontro nas Águas</h4>
-      <p>No ano de 1717, na região do Vale do Paraíba, três pescadores – Domingos Garcia, João Alves e Filipe Pedroso – enfrentavam um dia de pesca frustrante. Encarregados de conseguir peixe para um banquete, lançaram suas redes várias vezes sem sucesso. Já desanimados, ao lançarem a rede mais uma vez, em vez de peixes, recolheram o corpo de uma pequena imagem de terracota, sem a cabeça. Num segundo lançamento, no mesmo local, pescaram a cabeça, que se encaixou perfeitamente no corpo.</p>
-      <h4>Sinal de Esperança e Fé</h4>
-      <p>Após o encontro da imagem de Nossa Senhora da Conceição, a pesca tornou-se milagrosamente abundante. Este foi o humilde começo da devoção à Senhora "Aparecida" das águas. A pequena imagem, enegrecida pelo tempo e quebrada, tornou-se um poderoso símbolo de fé para o povo brasileiro. Ela representa a Mãe que se deixa encontrar pelos seus filhos nos momentos de dificuldade, transformando a escassez em abundância e o desânimo em esperança.</p>
-      <h4>Padroeira do Brasil</h4>
-      <p>A devoção cresceu rapidamente, e em 1930, o Papa Pio XI proclamou Nossa Senhora Aparecida como a Padroeira do Brasil. Sua imagem escura reflete a identidade de um povo miscigenado, e sua história de ser encontrada quebrada e depois restaurada fala profundamente ao coração de uma nação que busca unidade e superação. O Santuário Nacional de Aparecida é hoje o coração mariano do Brasil, acolhendo milhões de peregrinos que buscam o consolo e a intercessão da Mãe Aparecida.</p>
-      <p class="mt-4"><b>Oração:</b> Ó incomparável Senhora da Conceição Aparecida, Mãe de Deus, Rainha dos Anjos, advogada dos pecadores, refúgio e consolação dos aflitos, livrai-nos de tudo o que possa ofender-vos e a vosso Santíssimo Filho, meu Redentor e caro Jesus Cristo.</p>
-      <p class="mt-2 italic">Nossa Senhora Aparecida, rogai por nós.</p>`
+    name: 'Santa Josefina Bakhita',
+    imageUrl: 'https://placehold.co/80x80/6e4a3d/FFFFFF/png?text=Bakhita',
+    story: `<p>A história de Santa Josefina Bakhita, a "Mãe Morena", é um testemunho poderoso de como a fé pode transformar o sofrimento mais profundo em amor e perdão. Nascida no Sudão, foi raptada e vendida como escrava, mas encontrou em Cristo a sua verdadeira libertação.</p><p class="mt-4"><i>Santa Josefina Bakhita, rogai por nós.</i></p>`
+  },
+  {
+    day: 9,
+    month: 'Outubro',
+    name: 'São John Henry Newman',
+    imageUrl: 'https://placehold.co/80x80/6e4a3d/FFFFFF/png?text=Newman',
+    story: `<p>Um dos maiores intelectuais do século XIX, São John Henry Newman passou da Igreja Anglicana para a Católica numa jornada de busca honesta pela verdade. A sua vida ensina-nos que o coração e a razão caminham juntos na fé.</p><p class="mt-4"><i>São John Henry Newman, rogai por nós.</i></p>`
+  },
+  {
+    day: 10,
+    month: 'Outubro',
+    name: 'São Daniel Comboni',
+    imageUrl: 'https://placehold.co/80x80/6e4a3d/FFFFFF/png?text=Comboni',
+    story: `<p>Com o lema "Salvar a África com a África", São Daniel Comboni dedicou a sua vida à evangelização do continente africano. Foi um missionário incansável, que acreditava na dignidade e na capacidade do povo africano para liderar a sua própria Igreja.</p><p class="mt-4"><i>São Daniel Comboni, rogai por nós.</i></p>`
+  },
+  {
+    day: 11,
+    month: 'Outubro',
+    name: 'São João XXIII',
+    imageUrl: 'https://placehold.co/80x80/6e4a3d/FFFFFF/png?text=João+XXIII',
+    story: `<p>Conhecido como o "Papa Bom", São João XXIII surpreendeu o mundo ao convocar o Concílio Vaticano II, abrindo as "janelas da Igreja" para que o ar fresco do Espírito Santo pudesse renová-la. O seu pontificado foi um sopro de esperança e otimismo.</p><p class="mt-4"><i>São João XXIII, rogai por nós.</i></p>`
   },
   {
     day: 12,
     month: 'Outubro',
-    name: 'São Carlo Acutis',
-    imageUrl: 'https://i.postimg.cc/CKrbWHjb/8a6ca2d967cbe5b8b65b068da82f495e.jpg',
+    name: 'N.S. Aparecida e S. Carlo Acutis',
+    imageUrl: 'https://i.postimg.cc/Lsyj4XMh/4011bde1376c5422265a41f3a652c540.jpg',
     story: `
-      <h4>Um Jovem de seu Tempo</h4>
-      <p>Carlo Acutis, nascido em Londres em 1991 e criado em Milão, foi um jovem de seu tempo: amava futebol, videojogos e computadores. O que o tornou extraordinário foi a forma como viveu essas realidades ordinárias com uma profunda fé. Desde a sua Primeira Comunhão, aos 7 anos, desenvolveu um amor ardente pela Eucaristia, que chamava de "autoestrada para o Céu". Participava da Missa diariamente e passava horas em adoração diante do Sacrário, convencido da presença real de Jesus.</p>
-      <h4>O "Ciberapóstolo" da Eucaristia</h4>
-      <p>Dotado de um talento notável para a informática, Carlo usou a internet como uma ferramenta para a evangelização. Ele é conhecido como o "Ciberapóstolo da Eucaristia" por ter criado e catalogado uma vasta exposição virtual sobre os milagres eucarísticos em todo o mundo. Para ele, a rede não era um lugar de fuga, mas um novo "continente" a ser evangelizado, um espaço para partilhar a beleza da fé e a verdade do Evangelho. Sua vida mostra que a tecnologia pode e deve ser usada para a glória de Deus.</p>
-      <h4>Santidade no Cotidiano</h4>
-      <p>Diagnosticado com uma leucemia fulminante, Carlo ofereceu todos os seus sofrimentos pelo Papa e pela Igreja. Faleceu em 12 de outubro de 2006, aos 15 anos, deixando um testemunho luminoso de que a santidade não é reservada a uma elite, mas é um chamado para todos. Sua famosa frase, "Todos nascem como originais, mas muitos morrem como fotocópias", é um convite para cada um de nós a viver a nossa vocação única com coragem e alegria. Beatificado em 2020, ele é um poderoso intercessor e modelo para os jovens de hoje.</p>
-      <p class="mt-4"><b>Oração:</b> Ó Deus, nosso Pai, que nos destes em São Carlo Acutis um modelo de amor à Eucaristia e de generosidade com os pobres, concedei-nos, por sua intercessão, a graça de vivermos nossa fé com a mesma alegria e o mesmo ardor juvenil. Amém.</p>
-      <p class="mt-2 italic">São Carlo Acutis, rogai por nós.</p>`
+      <h4>Nossa Senhora Aparecida, Rainha e Padroeira</h4>
+      <p>Em 1717, a imagem de Nossa Senhora da Conceição foi encontrada por pescadores no Rio Paraíba do Sul. Este sinal humilde deu início a uma das maiores devoções do mundo. Nossa Senhora Aparecida, com sua cor escura, tornou-se o símbolo da mãe que acolhe todos os seus filhos brasileiros, sem distinção.</p>
+      <h4>São Carlo Acutis, o Ciberapóstolo</h4>
+      <p>Um jovem do nosso tempo, que amava a Eucaristia e a tecnologia. Carlo usou a internet para partilhar a sua fé, criando um site sobre milagres eucarísticos. A sua vida mostra que a santidade é possível em qualquer idade e que podemos usar os dons modernos para a glória de Deus. Faleceu em 2006, aos 15 anos, no dia da Senhora Aparecida.</p>
+      <p class="mt-4"><b>Oração:</b> Ó Mãe Aparecida, que nos destes o Brasil, e São Carlo Acutis, que do céu intercedeis pela juventude, rogai por nós e ensinai-nos a amar Jesus na Eucaristia e a servir os irmãos com alegria. Amém.</p>
+      <p class="mt-2 italic">Nossa Senhora Aparecida e São Carlo Acutis, rogai por nós.</p>`
+  },
+  {
+    day: 13,
+    month: 'Outubro',
+    name: 'Beata Alexandrina de Balazar',
+    imageUrl: 'https://placehold.co/80x80/6e4a3d/FFFFFF/png?text=Alexandrina',
+    story: `<p>Mística portuguesa que viveu os últimos 13 anos de sua vida alimentando-se exclusivamente da Eucaristia. A sua vida foi um contínuo ato de amor e reparação, oferecendo seus imensos sofrimentos pela conversão dos pecadores.</p><p class="mt-4"><i>Beata Alexandrina de Balazar, rogai por nós.</i></p>`
+  },
+  {
+    day: 14,
+    month: 'Outubro',
+    name: 'São Calisto I',
+    imageUrl: 'https://placehold.co/80x80/6e4a3d/FFFFFF/png?text=Calisto+I',
+    story: `<p>Papa e mártir do século III, São Calisto destacou-se pela sua misericórdia, defendendo que a Igreja deveria perdoar todos os pecados, mesmo os mais graves, para aqueles que se arrependessem. Mostrou a face de um Deus que é Pai de misericórdia.</p><p class="mt-4"><i>São Calisto I, rogai por nós.</i></p>`
   },
   {
     day: 15,
     month: 'Outubro',
-    name: 'Santa Teresa de Ávila',
+    name: 'Santa Teresa de Jesus (de Ávila)',
     imageUrl: 'https://i.postimg.cc/ht19wsyQ/32654687eb30f846f1f2e9e3edb6f4af.jpg',
     story: `
       <h4>A Reforma do Carmelo</h4>
@@ -319,6 +344,111 @@ export const saintsOfTheDay: SaintStory[] = [
       <p>A missão de Santa Margarida foi árdua. Enfrentou a desconfiança de sua comunidade e a dúvida de teólogos. No entanto, com a ajuda de seu diretor espiritual, o jesuíta São Cláudio de la Colombière, a devoção ao Sagrado Coração de Jesus começou a difundir-se. Seu legado é um convite perene a contemplar o Coração de Cristo, fonte de todo o bem e símbolo do amor infinito e misericordioso de Deus, e a responder a esse amor com a nossa própria vida, em espírito de adoração e reparação.</p>
       <p class="mt-4"><b>Oração:</b> Ó Sagrado Coração de Jesus, que manifestastes a Santa Margarida Maria o desejo de reinar sobre as famílias cristãs, nós vos escolhemos hoje como Rei e Senhor de nossa família.</p>
       <p class="mt-2 italic">Santa Margarida Maria Alacoque, rogai por nós.</p>`
+  },
+  {
+    day: 17,
+    month: 'Outubro',
+    name: 'Santo Inácio de Antioquia',
+    imageUrl: 'https://i.postimg.cc/cvWXNVVK/image.png',
+    story: `<p>Discípulo dos Apóstolos Pedro e João, foi bispo de Antioquia. No caminho para o seu martírio em Roma, escreveu sete cartas inspiradoras sobre a unidade da Igreja, a Eucaristia e o desejo de se unir a Cristo. Desejava ser "trigo de Deus, moído pelos dentes das feras".</p><p class="mt-4"><i>Santo Inácio de Antioquia, rogai por nós.</i></p>`
+  },
+  {
+    day: 18,
+    month: 'Outubro',
+    name: 'São Lucas, Evangelista',
+    imageUrl: 'https://placehold.co/80x80/6e4a3d/FFFFFF/png?text=S.+Lucas',
+    story: `<p>Autor do terceiro Evangelho e dos Atos dos Apóstolos, São Lucas era médico e companheiro de São Paulo. Seu Evangelho é conhecido como o "Evangelho da Misericórdia", destacando o perdão de Cristo e a sua atenção para com os pobres, os pecadores e as mulheres.</p><p class="mt-4"><i>São Lucas, rogai por nós.</i></p>`
+  },
+  {
+    day: 19,
+    month: 'Outubro',
+    name: 'São Pedro de Alcântara',
+    imageUrl: 'https://i.postimg.cc/LnDZnwJ2/image.png',
+    story: `<p>Grande místico espanhol e reformador franciscano, São Pedro de Alcântara viveu uma vida de penitência e oração extraordinárias. Foi amigo e conselheiro espiritual de Santa Teresa de Ávila, a quem ajudou na reforma do Carmelo.</p><p class="mt-4"><i>São Pedro de Alcântara, rogai por nós.</i></p>`
+  },
+  {
+    day: 20,
+    month: 'Outubro',
+    name: 'Santa Madalena de Nagasaki',
+    imageUrl: 'https://placehold.co/80x80/6e4a3d/FFFFFF/png?text=Madalena',
+    story: `<p>Nascida numa família cristã no Japão, tornou-se terciária agostiniana e catequista. Durante a feroz perseguição aos cristãos, ela encorajou os fiéis e sofreu um martírio cruel, permanecendo fiel a Cristo até ao fim.</p><p class="mt-4"><i>Santa Madalena de Nagasaki, rogai por nós.</i></p>`
+  },
+  {
+    day: 21,
+    month: 'Outubro',
+    name: 'Santa Úrsula e Companheiras',
+    imageUrl: 'https://placehold.co/80x80/6e4a3d/FFFFFF/png?text=Úrsula',
+    story: `<p>A história de Santa Úrsula, uma princesa bretã, e das suas onze mil companheiras virgens martirizadas em Colónia, na Alemanha, é uma tradição antiga que inspira a coragem e a pureza na defesa da fé.</p><p class="mt-4"><i>Santa Úrsula, rogai por nós.</i></p>`
+  },
+  {
+    day: 22,
+    month: 'Outubro',
+    name: 'São João Paulo II',
+    imageUrl: 'https://i.postimg.cc/bsw1Hqcq/image.png',
+    story: `<p>Um dos papas mais amados e influentes da história. Com o seu carisma, as suas viagens apostólicas e a sua profunda doutrina, São João Paulo II liderou a Igreja na passagem para o terceiro milénio, defendendo a dignidade humana e chamando todos à santidade com o seu famoso "Não tenhais medo!".</p><p class="mt-4"><i>São João Paulo II, rogai por nós.</i></p>`
+  },
+  {
+    day: 23,
+    month: 'Outubro',
+    name: 'São João de Capistrano',
+    imageUrl: 'https://placehold.co/80x80/6e4a3d/FFFFFF/png?text=Capistrano',
+    story: `<p>Franciscano e pregador incansável do século XV, é conhecido como o "santo soldado". Aos 70 anos, liderou um exército de cruzados para defender Belgrado do avanço do Império Otomano, garantindo uma vitória crucial para a cristandade.</p><p class="mt-4"><i>São João de Capistrano, rogai por nós.</i></p>`
+  },
+  {
+    day: 24,
+    month: 'Outubro',
+    name: 'Santo Antônio Maria Claret',
+    imageUrl: 'https://placehold.co/80x80/6e4a3d/FFFFFF/png?text=Claret',
+    story: `<p>Missionário espanhol e fundador dos Claretianos, Santo Antônio Maria Claret foi um evangelizador incansável. Usou todos os meios ao seu alcance, especialmente a imprensa, para difundir a Palavra de Deus. Foi arcebispo de Cuba e confessor da Rainha da Espanha.</p><p class="mt-4"><i>Santo Antônio Maria Claret, rogai por nós.</i></p>`
+  },
+  {
+    day: 25,
+    month: 'Outubro',
+    name: 'Santo Antônio de Sant\'Ana Galvão',
+    imageUrl: 'https://i.postimg.cc/sBYBCLdn/image.png',
+    story: `<p>O primeiro santo nascido no Brasil, Frei Galvão foi um franciscano conhecido pela sua profunda humildade, caridade e dons místicos. É famoso pelas "pílulas de Frei Galvão", pequenos papéis com uma oração à Virgem Maria que, pela fé, continuam a operar curas.</p><p class="mt-4"><i>Santo Antônio de Sant'Ana Galvão, rogai por nós.</i></p>`
+  },
+  {
+    day: 26,
+    month: 'Outubro',
+    name: 'Santo Evaristo',
+    imageUrl: 'https://placehold.co/80x80/6e4a3d/FFFFFF/png?text=Evaristo',
+    story: `<p>Quarto sucessor de São Pedro, o Papa Santo Evaristo governou a Igreja no final do século I. A ele se atribui a organização das primeiras paróquias em Roma. Viveu num tempo de perseguição e selou a sua fé com o martírio.</p><p class="mt-4"><i>Santo Evaristo, rogai por nós.</i></p>`
+  },
+  {
+    day: 27,
+    month: 'Outubro',
+    name: 'Santo Elesbão',
+    imageUrl: 'https://placehold.co/80x80/6e4a3d/FFFFFF/png?text=Elesbão',
+    story: `<p>Rei da Etiópia no século VI, Santo Elesbão foi um governante justo e piedoso. Defendeu os cristãos perseguidos na Arábia e, no fim da vida, renunciou ao trono para se tornar monge em Jerusalém.</p><p class="mt-4"><i>Santo Elesbão, rogai por nós.</i></p>`
+  },
+  {
+    day: 28,
+    month: 'Outubro',
+    name: 'Santos Simão e Judas Tadeu',
+    imageUrl: 'https://i.postimg.cc/9wrF08KF/image.png',
+    story: `<p>Dois dos doze Apóstolos de Jesus. São Simão, o "Zelote", e São Judas Tadeu, autor de uma das cartas do Novo Testamento e conhecido como o "santo das causas impossíveis", levaram o Evangelho até à Pérsia, onde foram martirizados juntos.</p><p class="mt-4"><i>Santos Simão e Judas, rogai por nós.</i></p>`
+  },
+  {
+    day: 29,
+    month: 'Outubro',
+    name: 'Beata Chiara Luce Badano',
+    imageUrl: 'https://placehold.co/80x80/6e4a3d/FFFFFF/png?text=Chiara+Luce',
+    story: `<p>Jovem italiana do Movimento dos Focolares, Chiara viveu a sua adolescência com uma alegria contagiante. Diagnosticada com um cancro ósseo aos 17 anos, enfrentou a doença com uma fé luminosa, oferecendo tudo a Jesus. O seu testemunho mostra como o sofrimento pode ser transformado em amor.</p><p class="mt-4"><i>Beata Chiara Luce, rogai por nós.</i></p>`
+  },
+  {
+    day: 30,
+    month: 'Outubro',
+    name: 'São Marcelo',
+    imageUrl: 'https://placehold.co/80x80/6e4a3d/FFFFFF/png?text=Marcelo',
+    story: `<p>Centurião romano na Espanha, São Marcelo declarou-se cristão durante uma festa pagã em honra do imperador. Recusou-se a trair a sua fé e foi condenado à morte, tornando-se um exemplo de coragem e objeção de consciência.</p><p class="mt-4"><i>São Marcelo, rogai por nós.</i></p>`
+  },
+  {
+    day: 31,
+    month: 'Outubro',
+    name: 'Santo Afonso Rodrigues',
+    imageUrl: 'https://placehold.co/80x80/6e4a3d/FFFFFF/png?text=Afonso',
+    story: `<p>Após perder a esposa e os filhos, Santo Afonso Rodrigues entrou na Companhia de Jesus como irmão leigo. Durante mais de 40 anos, serviu como porteiro no colégio de Maiorca, onde a sua humildade, obediência e profunda vida de oração o tornaram um guia espiritual para muitos.</p><p class="mt-4"><i>Santo Afonso Rodrigues, rogai por nós.</i></p>`
   },
   // Novembro
   {
@@ -356,3 +486,4 @@ export const saintsOfTheDay: SaintStory[] = [
 
 
     
+
