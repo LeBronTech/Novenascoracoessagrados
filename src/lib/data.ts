@@ -127,6 +127,7 @@ export const novenaData: Record<string, Novena> = {
     saintName: 'Santa Margarida M.A.',
     novenaTitle: 'Novena a Santa Margarida Maria Alacoque', 
     description: 'A grande mensageira do Sagrado Coração de Jesus, Santa Margarida intercede pela devoção e reparação ao Coração de Cristo.',
+    finalPrayer: `<div class="final-prayer-text"><div class="w-16 h-px bg-white/20 my-6 mx-auto"></div><h4 class="section-title text-xl font-bold mb-2">Oração</h4><div class="prayer-block"><p>Ó Santa Margarida Maria, a quem o Sagrado Coração de Jesus constituiu herdeira de seus Divinos Tesouros. Nós vos suplicamos, de obter desse Coração adorável as graças que atualmente precisamos. Nós vos pedimos com plena confiança. Que esse Coração se digne nos atender uma vez mais por vossa intercessão e para sua maior glória. Ó Coração de amor, eu ponho toda a minha confiança em vós, pois eu temo tudo da minha fraqueza, mas espero tudo da vossa bondade. Amém.</p></div><p class="mt-4 font-semibold">Santa Margarida Maria, rogai por nós.</p></div>`,
     days: [
         { day: '1º Dia', title: 'Santa Margarida Maria Alacoque – Uma Vida Eucarística', content: `<div class="day-specific-content"><p>Nosso coração é feito para Deus, infeliz daquele que se contenta com menos do que Deus. É preciso deixar tudo, para encontrar tudo no Sagrado Coração de Jesus! (Santa Margarida Maria Alacoque)</p><h4>Conhecer os sentimentos do Coração de Jesus.</h4><p>Todos nós desejamos conhecer a Deus. Toda pessoa é um mistério. Quando a afeição aproxima dois seres, eles começam um longo caminho de progresso no conhecimento mútuo. O conhecimento do Coração de Jesus é primeiramente uma graça, ligada à nossa obediência. Com efeito, Jesus prometeu “se manifestar” àqueles que o amam e guardam os seus mandamentos (Jo 14,21). Margarida Maria era uma pessoa eucarística e adoradora, todos os momentos livres os passava diante do Santíssimo. À sua Superiora que se admirava de tão longas horas diante do Sacrário, ela explica: meu maior contentamento é estar diante do Santíssimo. Onde meu coração está como no seu centro.</p></div>` },
         { day: '2º Dia', title: 'Partilhar os sentimentos do Coração de Jesus', content: `<div class="day-specific-content"><p>Esse conhecimento não pode ficar simplesmente no nível intelectual, ele pede a conformidade. O que supõe a conversão do nosso coração: “Dar-vos-ei um coração novo, porei no vosso íntimo um espírito novo” (Ez 36,26). Margarida Maria dizia: o Sagrado Coração está mais próximo de vós quando sofreis do que quando vos alegrais… A cruz é um bálsamo tão precioso que ele perde o seu bom odor quando é descoberto: por isso é preciso escondê-lo e levá-lo em silêncio tanto quanto se possa. “Tende uma grande confiança em Deus e nunca desconfieis de sua misericórdia que ultrapassa infinitamente todas as nossas misérias. Lançai-vos nos seus braços, ou dentro de seu Coração, abandonai-vos a tudo aquilo que Ele queira fazer de vós”. (Santa Margarida Maria Alacoque).</p></div>` },
@@ -137,8 +138,7 @@ export const novenaData: Record<string, Novena> = {
         { day: '7º Dia', title: 'O Sacramento da Eucaristia', content: `<div class="day-specific-content"><p>É o penhor mais precioso do amor de Deus por nós. A participação da missa, expressa o oferecimento da nossa vida, como o expressam igualmente movimentos espirituais como o Apostolado da Oração (com oferecimento cotidiano) ou a Hora de Presença, oferecimento de uma hora do dia. A visita ao Santíssimo, a adoração eucarística, quando possível, são atos de fé na presença real de Jesus entre nós. O atrativo pela Eucaristia permanece em Santa Margarida Maria como uma das grandes razões do chamado à vida religiosa. Minha maior alegria em deixar o mundo, era de pensar que eu comungaria muitas vezes… e de passar noites sozinha, diante do Santíssimo Sacramento, porque aí eu sentia uma tal segurança, que embora fosse extremamente medrosa, eu não pensava mais nisso desde que estivesse no lugar das minhas mais caras delícias. ‘Jesus nos escuta no Sacramento do Amor. Não calculemos nosso tempo para o reencontro na adoração’. (São João Paulo II)</p></div>` },
         { day: '8º Dia', title: 'Viver a Eucaristia', content: `<div class="day-specific-content"><p>Centro, cume, fonte, raiz da vida cristã, a Eucaristia é verdadeiramente o ‘sacramento do amor’, de um Amor que nos é dado, de uma mor que nós devemos dar. Como sacrifício, a Eucaristia nos faz participar da oferenda do Calvário e nos convida à oferenda espiritual de toda a nossa vida, segundo a palavra de São Paulo: ‘Exorto-vos a que ofereçais vossos corpos como hóstia viva, santa e agradável a Deus: este é o vosso culto espiritual’. (Rm 12,1; cf. 1Pd 2,5). É o culto do sacerdócio comum de todos os batizados. ‘Sem o Santíssimo Sacramento e a Cruz eu não saberia viver’. Estas palavras de Santa Margarida são a revelação de um coração apaixonado de amor por Jesus Cristo. Ela se une a Jesus presente no sacrifício da Missa, que vem a ser o centro de sua vida consagrada, Ela participa da Eucaristia com os sentimentos de Maria ao pé da cruz, Ela recebe a santa comunhão com os sentimentos de Maria no momento da Anunciação: \`Eis a serva do Senhor…´ Margarida Maria une-se à oferenda do sacrifício de Jesus, oferecendo suas próprias provas, sofrimentos, incompreensões. Ela quer ser uma cópia viva do seu Esposo crucificado expresso nela por todas as suas ações. ‘Não é amar o sofrimento, mas sofrer por amor’. (Santa Margarida Maria Alacoque)</p></div>` },
         { day: '9º Dia', title: 'O que Margarida Maria diz do Coração de Jesus', content: `<div class="day-specific-content"><p>‘Pudesse eu contar tudo o que sei desta amável devoção e descobrir a toda a terra os tesouros de graças que Jesus Cristo encerra no seu adorável Coração, com intenção de os derramar, com profusão, sobre todos que a praticam!’. (Santa Margarida Maria Alacoque) ‘Contar tudo o que sei!’. Margarida Maria viu, ouviu, tocou o inefável! Ela afirma várias vezes que se sente impotente para falar deste assunto. São ‘maravilhas inexplicáveis’ ou segredos indivisíveis. Como são insuficientes as palavras humanas para exprimir o mistério de Deus, o mistério do Amor de Jesus! Então, Margarida Maria exprime-se com o auxílio de imagens muito bíblicas. As mais empregadas são o sol, as chamas, a fornalha e a fonte.</p></div>` }
-      ],
-      finalPrayer: `<div class="final-prayer-text"><div class="w-16 h-px bg-white/20 my-6 mx-auto"></div><h4 class="section-title text-xl font-bold mb-2">Oração</h4><div class="prayer-block"><p>Ó Santa Margarida Maria, a quem o Sagrado Coração de Jesus constituiu herdeira de seus Divinos Tesouros. Nós vos suplicamos, de obter desse Coração adorável as graças que atualmente precisamos. Nós vos pedimos com plena confiança. Que esse Coração se digne nos atender uma vez mais por vossa intercessão e para sua maior glória. Ó Coração de amor, eu ponho toda a minha confiança em vós, pois eu temo tudo da minha fraqueza, mas espero tudo da vossa bondade. Amém.</p></div><p class="mt-4 font-semibold">Santa Margarida Maria, rogai por nós.</p></div>`
+      ]
   },
   inacio_antioquia: { novenaTitle: 'Novena a Santo Inácio de Antioquia', description: 'Bispo e mártir dos primeiros séculos, Santo Inácio intercede pela unidade da Igreja e pela fidelidade à fé.', saintName: 'Santo Inácio de A.', days: [], },
   pedro_alcantara: { novenaTitle: 'Novena a São Pedro de Alcântara', description: 'Reformador da Ordem Franciscana e grande penitente, São Pedro intercede pela conversão e pela busca da santidade.', saintName: 'São Pedro de A.', days: [], },
@@ -263,29 +263,29 @@ export const saintsOfTheDay: SaintStory[] = [
   {
     day: 8,
     month: 'Outubro',
-    name: 'Santa Josefina Bakhita',
-    imageUrl: 'https://placehold.co/80x80/6e4a3d/FFFFFF/png?text=Bakhita',
-    story: `<p>A história de Santa Josefina Bakhita, a "Mãe Morena", é um testemunho poderoso de como a fé pode transformar o sofrimento mais profundo em amor e perdão. Nascida no Sudão, foi raptada e vendida como escrava, mas encontrou em Cristo a sua verdadeira libertação.</p><p class="mt-4"><i>Santa Josefina Bakhita, rogai por nós.</i></p>`
+    name: 'Santa Reparata / Santa Josefina Bakhita',
+    imageUrl: 'https://i.postimg.cc/QN4QQTH8/statue-of-saint-reparata.webp',
+    story: `<p>Santa Reparata, jovem mártir da Palestina, e Santa Josefina Bakhita, a escrava sudanesa que se tornou santa, mostram-nos a força da fé que supera qualquer sofrimento. Uma defendeu a virgindade, a outra encontrou a liberdade em Cristo.</p><p class="mt-4"><i>Santas Reparata e Josefina Bakhita, rogai por nós.</i></p>`
   },
   {
     day: 9,
     month: 'Outubro',
     name: 'São John Henry Newman',
-    imageUrl: 'https://placehold.co/80x80/6e4a3d/FFFFFF/png?text=Newman',
+    imageUrl: 'https://i.postimg.cc/9fCw5mrL/Photo-of-John-Henry-Newman.jpg',
     story: `<p>Um dos maiores intelectuais do século XIX, São John Henry Newman passou da Igreja Anglicana para a Católica numa jornada de busca honesta pela verdade. A sua vida ensina-nos que o coração e a razão caminham juntos na fé.</p><p class="mt-4"><i>São John Henry Newman, rogai por nós.</i></p>`
   },
   {
     day: 10,
     month: 'Outubro',
     name: 'São Daniel Comboni',
-    imageUrl: 'https://placehold.co/80x80/6e4a3d/FFFFFF/png?text=Comboni',
+    imageUrl: 'https://i.postimg.cc/wMmh29fg/250px-Daniele-Comboni.jpg',
     story: `<p>Com o lema "Salvar a África com a África", São Daniel Comboni dedicou a sua vida à evangelização do continente africano. Foi um missionário incansável, que acreditava na dignidade e na capacidade do povo africano para liderar a sua própria Igreja.</p><p class="mt-4"><i>São Daniel Comboni, rogai por nós.</i></p>`
   },
   {
     day: 11,
     month: 'Outubro',
     name: 'São João XXIII',
-    imageUrl: 'https://placehold.co/80x80/6e4a3d/FFFFFF/png?text=João+XXIII',
+    imageUrl: 'https://i.postimg.cc/d1zCLzsw/Ioannes-XXIII-by-De-Agostini-1958-1963.jpg',
     story: `<p>Conhecido como o "Papa Bom", São João XXIII surpreendeu o mundo ao convocar o Concílio Vaticano II, abrindo as "janelas da Igreja" para que o ar fresco do Espírito Santo pudesse renová-la. O seu pontificado foi um sopro de esperança e otimismo.</p><p class="mt-4"><i>São João XXIII, rogai por nós.</i></p>`
   },
   {
@@ -305,14 +305,14 @@ export const saintsOfTheDay: SaintStory[] = [
     day: 13,
     month: 'Outubro',
     name: 'Beata Alexandrina de Balazar',
-    imageUrl: 'https://placehold.co/80x80/6e4a3d/FFFFFF/png?text=Alexandrina',
+    imageUrl: 'https://i.postimg.cc/nrFJYLcQ/image.png',
     story: `<p>Mística portuguesa que viveu os últimos 13 anos de sua vida alimentando-se exclusivamente da Eucaristia. A sua vida foi um contínuo ato de amor e reparação, oferecendo seus imensos sofrimentos pela conversão dos pecadores.</p><p class="mt-4"><i>Beata Alexandrina de Balazar, rogai por nós.</i></p>`
   },
   {
     day: 14,
     month: 'Outubro',
     name: 'São Calisto I',
-    imageUrl: 'https://placehold.co/80x80/6e4a3d/FFFFFF/png?text=Calisto+I',
+    imageUrl: 'https://i.postimg.cc/NF9xn60S/image.png',
     story: `<p>Papa e mártir do século III, São Calisto destacou-se pela sua misericórdia, defendendo que a Igreja deveria perdoar todos os pecados, mesmo os mais graves, para aqueles que se arrependessem. Mostrou a face de um Deus que é Pai de misericórdia.</p><p class="mt-4"><i>São Calisto I, rogai por nós.</i></p>`
   },
   {
@@ -411,9 +411,9 @@ export const saintsOfTheDay: SaintStory[] = [
   {
     day: 26,
     month: 'Outubro',
-    name: 'Santo Evaristo',
-    imageUrl: 'https://placehold.co/80x80/6e4a3d/FFFFFF/png?text=Evaristo',
-    story: `<p>Quarto sucessor de São Pedro, o Papa Santo Evaristo governou a Igreja no final do século I. A ele se atribui a organização das primeiras paróquias em Roma. Viveu num tempo de perseguição e selou a sua fé com o martírio.</p><p class="mt-4"><i>Santo Evaristo, rogai por nós.</i></p>`
+    name: 'São José Gregório Hernández / Santo Evaristo',
+    imageUrl: 'https://placehold.co/80x80/6e4a3d/FFFFFF/png?text=Gregorio',
+    story: `<p>Celebramos hoje São José Gregório, o "médico dos pobres" da Venezuela, e Santo Evaristo, Papa dos primeiros séculos. Ambos dedicaram suas vidas a cuidar do povo de Deus, um no corpo, outro na alma.</p><p class="mt-4"><i>Santos José Gregório e Evaristo, rogai por nós.</i></p>`
   },
   {
     day: 27,
@@ -486,4 +486,5 @@ export const saintsOfTheDay: SaintStory[] = [
 
 
     
+
 
