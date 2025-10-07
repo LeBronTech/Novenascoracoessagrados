@@ -26,7 +26,7 @@ export default function SaintOfTheDay() {
   const currentMonthName = useMemo(() => {
     if (!currentDate) return '';
     // Find the month name from the months array based on the current date's month index
-    return months.find((m, i) => i === currentDate.getMonth());
+    return months[currentDate.getMonth()];
   }, [currentDate]);
   
   const saintsForCurrentMonth = useMemo(() => {
@@ -35,7 +35,7 @@ export default function SaintOfTheDay() {
   }, [currentMonthName]);
 
   const startIndex = useMemo(() => {
-    if (!currentDate) return 0;
+    if (!currentDate || saintsForCurrentMonth.length === 0) return 0;
     const dayOfMonth = currentDate.getDate();
     // Find the first saint on or after the current date
     const index = saintsForCurrentMonth.findIndex(saint => saint.day >= dayOfMonth);
@@ -45,8 +45,10 @@ export default function SaintOfTheDay() {
 
   useEffect(() => {
     if (api && hydrated && saintsForCurrentMonth.length > 0) {
-      // Ensure the carousel scrolls to the correct starting index once everything is ready.
-      api.scrollTo(startIndex, true);
+      // A slight delay can help ensure the carousel is fully rendered before scrolling.
+      setTimeout(() => {
+        api.scrollTo(startIndex, true);
+      }, 100);
     }
   }, [api, hydrated, startIndex, saintsForCurrentMonth.length]);
 
