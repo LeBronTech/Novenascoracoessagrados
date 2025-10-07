@@ -10,7 +10,7 @@ import NovenaDisplay from '@/components/novena-display';
 import SaintOfTheDay from '@/components/saint-of-the-day';
 import { saints, months, novenaData } from '@/lib/data';
 import type { Saint, Novena } from '@/lib/data';
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetTrigger } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
 import { Menu } from 'lucide-react';
 
