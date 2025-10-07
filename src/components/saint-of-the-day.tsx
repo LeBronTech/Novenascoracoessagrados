@@ -86,7 +86,7 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
   const [api, setApi] = useState<CarouselApi>();
   const [currentDate, setCurrentDate] = useState<Date | null>(null);
   const [hydrated, setHydrated] = useState(false);
-  const [openItems, setOpenItems] = useState<string[]>([]);
+  const [openAccordion, setOpenAccordion] = useState<string | undefined>(undefined);
   const [selectedSaintIndices, setSelectedSaintIndices] = useState<Record<number, number>>({});
   const [theme, setTheme] = useState<Theme>('light');
 
@@ -105,15 +105,6 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
     return saintsOfTheDay.filter(day => day.month === currentMonthName);
   }, [currentMonthName]);
 
-  const handleValueChange = useCallback((value: string[]) => {
-    setOpenItems(value);
-  }, []);
-
-  const handleSelectSaint = (e: React.MouseEvent, dayIndex: number, saintIndex: number) => {
-    e.stopPropagation();
-    setSelectedSaintIndices(prev => ({ ...prev, [dayIndex]: saintIndex }));
-  };
-
   const startIndex = useMemo(() => {
     if (!currentDate || saintsForCurrentMonth.length === 0) return 0;
     const dayOfMonth = currentDate.getDate();
@@ -128,6 +119,11 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
       }, 100);
     }
   }, [api, hydrated, startIndex, saintsForCurrentMonth.length]);
+
+  const handleSelectSaint = (e: React.MouseEvent, dayIndex: number, saintIndex: number) => {
+    e.stopPropagation();
+    setSelectedSaintIndices(prev => ({ ...prev, [dayIndex]: saintIndex }));
+  };
 
   if (!hydrated || saintsForCurrentMonth.length === 0) {
     return <div className="p-4 text-center text-gray-500">A carregar santos...</div>;
@@ -144,12 +140,12 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
             const currentSaint = dayData.saints[selectedSaintIndex];
             const hasMultipleSaints = dayData.saints.length > 1;
             const saintNames = dayData.saints.map(s => s.name).join(' e ');
-            const isLongName = saintNames.length > 25 || hasMultipleSaints;
+            const isLongName = saintNames.length > 25;
 
             return (
               <CarouselItem key={index} className="pl-4">
                 <div className="p-1">
-                  <Accordion type="single" collapsible value={openItems[0]} onValueChange={(value) => handleValueChange(value ? [value] : [])} className="w-full">
+                  <Accordion type="single" collapsible value={openAccordion} onValueChange={setOpenAccordion}>
                     <AccordionItem value={`item-${index}`} className="border-none group">
                       <AccordionTrigger className={cn(
                         "p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow data-[state=open]:rounded-b-none saint-day-trigger",
@@ -158,13 +154,13 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
                       )}>
                         <div className="flex items-center gap-4 text-left w-full">
                            <SaintImages saints={dayData.saints} />
-                           <div className="flex flex-col items-start">
+                           <div className="flex flex-col items-start saint-name-container">
                              <div className="date-capsule">
                                {dayData.day} de {dayData.month}
                              </div>
                              <p className={cn(
-                                "font-brand font-semibold mt-2",
-                                isLongName ? "text-base" : "text-lg"
+                                "font-brand font-semibold mt-2 text-lg",
+                                isLongName && "text-base md:text-lg"
                              )}>
                                {saintNames}
                              </p>

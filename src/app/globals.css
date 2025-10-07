@@ -194,6 +194,14 @@
   .saint-day-trigger .date-capsule {
     @apply bg-white text-primary text-sm font-bold px-3 py-1 rounded-full shadow;
   }
+  
+  .saint-name-container {
+    @apply transition-transform duration-500 ease-in-out;
+  }
+
+  .group[data-state=open] .saint-name-container {
+    transform: translateY(2rem);
+  }
 
   .saint-day-content.theme-light {
     @apply bg-white text-gray-800;
@@ -235,12 +243,10 @@
   }
 
   .saint-image-wrapper.multiple .image-1 {
-    @apply absolute left-1 top-1/2 -translate-y-1/2 z-0 transform-gpu;
-    transform: translateX(10%) translateY(-50%) scale(0.9);
+    @apply absolute left-0 top-1/2 -translate-y-1/2 z-0 transform-gpu;
   }
   .saint-image-wrapper.multiple .image-2 {
-    @apply absolute right-1 top-1/2 -translate-y-1/2 z-10 transform-gpu;
-    transform: translateX(-10%) translateY(-50%) scale(0.9);
+    @apply absolute right-0 top-1/2 -translate-y-1/2 z-10 transform-gpu;
   }
   
   .group[data-state=open] .saint-image-wrapper {
@@ -263,10 +269,10 @@
   }
   
   .group[data-state=open] .saint-image-wrapper.multiple .image-1 {
-      transform: translateX(-1.5rem) scale(1.5);
+      transform: translateX(-1rem) scale(1.5);
   }
   .group[data-state=open] .saint-image-wrapper.multiple .image-2 {
-      transform: translateX(1.5rem) scale(1.5);
+      transform: translateX(1rem) scale(1.5);
   }
 
   .saint-day-content-nav {
