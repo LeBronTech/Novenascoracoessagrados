@@ -159,6 +159,38 @@
     opacity: 0.5;
   }
 
+  /* Saint of the Day Accordion */
+  .saint-day-trigger {
+    @apply bg-primary text-primary-foreground transition-all duration-300;
+  }
+
+  .saint-day-trigger:hover {
+    @apply bg-primary/90;
+  }
+
+  .saint-day-trigger .date-capsule {
+    @apply bg-white text-primary text-sm font-bold px-3 py-1 rounded-full shadow;
+  }
+
+  .saint-day-content.theme-light {
+    @apply bg-white text-gray-800;
+  }
+  .saint-day-content.theme-light .prose {
+    @apply text-gray-700;
+  }
+  .saint-day-content.theme-dark {
+    @apply bg-gray-800 text-gray-100;
+  }
+  .saint-day-content.theme-dark .prose {
+    @apply text-gray-200;
+  }
+  .saint-day-content .prose h4 {
+    @apply text-primary;
+  }
+  .saint-day-content.theme-dark .prose h4 {
+    @apply text-accent;
+  }
+
   /* Saint of the Day Images */
   .saint-image-wrapper {
     @apply relative flex items-center justify-center transition-all duration-500 ease-in-out;
@@ -171,40 +203,42 @@
   }
 
   .saint-image-wrapper.multiple {
-    width: 7rem;
+    width: 7.5rem;
   }
+
   .saint-image-wrapper.multiple .image-1 {
-    @apply absolute left-0 top-1/2 -translate-y-1/2 z-0;
+    @apply absolute left-0 top-1/2 -translate-y-1/2 z-0 transform-gpu;
+    transform: translateX(10%) translateY(-50%) scale(0.9);
   }
   .saint-image-wrapper.multiple .image-2 {
-    @apply absolute right-0 top-1/2 -translate-y-1/2 z-10;
+    @apply absolute right-0 top-1/2 -translate-y-1/2 z-10 transform-gpu;
+    transform: translateX(-10%) translateY(-50%) scale(0.9);
   }
   
-  .group[data-state="open"] .saint-image-wrapper {
-    @apply -translate-y-4 mb-[-3rem]; /* Move up and adjust margin */
+  .group[data-state=open] .saint-image-wrapper {
+    @apply -translate-y-4 mb-[-2rem] z-20;
   }
 
-  .group[data-state="open"] .saint-image-wrapper.single {
-      transform: translateY(-1rem) scale(1.5);
+  .group[data-state=open] .saint-image-wrapper.single {
+      transform: translateY(-1rem) scale(1.8);
   }
 
-  .group[data-state="open"] .saint-image-wrapper.multiple {
-      width: 12rem; /* Expand container */
+  .group[data-state=open] .saint-image-wrapper.multiple {
+      width: 14rem;
       transform: translateY(-1rem);
   }
 
-  .group[data-state="open"] .saint-image-wrapper.multiple .image-1,
-  .group[data-state="open"] .saint-image-wrapper.multiple .image-2 {
-      @apply scale-[1.35] relative; /* Increase size and reset position */
+  .group[data-state=open] .saint-image-wrapper.multiple .image-1,
+  .group[data-state=open] .saint-image-wrapper.multiple .image-2 {
+      @apply scale-[1.5] relative;
   }
   
-  .group[data-state="open"] .saint-image-wrapper.multiple .image-1 {
-      transform: translateX(-0.5rem) scale(1.35);
+  .group[data-state=open] .saint-image-wrapper.multiple .image-1 {
+      transform: translateX(-1.5rem) scale(1.5);
   }
-  .group[data-state="open"] .saint-image-wrapper.multiple .image-2 {
-      transform: translateX(0.5rem) scale(1.35);
+  .group[data-state=open] .saint-image-wrapper.multiple .image-2 {
+      transform: translateX(1.5rem) scale(1.5);
   }
-
 }
 
 @layer components {

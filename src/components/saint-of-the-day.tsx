@@ -1,7 +1,7 @@
 
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import Image from 'next/image';
 import { saintsOfTheDay, months } from '@/lib/data';
 import type { SaintStory } from '@/lib/data';
@@ -10,6 +10,13 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { cn } from '@/lib/utils';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+
+type Theme = 'light' | 'dark';
+
+const themeDotClasses: Record<Theme, string> = {
+  'light': 'bg-gray-100',
+  'dark': 'bg-gray-700',
+};
 
 function SaintImages({ saints }: { saints: SaintStory[] }) {
     if (saints.length === 1) {
@@ -50,6 +57,25 @@ function SaintImages({ saints }: { saints: SaintStory[] }) {
     return null;
 }
 
+function ThemeSelector({ theme, setTheme }: { theme: Theme, setTheme: (theme: Theme) => void }) {
+    return (
+        <div className="absolute top-2 right-3 flex gap-2 bg-transparent px-2 py-1 rounded-full z-10">
+            {(['light', 'dark'] as Theme[]).map((t) => (
+                <button
+                    key={t}
+                    onClick={() => setTheme(t)}
+                    title={`Tema ${t === 'light' ? 'Claro' : 'Escuro'}`}
+                    className={cn(
+                        'w-4 h-4 rounded-full cursor-pointer transition-all duration-200 border border-black/20 shadow-md',
+                        'hover:scale-110',
+                        theme === t ? 'scale-125 ring-2 ring-offset-2 ring-accent' : '',
+                        themeDotClasses[t]
+                    )}
+                />
+            ))}
+        </div>
+    );
+}
 
 export default function SaintOfTheDay() {
   const [api, setApi] = useState<CarouselApi>();
@@ -57,22 +83,24 @@ export default function SaintOfTheDay() {
   const [hydrated, setHydrated] = useState(false);
   const [openItems, setOpenItems] = useState<string[]>([]);
   const [selectedSaintIndices, setSelectedSaintIndices] = useState<Record<number, number>>({});
+  const [theme, setTheme] = useState<Theme>('light');
 
   useEffect(() => {
     setHydrated(true);
     setCurrentDate(new Date());
   }, []);
 
-  const handleValueChange = (value: string[]) => {
+  const handleValueChange = useCallback((value: string[]) => {
     if (value.length > openItems.length) {
       const allItemKeys = saintsForCurrentMonth.map((_, index) => `item-${index}`);
       setOpenItems(allItemKeys);
     } else {
       setOpenItems([]);
     }
-  };
+  }, [openItems.length, saintsForCurrentMonth]);
 
-  const handleSelectSaint = (dayIndex: number, saintIndex: number) => {
+  const handleSelectSaint = (e: React.MouseEvent, dayIndex: number, saintIndex: number) => {
+    e.stopPropagation();
     setSelectedSaintIndices(prev => ({ ...prev, [dayIndex]: saintIndex }));
   };
 
@@ -121,30 +149,33 @@ export default function SaintOfTheDay() {
                 <div className="p-1">
                   <Accordion type="multiple" value={openItems} onValueChange={handleValueChange} className="w-full">
                     <AccordionItem value={`item-${index}`} className="border-none">
-                      <AccordionTrigger className="p-4 bg-white/60 rounded-lg shadow-md hover:shadow-lg transition-shadow data-[state=open]:rounded-b-none group">
+                      <AccordionTrigger className="p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow data-[state=open]:rounded-b-none group saint-day-trigger">
                         <div className="flex items-center gap-4 text-left w-full">
-                          <SaintImages saints={dayData.saints} />
-                          <div>
-                            <p className="text-sm font-bold text-primary">{dayData.day} de {dayData.month}</p>
-                            <p className="font-brand text-base font-semibold text-gray-800">
-                              {dayData.saints.map(s => s.name).join(' e ')}
-                            </p>
-                          </div>
-                        </div>
+                           <SaintImages saints={dayData.saints} />
+                           <div className="flex flex-col items-start">
+                             <div className="date-capsule">
+                               {dayData.day} de {dayData.month}
+                             </div>
+                             <p className="font-brand text-lg font-semibold mt-2">
+                               {dayData.saints.map(s => s.name).join(' e ')}
+                             </p>
+                           </div>
+                         </div>
                       </AccordionTrigger>
-                      <AccordionContent className="p-4 bg-white rounded-b-lg shadow-inner-top">
+                      <AccordionContent className={cn("relative p-6 rounded-b-lg shadow-inner-top saint-day-content", `theme-${theme}`)}>
+                        <ThemeSelector theme={theme} setTheme={setTheme} />
                         {hasMultipleSaints && (
                           <div className="flex justify-center gap-2 mb-4">
                             {dayData.saints.map((saint, saintIdx) => (
                               <Button
                                 key={saintIdx}
-                                onClick={() => handleSelectSaint(index, saintIdx)}
+                                onClick={(e) => handleSelectSaint(e, index, saintIdx)}
                                 variant={selectedSaintIndex === saintIdx ? 'default' : 'outline'}
                                 className={cn(
                                   "rounded-full h-8 px-4 text-sm",
                                   selectedSaintIndex === saintIdx
                                     ? "bg-primary text-primary-foreground"
-                                    : "border-primary text-primary bg-transparent hover:bg-primary/10"
+                                    : (theme === 'light' ? "border-primary text-primary bg-transparent hover:bg-primary/10" : "border-white/50 text-white bg-transparent hover:bg-white/10")
                                 )}
                               >
                                 {saint.name}
@@ -152,7 +183,7 @@ export default function SaintOfTheDay() {
                             ))}
                           </div>
                         )}
-                        <div className="prose prose-sm max-w-none text-gray-700" dangerouslySetInnerHTML={{ __html: currentSaint.story }} />
+                        <div className="prose prose-sm max-w-none" dangerouslySetInnerHTML={{ __html: currentSaint.story }} />
                       </AccordionContent>
                     </AccordionItem>
                   </Accordion>
