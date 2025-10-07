@@ -158,6 +158,15 @@
     transform: scale(0.7);
     opacity: 0.5;
   }
+
+  /* Saint of the Day Images */
+  .saint-image {
+    transition: transform 0.3s ease-in-out;
+  }
+
+  [data-state="open"] .saint-image {
+    transform: scale(1.1);
+  }
 }
 
 @layer components {

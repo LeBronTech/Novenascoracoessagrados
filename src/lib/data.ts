@@ -25,12 +25,17 @@ export type Saint = {
 };
 
 export type SaintStory = {
-  day: number;
-  month: string;
   name: string;
   imageUrl: string;
-story: string;
+  story: string;
 };
+
+export type SaintOfTheDayData = {
+  day: number;
+  month: string;
+  saints: SaintStory[];
+};
+
 
 export const novenaData: Record<string, Novena> = {
   faustina: {
@@ -168,323 +173,311 @@ export const saints: Saint[] = [
 
 export const months: string[] = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
 
-export const saintsOfTheDay: SaintStory[] = [
-  // Outubro
+export const saintsOfTheDay: SaintOfTheDayData[] = [
   {
     day: 1,
     month: 'Outubro',
-    name: 'Santa Teresinha do Menino Jesus',
-    imageUrl: 'https://i.postimg.cc/NMLk6dPD/santa-teresinha.jpg',
-    story: `
-      <h4>A Pequena Via para a Santidade</h4>
-      <p>Teresa Martin, nascida em Alençon, França, em 1873, viveu uma vida curta mas de imenso impacto espiritual. Entrou para o Carmelo de Lisieux aos 15 anos, onde, longe de grandes feitos externos, desenvolveu a sua famosa "Pequena Via". Este caminho consiste em encontrar Deus não em grandes penitências, mas no amor e na confiança abandonada, expressos nos atos mais simples e rotineiros. A sua espiritualidade da infância espiritual ensina que a santidade é acessível a todos, bastando reconhecer a própria pequenez e entregar-se totalmente à misericórdia de um Deus que é Pai.</p>
-      <h4>Amor no Coração da Igreja</h4>
-      <p>O maior desejo de Teresinha era "ser o amor no coração da Igreja". Ela compreendeu que, sem o amor, todas as vocações são vazias. Viveu cada momento, desde os trabalhos comunitários até os sofrimentos da sua doença, como um ato de amor por Deus e pela salvação das almas. Em sua autobiografia, "História de uma Alma", revela uma alma ardente, missionária, que prometeu "passar o seu céu a fazer o bem na terra", deixando cair uma "chuva de rosas" de graças sobre o mundo.</p>
-      <h4>Doutora da Igreja</h4>
-      <p>Apesar de sua vida escondida e de sua morte prematura aos 24 anos, a profundidade de sua doutrina espiritual foi reconhecida por toda a Igreja. Em 1997, o Papa São João Paulo II declarou-a Doutora da Igreja, um título raro, especialmente para uma jovem que não frequentou universidades. A sua ciência, a "ciência do amor", continua a iluminar e a guiar fiéis em todo o mundo, mostrando que a perfeição consiste em fazer a vontade de Deus com um coração inteiramente entregue.</p>
-      <p class="mt-4"><b>Oração:</b> Ó Santa Teresinha do Menino Jesus, que prometestes deixar cair uma chuva de rosas, eu vos peço: fazei-me experimentar a vossa intercessão junto de Deus, alcançando-me as graças que necessito e ensinando-me o caminho da confiança e do amor.</p>
-      <p class="mt-2 italic">Santa Teresinha do Menino Jesus, rogai por nós.</p>`
+    saints: [{
+      name: 'Santa Teresinha do Menino Jesus',
+      imageUrl: 'https://i.postimg.cc/NMLk6dPD/santa-teresinha.jpg',
+      story: `
+        <h4>A Pequena Via para a Santidade</h4>
+        <p>Teresa Martin, nascida em Alençon, França, em 1873, viveu uma vida curta mas de imenso impacto espiritual. Entrou para o Carmelo de Lisieux aos 15 anos, onde, longe de grandes feitos externos, desenvolveu a sua famosa "Pequena Via". Este caminho consiste em encontrar Deus não em grandes penitências, mas no amor e na confiança abandonada, expressos nos atos mais simples e rotineiros. A sua espiritualidade da infância espiritual ensina que a santidade é acessível a todos, bastando reconhecer a própria pequenez e entregar-se totalmente à misericórdia de um Deus que é Pai.</p>
+        <h4>Amor no Coração da Igreja</h4>
+        <p>O maior desejo de Teresinha era "ser o amor no coração da Igreja". Ela compreendeu que, sem o amor, todas as vocações são vazias. Viveu cada momento, desde os trabalhos comunitários até os sofrimentos da sua doença, como um ato de amor por Deus e pela salvação das almas. Em sua autobiografia, "História de uma Alma", revela uma alma ardente, missionária, que prometeu "passar o seu céu a fazer o bem na terra", deixando cair uma "chuva de rosas" de graças sobre o mundo.</p>
+        <h4>Doutora da Igreja</h4>
+        <p>Apesar de sua vida escondida e de sua morte prematura aos 24 anos, a profundidade de sua doutrina espiritual foi reconhecida por toda a Igreja. Em 1997, o Papa São João Paulo II declarou-a Doutora da Igreja, um título raro, especialmente para uma jovem que não frequentou universidades. A sua ciência, a "ciência do amor", continua a iluminar e a guiar fiéis em todo o mundo, mostrando que a perfeição consiste em fazer a vontade de Deus com um coração inteiramente entregue.</p>
+        <p class="mt-4"><b>Oração:</b> Ó Santa Teresinha do Menino Jesus, que prometestes deixar cair uma chuva de rosas, eu vos peço: fazei-me experimentar a vossa intercessão junto de Deus, alcançando-me as graças que necessito e ensinando-me o caminho da confiança e do amor.</p>
+        <p class="mt-2 italic">Santa Teresinha do Menino Jesus, rogai por nós.</p>`
+    }]
   },
   {
     day: 2,
     month: 'Outubro',
-    name: 'Santos Anjos da Guarda',
-    imageUrl: 'https://i.postimg.cc/zX2jKb5F/anjos-da-guarda.jpg',
-    story: `
-      <h4>Companheiros Celestes</h4>
-      <p>A fé católica, baseada na Sagrada Escritura, ensina que cada pessoa é confiada por Deus à proteção de um Anjo da Guarda. O Catecismo da Igreja Católica afirma que "desde a infância até à morte, a vida humana é acompanhada pela sua assistência e intercessão" (CIC 336). Eles não são uma fantasia poética, mas uma presença real e pessoal, um sinal concreto do cuidado paternal de Deus que nunca nos deixa sozinhos na jornada da vida.</p>
-      <h4>Guia e Protetor</h4>
-      <p>A missão do nosso Anjo da Guarda é múltipla: ele nos protege dos perigos físicos e espirituais, ilumina a nossa consciência para nos ajudar a discernir o bem do mal e apresenta as nossas orações a Deus. Ele é um amigo fiel, um guia seguro no caminho da salvação e um poderoso defensor contra as ciladas do demônio. A devoção aos Santos Anjos fortalece a nossa confiança na Providência Divina e nos incentiva a viver com mais atenção à voz de Deus.</p>
-      <h4>Uma Amizade a ser Cultivada</h4>
-      <p>A celebração deste dia convida-nos a renovar a nossa amizade e diálogo com o nosso Anjo da Guarda. Podemos invocá-lo nas nossas dificuldades, agradecer-lhe pela sua proteção constante e escutar as suas inspirações. Santos como São Padre Pio e Santa Teresinha tinham uma profunda intimidade com os seus anjos. Que o seu exemplo nos inspire a cultivar esta amizade celeste, que nos conduzirá com segurança ao encontro definitivo com Deus no Céu.</p>
-      <p class="mt-4"><b>Oração:</b> Santo Anjo do Senhor, meu zeloso guardador, se a ti me confiou a piedade divina, sempre me rege, me guarda, me governa e ilumina. Amém.</p>
-      <p class="mt-2 italic">Santos Anjos da Guarda, rogai por nós.</p>`
+    saints: [{
+      name: 'Santos Anjos da Guarda',
+      imageUrl: 'https://i.postimg.cc/zX2jKb5F/anjos-da-guarda.jpg',
+      story: `
+        <h4>Companheiros Celestes</h4>
+        <p>A fé católica, baseada na Sagrada Escritura, ensina que cada pessoa é confiada por Deus à proteção de um Anjo da Guarda. O Catecismo da Igreja Católica afirma que "desde a infância até à morte, a vida humana é acompanhada pela sua assistência e intercessão" (CIC 336). Eles não são uma fantasia poética, mas uma presença real e pessoal, um sinal concreto do cuidado paternal de Deus que nunca nos deixa sozinhos na jornada da vida.</p>
+        <h4>Guia e Protetor</h4>
+        <p>A missão do nosso Anjo da Guarda é múltipla: ele nos protege dos perigos físicos e espirituais, ilumina a nossa consciência para nos ajudar a discernir o bem do mal e apresenta as nossas orações a Deus. Ele é um amigo fiel, um guia seguro no caminho da salvação e um poderoso defensor contra as ciladas do demônio. A devoção aos Santos Anjos fortalece a nossa confiança na Providência Divina e nos incentiva a viver com mais atenção à voz de Deus.</p>
+        <h4>Uma Amizade a ser Cultivada</h4>
+        <p>A celebração deste dia convida-nos a renovar a nossa amizade e diálogo com o nosso Anjo da Guarda. Podemos invocá-lo nas nossas dificuldades, agradecer-lhe pela sua proteção constante e escutar as suas inspirações. Santos como São Padre Pio e Santa Teresinha tinham uma profunda intimidade com os seus anjos. Que o seu exemplo nos inspire a cultivar esta amizade celeste, que nos conduzirá com segurança ao encontro definitivo com Deus no Céu.</p>
+        <p class="mt-4"><b>Oração:</b> Santo Anjo do Senhor, meu zeloso guardador, se a ti me confiou a piedade divina, sempre me rege, me guarda, me governa e ilumina. Amém.</p>
+        <p class="mt-2 italic">Santos Anjos da Guarda, rogai por nós.</p>`
+    }]
   },
   {
     day: 4,
     month: 'Outubro',
-    name: 'São Francisco de Assis',
-    imageUrl: 'https://i.postimg.cc/fVs0LZz6/sao-francisco-assis.jpg',
-    story: `
-      <h4>O Jovem de Assis</h4>
-      <p>Nascido em 1182, filho de um rico comerciante de tecidos, Francisco Bernardone viveu uma juventude de luxo e sonhos de glória militar. No entanto, uma profunda crise espiritual, marcada pela prisão durante uma guerra e um encontro transformador com um leproso, mudou o rumo de sua vida. O ponto de viragem definitivo foi quando, em oração na capela de São Damião, ouviu a voz do crucifixo que lhe dizia: "Francisco, vai e repara a minha casa que, como vês, está em ruínas".</p>
-      <h4>O Abraço à Pobreza</h4>
-      <p>Tomando o mandato de Cristo literalmente, Francisco renunciou a toda a sua herança, despojando-se de suas roupas na praça de Assis diante de seu pai e do bispo. Abraçou uma vida de pobreza radical, pregando o Evangelho com simplicidade e alegria, e servindo os mais marginalizados. Fundou a Ordem dos Frades Menores (Franciscanos), a Ordem das Clarissas e a Ordem Terceira, convidando homens e mulheres de todos os estados de vida a seguir os passos de Cristo pobre e humilde.</p>
-      <h4>Cântico das Criaturas</h4>
-      <p>Francisco é um ícone universal de paz e amor por toda a Criação. No seu "Cântico das Criaturas", ele louva a Deus através do "irmão sol", da "irmã lua" e de todos os elementos da natureza, vendo em cada criatura um reflexo da bondade do Criador. Nos últimos anos de sua vida, no Monte Alverne, recebeu os estigmas, tornando-se um sinal vivo da Paixão de Cristo. Sua vida é um testemunho radical do poder transformador do Evangelho vivido em sua pureza original.</p>
-      <p class="mt-4"><b>Oração:</b> Senhor, fazei de mim um instrumento da Vossa paz. Onde houver ódio, que eu leve o amor; onde houver ofensa, que eu leve o perdão; onde houver discórdia, que eu leve a união.</p>
-      <p class="mt-2 italic">São Francisco de Assis, rogai por nós.</p>`
+    saints: [{
+      name: 'São Francisco de Assis',
+      imageUrl: 'https://i.postimg.cc/fVs0LZz6/sao-francisco-assis.jpg',
+      story: `
+        <h4>O Jovem de Assis</h4>
+        <p>Nascido em 1182, filho de um rico comerciante de tecidos, Francisco Bernardone viveu uma juventude de luxo e sonhos de glória militar. No entanto, uma profunda crise espiritual, marcada pela prisão durante uma guerra e um encontro transformador com um leproso, mudou o rumo de sua vida. O ponto de viragem definitivo foi quando, em oração na capela de São Damião, ouviu a voz do crucifixo que lhe dizia: "Francisco, vai e repara a minha casa que, como vês, está em ruínas".</p>
+        <h4>O Abraço à Pobreza</h4>
+        <p>Tomando o mandato de Cristo literalmente, Francisco renunciou a toda a sua herança, despojando-se de suas roupas na praça de Assis diante de seu pai e do bispo. Abraçou uma vida de pobreza radical, pregando o Evangelho com simplicidade e alegria, e servindo os mais marginalizados. Fundou a Ordem dos Frades Menores (Franciscanos), a Ordem das Clarissas e a Ordem Terceira, convidando homens e mulheres de todos os estados de vida a seguir os passos de Cristo pobre e humilde.</p>
+        <h4>Cântico das Criaturas</h4>
+        <p>Francisco é um ícone universal de paz e amor por toda a Criação. No seu "Cântico das Criaturas", ele louva a Deus através do "irmão sol", da "irmã lua" e de todos os elementos da natureza, vendo em cada criatura um reflexo da bondade do Criador. Nos últimos anos de sua vida, no Monte Alverne, recebeu os estigmas, tornando-se um sinal vivo da Paixão de Cristo. Sua vida é um testemunho radical do poder transformador do Evangelho vivido em sua pureza original.</p>
+        <p class="mt-4"><b>Oração:</b> Senhor, fazei de mim um instrumento da Vossa paz. Onde houver ódio, que eu leve o amor; onde houver ofensa, que eu leve o perdão; onde houver discórdia, que eu leve a união.</p>
+        <p class="mt-2 italic">São Francisco de Assis, rogai por nós.</p>`
+    }]
   },
   {
     day: 5,
     month: 'Outubro',
-    name: 'Santa Faustina Kowalska',
-    imageUrl: 'https://i.postimg.cc/qBKkbHTj/39a80df1d720976f7e55e00f40eadc90-1.jpg',
-    story: `
-      <h4>A Apóstola da Misericórdia</h4>
-      <p>Helena Kowalska, nascida em 1905 numa pobre família de camponeses na Polónia, foi a terceira de dez filhos. Desde cedo sentiu o chamado à vida religiosa, mas enfrentou a oposição dos pais. Aos 20 anos, após uma visão de Cristo sofredor, entrou para a Congregação das Irmãs de Nossa Senhora da Misericórdia em Varsóvia, recebendo o nome de Irmã Maria Faustina. Sua vida no convento foi simples e humilde, dedicada aos trabalhos mais básicos, mas seu mundo interior era extraordinariamente rico em graças místicas.</p>
-      <h4>As Revelações de Jesus Misericordioso</h4>
-      <p>A partir de 1931, Jesus começou a aparecer a Santa Faustina, confiando-lhe a missão de ser a "Secretária e Apóstola da Sua Misericórdia". Cristo pediu-lhe que pintasse uma imagem Sua com a inscrição "Jesus, eu confio em Vós", que se celebrasse a Festa da Misericórdia no domingo a seguir à Páscoa, e que se rezasse o Terço da Misericórdia, especialmente pelos pecadores e agonizantes. Jesus revelou-lhe que a Sua Misericórdia é o último refúgio para a humanidade, uma fonte inesgotável de graças para todos os que a ela recorrem com confiança.</p>
-      <h4>O Diário: Um Tesouro Espiritual</h4>
-      <p>Por ordem de seu diretor espiritual, o Beato Miguel Sopoćko, Santa Faustina escreveu um Diário, registando as suas profundas experiências místicas e os diálogos com Jesus. Este "Diário: A Divina Misericórdia na Minha Alma" tornou-se um dos clássicos da literatura espiritual do século XX. Nele, encontramos um convite urgente à confiança no amor infinito de Deus, que é sempre maior que a nossa miséria. Santa Faustina faleceu de tuberculose aos 33 anos, e a sua mensagem espalhou-se rapidamente, sendo um farol de esperança para o nosso tempo.</p>
-      <p class="mt-4"><b>Oração:</b> Ó Sangue e Água que jorrastes do Coração de Jesus como fonte de misericórdia para nós, eu confio em Vós.</p>
-      <p class="mt-2 italic">Santa Faustina Kowalska, rogai por nós.</p>`
+    saints: [{
+      name: 'Santa Faustina Kowalska',
+      imageUrl: 'https://i.postimg.cc/qBKkbHTj/39a80df1d720976f7e55e00f40eadc90-1.jpg',
+      story: `
+        <h4>A Apóstola da Misericórdia</h4>
+        <p>Helena Kowalska, nascida em 1905 numa pobre família de camponeses na Polónia, foi a terceira de dez filhos. Desde cedo sentiu o chamado à vida religiosa, mas enfrentou a oposição dos pais. Aos 20 anos, após uma visão de Cristo sofredor, entrou para a Congregação das Irmãs de Nossa Senhora da Misericórdia em Varsóvia, recebendo o nome de Irmã Maria Faustina. Sua vida no convento foi simples e humilde, dedicada aos trabalhos mais básicos, mas seu mundo interior era extraordinariamente rico em graças místicas.</p>
+        <h4>As Revelações de Jesus Misericordioso</h4>
+        <p>A partir de 1931, Jesus começou a aparecer a Santa Faustina, confiando-lhe a missão de ser a "Secretária e Apóstola da Sua Misericórdia". Cristo pediu-lhe que pintasse uma imagem Sua com a inscrição "Jesus, eu confio em Vós", que se celebrasse a Festa da Misericórdia no domingo a seguir à Páscoa, e que se rezasse o Terço da Misericórdia, especialmente pelos pecadores e agonizantes. Jesus revelou-lhe que a Sua Misericórdia é o último refúgio para a humanidade, uma fonte inesgotável de graças para todos os que a ela recorrem com confiança.</p>
+        <h4>O Diário: Um Tesouro Espiritual</h4>
+        <p>Por ordem de seu diretor espiritual, o Beato Miguel Sopoćko, Santa Faustina escreveu um Diário, registando as suas profundas experiências místicas e os diálogos com Jesus. Este "Diário: A Divina Misericórdia na Minha Alma" tornou-se um dos clássicos da literatura espiritual do século XX. Nele, encontramos um convite urgente à confiança no amor infinito de Deus, que é sempre maior que a nossa miséria. Santa Faustina faleceu de tuberculose aos 33 anos, e a sua mensagem espalhou-se rapidamente, sendo um farol de esperança para o nosso tempo.</p>
+        <p class="mt-4"><b>Oração:</b> Ó Sangue e Água que jorrastes do Coração de Jesus como fonte de misericórdia para nós, eu confio em Vós.</p>
+        <p class="mt-2 italic">Santa Faustina Kowalska, rogai por nós.</p>`
+    }]
   },
   {
     day: 6,
     month: 'Outubro',
-    name: 'São Bruno',
-    imageUrl: 'https://i.postimg.cc/SnbcMCrM/image.png',
-    story: `
-      <h4>O Erudito que Buscava a Deus</h4>
-      <p>São Bruno, nascido em Colônia, Alemanha, por volta de 1030, foi um dos homens mais cultos de seu tempo. Tornou-se reitor da prestigiosa escola da catedral de Reims, na França, onde formou muitos alunos notáveis, incluindo o futuro Papa Urbano II. No entanto, o seu coração ansiava por algo mais do que o sucesso acadêmico e eclesiástico. Profundamente desiludido com a simonia e a corrupção que via em seu meio, sentiu um chamado irresistível a uma vida de silêncio e solidão para se dedicar inteiramente a Deus.</p>
-      <h4>A Fundação da Cartuxa</h4>
-      <p>Em 1084, junto com seis companheiros, Bruno retirou-se para um local deserto e inóspito nos Alpes franceses, conhecido como Chartreuse. Ali, eles construíram um eremitério, dando início à Ordem dos Cartuxos. A regra cartusiana, que Bruno ajudou a estabelecer, combina de forma única a vida eremítica (cada monge vive em sua própria cela em silêncio e oração) com a vida cenobítica (reúnem-se para a liturgia e algumas refeições). Esta forma de vida radical busca a união com Deus através da contemplação ininterrupta.</p>
-      <h4>Um Legado de Silêncio</h4>
-      <p>Mesmo quando o Papa Urbano II, seu antigo aluno, o chamou a Roma para ser seu conselheiro, o coração de Bruno permaneceu no deserto. Após algum tempo, obteve permissão para fundar um novo eremitério na Calábria, no sul da Itália, onde viveu até sua morte em 1101. O lema dos cartuxos, "Stat crux dum volvitur orbis" (A Cruz permanece firme enquanto o mundo gira), resume perfeitamente o legado de São Bruno: um testemunho silencioso de que, no meio da agitação do mundo, a única realidade que permanece é a busca do Absoluto.</p>
-      <p class="mt-4"><b>Oração:</b> Ó Deus, que chamastes São Bruno para vos servir no silêncio e na solidão, concedei-nos, por sua intercessão, que, no meio da agitação do mundo, saibamos guardar um coração silencioso para Vos encontrar. Amém.</p>
-      <p class="mt-2 italic">São Bruno, rogai por nós.</p>`
+    saints: [{
+      name: 'São Bruno',
+      imageUrl: 'https://i.postimg.cc/SnbcMCrM/image.png',
+      story: `
+        <h4>O Erudito que Buscava a Deus</h4>
+        <p>São Bruno, nascido em Colônia, Alemanha, por volta de 1030, foi um dos homens mais cultos de seu tempo. Tornou-se reitor da prestigiosa escola da catedral de Reims, na França, onde formou muitos alunos notáveis, incluindo o futuro Papa Urbano II. No entanto, o seu coração ansiava por algo mais do que o sucesso acadêmico e eclesiástico. Profundamente desiludido com a simonia e a corrupção que via em seu meio, sentiu um chamado irresistível a uma vida de silêncio e solidão para se dedicar inteiramente a Deus.</p>
+        <h4>A Fundação da Cartuxa</h4>
+        <p>Em 1084, junto com seis companheiros, Bruno retirou-se para um local deserto e inóspito nos Alpes franceses, conhecido como Chartreuse. Ali, eles construíram um eremitério, dando início à Ordem dos Cartuxos. A regra cartusiana, que Bruno ajudou a estabelecer, combina de forma única a vida eremítica (cada monge vive em sua própria cela em silêncio e oração) com a vida cenobítica (reúnem-se para a liturgia e algumas refeições). Esta forma de vida radical busca a união com Deus através da contemplação ininterrupta.</p>
+        <h4>Um Legado de Silêncio</h4>
+        <p>Mesmo quando o Papa Urbano II, seu antigo aluno, o chamou a Roma para ser seu conselheiro, o coração de Bruno permaneceu no deserto. Após algum tempo, obteve permissão para fundar um novo eremitério na Calábria, no sul da Itália, onde viveu até sua morte em 1101. O lema dos cartuxos, "Stat crux dum volvitur orbis" (A Cruz permanece firme enquanto o mundo gira), resume perfeitamente o legado de São Bruno: um testemunho silencioso de que, no meio da agitação do mundo, a única realidade que permanece é a busca do Absoluto.</p>
+        <p class="mt-4"><b>Oração:</b> Ó Deus, que chamastes São Bruno para vos servir no silêncio e na solidão, concedei-nos, por sua intercessão, que, no meio da agitação do mundo, saibamos guardar um coração silencioso para Vos encontrar. Amém.</p>
+        <p class="mt-2 italic">São Bruno, rogai por nós.</p>`
+    }]
   },
   {
     day: 7,
     month: 'Outubro',
-    name: 'Nossa Senhora do Rosário',
-    imageUrl: 'https://i.postimg.cc/2669v1gr/nsr.jpg',
-    story: `
-      <h4>A Oração que Veio do Céu</h4>
-      <p>As origens do Santo Rosário remontam ao século XIII, quando, segundo a tradição, São Domingos de Gusmão, em sua luta contra a heresia albigense, recebeu da própria Virgem Maria esta oração como uma arma poderosa para a conversão e a paz. A simplicidade de meditar os mistérios da vida de Cristo enquanto se reza as Ave-Marias tornou o Rosário uma "Bíblia dos pobres" e uma escola de oração acessível a todos, difundindo-se rapidamente por toda a cristandade como uma prática de piedade popular e eficaz.</p>
-      <h4>A Vitória de Lepanto</h4>
-      <p>A festa de hoje foi instituída pelo Papa São Pio V em 1571 para celebrar a milagrosa vitória da frota cristã contra o Império Otomano na Batalha de Lepanto. Enquanto a batalha se desenrolava no mar, o Papa e toda a cristandade rezavam o Rosário, suplicando a intercessão da Virgem. A vitória foi atribuída diretamente à proteção de Maria, "Auxílio dos Cristãos". Em reconhecimento, o Papa estabeleceu a festa de "Nossa Senhora da Vitória", que seu sucessor, Gregório XIII, renomeou para "Nossa Senhora do Rosário".</p>
-      <h4>Um Compêndio do Evangelho</h4>
-      <p>O Rosário é muito mais do que uma simples repetição de orações. É uma "escola de Maria", um caminho contemplativo onde, na companhia da Mãe, meditamos sobre os principais mistérios da vida, paixão, morte e ressurreição de Jesus Cristo. Nas suas aparições em Lourdes e Fátima, a própria Virgem Maria insistiu na recitação diária do terço como um remédio para os males do mundo, um caminho para a paz e a conversão dos pecadores, reafirmando o seu poder e a sua importância para a vida da Igreja.</p>
-      <p class="mt-4"><b>Oração:</b> À Vossa Proteção recorremos, Santa Mãe de Deus. Não desprezeis as nossas súplicas em nossas necessidades, mas livrai-nos sempre de todos os perigos, ó Virgem gloriosa e bendita.</p>
-      <p class="mt-2 italic">Nossa Senhora do Rosário, rogai por nós.</p>`
+    saints: [{
+      name: 'Nossa Senhora do Rosário',
+      imageUrl: 'https://i.postimg.cc/2669v1gr/nsr.jpg',
+      story: `
+        <h4>A Oração que Veio do Céu</h4>
+        <p>As origens do Santo Rosário remontam ao século XIII, quando, segundo a tradição, São Domingos de Gusmão, em sua luta contra a heresia albigense, recebeu da própria Virgem Maria esta oração como uma arma poderosa para a conversão e a paz. A simplicidade de meditar os mistérios da vida de Cristo enquanto se reza as Ave-Marias tornou o Rosário uma "Bíblia dos pobres" e uma escola de oração acessível a todos, difundindo-se rapidamente por toda a cristandade como uma prática de piedade popular e eficaz.</p>
+        <h4>A Vitória de Lepanto</h4>
+        <p>A festa de hoje foi instituída pelo Papa São Pio V em 1571 para celebrar a milagrosa vitória da frota cristã contra o Império Otomano na Batalha de Lepanto. Enquanto a batalha se desenrolava no mar, o Papa e toda a cristandade rezavam o Rosário, suplicando a intercessão da Virgem. A vitória foi atribuída diretamente à proteção de Maria, "Auxílio dos Cristãos". Em reconhecimento, o Papa estabeleceu a festa de "Nossa Senhora da Vitória", que seu sucessor, Gregório XIII, renomeou para "Nossa Senhora do Rosário".</p>
+        <h4>Um Compêndio do Evangelho</h4>
+        <p>O Rosário é muito mais do que uma simples repetição de orações. É uma "escola de Maria", um caminho contemplativo onde, na companhia da Mãe, meditamos sobre os principais mistérios da vida, paixão, morte e ressurreição de Jesus Cristo. Nas suas aparições em Lourdes e Fátima, a própria Virgem Maria insistiu na recitação diária do terço como um remédio para os males do mundo, um caminho para a paz e a conversão dos pecadores, reafirmando o seu poder e a sua importância para a vida da Igreja.</p>
+        <p class="mt-4"><b>Oração:</b> À Vossa Proteção recorremos, Santa Mãe de Deus. Não desprezeis as nossas súplicas em nossas necessidades, mas livrai-nos sempre de todos os perigos, ó Virgem gloriosa e bendita.</p>
+        <p class="mt-2 italic">Nossa Senhora do Rosário, rogai por nós.</p>`
+    }]
   },
   {
     day: 8,
     month: 'Outubro',
-    name: 'Santa Reparata / Santa Josefina Bakhita',
-    imageUrl: 'https://i.postimg.cc/QN4QQTH8/statue-of-saint-reparata.webp',
-    story: `<p>Santa Reparata, jovem mártir da Palestina, e Santa Josefina Bakhita, a escrava sudanesa que se tornou santa, mostram-nos a força da fé que supera qualquer sofrimento. Uma defendeu a virgindade, a outra encontrou a liberdade em Cristo.</p><p class="mt-4"><i>Santas Reparata e Josefina Bakhita, rogai por nós.</i></p>`
+    saints: [
+      { name: 'Santa Reparata', imageUrl: 'https://i.postimg.cc/QN4QQTH8/statue-of-saint-reparata.webp', story: `<p>Santa Reparata, jovem mártir da Palestina, e Santa Josefina Bakhita, a escrava sudanesa que se tornou santa, mostram-nos a força da fé que supera qualquer sofrimento. Uma defendeu a virgindade, a outra encontrou a liberdade em Cristo.</p><p class="mt-4"><i>Santas Reparata e Josefina Bakhita, rogai por nós.</i></p>` },
+      { name: 'Santa Josefina Bakhita', imageUrl: 'https://placehold.co/80x80/6e4a3d/FFFFFF/png?text=Bakhita', story: `<p>Santa Josefina Bakhita, a escrava sudanesa que encontrou a verdadeira liberdade em Cristo, é um testemunho poderoso da dignidade humana e da esperança cristã. Sua vida mostra que nenhuma escravidão pode aprisionar uma alma que pertence a Deus.</p><p class="mt-4"><i>Santa Josefina Bakhita, rogai por nós.</i></p>`}
+    ]
   },
   {
     day: 9,
     month: 'Outubro',
-    name: 'São John Henry Newman',
-    imageUrl: 'https://i.postimg.cc/9fCw5mrL/Photo-of-John-Henry-Newman.jpg',
-    story: `<p>Um dos maiores intelectuais do século XIX, São John Henry Newman passou da Igreja Anglicana para a Católica numa jornada de busca honesta pela verdade. A sua vida ensina-nos que o coração e a razão caminham juntos na fé.</p><p class="mt-4"><i>São John Henry Newman, rogai por nós.</i></p>`
+    saints: [{ name: 'São John Henry Newman', imageUrl: 'https://i.postimg.cc/9fCw5mrL/Photo-of-John-Henry-Newman.jpg', story: `<p>Um dos maiores intelectuais do século XIX, São John Henry Newman passou da Igreja Anglicana para a Católica numa jornada de busca honesta pela verdade. A sua vida ensina-nos que o coração e a razão caminham juntos na fé.</p><p class="mt-4"><i>São John Henry Newman, rogai por nós.</i></p>` }]
   },
   {
     day: 10,
     month: 'Outubro',
-    name: 'São Daniel Comboni',
-    imageUrl: 'https://i.postimg.cc/wMmh29fg/250px-Daniele-Comboni.jpg',
-    story: `<p>Com o lema "Salvar a África com a África", São Daniel Comboni dedicou a sua vida à evangelização do continente africano. Foi um missionário incansável, que acreditava na dignidade e na capacidade do povo africano para liderar a sua própria Igreja.</p><p class="mt-4"><i>São Daniel Comboni, rogai por nós.</i></p>`
+    saints: [{ name: 'São Daniel Comboni', imageUrl: 'https://i.postimg.cc/wMmh29fg/250px-Daniele-Comboni.jpg', story: `<p>Com o lema "Salvar a África com a África", São Daniel Comboni dedicou a sua vida à evangelização do continente africano. Foi um missionário incansável, que acreditava na dignidade e na capacidade do povo africano para liderar a sua própria Igreja.</p><p class="mt-4"><i>São Daniel Comboni, rogai por nós.</i></p>` }]
   },
   {
     day: 11,
     month: 'Outubro',
-    name: 'São João XXIII',
-    imageUrl: 'https://i.postimg.cc/d1zCLzsw/Ioannes-XXIII-by-De-Agostini-1958-1963.jpg',
-    story: `<p>Conhecido como o "Papa Bom", São João XXIII surpreendeu o mundo ao convocar o Concílio Vaticano II, abrindo as "janelas da Igreja" para que o ar fresco do Espírito Santo pudesse renová-la. O seu pontificado foi um sopro de esperança e otimismo.</p><p class="mt-4"><i>São João XXIII, rogai por nós.</i></p>`
+    saints: [{ name: 'São João XXIII', imageUrl: 'https://i.postimg.cc/d1zCLzsw/Ioannes-XXIII-by-De-Agostini-1958-1963.jpg', story: `<p>Conhecido como o "Papa Bom", São João XXIII surpreendeu o mundo ao convocar o Concílio Vaticano II, abrindo as "janelas da Igreja" para que o ar fresco do Espírito Santo pudesse renová-la. O seu pontificado foi um sopro de esperança e otimismo.</p><p class="mt-4"><i>São João XXIII, rogai por nós.</i></p>` }]
   },
   {
     day: 12,
     month: 'Outubro',
-    name: 'N.S. Aparecida e S. Carlo Acutis',
-    imageUrl: 'https://i.postimg.cc/Lsyj4XMh/4011bde1376c5422265a41f3a652c540.jpg',
-    story: `
-      <h4>Nossa Senhora Aparecida, Rainha e Padroeira</h4>
-      <p>Em 1717, a imagem de Nossa Senhora da Conceição foi encontrada por pescadores no Rio Paraíba do Sul. Este sinal humilde deu início a uma das maiores devoções do mundo. Nossa Senhora Aparecida, com sua cor escura, tornou-se o símbolo da mãe que acolhe todos os seus filhos brasileiros, sem distinção.</p>
-      <h4>São Carlo Acutis, o Ciberapóstolo</h4>
-      <p>Um jovem do nosso tempo, que amava a Eucaristia e a tecnologia. Carlo usou a internet para partilhar a sua fé, criando um site sobre milagres eucarísticos. A sua vida mostra que a santidade é possível em qualquer idade e que podemos usar os dons modernos para a glória de Deus. Faleceu em 2006, aos 15 anos, no dia da Senhora Aparecida.</p>
-      <p class="mt-4"><b>Oração:</b> Ó Mãe Aparecida, que nos destes o Brasil, e São Carlo Acutis, que do céu intercedeis pela juventude, rogai por nós e ensinai-nos a amar Jesus na Eucaristia e a servir os irmãos com alegria. Amém.</p>
-      <p class="mt-2 italic">Nossa Senhora Aparecida e São Carlo Acutis, rogai por nós.</p>`
+    saints: [
+      { name: 'N. S. Aparecida', imageUrl: 'https://i.postimg.cc/Lsyj4XMh/4011bde1376c5422265a41f3a652c540.jpg', story: `
+        <h4>Rainha e Padroeira do Brasil</h4>
+        <p>Em 1717, três pescadores, lançando suas redes no Rio Paraíba do Sul, encontraram primeiro o corpo e depois a cabeça de uma pequena imagem de Nossa Senhora da Conceição. A partir daquele momento, a pesca que antes era infrutífera, tornou-se prodigiosamente abundante. Este foi o humilde começo da devoção a Nossa Senhora "Aparecida", que se tornaria o maior santuário mariano do mundo e o coração da fé católica no Brasil.</p>
+        <h4>Mãe do Povo Brasileiro</h4>
+        <p>A pequena imagem de terracota, com sua cor escura, tornou-se um símbolo poderoso da mãe que acolhe todos os seus filhos, sem distinção de cor, raça ou classe social. Ela é a representação da inculturação do Evangelho na alma do povo brasileiro. Em sua pequenez e simplicidade, ela nos recorda que Deus escolhe o que é fraco e humilde para confundir os fortes.</p>
+        <h4>Fonte de Graças e Milagres</h4>
+        <p>Ao longo de três séculos, milhões de peregrinos têm acorrido ao seu santuário, buscando consolo, cura e esperança. A história de Aparecida é uma história de milagres e de fé, desde o milagre das velas que se acenderam sozinhas até às inúmeras graças testemunhadas pelos seus devotos. Ela é a prova viva de que Maria é uma mãe sempre presente e atenta às necessidades de seus filhos.</p>
+        <p class="mt-4"><b>Oração:</b> Ó incomparável Senhora da Conceição Aparecida, Mãe de Deus, Rainha dos Anjos, Advogada dos pecadores, refúgio e consolação dos aflitos e atribulados, livrai-nos de tudo o que possa ofender-vos e ao vosso Santíssimo Filho, meu Redentor e nosso Senhor Jesus Cristo.</p>
+        <p class="mt-2 italic">Nossa Senhora Aparecida, rogai por nós.</p>` },
+      { name: 'Beato Carlo Acutis', imageUrl: 'https://i.postimg.cc/CKrbWHjb/8a6ca2d967cbe5b8b65b068da82f495e.jpg', story: `
+        <h4>Um Jovem do Nosso Tempo</h4>
+        <p>Carlo Acutis, nascido em 1991, foi um jovem como tantos outros: gostava de videojogos, de computadores e de futebol. No entanto, o que o distinguia era um amor extraordinário e contagiante por Jesus, especialmente na Eucaristia, que ele chamava de sua "autoestrada para o Céu". Sua vida é um testemunho luminoso de que a santidade não é algo distante ou reservado a poucos, mas um chamado para todos, que pode ser vivido na alegria e na normalidade da vida quotidiana.</p>
+        <h4>O Ciberapóstolo da Eucaristia</h4>
+        <p>Dotado de um talento notável para a informática, Carlo não usou a internet para se isolar, mas para evangelizar. Criou um website para catalogar todos os milagres eucarísticos reconhecidos pela Igreja em todo o mundo, um trabalho que continua a inspirar e a fortalecer a fé de muitos. Ele entendeu que a tecnologia pode ser uma ferramenta poderosa para o bem e para levar a mensagem de Cristo a todos os cantos do mundo.</p>
+        <h4>Ofertório de Vida</h4>
+        <p>Diagnosticado com uma forma agressiva de leucemia, Carlo enfrentou a doença com uma serenidade e uma fé desconcertantes. Ofereceu todos os seus sofrimentos pelo Papa e pela Igreja. Faleceu em 12 de outubro de 2006, aos 15 anos, no dia de Nossa Senhora Aparecida, deixando um legado de alegria e uma certeza: "A nossa meta deve ser o infinito, não o finito. O Infinito é a nossa Pátria. Desde sempre somos esperados no Céu."</p>
+        <p class="mt-4"><b>Oração:</b> Ó Deus, nosso Pai, que nos destes no Beato Carlo Acutis um modelo de amor à Eucaristia e de zelo apostólico, concedei-nos, por sua intercessão, a graça de vivermos sempre unidos a Jesus e de O testemunharmos com alegria aos nossos irmãos.</p>
+        <p class="mt-2 italic">Beato Carlo Acutis, rogai por nós.</p>` }
+    ]
   },
   {
     day: 13,
     month: 'Outubro',
-    name: 'Beata Alexandrina de Balazar',
-    imageUrl: 'https://i.postimg.cc/nrFJYLcQ/image.png',
-    story: `<p>Mística portuguesa que viveu os últimos 13 anos de sua vida alimentando-se exclusivamente da Eucaristia. A sua vida foi um contínuo ato de amor e reparação, oferecendo seus imensos sofrimentos pela conversão dos pecadores.</p><p class="mt-4"><i>Beata Alexandrina de Balazar, rogai por nós.</i></p>`
+    saints: [{ name: 'Beata Alexandrina de Balazar', imageUrl: 'https://i.postimg.cc/nrFJYLcQ/image.png', story: `<p>Mística portuguesa que viveu os últimos 13 anos de sua vida alimentando-se exclusivamente da Eucaristia. A sua vida foi um contínuo ato de amor e reparação, oferecendo seus imensos sofrimentos pela conversão dos pecadores.</p><p class="mt-4"><i>Beata Alexandrina de Balazar, rogai por nós.</i></p>` }]
   },
   {
     day: 14,
     month: 'Outubro',
-    name: 'São Calisto I',
-    imageUrl: 'https://i.postimg.cc/NF9xn60S/image.png',
-    story: `<p>Papa e mártir do século III, São Calisto destacou-se pela sua misericórdia, defendendo que a Igreja deveria perdoar todos os pecados, mesmo os mais graves, para aqueles que se arrependessem. Mostrou a face de um Deus que é Pai de misericórdia.</p><p class="mt-4"><i>São Calisto I, rogai por nós.</i></p>`
+    saints: [{ name: 'São Calisto I', imageUrl: 'https://i.postimg.cc/NF9xn60S/image.png', story: `<p>Papa e mártir do século III, São Calisto destacou-se pela sua misericórdia, defendendo que a Igreja deveria perdoar todos os pecados, mesmo os mais graves, para aqueles que se arrependessem. Mostrou a face de um Deus que é Pai de misericórdia.</p><p class="mt-4"><i>São Calisto I, rogai por nós.</i></p>` }]
   },
   {
     day: 15,
     month: 'Outubro',
-    name: 'Santa Teresa de Jesus (de Ávila)',
-    imageUrl: 'https://i.postimg.cc/ht19wsyQ/32654687eb30f846f1f2e9e3edb6f4af.jpg',
-    story: `
-      <h4>A Reforma do Carmelo</h4>
-      <p>Teresa de Cepeda y Ahumada, nascida em Ávila, Espanha, em 1515, é uma das figuras mais extraordinárias da história da Igreja. Após uma vida religiosa inicialmente morna e superficial, uma profunda experiência de conversão aos 39 anos transformou-a numa gigante espiritual. Inquieta com o relaxamento da vida nos conventos de sua época, sentiu o chamado de Deus para reformar a Ordem do Carmo, fundando, junto com São João da Cruz, os Carmelitas Descalços, que buscavam um retorno à oração contemplativa e à pobreza radical do Evangelho.</p>
-      <h4>Mestra da Oração</h4>
-      <p>Dotada de um carisma único e de uma personalidade vibrante, Teresa é, acima de tudo, uma mestra da vida de oração. Suas obras, como "O Livro da Vida", "Caminho de Perfeição" e, especialmente, "O Castelo Interior", são guias práticos e profundos para a jornada da alma em direção à união com Deus. Sua famosa definição de oração como "um trato de amizade, estando muitas vezes a sós com Quem sabemos que nos ama" democratizou a mística, mostrando que a intimidade com Deus é acessível a todos que a buscam com um coração sincero.</p>
-      <h4>Doutora da Igreja</h4>
-      <p>Apesar de ser mulher numa época dominada por homens e de não ter estudos formais em teologia, a profundidade e a solidez de sua doutrina espiritual levaram a Igreja a proclamá-la Doutora em 1970, a primeira mulher a receber tal título. A sua vida, marcada por êxtases místicos, fundações incansáveis e uma humanidade contagiante, continua a inspirar-nos a buscar a santidade com "determinada determinação", sem nunca perder a alegria e o bom humor. Sua famosa máxima, "Só Deus basta", resume a essência de sua espiritualidade.</p>
-      <p class="mt-4"><b>Oração:</b> Nada te perturbe, nada te espante. Tudo passa, Deus não muda. A paciência tudo alcança. Quem a Deus tem, nada lhe falta. Só Deus basta.</p>
-      <p class="mt-2 italic">Santa Teresa de Ávila, rogai por nós.</p>`
+    saints: [{
+      name: 'Santa Teresa de Jesus',
+      imageUrl: 'https://i.postimg.cc/ht19wsyQ/32654687eb30f846f1f2e9e3edb6f4af.jpg',
+      story: `
+        <h4>A Reforma do Carmelo</h4>
+        <p>Teresa de Cepeda y Ahumada, nascida em Ávila, Espanha, em 1515, é uma das figuras mais extraordinárias da história da Igreja. Após uma vida religiosa inicialmente morna e superficial, uma profunda experiência de conversão aos 39 anos transformou-a numa gigante espiritual. Inquieta com o relaxamento da vida nos conventos de sua época, sentiu o chamado de Deus para reformar a Ordem do Carmo, fundando, junto com São João da Cruz, os Carmelitas Descalços, que buscavam um retorno à oração contemplativa e à pobreza radical do Evangelho.</p>
+        <h4>Mestra da Oração</h4>
+        <p>Dotada de um carisma único e de uma personalidade vibrante, Teresa é, acima de tudo, uma mestra da vida de oração. Suas obras, como "O Livro da Vida", "Caminho de Perfeição" e, especialmente, "O Castelo Interior", são guias práticos e profundos para a jornada da alma em direção à união com Deus. Sua famosa definição de oração como "um trato de amizade, estando muitas vezes a sós com Quem sabemos que nos ama" democratizou a mística, mostrando que a intimidade com Deus é acessível a todos que a buscam com um coração sincero.</p>
+        <h4>Doutora da Igreja</h4>
+        <p>Apesar de ser mulher numa época dominada por homens e de não ter estudos formais em teologia, a profundidade e a solidez de sua doutrina espiritual levaram a Igreja a proclamá-la Doutora em 1970, a primeira mulher a receber tal título. A sua vida, marcada por êxtases místicos, fundações incansáveis e uma humanidade contagiante, continua a inspirar-nos a buscar a santidade com "determinada determinação", sem nunca perder a alegria e o bom humor. Sua famosa máxima, "Só Deus basta", resume a essência de sua espiritualidade.</p>
+        <p class="mt-4"><b>Oração:</b> Nada te perturbe, nada te espante. Tudo passa, Deus não muda. A paciência tudo alcança. Quem a Deus tem, nada lhe falta. Só Deus basta.</p>
+        <p class="mt-2 italic">Santa Teresa de Ávila, rogai por nós.</p>`
+    }]
   },
   {
     day: 16,
     month: 'Outubro',
-    name: 'Santa Margarida Maria Alacoque',
-    imageUrl: 'https://i.postimg.cc/J7QHR03S/66339fa28370276f90d041991767bebd.jpg',
-    story: `
-      <h4>Uma Vida de Devoção</h4>
-      <p>Nascida em 1647, na França, Margarida Maria Alacoque demonstrou desde cedo um profundo amor pela Eucaristia e uma inclinação para a vida religiosa. Superando a oposição da família, entrou para o mosteiro da Visitação de Paray-le-Monial. Sua vida no convento foi marcada por uma intensa busca de união com Cristo, mas também por incompreensões e sofrimentos, que a prepararam para a extraordinária missão que Deus lhe confiaria.</p>
-      <h4>As Aparições do Sagrado Coração</h4>
-      <p>Entre 1673 e 1675, Jesus apareceu a Santa Margarida, mostrando-lhe o Seu Sagrado Coração, "ardendo em chamas de amor" e "cercado por uma coroa de espinhos". Cristo lamentou-se da ingratidão e da frieza com que o Seu amor era retribuído pelos homens e pediu a Margarida que se tornasse a mensageira desta devoção. Confiou-lhe as "Doze Promessas" para aqueles que honrassem o Seu Coração, pediu a instituição da Festa do Sagrado Coração e a prática da Comunhão reparadora nas primeiras sextas-feiras do mês.</p>
-      <h4>Legado de Amor e Reparação</h4>
-      <p>A missão de Santa Margarida foi árdua. Enfrentou a desconfiança de sua comunidade e a dúvida de teólogos. No entanto, com a ajuda de seu diretor espiritual, o jesuíta São Cláudio de la Colombière, a devoção ao Sagrado Coração de Jesus começou a difundir-se. Seu legado é um convite perene a contemplar o Coração de Cristo, fonte de todo o bem e símbolo do amor infinito e misericordioso de Deus, e a responder a esse amor com a nossa própria vida, em espírito de adoração e reparação.</p>
-      <p class="mt-4"><b>Oração:</b> Ó Sagrado Coração de Jesus, que manifestastes a Santa Margarida Maria o desejo de reinar sobre as famílias cristãs, nós vos escolhemos hoje como Rei e Senhor de nossa família.</p>
-      <p class="mt-2 italic">Santa Margarida Maria Alacoque, rogai por nós.</p>`
+    saints: [{
+      name: 'Santa Margarida Maria Alacoque',
+      imageUrl: 'https://i.postimg.cc/J7QHR03S/66339fa28370276f90d041991767bebd.jpg',
+      story: `
+        <h4>Uma Vida de Devoção</h4>
+        <p>Nascida em 1647, na França, Margarida Maria Alacoque demonstrou desde cedo um profundo amor pela Eucaristia e uma inclinação para a vida religiosa. Superando a oposição da família, entrou para o mosteiro da Visitação de Paray-le-Monial. Sua vida no convento foi marcada por uma intensa busca de união com Cristo, mas também por incompreensões e sofrimentos, que a prepararam para a extraordinária missão que Deus lhe confiaria.</p>
+        <h4>As Aparições do Sagrado Coração</h4>
+        <p>Entre 1673 e 1675, Jesus apareceu a Santa Margarida, mostrando-lhe o Seu Sagrado Coração, "ardendo em chamas de amor" e "cercado por uma coroa de espinhos". Cristo lamentou-se da ingratidão e da frieza com que o Seu amor era retribuído pelos homens e pediu a Margarida que se tornasse a mensageira desta devoção. Confiou-lhe as "Doze Promessas" para aqueles que honrassem o Seu Coração, pediu a instituição da Festa do Sagrado Coração e a prática da Comunhão reparadora nas primeiras sextas-feiras do mês.</p>
+        <h4>Legado de Amor e Reparação</h4>
+        <p>A missão de Santa Margarida foi árdua. Enfrentou a desconfiança de sua comunidade e a dúvida de teólogos. No entanto, com a ajuda de seu diretor espiritual, o jesuíta São Cláudio de la Colombière, a devoção ao Sagrado Coração de Jesus começou a difundir-se. Seu legado é um convite perene a contemplar o Coração de Cristo, fonte de todo o bem e símbolo do amor infinito e misericordioso de Deus, e a responder a esse amor com a nossa própria vida, em espírito de adoração e reparação.</p>
+        <p class="mt-4"><b>Oração:</b> Ó Sagrado Coração de Jesus, que manifestastes a Santa Margarida Maria o desejo de reinar sobre as famílias cristãs, nós vos escolhemos hoje como Rei e Senhor de nossa família.</p>
+        <p class="mt-2 italic">Santa Margarida Maria Alacoque, rogai por nós.</p>`
+    }]
   },
   {
     day: 17,
     month: 'Outubro',
-    name: 'Santo Inácio de Antioquia',
-    imageUrl: 'https://i.postimg.cc/cvWXNVVK/image.png',
-    story: `<p>Discípulo dos Apóstolos Pedro e João, foi bispo de Antioquia. No caminho para o seu martírio em Roma, escreveu sete cartas inspiradoras sobre a unidade da Igreja, a Eucaristia e o desejo de se unir a Cristo. Desejava ser "trigo de Deus, moído pelos dentes das feras".</p><p class="mt-4"><i>Santo Inácio de Antioquia, rogai por nós.</i></p>`
+    saints: [{ name: 'Santo Inácio de Antioquia', imageUrl: 'https://i.postimg.cc/cvWXNVVK/image.png', story: `<p>Discípulo dos Apóstolos Pedro e João, foi bispo de Antioquia. No caminho para o seu martírio em Roma, escreveu sete cartas inspiradoras sobre a unidade da Igreja, a Eucaristia e o desejo de se unir a Cristo. Desejava ser "trigo de Deus, moído pelos dentes das feras".</p><p class="mt-4"><i>Santo Inácio de Antioquia, rogai por nós.</i></p>` }]
   },
   {
     day: 18,
     month: 'Outubro',
-    name: 'São Lucas, Evangelista',
-    imageUrl: 'https://placehold.co/80x80/6e4a3d/FFFFFF/png?text=S.+Lucas',
-    story: `<p>Autor do terceiro Evangelho e dos Atos dos Apóstolos, São Lucas era médico e companheiro de São Paulo. Seu Evangelho é conhecido como o "Evangelho da Misericórdia", destacando o perdão de Cristo e a sua atenção para com os pobres, os pecadores e as mulheres.</p><p class="mt-4"><i>São Lucas, rogai por nós.</i></p>`
+    saints: [{ name: 'São Lucas, Evangelista', imageUrl: 'https://placehold.co/80x80/6e4a3d/FFFFFF/png?text=S.+Lucas', story: `<p>Autor do terceiro Evangelho e dos Atos dos Apóstolos, São Lucas era médico e companheiro de São Paulo. Seu Evangelho é conhecido como o "Evangelho da Misericórdia", destacando o perdão de Cristo e a sua atenção para com os pobres, os pecadores e as mulheres.</p><p class="mt-4"><i>São Lucas, rogai por nós.</i></p>` }]
   },
   {
     day: 19,
     month: 'Outubro',
-    name: 'São Pedro de Alcântara',
-    imageUrl: 'https://i.postimg.cc/LnDZnwJ2/image.png',
-    story: `<p>Grande místico espanhol e reformador franciscano, São Pedro de Alcântara viveu uma vida de penitência e oração extraordinárias. Foi amigo e conselheiro espiritual de Santa Teresa de Ávila, a quem ajudou na reforma do Carmelo.</p><p class="mt-4"><i>São Pedro de Alcântara, rogai por nós.</i></p>`
+    saints: [{ name: 'São Pedro de Alcântara', imageUrl: 'https://i.postimg.cc/LnDZnwJ2/image.png', story: `<p>Grande místico espanhol e reformador franciscano, São Pedro de Alcântara viveu uma vida de penitência e oração extraordinárias. Foi amigo e conselheiro espiritual de Santa Teresa de Ávila, a quem ajudou na reforma do Carmelo.</p><p class="mt-4"><i>São Pedro de Alcântara, rogai por nós.</i></p>` }]
   },
   {
     day: 20,
     month: 'Outubro',
-    name: 'Santa Madalena de Nagasaki',
-    imageUrl: 'https://placehold.co/80x80/6e4a3d/FFFFFF/png?text=Madalena',
-    story: `<p>Nascida numa família cristã no Japão, tornou-se terciária agostiniana e catequista. Durante a feroz perseguição aos cristãos, ela encorajou os fiéis e sofreu um martírio cruel, permanecendo fiel a Cristo até ao fim.</p><p class="mt-4"><i>Santa Madalena de Nagasaki, rogai por nós.</i></p>`
+    saints: [{ name: 'Santa Madalena de Nagasaki', imageUrl: 'https://placehold.co/80x80/6e4a3d/FFFFFF/png?text=Madalena', story: `<p>Nascida numa família cristã no Japão, tornou-se terciária agostiniana e catequista. Durante a feroz perseguição aos cristãos, ela encorajou os fiéis e sofreu um martírio cruel, permanecendo fiel a Cristo até ao fim.</p><p class="mt-4"><i>Santa Madalena de Nagasaki, rogai por nós.</i></p>` }]
   },
   {
     day: 21,
     month: 'Outubro',
-    name: 'Santa Úrsula e Companheiras',
-    imageUrl: 'https://placehold.co/80x80/6e4a3d/FFFFFF/png?text=Úrsula',
-    story: `<p>A história de Santa Úrsula, uma princesa bretã, e das suas onze mil companheiras virgens martirizadas em Colónia, na Alemanha, é uma tradição antiga que inspira a coragem e a pureza na defesa da fé.</p><p class="mt-4"><i>Santa Úrsula, rogai por nós.</i></p>`
+    saints: [{ name: 'Santa Úrsula', imageUrl: 'https://placehold.co/80x80/6e4a3d/FFFFFF/png?text=Úrsula', story: `<p>A história de Santa Úrsula, uma princesa bretã, e das suas onze mil companheiras virgens martirizadas em Colónia, na Alemanha, é uma tradição antiga que inspira a coragem e a pureza na defesa da fé.</p><p class="mt-4"><i>Santa Úrsula, rogai por nós.</i></p>` }]
   },
   {
     day: 22,
     month: 'Outubro',
-    name: 'São João Paulo II',
-    imageUrl: 'https://i.postimg.cc/bsw1Hqcq/image.png',
-    story: `<p>Um dos papas mais amados e influentes da história. Com o seu carisma, as suas viagens apostólicas e a sua profunda doutrina, São João Paulo II liderou a Igreja na passagem para o terceiro milénio, defendendo a dignidade humana e chamando todos à santidade com o seu famoso "Não tenhais medo!".</p><p class="mt-4"><i>São João Paulo II, rogai por nós.</i></p>`
+    saints: [{ name: 'São João Paulo II', imageUrl: 'https://i.postimg.cc/bsw1Hqcq/image.png', story: `<p>Um dos papas mais amados e influentes da história. Com o seu carisma, as suas viagens apostólicas e a sua profunda doutrina, São João Paulo II liderou a Igreja na passagem para o terceiro milénio, defendendo a dignidade humana e chamando todos à santidade com o seu famoso "Não tenhais medo!".</p><p class="mt-4"><i>São João Paulo II, rogai por nós.</i></p>` }]
   },
   {
     day: 23,
     month: 'Outubro',
-    name: 'São João de Capistrano',
-    imageUrl: 'https://placehold.co/80x80/6e4a3d/FFFFFF/png?text=Capistrano',
-    story: `<p>Franciscano e pregador incansável do século XV, é conhecido como o "santo soldado". Aos 70 anos, liderou um exército de cruzados para defender Belgrado do avanço do Império Otomano, garantindo uma vitória crucial para a cristandade.</p><p class="mt-4"><i>São João de Capistrano, rogai por nós.</i></p>`
+    saints: [{ name: 'São João de Capistrano', imageUrl: 'https://placehold.co/80x80/6e4a3d/FFFFFF/png?text=Capistrano', story: `<p>Franciscano e pregador incansável do século XV, é conhecido como o "santo soldado". Aos 70 anos, liderou um exército de cruzados para defender Belgrado do avanço do Império Otomano, garantindo uma vitória crucial para a cristandade.</p><p class="mt-4"><i>São João de Capistrano, rogai por nós.</i></p>` }]
   },
   {
     day: 24,
     month: 'Outubro',
-    name: 'Santo Antônio Maria Claret',
-    imageUrl: 'https://placehold.co/80x80/6e4a3d/FFFFFF/png?text=Claret',
-    story: `<p>Missionário espanhol e fundador dos Claretianos, Santo Antônio Maria Claret foi um evangelizador incansável. Usou todos os meios ao seu alcance, especialmente a imprensa, para difundir a Palavra de Deus. Foi arcebispo de Cuba e confessor da Rainha da Espanha.</p><p class="mt-4"><i>Santo Antônio Maria Claret, rogai por nós.</i></p>`
+    saints: [{ name: 'Santo Antônio Maria Claret', imageUrl: 'https://placehold.co/80x80/6e4a3d/FFFFFF/png?text=Claret', story: `<p>Missionário espanhol e fundador dos Claretianos, Santo Antônio Maria Claret foi um evangelizador incansável. Usou todos os meios ao seu alcance, especialmente a imprensa, para difundir a Palavra de Deus. Foi arcebispo de Cuba e confessor da Rainha da Espanha.</p><p class="mt-4"><i>Santo Antônio Maria Claret, rogai por nós.</i></p>` }]
   },
   {
     day: 25,
     month: 'Outubro',
-    name: 'Santo Antônio de Sant\'Ana Galvão',
-    imageUrl: 'https://i.postimg.cc/sBYBCLdn/image.png',
-    story: `<p>O primeiro santo nascido no Brasil, Frei Galvão foi um franciscano conhecido pela sua profunda humildade, caridade e dons místicos. É famoso pelas "pílulas de Frei Galvão", pequenos papéis com uma oração à Virgem Maria que, pela fé, continuam a operar curas.</p><p class="mt-4"><i>Santo Antônio de Sant'Ana Galvão, rogai por nós.</i></p>`
+    saints: [{ name: 'Santo Antônio de Sant\'Ana Galvão', imageUrl: 'https://i.postimg.cc/sBYBCLdn/image.png', story: `<p>O primeiro santo nascido no Brasil, Frei Galvão foi um franciscano conhecido pela sua profunda humildade, caridade e dons místicos. É famoso pelas "pílulas de Frei Galvão", pequenos papéis com uma oração à Virgem Maria que, pela fé, continuam a operar curas.</p><p class="mt-4"><i>Santo Antônio de Sant'Ana Galvão, rogai por nós.</i></p>` }]
   },
   {
     day: 26,
     month: 'Outubro',
-    name: 'São José Gregório Hernández / Santo Evaristo',
-    imageUrl: 'https://placehold.co/80x80/6e4a3d/FFFFFF/png?text=Gregorio',
-    story: `<p>Celebramos hoje São José Gregório, o "médico dos pobres" da Venezuela, e Santo Evaristo, Papa dos primeiros séculos. Ambos dedicaram suas vidas a cuidar do povo de Deus, um no corpo, outro na alma.</p><p class="mt-4"><i>Santos José Gregório e Evaristo, rogai por nós.</i></p>`
+    saints: [
+      { name: 'São José Gregório Hernández', imageUrl: 'https://placehold.co/80x80/6e4a3d/FFFFFF/png?text=Gregorio', story: `<p>Celebramos hoje São José Gregório, o "médico dos pobres" da Venezuela, e Santo Evaristo, Papa dos primeiros séculos. Ambos dedicaram suas vidas a cuidar do povo de Deus, um no corpo, outro na alma.</p><p class="mt-4"><i>Santos José Gregório e Evaristo, rogai por nós.</i></p>` },
+      { name: 'Santo Evaristo', imageUrl: 'https://placehold.co/80x80/6e4a3d/FFFFFF/png?text=Evaristo', story: `<p>Celebramos hoje São José Gregório, o "médico dos pobres" da Venezuela, e Santo Evaristo, Papa dos primeiros séculos. Ambos dedicaram suas vidas a cuidar do povo de Deus, um no corpo, outro na alma.</p><p class="mt-4"><i>Santos José Gregório e Evaristo, rogai por nós.</i></p>` }
+    ]
   },
   {
     day: 27,
     month: 'Outubro',
-    name: 'Santo Elesbão',
-    imageUrl: 'https://placehold.co/80x80/6e4a3d/FFFFFF/png?text=Elesbão',
-    story: `<p>Rei da Etiópia no século VI, Santo Elesbão foi um governante justo e piedoso. Defendeu os cristãos perseguidos na Arábia e, no fim da vida, renunciou ao trono para se tornar monge em Jerusalém.</p><p class="mt-4"><i>Santo Elesbão, rogai por nós.</i></p>`
+    saints: [{ name: 'Santo Elesbão', imageUrl: 'https://placehold.co/80x80/6e4a3d/FFFFFF/png?text=Elesbão', story: `<p>Rei da Etiópia no século VI, Santo Elesbão foi um governante justo e piedoso. Defendeu os cristãos perseguidos na Arábia e, no fim da vida, renunciou ao trono para se tornar monge em Jerusalém.</p><p class="mt-4"><i>Santo Elesbão, rogai por nós.</i></p>` }]
   },
   {
     day: 28,
     month: 'Outubro',
-    name: 'Santos Simão e Judas Tadeu',
-    imageUrl: 'https://i.postimg.cc/9wrF08KF/image.png',
-    story: `<p>Dois dos doze Apóstolos de Jesus. São Simão, o "Zelote", e São Judas Tadeu, autor de uma das cartas do Novo Testamento e conhecido como o "santo das causas impossíveis", levaram o Evangelho até à Pérsia, onde foram martirizados juntos.</p><p class="mt-4"><i>Santos Simão e Judas, rogai por nós.</i></p>`
+    saints: [{ name: 'São Simão e São Judas Tadeu', imageUrl: 'https://i.postimg.cc/9wrF08KF/image.png', story: `<p>Dois dos doze Apóstolos de Jesus. São Simão, o "Zelote", e São Judas Tadeu, autor de uma das cartas do Novo Testamento e conhecido como o "santo das causas impossíveis", levaram o Evangelho até à Pérsia, onde foram martirizados juntos.</p><p class="mt-4"><i>Santos Simão e Judas, rogai por nós.</i></p>` }]
   },
   {
     day: 29,
     month: 'Outubro',
-    name: 'Beata Chiara Luce Badano',
-    imageUrl: 'https://placehold.co/80x80/6e4a3d/FFFFFF/png?text=Chiara+Luce',
-    story: `<p>Jovem italiana do Movimento dos Focolares, Chiara viveu a sua adolescência com uma alegria contagiante. Diagnosticada com um cancro ósseo aos 17 anos, enfrentou a doença com uma fé luminosa, oferecendo tudo a Jesus. O seu testemunho mostra como o sofrimento pode ser transformado em amor.</p><p class="mt-4"><i>Beata Chiara Luce, rogai por nós.</i></p>`
+    saints: [{ name: 'Beata Chiara Luce Badano', imageUrl: 'https://placehold.co/80x80/6e4a3d/FFFFFF/png?text=Chiara+Luce', story: `<p>Jovem italiana do Movimento dos Focolares, Chiara viveu a sua adolescência com uma alegria contagiante. Diagnosticada com um cancro ósseo aos 17 anos, enfrentou a doença com uma fé luminosa, oferecendo tudo a Jesus. O seu testemunho mostra como o sofrimento pode ser transformado em amor.</p><p class="mt-4"><i>Beata Chiara Luce, rogai por nós.</i></p>` }]
   },
   {
     day: 30,
     month: 'Outubro',
-    name: 'São Marcelo',
-    imageUrl: 'https://placehold.co/80x80/6e4a3d/FFFFFF/png?text=Marcelo',
-    story: `<p>Centurião romano na Espanha, São Marcelo declarou-se cristão durante uma festa pagã em honra do imperador. Recusou-se a trair a sua fé e foi condenado à morte, tornando-se um exemplo de coragem e objeção de consciência.</p><p class="mt-4"><i>São Marcelo, rogai por nós.</i></p>`
+    saints: [{ name: 'São Marcelo', imageUrl: 'https://placehold.co/80x80/6e4a3d/FFFFFF/png?text=Marcelo', story: `<p>Centurião romano na Espanha, São Marcelo declarou-se cristão durante uma festa pagã em honra do imperador. Recusou-se a trair a sua fé e foi condenado à morte, tornando-se um exemplo de coragem e objeção de consciência.</p><p class="mt-4"><i>São Marcelo, rogai por nós.</i></p>` }]
   },
   {
     day: 31,
     month: 'Outubro',
-    name: 'Santo Afonso Rodrigues',
-    imageUrl: 'https://placehold.co/80x80/6e4a3d/FFFFFF/png?text=Afonso',
-    story: `<p>Após perder a esposa e os filhos, Santo Afonso Rodrigues entrou na Companhia de Jesus como irmão leigo. Durante mais de 40 anos, serviu como porteiro no colégio de Maiorca, onde a sua humildade, obediência e profunda vida de oração o tornaram um guia espiritual para muitos.</p><p class="mt-4"><i>Santo Afonso Rodrigues, rogai por nós.</i></p>`
+    saints: [{ name: 'Santo Afonso Rodrigues', imageUrl: 'https://placehold.co/80x80/6e4a3d/FFFFFF/png?text=Afonso', story: `<p>Após perder a esposa e os filhos, Santo Afonso Rodrigues entrou na Companhia de Jesus como irmão leigo. Durante mais de 40 anos, serviu como porteiro no colégio de Maiorca, onde a sua humildade, obediência e profunda vida de oração o tornaram um guia espiritual para muitos.</p><p class="mt-4"><i>Santo Afonso Rodrigues, rogai por nós.</i></p>` }]
   },
   // Novembro
   {
     day: 1,
     month: 'Novembro',
-    name: 'Solenidade de Todos os Santos',
-    imageUrl: 'https://i.postimg.cc/j29jkK7b/download.jpg',
-    story: `
-      <h4>A Igreja Triunfante</h4>
-      <p>Nesta grande solenidade, a Igreja na terra (Igreja Militante) celebra com alegria a glória da Igreja no Céu (Igreja Triunfante). Comemoramos não apenas os santos e santas oficialmente canonizados, mas a "multidão imensa, que ninguém podia contar, de todas as nações, tribos, povos e línguas" (Ap 7,9) que já participam da visão beatífica de Deus. É uma festa de esperança, que nos recorda o nosso destino final e a nossa própria vocação universal à santidade.</p>
-      <h4>Comunhão dos Santos</h4>
-      <p>A festa de Todos os Santos é uma expressão poderosa do dogma da Comunhão dos Santos. Acreditamos que os santos no Céu não estão distantes de nós; pelo contrário, eles intercedem incessantemente por nós, seus irmãos e irmãs que ainda peregrinam na terra. Eles são nossos modelos, amigos e poderosos intercessores. Esta solenidade fortalece os laços que nos unem a toda a família de Deus, no Céu, no Purgatório e na terra, todos membros do mesmo Corpo Místico de Cristo.</p>
-      <h4>Um Chamado à Santidade</h4>
-      <p>As leituras desta festa, especialmente as Bem-Aventuranças (Mt 5,1-12), apresentam-nos o caminho para a santidade. Os santos não foram super-homens ou mulheres, mas pessoas de carne e osso, com suas lutas e fraquezas, que se deixaram transformar pela graça de Deus e viveram o Evangelho de forma radical. Celebrar Todos os Santos é, portanto, um convite a renovar o nosso desejo de sermos santos, a aspirar à pátria celeste e a viver já aqui na terra como cidadãos do Céu.</p>
-      <p class="mt-4"><b>Oração:</b> Deus eterno e todo-poderoso, que nos dais a alegria de celebrar numa só festa os méritos de Todos os Santos, concedei-nos, por sua intercessão, a abundância da vossa misericórdia que tanto esperamos.</p>
-      <p class="mt-2 italic">Todos os Santos e Santas de Deus, rogai por nós.</p>`
+    saints: [{
+      name: 'Solenidade de Todos os Santos',
+      imageUrl: 'https://i.postimg.cc/j29jkK7b/download.jpg',
+      story: `
+        <h4>A Igreja Triunfante</h4>
+        <p>Nesta grande solenidade, a Igreja na terra (Igreja Militante) celebra com alegria a glória da Igreja no Céu (Igreja Triunfante). Comemoramos não apenas os santos e santas oficialmente canonizados, mas a "multidão imensa, que ninguém podia contar, de todas as nações, tribos, povos e línguas" (Ap 7,9) que já participam da visão beatífica de Deus. É uma festa de esperança, que nos recorda o nosso destino final e a nossa própria vocação universal à santidade.</p>
+        <h4>Comunhão dos Santos</h4>
+        <p>A festa de Todos os Santos é uma expressão poderosa do dogma da Comunhão dos Santos. Acreditamos que os santos no Céu não estão distantes de nós; pelo contrário, eles intercedem incessantemente por nós, seus irmãos e irmãs que ainda peregrinam na terra. Eles são nossos modelos, amigos e poderosos intercessores. Esta solenidade fortalece os laços que nos unem a toda a família de Deus, no Céu, no Purgatório e na terra, todos membros do mesmo Corpo Místico de Cristo.</p>
+        <h4>Um Chamado à Santidade</h4>
+        <p>As leituras desta festa, especialmente as Bem-Aventuranças (Mt 5,1-12), apresentam-nos o caminho para a santidade. Os santos não foram super-homens ou mulheres, mas pessoas de carne e osso, com suas lutas e fraquezas, que se deixaram transformar pela graça de Deus e viveram o Evangelho de forma radical. Celebrar Todos os Santos é, portanto, um convite a renovar o nosso desejo de sermos santos, a aspirar à pátria celeste e a viver já aqui na terra como cidadãos do Céu.</p>
+        <p class="mt-4"><b>Oração:</b> Deus eterno e todo-poderoso, que nos dais a alegria de celebrar numa só festa os méritos de Todos os Santos, concedei-nos, por sua intercessão, a abundância da vossa misericórdia que tanto esperamos.</p>
+        <p class="mt-2 italic">Todos os Santos e Santas de Deus, rogai por nós.</p>`
+    }]
   },
   {
     day: 2,
     month: 'Novembro',
-    name: 'Finados (Comemoração dos Fiéis Defuntos)',
-    imageUrl: 'https://placehold.co/80x80/c27a2f/FFFFFF/png?text=Almas',
-    story: `
-      <h4>A Igreja Padecente</h4>
-      <p>Logo após celebrar a glória da Igreja Triunfante, a Igreja Militante volta seu olhar e seu coração para a Igreja Padecente: as almas dos fiéis que partiram deste mundo na amizade com Deus, mas que ainda precisam de uma purificação final para entrar na alegria plena do Céu. Esta purificação é o que a doutrina católica chama de Purgatório. Não é um "segundo inferno", mas uma antecâmara do Céu, um estado de purificação no amor, onde as almas, já salvas, se preparam para o encontro definitivo com a santidade de Deus.</p>
-      <h4>O Vínculo da Oração</h4>
-      <p>A Comemoração de Todos os Fiéis Defuntos é um dia de profunda caridade cristã. Acreditamos firmemente, com base na Tradição da Igreja, que as nossas orações, sacrifícios e, sobretudo, a Santa Missa oferecida por eles, podem ajudá-los e aliviar seus sofrimentos. É um poderoso exercício da Comunhão dos Santos, que une a Igreja da terra, do Céu e do Purgatório. Ao rezar pelos que nos precederam, expressamos nossa fé na ressurreição e nossa esperança de reencontrá-los um dia na pátria celeste.</p>
-      <h4>Esperança na Vida Eterna</h4>
-      <p>Visitar os cemitérios, acender velas, rezar pelos falecidos não são atos de tristeza mórbida, mas de fé e esperança. Recordamos com carinho aqueles que amamos, agradecemos pelo dom de suas vidas e os entregamos à misericórdia infinita de Deus. Este dia nos confronta com a reality da morte, não como um fim, mas como uma passagem para a Vida Eterna, reafirmando a nossa fé em Cristo, que venceu a morte e nos abriu as portas do Céu.</p>
-      <p class="mt-4"><b>Oração:</b> Dai-lhes, Senhor, o descanso eterno, e a luz perpétua os ilumine. Que as almas dos fiéis defuntos, pela misericórdia de Deus, descansem em paz. Amém.</p>
-      <p class="mt-2 italic">Almas do purgatório, intercedei por nós.</p>`
+    saints: [{
+      name: 'Finados (Comemoração dos Fiéis Defuntos)',
+      imageUrl: 'https://placehold.co/80x80/c27a2f/FFFFFF/png?text=Almas',
+      story: `
+        <h4>A Igreja Padecente</h4>
+        <p>Logo após celebrar a glória da Igreja Triunfante, a Igreja Militante volta seu olhar e seu coração para a Igreja Padecente: as almas dos fiéis que partiram deste mundo na amizade com Deus, mas que ainda precisam de uma purificação final para entrar na alegria plena do Céu. Esta purificação é o que a doutrina católica chama de Purgatório. Não é um "segundo inferno", mas uma antecâmara do Céu, um estado de purificação no amor, onde as almas, já salvas, se preparam para o encontro definitivo com a santidade de Deus.</p>
+        <h4>O Vínculo da Oração</h4>
+        <p>A Comemoração de Todos os Fiéis Defuntos é um dia de profunda caridade cristã. Acreditamos firmemente, com base na Tradição da Igreja, que as nossas orações, sacrifícios e, sobretudo, a Santa Missa oferecida por eles, podem ajudá-los e aliviar seus sofrimentos. É um poderoso exercício da Comunhão dos Santos, que une a Igreja da terra, do Céu e do Purgatório. Ao rezar pelos que nos precederam, expressamos nossa fé na ressurreição e nossa esperança de reencontrá-los um dia na pátria celeste.</p>
+        <h4>Esperança na Vida Eterna</h4>
+        <p>Visitar os cemitérios, acender velas, rezar pelos falecidos não são atos de tristeza mórbida, mas de fé e esperança. Recordamos com carinho aqueles que amamos, agradecemos pelo dom de suas vidas e os entregamos à misericórdia infinita de Deus. Este dia nos confronta com a reality da morte, não como um fim, mas como uma passagem para a Vida Eterna, reafirmando a nossa fé em Cristo, que venceu a morte e nos abriu as portas do Céu.</p>
+        <p class="mt-4"><b>Oração:</b> Dai-lhes, Senhor, o descanso eterno, e a luz perpétua os ilumine. Que as almas dos fiéis defuntos, pela misericórdia de Deus, descansem em paz. Amém.</p>
+        <p class="mt-2 italic">Almas do purgatório, intercedei por nós.</p>`
+    }]
   },
 ];
-
-
-
-    
-
-
