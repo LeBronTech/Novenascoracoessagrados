@@ -6,10 +6,11 @@ import Image from 'next/image';
 import { saintsOfTheDay, months } from '@/lib/data';
 import type { SaintStory } from '@/lib/data';
 import { Card, CardContent } from '@/components/ui/card';
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, type CarouselApi } from '@/components/ui/carousel';
+import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from '@/components/ui/carousel';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { cn } from '@/lib/utils';
-import { CalendarIcon } from 'lucide-react';
+import { ArrowLeft, ArrowRight, CalendarIcon } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 export default function SaintOfTheDay() {
   const [api, setApi] = useState<CarouselApi>();
@@ -23,10 +24,11 @@ export default function SaintOfTheDay() {
   }, []);
   
   const handleValueChange = (value: string[]) => {
-      if (value.length > 0) {
+      // If we are opening a new one, we want all to be open
+      if (value.length > openItems.length) {
         const allItemKeys = saintsForCurrentMonth.map((_, index) => `item-${index}`);
         setOpenItems(allItemKeys);
-      } else {
+      } else { // if we are closing one, we close all
          setOpenItems([]);
       }
   };
@@ -60,7 +62,7 @@ export default function SaintOfTheDay() {
     return <div className="p-4 text-center text-gray-500">A carregar santos...</div>;
   }
 
-  const arrowClasses = 'relative top-0 translate-y-0 h-auto px-4 py-2 text-sm border-0 text-primary bg-transparent hover:bg-primary hover:text-primary-foreground';
+  const arrowClasses = 'text-primary bg-transparent hover:bg-primary hover:text-primary-foreground';
 
   return (
     <div className="p-4 md:p-6">
@@ -96,12 +98,14 @@ export default function SaintOfTheDay() {
           ))}
         </CarouselContent>
         <div className="flex justify-center items-center mt-4 gap-4">
-          <CarouselPrevious variant="outline" className={cn(arrowClasses, '-left-0')}>
-            Dia anterior
-          </CarouselPrevious>
-          <CarouselNext variant="outline" className={cn(arrowClasses, '-right-0')}>
-            Próximo dia
-          </CarouselNext>
+          <Button variant="ghost" className={cn(arrowClasses)} onClick={() => api?.scrollPrev()}>
+            <ArrowLeft />
+            <span className="ml-2">Dia anterior</span>
+          </Button>
+          <Button variant="ghost" className={cn(arrowClasses)} onClick={() => api?.scrollNext()}>
+            <span className="mr-2">Próximo dia</span>
+            <ArrowRight />
+          </Button>
         </div>
       </Carousel>
     </div>
