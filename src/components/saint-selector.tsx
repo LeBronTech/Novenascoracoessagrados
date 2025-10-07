@@ -33,23 +33,29 @@ const MonthCarousel = memo(({ months, selectedMonth, onMonthChange }: Pick<Saint
     onMonthChange(months[newSelectedIndex]);
 
     const newSlideStates: { [key: number]: string } = {};
-    const slidesInView = api.slidesInView();
     const totalSlides = api.scrollSnapList().length;
 
     api.slideNodes().forEach((_, index) => {
       let state = '';
       if (index === newSelectedIndex) {
         state = 'active';
-      } else if (slidesInView.includes(index)) {
-        const engine = api.internalEngine();
-        const diffToTarget = engine.location.get() - engine.location.get(index);
-        const relativeIndex = (index - newSelectedIndex + totalSlides) % totalSlides;
-        const dist = Math.abs(index - newSelectedIndex);
+      } else {
+        const diff = index - newSelectedIndex;
+        const dist = Math.abs(diff);
+        const loopedDist = Math.min(dist, totalSlides - dist);
 
-        if (dist === 1 || dist === totalSlides -1) {
-          state = diffToTarget < 0 ? 'next1' : 'prev1';
-        } else if (dist === 2 || dist === totalSlides - 2) {
-          state = diffToTarget < 0 ? 'next2' : 'prev2';
+        if (loopedDist === 1) {
+            if ((diff > 0 && diff < totalSlides / 2) || (diff < 0 && diff < -totalSlides / 2)) {
+                state = 'next1';
+            } else {
+                state = 'prev1';
+            }
+        } else if (loopedDist === 2) {
+             if ((diff > 0 && diff < totalSlides / 2) || (diff < 0 && diff < -totalSlides / 2)) {
+                state = 'next2';
+            } else {
+                state = 'prev2';
+            }
         }
       }
       newSlideStates[index] = state;
