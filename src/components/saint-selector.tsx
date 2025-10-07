@@ -33,7 +33,7 @@ const MonthCarousel = memo(({ months, selectedMonth, onMonthChange }: Pick<Saint
     onMonthChange(months[newSelectedIndex]);
 
     const newSlideStates: { [key: number]: string } = {};
-    const slidesInView = api.slidesInView(true);
+    const slidesInView = api.slidesInView();
     const totalSlides = api.scrollSnapList().length;
 
     api.slideNodes().forEach((_, index) => {
