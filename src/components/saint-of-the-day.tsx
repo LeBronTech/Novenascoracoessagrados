@@ -210,11 +210,11 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
           })}
         </CarouselContent>
         <div className="flex justify-center items-center mt-4 gap-4">
-          <Button variant="ghost" className={cn(arrowClasses)} onClick={() => api?.scrollPrev()}>
+          <Button variant="ghost" className={cn(arrowClasses, "shadow-md")} onClick={() => api?.scrollPrev()}>
             <ArrowLeft />
             <span className="ml-2">Dia anterior</span>
           </Button>
-          <Button variant="ghost" className={cn(arrowClasses)} onClick={() => api?.scrollNext()}>
+          <Button variant="ghost" className={cn(arrowClasses, "shadow-md")} onClick={() => api?.scrollNext()}>
             <span className="mr-2">Próximo dia</span>
             <ArrowRight />
           </Button>
