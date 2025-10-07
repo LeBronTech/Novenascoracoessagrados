@@ -106,13 +106,8 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
   }, [currentMonthName]);
 
   const handleValueChange = useCallback((value: string[]) => {
-    if (value.length > openItems.length) {
-      const allItemKeys = saintsForCurrentMonth.map((_, index) => `item-${index}`);
-      setOpenItems(allItemKeys);
-    } else {
-      setOpenItems([]);
-    }
-  }, [openItems.length, saintsForCurrentMonth]);
+    setOpenItems(value);
+  }, []);
 
   const handleSelectSaint = (e: React.MouseEvent, dayIndex: number, saintIndex: number) => {
     e.stopPropagation();
@@ -148,11 +143,13 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
             const selectedSaintIndex = selectedSaintIndices[index] ?? 0;
             const currentSaint = dayData.saints[selectedSaintIndex];
             const hasMultipleSaints = dayData.saints.length > 1;
+            const saintNames = dayData.saints.map(s => s.name).join(' e ');
+            const isLongName = saintNames.length > 25 || hasMultipleSaints;
 
             return (
               <CarouselItem key={index} className="pl-4">
                 <div className="p-1">
-                  <Accordion type="multiple" value={openItems} onValueChange={handleValueChange} className="w-full">
+                  <Accordion type="single" collapsible value={openItems[0]} onValueChange={(value) => handleValueChange(value ? [value] : [])} className="w-full">
                     <AccordionItem value={`item-${index}`} className="border-none group">
                       <AccordionTrigger className={cn(
                         "p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow data-[state=open]:rounded-b-none saint-day-trigger",
@@ -165,8 +162,11 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
                              <div className="date-capsule">
                                {dayData.day} de {dayData.month}
                              </div>
-                             <p className="font-brand text-lg font-semibold mt-2">
-                               {dayData.saints.map(s => s.name).join(' e ')}
+                             <p className={cn(
+                                "font-brand font-semibold mt-2",
+                                isLongName ? "text-base" : "text-lg"
+                             )}>
+                               {saintNames}
                              </p>
                            </div>
                          </div>

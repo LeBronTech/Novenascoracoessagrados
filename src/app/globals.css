@@ -231,15 +231,15 @@
   }
 
   .saint-image-wrapper.multiple {
-    width: 7.5rem;
+    width: 8rem;
   }
 
   .saint-image-wrapper.multiple .image-1 {
-    @apply absolute left-0 top-1/2 -translate-y-1/2 z-0 transform-gpu;
+    @apply absolute left-1 top-1/2 -translate-y-1/2 z-0 transform-gpu;
     transform: translateX(10%) translateY(-50%) scale(0.9);
   }
   .saint-image-wrapper.multiple .image-2 {
-    @apply absolute right-0 top-1/2 -translate-y-1/2 z-10 transform-gpu;
+    @apply absolute right-1 top-1/2 -translate-y-1/2 z-10 transform-gpu;
     transform: translateX(-10%) translateY(-50%) scale(0.9);
   }
   
