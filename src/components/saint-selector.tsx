@@ -31,14 +31,15 @@ const MonthCarousel = memo(({ months, selectedMonth, onMonthChange }: Pick<Saint
     onMonthChange(months[newSelectedIndex]);
 
     const newSlideStates: { [key: number]: string } = {};
-    const slidesInView = api.slidesInView();
+    const slidesInView = api.slidesInView(true); // loop: true
+    const totalSlides = api.scrollSnapList().length;
     
     api.slideNodes().forEach((_, index) => {
         let state = '';
         if (index === newSelectedIndex) {
             state = 'active';
         } else if (slidesInView.includes(index)) {
-            const totalSlides = api.scrollSnapList().length;
+            const engine = api.internalEngine();
             const relativeIndex = (index - newSelectedIndex + totalSlides) % totalSlides;
             const dist = Math.min(relativeIndex, totalSlides - relativeIndex);
 
@@ -63,8 +64,10 @@ const MonthCarousel = memo(({ months, selectedMonth, onMonthChange }: Pick<Saint
     emblaApi.on('reInit', onSelect);
 
     return () => {
-      emblaApi.off('select', onSelect);
-      emblaApi.off('reInit', onSelect);
+      if (emblaApi) {
+        emblaApi.off('select', onSelect);
+        emblaApi.off('reInit', onSelect);
+      }
     };
   }, [emblaApi, months, selectedMonth, onSelect]);
   
@@ -78,7 +81,7 @@ const MonthCarousel = memo(({ months, selectedMonth, onMonthChange }: Pick<Saint
         {months.map((month, index) => (
           <div
             className={cn('flex-[0_0_10rem] min-w-0 pl-4 relative', `embla__slide--${slideStates[index]}`)}
-            key={month}
+            key={month + index} // Use index to create unique keys for looped slides
           >
             <button
               onClick={() => handleMonthClick(index)}
@@ -164,3 +167,4 @@ export default function SaintSelector({
     </section>
   );
 }
+
