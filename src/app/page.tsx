@@ -73,6 +73,8 @@ export default function Home() {
     <div className="container mx-auto p-4 md:p-8 max-w-5xl text-stone-900">
       <Header />
 
+      <h1 className="text-4xl font-bold text-center text-red-700 my-8">Teste de Atualização</h1>
+
       <SaintOfTheDay />
 
       <div className="bg-gray-100/70 backdrop-blur-sm rounded-xl shadow-lg p-4 my-8">
