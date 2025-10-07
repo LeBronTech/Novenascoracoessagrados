@@ -1,9 +1,13 @@
+
 'use client';
 
+import React, { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
-import { Button } from '@/components/ui/button';
+import useEmblaCarousel, { type EmblaCarouselType, type EmblaOptionsType } from 'embla-carousel-react';
 import { cn } from '@/lib/utils';
 import type { Saint } from '@/lib/data';
+
+const OPTIONS: EmblaOptionsType = { loop: true, align: 'center', containScroll: false };
 
 interface SaintSelectorProps {
   saints: Saint[];
@@ -13,6 +17,86 @@ interface SaintSelectorProps {
   selectedSaintId: string | null;
   onSaintSelect: (id: string) => void;
 }
+
+const MonthCarousel = ({ months, selectedMonth, onMonthChange }: Pick<SaintSelectorProps, 'months' | 'selectedMonth' | 'onMonthChange'>) => {
+  const [emblaRef, emblaApi] = useEmblaCarousel(OPTIONS);
+  const [slideStates, setSlideStates] = useState<{ [key: number]: string }>({});
+
+  const onSelect = useCallback((api: EmblaCarouselType) => {
+    if (!api) return;
+    const newSelectedIndex = api.selectedScrollSnap();
+    onMonthChange(months[newSelectedIndex]);
+
+    const newSlideStates: { [key: number]: string } = {};
+    api.scrollSnapList().forEach((_, index) => {
+      let state = '';
+      if (index === newSelectedIndex) {
+        state = 'active';
+      } else {
+        const diff = Math.abs(newSelectedIndex - index);
+        const relativeIndex = index - newSelectedIndex;
+        
+        const totalSlides = api.scrollSnapList().length;
+        const dist = Math.min(Math.abs(relativeIndex), totalSlides - Math.abs(relativeIndex));
+
+        if(relativeIndex > 0) { // next slides
+            if (dist === 1) state = 'next1';
+            else if (dist === 2) state = 'next2';
+        } else { // prev slides
+            if (dist === 1) state = 'prev1';
+            else if (dist === 2) state = 'prev2';
+        }
+      }
+      newSlideStates[index] = state;
+    });
+
+    setSlideStates(newSlideStates);
+  }, [onMonthChange, months]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    const initialIndex = months.indexOf(selectedMonth);
+    if(initialIndex !== -1) {
+      emblaApi.scrollTo(initialIndex, true);
+    }
+    onSelect(emblaApi);
+    emblaApi.on('select', onSelect);
+    emblaApi.on('reInit', onSelect);
+
+    return () => {
+      emblaApi.off('select', onSelect);
+      emblaApi.off('reInit', onSelect);
+    };
+  }, [emblaApi, months, selectedMonth, onSelect]);
+  
+  const handleMonthClick = (index: number) => {
+    if(emblaApi) emblaApi.scrollTo(index);
+  }
+
+  return (
+    <div className="overflow-hidden month-carousel py-4" ref={emblaRef}>
+      <div className="flex">
+        {months.map((month, index) => (
+          <div
+            className={cn('flex-[0_0_10rem] min-w-0 pl-4 relative', `embla__slide--${slideStates[index]}`)}
+            key={month}
+          >
+            <button
+              onClick={() => handleMonthClick(index)}
+              className={cn(
+                'month-nav-btn text-lg font-brand text-gray-600 w-full',
+                selectedMonth === month && 'active'
+              )}
+            >
+              {month}
+            </button>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 
 export default function SaintSelector({
   saints,
@@ -27,18 +111,9 @@ export default function SaintSelector({
 
   return (
     <section className="w-full">
-      <nav id="month-nav" className="flex justify-center gap-6 mb-4 border-b border-gray-300 pb-3">
-        {months.map((month) => (
-          <button
-            key={month}
-            className={cn('month-nav-btn text-lg font-brand text-gray-600', selectedMonth === month && 'active')}
-            onClick={() => onMonthChange(month)}
-          >
-            {month}
-          </button>
-        ))}
-      </nav>
-      <div className="saints-nav-container flex items-start gap-x-4 overflow-x-auto pb-2">
+      <MonthCarousel months={months} selectedMonth={selectedMonth} onMonthChange={onMonthChange} />
+      
+      <div className="saints-nav-container flex items-start gap-x-4 overflow-x-auto pb-2 mt-4 border-t border-gray-300 pt-4">
         {saintsForMonth.map((saint) => (
             <div
               key={saint.id}

@@ -119,6 +119,40 @@
   .prose .section-title {
     color: hsl(var(--primary));
   }
+
+  /* Month Carousel Styles */
+  .month-carousel .embla__slide {
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    transform: scale(0.7);
+    opacity: 0.4;
+  }
+
+  .month-carousel .embla__slide--active {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+
+  .month-carousel:hover .embla__slide {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+
+  .month-carousel .embla__slide:hover {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+
+  .month-carousel .embla__slide--prev1,
+  .month-carousel .embla__slide--next1 {
+    transform: scale(0.85);
+    opacity: 0.7;
+  }
+
+  .month-carousel .embla__slide--prev2,
+  .month-carousel .embla__slide--next2 {
+    transform: scale(0.7);
+    opacity: 0.5;
+  }
 }
 
 @layer components {
