@@ -126,10 +126,15 @@
     transform: scale(0.7);
     opacity: 0.4;
   }
-
+  
   .month-carousel .embla__slide--active {
     transform: scale(1.1);
     opacity: 1;
+  }
+  
+  .month-carousel:not(:hover) .embla__slide--active {
+    transform: scale(1.1) !important;
+    opacity: 1 !important;
   }
 
   .month-carousel:hover .embla__slide {
@@ -138,8 +143,8 @@
   }
 
   .month-carousel .embla__slide:hover {
-    transform: scale(1.1);
-    opacity: 1;
+    transform: scale(1.15) !important;
+    opacity: 1 !important;
   }
 
   .month-carousel .embla__slide--prev1,
@@ -160,3 +165,4 @@
         box-shadow: inset 0 4px 6px -1px rgb(0 0 0 / 0.05);
     }
 }
+

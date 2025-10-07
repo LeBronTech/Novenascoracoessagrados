@@ -1,11 +1,13 @@
 
 'use client';
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, memo } from 'react';
 import Image from 'next/image';
 import useEmblaCarousel, { type EmblaCarouselType, type EmblaOptionsType } from 'embla-carousel-react';
 import { cn } from '@/lib/utils';
 import type { Saint } from '@/lib/data';
+import { Card, CardContent } from '@/components/ui/card';
+import { Heart } from 'lucide-react';
 
 const OPTIONS: EmblaOptionsType = { loop: true, align: 'center', containScroll: false };
 
@@ -18,7 +20,7 @@ interface SaintSelectorProps {
   onSaintSelect: (id: string) => void;
 }
 
-const MonthCarousel = ({ months, selectedMonth, onMonthChange }: Pick<SaintSelectorProps, 'months' | 'selectedMonth' | 'onMonthChange'>) => {
+const MonthCarousel = memo(({ months, selectedMonth, onMonthChange }: Pick<SaintSelectorProps, 'months' | 'selectedMonth' | 'onMonthChange'>) => {
   const [emblaRef, emblaApi] = useEmblaCarousel(OPTIONS);
   const [slideStates, setSlideStates] = useState<{ [key: number]: string }>({});
 
@@ -33,19 +35,13 @@ const MonthCarousel = ({ months, selectedMonth, onMonthChange }: Pick<SaintSelec
       if (index === newSelectedIndex) {
         state = 'active';
       } else {
-        const diff = Math.abs(newSelectedIndex - index);
-        const relativeIndex = index - newSelectedIndex;
-        
         const totalSlides = api.scrollSnapList().length;
-        const dist = Math.min(Math.abs(relativeIndex), totalSlides - Math.abs(relativeIndex));
+        // Simplified logic for prev/next based on relative position
+        const relativeIndex = (index - newSelectedIndex + totalSlides) % totalSlides;
+        const dist = Math.min(relativeIndex, totalSlides - relativeIndex);
 
-        if(relativeIndex > 0) { // next slides
-            if (dist === 1) state = 'next1';
-            else if (dist === 2) state = 'next2';
-        } else { // prev slides
-            if (dist === 1) state = 'prev1';
-            else if (dist === 2) state = 'prev2';
-        }
+        if (dist === 1) state = relativeIndex < totalSlides / 2 ? 'next1' : 'prev1';
+        else if (dist === 2) state = relativeIndex < totalSlides / 2 ? 'next2' : 'prev2';
       }
       newSlideStates[index] = state;
     });
@@ -95,7 +91,9 @@ const MonthCarousel = ({ months, selectedMonth, onMonthChange }: Pick<SaintSelec
       </div>
     </div>
   );
-};
+});
+
+MonthCarousel.displayName = 'MonthCarousel';
 
 
 export default function SaintSelector({
@@ -114,7 +112,8 @@ export default function SaintSelector({
       <MonthCarousel months={months} selectedMonth={selectedMonth} onMonthChange={onMonthChange} />
       
       <div className="saints-nav-container flex items-start gap-x-4 overflow-x-auto pb-2 mt-4 border-t border-gray-300 pt-4">
-        {saintsForMonth.map((saint) => (
+        {saintsForMonth.length > 0 ? (
+          saintsForMonth.map((saint) => (
             <div
               key={saint.id}
               className={cn(
@@ -142,8 +141,21 @@ export default function SaintSelector({
                 Dia {saint.feastDay.split('/')[0]}
               </div>
             </div>
-        ))}
+          ))
+        ) : (
+          <div className="w-full flex justify-center">
+            <Card className="w-full max-w-sm bg-gray-200/50 border-dashed">
+                <CardContent className="p-6 text-center">
+                    <Heart className="mx-auto h-12 w-12 text-primary/50 mb-4" strokeWidth={1} />
+                    <p className="font-semibold text-gray-600">
+                        Logo logo teremos novenas aqui. Salve Maria!
+                    </p>
+                </CardContent>
+            </Card>
+          </div>
+        )}
       </div>
     </section>
   );
 }
+
