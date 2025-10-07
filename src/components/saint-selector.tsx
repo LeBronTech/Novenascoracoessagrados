@@ -105,7 +105,21 @@ export default function SaintSelector({
   onSaintSelect,
 }: SaintSelectorProps) {
 
+  const [animate, setAnimate] = useState(false);
   const saintsForMonth = saints.filter(s => s.month === selectedMonth);
+
+  useEffect(() => {
+    setAnimate(false);
+    const timer = setTimeout(() => setAnimate(true), 50);
+    return () => clearTimeout(timer);
+  }, [selectedMonth]);
+
+  const getAnimationClass = (index: number) => {
+    if (!animate) return 'opacity-0';
+    const delays = ['delay-0', 'delay-75', 'delay-100', 'delay-150', 'delay-200', 'delay-300', 'delay-500'];
+    const delayClass = delays[index] || delays[delays.length -1];
+    return `animate-fade-in ${delayClass}`;
+  };
 
   return (
     <section className="w-full">
@@ -113,12 +127,13 @@ export default function SaintSelector({
       
       <div className="saints-nav-container flex items-start gap-x-4 overflow-x-auto pb-2 mt-4 border-t border-gray-300 pt-4">
         {saintsForMonth.length > 0 ? (
-          saintsForMonth.map((saint) => (
+          saintsForMonth.map((saint, index) => (
             <div
               key={saint.id}
               className={cn(
-                'saint-nav-item flex flex-col items-center gap-1 text-center opacity-70 hover:opacity-100 hover:scale-105 transform-gpu transition-transform duration-200 w-[100px] shrink-0 cursor-pointer',
-                selectedSaintId === saint.id && 'active opacity-100'
+                'saint-nav-item flex flex-col items-center gap-1 text-center opacity-70 hover:opacity-100 hover:scale-105 transform-gpu transition-all duration-200 w-[100px] shrink-0 cursor-pointer',
+                selectedSaintId === saint.id && 'active opacity-100',
+                getAnimationClass(index)
               )}
               onClick={() => onSaintSelect(saint.id)}
               role="button"
@@ -158,4 +173,3 @@ export default function SaintSelector({
     </section>
   );
 }
-
