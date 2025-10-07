@@ -9,7 +9,7 @@ import NovenaDisplay from '@/components/novena-display';
 import SaintOfTheDay from '@/components/saint-of-the-day';
 import { saints, months, novenaData } from '@/lib/data';
 import type { Saint, Novena } from '@/lib/data';
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetDescription } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
 import { Menu } from 'lucide-react';
 
@@ -83,6 +83,7 @@ export default function Home() {
         <SheetContent side="left" className="w-[380px] sm:w-[540px] bg-gray-100 p-0">
           <SheetHeader className="p-6 bg-white shadow-sm">
             <SheetTitle className="text-xl font-brand text-gray-800">Santo do Dia</SheetTitle>
+            <SheetDescription className="sr-only">Navegue para ver o santo de cada dia do mês.</SheetDescription>
           </SheetHeader>
           <div className="h-[calc(100vh-80px)] overflow-y-auto">
             <SaintOfTheDay />
