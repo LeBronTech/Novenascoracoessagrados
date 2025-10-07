@@ -1,8 +1,7 @@
 
 'use client';
 
-import { useState, useMemo, useEffect, useCallback } from 'react';
-import Image from 'next/image';
+import { useState, useMemo, useEffect } from 'react';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
 import SaintSelector from '@/components/saint-selector';
@@ -100,7 +99,7 @@ export default function Home() {
 
       <Header />
       
-      <h2 className="text-xl font-brand text-center text-gray-700 mt-8 mb-2">
+      <h2 className="text-xl font-brand text-center text-gray-700 mt-8">
         Santo do Dia
       </h2>
       <SaintOfTheDay triggerTheme={theme} />
@@ -119,13 +118,15 @@ export default function Home() {
         />
       </div>
 
-      <NovenaDisplay
-        key={selectedSaintId}
-        novena={selectedNovena}
-        saint={selectedSaint}
-        theme={theme}
-        setTheme={setTheme}
-      />
+      <div className="mt-8">
+        <NovenaDisplay
+          key={selectedSaintId}
+          novena={selectedNovena}
+          saint={selectedSaint}
+          theme={theme}
+          setTheme={setTheme}
+        />
+      </div>
       <Footer />
     </div>
   );
