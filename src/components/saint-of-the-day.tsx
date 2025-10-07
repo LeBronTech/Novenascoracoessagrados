@@ -55,15 +55,11 @@ export default function SaintOfTheDay() {
   }
 
   return (
-    <div className="bg-gray-100/70 backdrop-blur-sm rounded-xl shadow-lg p-4 md:p-6 my-8">
-      <h2 className="text-xl font-brand text-center text-gray-700 mb-4 flex items-center justify-center gap-2">
-        <CalendarIcon className="w-5 h-5" />
-        Santo do Dia
-      </h2>
-      <Carousel setApi={setApi} opts={{ startIndex }}>
-        <CarouselContent className="-ml-2">
+    <div className="p-4 md:p-6">
+      <Carousel setApi={setApi} opts={{ startIndex, loop: true }} className="w-full">
+        <CarouselContent className="-ml-4">
           {saintsForCurrentMonth.map((saint, index) => (
-            <CarouselItem key={index} className="pl-2 md:basis-1/2 lg:basis-1/3">
+            <CarouselItem key={index} className="pl-4">
               <div className="p-1">
                 <Accordion type="single" collapsible className="w-full">
                   <AccordionItem value={`item-${index}`} className="border-none">
@@ -91,8 +87,10 @@ export default function SaintOfTheDay() {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious className="absolute -left-4 top-1/2 -translate-y-1/2" />
-        <CarouselNext className="absolute -right-4 top-1/2 -translate-y-1/2" />
+        <div className="flex justify-center items-center mt-4 gap-4">
+          <CarouselPrevious className="relative left-0 top-0 translate-y-0" />
+          <CarouselNext className="relative right-0 top-0 translate-y-0" />
+        </div>
       </Carousel>
     </div>
   );

@@ -9,6 +9,9 @@ import NovenaDisplay from '@/components/novena-display';
 import SaintOfTheDay from '@/components/saint-of-the-day';
 import { saints, months, novenaData } from '@/lib/data';
 import type { Saint, Novena } from '@/lib/data';
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import { Button } from '@/components/ui/button';
+import { Menu } from 'lucide-react';
 
 export default function Home() {
   const [selectedMonth, setSelectedMonth] = useState<string>(months[0]);
@@ -70,11 +73,26 @@ export default function Home() {
 
   return (
     <div className="container mx-auto p-4 md:p-8 max-w-5xl text-stone-900">
+      <Sheet>
+        <SheetTrigger asChild>
+          <Button variant="outline" size="icon" className="fixed top-4 left-4 z-20 bg-white/70 backdrop-blur-sm">
+            <Menu className="h-6 w-6" />
+            <span className="sr-only">Abrir menu</span>
+          </Button>
+        </SheetTrigger>
+        <SheetContent side="left" className="w-[380px] sm:w-[540px] bg-gray-100 p-0">
+          <SheetHeader className="p-6 bg-white shadow-sm">
+            <SheetTitle className="text-xl font-brand text-gray-800">Santo do Dia</SheetTitle>
+          </SheetHeader>
+          <div className="h-[calc(100vh-80px)] overflow-y-auto">
+            <SaintOfTheDay />
+          </div>
+        </SheetContent>
+      </Sheet>
+
       <Header />
 
       <h1 className="text-4xl font-bold text-center text-red-700 my-8">Teste de Atualização</h1>
-
-      <SaintOfTheDay />
 
       <div className="bg-gray-100/70 backdrop-blur-sm rounded-xl shadow-lg p-4 my-8">
         <h2 id="saints-nav-title" className="text-xl font-brand text-center text-gray-700 mb-4">
