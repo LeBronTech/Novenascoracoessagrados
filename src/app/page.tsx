@@ -97,8 +97,6 @@ export default function Home() {
 
       <Header />
 
-      <h1 className="text-4xl font-bold text-center text-red-700 my-8">Teste de Atualização</h1>
-
       <div className="bg-gray-100/70 backdrop-blur-sm rounded-xl shadow-lg p-4 my-8">
         <h2 id="saints-nav-title" className="text-xl font-brand text-center text-gray-700 mb-4">
           Novenas de {selectedMonth}
