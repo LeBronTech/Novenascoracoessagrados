@@ -216,6 +216,7 @@
 
   .group[data-state=open] {
     position: relative;
+    z-index: 20;
   }
   
   /* Saint of the Day Images */
@@ -272,10 +273,10 @@
     @apply absolute top-1/2 -translate-y-1/2 z-10 w-10 h-20 flex items-center justify-center cursor-pointer transition-all duration-200;
   }
   .saint-day-content-nav.prev {
-    @apply -left-5 rounded-r-full;
+    @apply -left-4 rounded-r-full;
   }
   .saint-day-content-nav.next {
-    @apply -right-5 rounded-l-full;
+    @apply -right-4 rounded-l-full;
   }
   .saint-day-content.theme-light .saint-day-content-nav {
     @apply bg-gray-200/70 text-gray-600 hover:bg-gray-300 hover:text-gray-800;
