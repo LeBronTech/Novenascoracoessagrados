@@ -171,16 +171,20 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
                     <SaintImages saints={dayData.saints} isOpen={isOpen} />
                     <div className={cn(
                       "flex flex-1 flex-col items-start saint-name-container",
-                      isOpen && dayData.saints.length > 1 && "md:items-end md:text-right"
+                       isOpen && dayData.saints.length > 1 && "md:items-end"
                       )}>
                       <div className="date-capsule">
                         {dayData.day} de {dayData.month}
                       </div>
-                      <p className={cn("font-brand font-semibold mt-2", dayData.saints.length > 1 ? "text-base" : "text-lg")}>
+                      <p className={cn(
+                        "font-brand font-semibold mt-2 text-left", 
+                        dayData.saints.length > 1 ? "text-base" : "text-lg",
+                        isOpen && dayData.saints.length > 1 && "md:text-right"
+                      )}>
                         {dayData.saints.map(s => s.name).join(' & ')}
                       </p>
                     </div>
-                    <ChevronDown className={cn("h-4 w-4 shrink-0 transition-transform duration-200", isOpen && "rotate-180")} />
+                    <ChevronDown className={cn("h-4 w-4 shrink-0 transition-transform duration-200", isOpen && "rotate-180", isOpen && "text-primary-foreground")} />
                   </div>
                 </button>
 
@@ -206,7 +210,7 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
                     <ThemeSelector theme={theme} setTheme={setTheme} />
                     
                     <div className="flex items-center justify-center gap-2 mb-6">
-                        <Button
+                       <Button
                           variant="outline"
                           className="h-8 px-4 bg-white/70 backdrop-blur-sm text-primary hover:bg-primary hover:text-primary-foreground shadow-lg border-primary/20 border" 
                           onClick={(e) => { e.stopPropagation(); e.currentTarget.blur(); handleNavigation('prev'); }}
@@ -261,3 +265,5 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
     </div>
   );
 }
+
+    
