@@ -256,10 +256,10 @@
       height: 4rem; /* h-16 */
     }
     .saint-image-wrapper.multiple .image-1 {
-      @apply left-[35%];
+      @apply left-[35%] top-auto;
     }
     .saint-image-wrapper.multiple .image-2 {
-      @apply left-[65%];
+      @apply left-[65%] top-auto;
     }
     .group[data-state=open] .saint-image-wrapper.multiple {
       height: 8rem !important; /* Re-apply stacked height on open */
