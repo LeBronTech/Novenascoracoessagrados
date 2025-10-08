@@ -1,15 +1,13 @@
 
 'use client';
 
-import { useState, useEffect, useMemo, useCallback } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import Image from 'next/image';
 import { saintsOfTheDay, months } from '@/lib/data';
 import type { SaintStory } from '@/lib/data';
-import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from '@/components/ui/carousel';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, type CarouselApi } from '@/components/ui/carousel';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { cn } from '@/lib/utils';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 import type { Theme as NovenaTheme } from '@/app/page';
 
 type Theme = 'light' | 'dark';
@@ -60,7 +58,7 @@ function SaintImages({ saints }: { saints: SaintStory[] }) {
 
 function ThemeSelector({ theme, setTheme }: { theme: Theme, setTheme: (theme: Theme) => void }) {
     return (
-        <div className="absolute top-10 right-3 flex gap-2 bg-transparent px-2 py-1 rounded-full z-20">
+        <div className="absolute top-4 right-3 flex gap-2 bg-transparent px-2 py-1 rounded-full z-20">
             {(['light', 'dark'] as Theme[]).map((t) => (
                 <button
                     key={t}
@@ -87,15 +85,17 @@ interface SaintOfTheDayProps {
 
 export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
   const [api, setApi] = useState<CarouselApi>();
+  const [current, setCurrent] = useState(0);
+  const [count, setCount] = useState(0);
   const [currentDate, setCurrentDate] = useState<Date | null>(null);
   const [hydrated, setHydrated] = useState(false);
-  const [openAccordion, setOpenAccordion] = useState<string[]>([]);
-  const [selectedSaintIndices, setSelectedSaintIndices] = useState<Record<number, number>>({});
   const [theme, setTheme] = useState<Theme>('light');
+  const [selectedSaintIndices, setSelectedSaintIndices] = useState<Record<number, number>>({});
 
   useEffect(() => {
     setHydrated(true);
-    setCurrentDate(new Date());
+    const today = new Date();
+    setCurrentDate(today);
   }, []);
 
   const currentMonthName = useMemo(() => {
@@ -107,7 +107,7 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
     if (!currentMonthName) return [];
     return saintsOfTheDay.filter(day => day.month === currentMonthName);
   }, [currentMonthName]);
-
+  
   const startIndex = useMemo(() => {
     if (!currentDate || saintsForCurrentMonth.length === 0) return 0;
     const dayOfMonth = currentDate.getDate();
@@ -117,119 +117,101 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
 
   useEffect(() => {
     if (api && hydrated && saintsForCurrentMonth.length > 0) {
-      setTimeout(() => {
+      if (current === 0) { // Only scroll to start index on initial load
         api.scrollTo(startIndex, true);
-      }, 100);
+      }
     }
-  }, [api, hydrated, startIndex, saintsForCurrentMonth.length]);
+  }, [api, hydrated, startIndex, saintsForCurrentMonth.length, current]);
 
+  useEffect(() => {
+    if (!api) {
+      return;
+    }
+    setCount(api.scrollSnapList().length);
+    setCurrent(api.selectedScrollSnap());
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap());
+    });
+  }, [api]);
+  
   const handleSelectSaint = (e: React.MouseEvent, dayIndex: number, saintIndex: number) => {
     e.stopPropagation();
     setSelectedSaintIndices(prev => ({ ...prev, [dayIndex]: saintIndex }));
   };
-  
-  const handleAccordionChange = (value: string[]) => {
-    if (value.length > openAccordion.length) {
-      // User is opening an item, so open all
-      setOpenAccordion(saintsForCurrentMonth.map((_, index) => `item-${index}`));
-    } else {
-      // User is closing an item, so close all
-      setOpenAccordion([]);
-    }
-  };
-
 
   if (!hydrated || saintsForCurrentMonth.length === 0) {
     return <div className="p-4 text-center text-gray-500">A carregar santos...</div>;
   }
-
+  
   return (
     <div className="p-4 md:p-6 bg-gray-100/70 backdrop-blur-sm rounded-xl shadow-lg mt-8">
-      <Carousel setApi={setApi} opts={{ startIndex, loop: true }} className="w-full saint-day-carousel">
-        <Accordion type="multiple" value={openAccordion} onValueChange={handleAccordionChange}>
-            <CarouselContent className="-ml-4">
-            {saintsForCurrentMonth.map((dayData, index) => {
-                const selectedSaintIndex = selectedSaintIndices[index] ?? 0;
-                const currentSaint = dayData.saints[selectedSaintIndex];
-                const hasMultipleSaints = dayData.saints.length > 1;
-                const saintNames = dayData.saints.map(s => s.name).join(' & ');
-                
-                return (
-                <CarouselItem key={index} className="pl-4">
-                    <div className="p-1">
-                        <AccordionItem value={`item-${index}`} className="border-none group">
-                        <div className="relative">
-                            <AccordionTrigger className={cn(
-                                "p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow data-[state=open]:rounded-b-none saint-day-trigger data-[state=open]:pb-8",
-                                "[&[data-state=open]>svg]:text-primary-foreground",
-                                triggerTheme
-                            )}>
-                                <div className="flex items-center gap-4 text-left w-full">
-                                <SaintImages saints={dayData.saints} />
-                                <div className={cn("flex flex-1 flex-col saint-name-container", hasMultipleSaints ? "items-end text-right" : "items-start")}>
-                                    <div className="date-capsule">
-                                    {dayData.day} de {dayData.month}
-                                    </div>
-                                    <p className={cn(
-                                    "font-brand font-semibold mt-2",
-                                    hasMultipleSaints ? "text-sm md:text-base" : "text-lg"
-                                    )}>
-                                    {saintNames}
-                                    </p>
-                                </div>
-                                </div>
-                            </AccordionTrigger>
-                            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-full z-20 flex gap-2">
-                                <Button
-                                    size="sm"
-                                    className="bg-white/70 backdrop-blur-sm text-primary hover:bg-primary hover:text-primary-foreground shadow-lg border-primary/20 border"
-                                    onClick={(e) => { e.stopPropagation(); api?.scrollPrev(); }}
-                                >
-                                    <ChevronLeft className="w-4 h-4 mr-1" />
-                                    Dia anterior
-                                </Button>
-                                <Button
-                                    size="sm"
-                                    className="bg-white/70 backdrop-blur-sm text-primary hover:bg-primary hover:text-primary-foreground shadow-lg border-primary/20 border"
-                                    onClick={(e) => { e.stopPropagation(); api?.scrollNext(); }}
-                                >
-                                    Próximo dia
-                                    <ChevronRight className="w-4 h-4 ml-1" />
-                                </Button>
-                            </div>
-                        </div>
-                        <AccordionContent className={cn("relative p-6 pt-12 rounded-b-lg shadow-inner-top saint-day-content", `theme-${theme}`)}>
-                            <ThemeSelector theme={theme} setTheme={setTheme} />
-                                                    
-                            {hasMultipleSaints && (
+      <Accordion type="single" collapsible className="w-full">
+        <AccordionItem value="item-1" className="border-none group">
+          <AccordionTrigger className={cn(
+              "p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow data-[state=open]:rounded-b-none saint-day-trigger data-[state=open]:pb-8",
+              "[&[data-state=open]>svg]:text-primary-foreground",
+              triggerTheme
+          )}>
+            <div className="flex items-center gap-4 text-left w-full">
+              {saintsForCurrentMonth[current] && <SaintImages saints={saintsForCurrentMonth[current].saints} />}
+              <div className="flex flex-1 flex-col saint-name-container items-start">
+                  {saintsForCurrentMonth[current] && (
+                    <>
+                      <div className="date-capsule">
+                        {saintsForCurrentMonth[current].day} de {saintsForCurrentMonth[current].month}
+                      </div>
+                      <p className="font-brand font-semibold mt-2 text-lg">
+                        {saintsForCurrentMonth[current].saints.map(s => s.name).join(' & ')}
+                      </p>
+                    </>
+                  )}
+              </div>
+            </div>
+          </AccordionTrigger>
+          <AccordionContent className={cn("relative p-6 pt-12 rounded-b-lg shadow-inner-top saint-day-content", `theme-${theme}`)}>
+            <ThemeSelector theme={theme} setTheme={setTheme} />
+            <Carousel setApi={setApi} opts={{ startIndex, loop: true }} className="w-full saint-day-carousel">
+              <CarouselContent>
+                {saintsForCurrentMonth.map((dayData, index) => {
+                  const selectedSaintIndex = selectedSaintIndices[index] ?? 0;
+                  const currentSaint = dayData.saints[selectedSaintIndex];
+                  const hasMultipleSaints = dayData.saints.length > 1;
+
+                  return (
+                    <CarouselItem key={index}>
+                      <div className="p-1">
+                          {hasMultipleSaints && (
                             <div className="flex justify-center gap-2 mb-4">
                                 {dayData.saints.map((saint, saintIdx) => (
-                                <Button
+                                <button
                                     key={saintIdx}
                                     onClick={(e) => handleSelectSaint(e, index, saintIdx)}
-                                    variant={selectedSaintIndex === saintIdx ? 'default' : 'outline'}
                                     className={cn(
-                                    "rounded-full h-8 px-4 text-sm",
+                                    "rounded-full h-8 px-4 text-sm font-semibold transition-colors",
                                     selectedSaintIndex === saintIdx
                                         ? "bg-primary text-primary-foreground"
-                                        : (theme === 'light' ? "border-primary text-primary bg-transparent hover:bg-primary/10" : "border-white/50 text-white bg-transparent hover:bg-white/10")
+                                        : (theme === 'light' ? "border border-primary text-primary bg-transparent hover:bg-primary/10" : "border border-white/50 text-white bg-transparent hover:bg-white/10")
                                     )}
                                 >
                                     {saint.name}
-                                </Button>
+                                </button>
                                 ))}
                             </div>
-                            )}
-                            <div className="prose prose-sm max-w-none pt-4" dangerouslySetInnerHTML={{ __html: currentSaint.story }} />
-                        </AccordionContent>
-                        </AccordionItem>
-                    </div>
-                </CarouselItem>
-                );
-            })}
-            </CarouselContent>
-        </Accordion>
-      </Carousel>
+                          )}
+                          <div className="prose prose-sm max-w-none pt-4" dangerouslySetInnerHTML={{ __html: currentSaint.story }} />
+                      </div>
+                    </CarouselItem>
+                  );
+                })}
+              </CarouselContent>
+              <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+                <CarouselPrevious className="relative static translate-y-0 bg-white/70 backdrop-blur-sm text-primary hover:bg-primary hover:text-primary-foreground shadow-lg border-primary/20 border" />
+                <CarouselNext className="relative static translate-y-0 bg-white/70 backdrop-blur-sm text-primary hover:bg-primary hover:text-primary-foreground shadow-lg border-primary/20 border" />
+              </div>
+            </Carousel>
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
     </div>
   );
 }
