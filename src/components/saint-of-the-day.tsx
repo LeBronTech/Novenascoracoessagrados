@@ -159,8 +159,8 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
                                {dayData.day} de {dayData.month}
                              </div>
                              <p className={cn(
-                                "font-brand font-semibold mt-2 text-lg",
-                                isLongName && "text-base md:text-lg"
+                                "font-brand font-semibold mt-2",
+                                hasMultipleSaints ? "text-sm md:text-base" : "text-lg"
                              )}>
                                {saintNames}
                              </p>
