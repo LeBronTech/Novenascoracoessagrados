@@ -18,7 +18,6 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet" />
-        <link rel="icon" type="image/png" sizes="16x16"  href="https://i.postimg.cc/mryH71Hb/Capa-para-facebook-arquitetura-moderno-vermelho-Logotipo.png"/>
         <meta name="msapplication-TileColor" content="#ffffff"/>
         <meta name="theme-color" content="#ffffff"/>
       </head>
