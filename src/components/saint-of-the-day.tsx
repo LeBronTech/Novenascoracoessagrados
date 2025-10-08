@@ -167,7 +167,7 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
                               </div>
                             </div>
                           </AccordionTrigger>
-                           <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-2/3 z-20 flex gap-2">
+                           <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-full z-20 flex gap-2">
                              <Button
                                 size="sm"
                                 className="bg-white/70 backdrop-blur-sm text-primary hover:bg-primary hover:text-primary-foreground shadow-lg border-primary/20 border"
