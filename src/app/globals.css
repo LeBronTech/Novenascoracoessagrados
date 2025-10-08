@@ -160,10 +160,11 @@
   }
   
   /* Fix for Saint of the Day Carousel Overflow */
-  .saint-day-carousel .embla {
-    overflow: hidden;
-  }
+  .saint-day-carousel .embla,
   .saint-day-carousel .embla__viewport {
+    overflow: visible;
+  }
+  .saint-day-carousel .embla:not(:has(.is-open)) {
     overflow: hidden;
   }
 
@@ -175,17 +176,6 @@
     min-width: 0;
     padding-bottom: 2rem; /* Add space for the overlapping buttons */
   }
-
-  .saint-day-carousel .embla__viewport:has(.group.is-open) {
-      overflow: visible;
-  }
-  .saint-day-carousel .embla__container:has(.group.is-open) {
-      padding-top: 3rem;
-      padding-bottom: 1rem;
-      margin-top: -3rem;
-      margin-bottom: -1rem;
-  }
-
 
   /* Saint of the Day Accordion */
   .saint-day-trigger {
@@ -342,3 +332,5 @@
         animation-delay: 700ms;
     }
 }
+
+    
