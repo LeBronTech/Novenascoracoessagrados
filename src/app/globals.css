@@ -275,14 +275,17 @@
       @apply left-[65%] top-auto;
     }
     .group.is-open .saint-image-wrapper.multiple {
-        height: auto; /* Re-apply stacked height on open */
-        transform: translateY(-2rem);
+      height: 10rem;
+      transform: translateY(-2rem);
     }
     .group.is-open .saint-image-wrapper.multiple .image-1 {
-        transform: translate(-1.5rem, 0) scale(1.6);
+      transform: translate(-50%, -1.5rem) scale(1.6);
+      left: 50%;
     }
     .group.is-open .saint-image-wrapper.multiple .image-2 {
-        transform: translate(2.5rem, 0) scale(1.6);
+      transform: translate(-50%, 2.5rem) scale(1.6);
+      left: 50%;
+      top: 50%;
     }
   }
 
