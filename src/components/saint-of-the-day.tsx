@@ -93,8 +93,10 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
   const [theme, setTheme] = useState<Theme>('light');
   
   const currentMonthName = useMemo(() => {
+    // On the server, we don't know the date. We'll default to October.
+    if (!hydrated) return 'Outubro'; 
     return months[new Date().getMonth()];
-  }, []);
+  }, [hydrated]);
   
   const saintsForCurrentMonth = useMemo(() => {
     return saintsOfTheDay.filter(day => day.month === currentMonthName);
@@ -115,33 +117,39 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
   }, []);
 
   useEffect(() => {
-    if (!emblaApi) return;
+    // This effect runs only on the client
+    setHydrated(true);
+  }, []);
 
-    // Set initial slide
-    if (!hydrated && saintsForCurrentMonth.length > 0) {
-      const dayOfMonth = new Date().getDate();
-      const initialIndex = saintsForCurrentMonth.findIndex(day => day.day >= dayOfMonth);
-      const startIndex = initialIndex !== -1 ? initialIndex : 0;
-      
-      setCurrentDayIndex(startIndex);
-      emblaApi.scrollTo(startIndex, true); // Use instant scroll for setup
-      setHydrated(true);
-    }
+  useEffect(() => {
+    if (!emblaApi || !hydrated || saintsForCurrentMonth.length === 0) return;
+  
+    // Find today's slide index
+    const dayOfMonth = new Date().getDate();
+    const initialIndex = saintsForCurrentMonth.findIndex(day => day.day >= dayOfMonth);
+    const startIndex = initialIndex !== -1 ? initialIndex : 0;
     
-    emblaApi.on('select', onSelect);
+    // Set initial state without causing a re-render loop
+    if (emblaApi.selectedScrollSnap() !== startIndex) {
+        emblaApi.scrollTo(startIndex, true); // Instant scroll
+    }
+    setCurrentDayIndex(startIndex);
 
+    // Attach event listeners
+    emblaApi.on('select', onSelect);
+    
     return () => {
       emblaApi.off('select', onSelect);
     };
   }, [emblaApi, onSelect, hydrated, saintsForCurrentMonth]);
 
   const currentDayData = saintsForCurrentMonth[currentDayIndex];
-  const currentSaintData = currentDayData?.saints[selectedSaintInDayIndex];
-
-  if (!hydrated || !currentDayData || !currentSaintData) {
-    return <div className="p-4 text-center text-gray-500">A carregar santos...</div>;
+  // This can happen briefly during hydration before the correct month is determined
+  if (!currentDayData) {
+      return <div className="p-4 text-center text-gray-500">A carregar santos...</div>;
   }
-  
+  const currentSaintData = currentDayData.saints[selectedSaintInDayIndex];
+
   return (
     <div className="p-4 md:p-6 bg-gray-100/70 backdrop-blur-sm rounded-xl shadow-lg mt-8 saint-day-carousel">
       <div className="embla" ref={emblaRef}>
@@ -222,7 +230,7 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
                     )}
                     
                     <div className="p-1">
-                      <div className="prose prose-sm max-w-none pt-4" dangerouslySetInnerHTML={{ __html: currentSaintData.story }} />
+                      {currentSaintData && <div className="prose prose-sm max-w-none pt-4" dangerouslySetInnerHTML={{ __html: currentSaintData.story }} />}
                     </div>
                   </AccordionContent>
                 </AccordionItem>
