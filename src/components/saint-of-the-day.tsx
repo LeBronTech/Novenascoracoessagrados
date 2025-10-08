@@ -1,7 +1,7 @@
 
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import Image from 'next/image';
 import { saintsOfTheDay, months } from '@/lib/data';
 import type { SaintStory } from '@/lib/data';
@@ -95,10 +95,7 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
     setHydrated(true);
   }, []);
 
-  const currentDate = useMemo(() => {
-    if (!hydrated) return new Date();
-    return new Date();
-  }, [hydrated]);
+  const currentDate = useMemo(() => new Date(), [hydrated]);
 
   const currentMonthName = useMemo(() => {
     return months[currentDate.getMonth()];
@@ -112,16 +109,8 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
     if (!hydrated) return 0;
     const dayOfMonth = currentDate.getDate();
     const index = saintsForCurrentMonth.findIndex(day => day.day >= dayOfMonth);
-    const validIndex = index !== -1 ? index : 0;
-    setCurrentSlide(validIndex);
-    return validIndex;
+    return index !== -1 ? index : 0;
   }, [hydrated, currentDate, saintsForCurrentMonth]);
-
-  useEffect(() => {
-    if (api && hydrated && api.selectedScrollSnap() !== startIndex) {
-        api.scrollTo(startIndex, true);
-    }
-  }, [api, hydrated, startIndex]);
 
   useEffect(() => {
     if (!api) return;
@@ -131,93 +120,93 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
     };
 
     api.on('select', onSelect);
-    setCurrentSlide(api.selectedScrollSnap());
+    setCurrentSlide(api.selectedScrollSnap()); // Set initial slide
+    if(hydrated && api.selectedScrollSnap() !== startIndex) {
+      api.scrollTo(startIndex, true);
+    }
 
     return () => {
       api.off('select', onSelect);
     };
-  }, [api]);
+  }, [api, hydrated, startIndex]);
 
-  const handleAccordionChange = (value: string) => {
-    setOpenAccordion(openAccordion === value ? undefined : value);
+  const handleAccordionChange = (value: string | undefined) => {
+    setOpenAccordion(value);
   };
 
   const currentDayData = saintsForCurrentMonth[currentSlide];
 
-  if (!hydrated || !currentDayData) {
+  if (!hydrated) {
     return <div className="p-4 text-center text-gray-500">A carregar santos...</div>;
   }
   
-  const currentSaint = currentDayData.saints[0];
-
   return (
     <div className="p-4 md:p-6 bg-gray-100/70 backdrop-blur-sm rounded-xl shadow-lg mt-8">
-       <Carousel setApi={setApi} opts={{ startIndex, loop: true }} className="w-full saint-day-carousel">
-        <CarouselContent>
-           {saintsForCurrentMonth.map((day, index) => (
-             <CarouselItem key={index} className="group">
-                <Accordion 
-                  type="single" 
-                  collapsible 
-                  className="w-full"
-                  value={openAccordion}
-                  onValueChange={handleAccordionChange}
-                >
-                  <AccordionItem value={`saint-${index}`} className="border-none">
-                    <div className="relative">
-                      <AccordionTrigger className={cn(
-                          "flex-1 p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow data-[state=open]:rounded-b-none saint-day-trigger data-[state=open]:pb-12",
-                          "[&[data-state=open]>svg]:text-primary-foreground",
-                          triggerTheme
-                      )}>
-                        <div className="flex items-center gap-4 text-left w-full">
-                          <SaintImages saints={day.saints} />
-                          <div className="flex flex-1 flex-col saint-name-container items-start">
-                            <div className="date-capsule">
-                              {day.day} de {day.month}
-                            </div>
-                            <p className="font-brand font-semibold mt-2 text-lg">
-                              {day.saints.map(s => s.name).join(' & ')}
-                            </p>
-                          </div>
-                        </div>
-                      </AccordionTrigger>
-
-                      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 flex items-center justify-center gap-2 z-20">
-                          <Button
-                            variant="outline"
-                            className="h-8 px-4 bg-white/70 backdrop-blur-sm text-primary hover:bg-primary hover:text-primary-foreground shadow-lg border-primary/20 border" 
-                            onClick={() => api?.scrollPrev()}
-                          >
-                            Dia anterior
-                          </Button>
-                          <Button 
-                            variant="outline"
-                            className="h-8 px-4 bg-white/70 backdrop-blur-sm text-primary hover:bg-primary hover:text-primary-foreground shadow-lg border-primary/20 border" 
-                            onClick={() => api?.scrollNext()}
-                          >
-                            Próximo dia
-                          </Button>
-                      </div>
+      <Accordion 
+        type="single" 
+        collapsible 
+        className="w-full"
+        value={openAccordion}
+        onValueChange={handleAccordionChange}
+      >
+        <AccordionItem value="saint-of-the-day" className="border-none">
+          <div className="relative group">
+            <AccordionTrigger className={cn(
+                "flex-1 p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow data-[state=open]:rounded-b-none saint-day-trigger data-[state=open]:pb-12",
+                "[&[data-state=open]>svg]:text-primary-foreground",
+                triggerTheme
+            )}>
+              {currentDayData && (
+                <div className="flex items-center gap-4 text-left w-full">
+                  <SaintImages saints={currentDayData.saints} />
+                  <div className="flex flex-1 flex-col saint-name-container items-start">
+                    <div className="date-capsule">
+                      {currentDayData.day} de {currentDayData.month}
                     </div>
-                    
-                    <AccordionContent className={cn("relative p-6 pt-12 rounded-b-lg shadow-inner-top saint-day-content", `theme-${theme}`)}>
-                      <ThemeSelector theme={theme} setTheme={setTheme} />
-                      
-                      <div className="p-1">
-                        {day.saints.length > 0 ? (
-                          <div className="prose prose-sm max-w-none pt-4" dangerouslySetInnerHTML={{ __html: day.saints.map(s => s.story).join('<hr class="my-4"/>') }} />
-                        ) : null}
-                      </div>
-                    </AccordionContent>
-                  </AccordionItem>
-                </Accordion>
-             </CarouselItem>
-           ))}
-        </CarouselContent>
-      </Carousel>
+                    <p className="font-brand font-semibold mt-2 text-lg">
+                      {currentDayData.saints.map(s => s.name).join(' & ')}
+                    </p>
+                  </div>
+                </div>
+              )}
+            </AccordionTrigger>
+
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 flex items-center justify-center gap-2 z-20">
+                <Button
+                  variant="outline"
+                  className="h-8 px-4 bg-white/70 backdrop-blur-sm text-primary hover:bg-primary hover:text-primary-foreground shadow-lg border-primary/20 border" 
+                  onClick={(e) => { e.stopPropagation(); api?.scrollPrev(); }}
+                >
+                  Dia anterior
+                </Button>
+                <Button 
+                  variant="outline"
+                  className="h-8 px-4 bg-white/70 backdrop-blur-sm text-primary hover:bg-primary hover:text-primary-foreground shadow-lg border-primary/20 border" 
+                  onClick={(e) => { e.stopPropagation(); api?.scrollNext(); }}
+                >
+                  Próximo dia
+                </Button>
+            </div>
+          </div>
+          
+          <AccordionContent className={cn("relative p-6 pt-12 rounded-b-lg shadow-inner-top saint-day-content", `theme-${theme}`)}>
+            <ThemeSelector theme={theme} setTheme={setTheme} />
+            <Carousel setApi={setApi} opts={{ startIndex, loop: true }} className="w-full saint-day-carousel">
+              <CarouselContent>
+                {saintsForCurrentMonth.map((day, index) => (
+                  <CarouselItem key={index}>
+                    <div className="p-1">
+                      {day.saints.length > 0 ? (
+                        <div className="prose prose-sm max-w-none pt-4" dangerouslySetInnerHTML={{ __html: day.saints.map(s => s.story).join('<hr class="my-4"/>') }} />
+                      ) : null}
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+            </Carousel>
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
     </div>
   );
 }
-
-    
