@@ -107,6 +107,7 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
   const onSelect = useCallback((api: EmblaCarouselType) => {
     setCurrentSlide(api.selectedScrollSnap());
     setSelectedSaintInDayIndex(0); // Reset when changing day
+    setIsOpen(false); // Close accordion when changing day
   }, []);
 
   useEffect(() => {
@@ -176,7 +177,7 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
                         {dayData.saints.map(s => s.name).join(' & ')}
                       </p>
                     </div>
-                    <ChevronDown className={cn("h-4 w-4 shrink-0 transition-transform duration-200 text-primary-foreground", isOpen && "rotate-180 text-primary")} />
+                    <ChevronDown className={cn("h-4 w-4 shrink-0 transition-transform duration-200 text-primary-foreground", isOpen && "rotate-180")} />
                   </div>
                 </button>
 
@@ -258,4 +259,3 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
   );
 }
 
-    
