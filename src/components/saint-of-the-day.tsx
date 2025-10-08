@@ -9,7 +9,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { cn } from '@/lib/utils';
 import type { Theme as NovenaTheme } from '@/app/page';
 import { Button } from '@/components/ui/button';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import useEmblaCarousel, { type EmblaCarouselType } from 'embla-carousel-react';
 
 type Theme = 'light' | 'dark';
 
@@ -85,43 +85,56 @@ interface SaintOfTheDayProps {
 }
 
 export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
   const [openAccordion, setOpenAccordion] = useState<string | undefined>(undefined);
   const [currentDayIndex, setCurrentDayIndex] = useState(0);
   const [selectedSaintInDayIndex, setSelectedSaintInDayIndex] = useState(0);
   const [hydrated, setHydrated] = useState(false);
   const [theme, setTheme] = useState<Theme>('light');
   
-  const currentDate = useMemo(() => new Date(), []);
-  
   const currentMonthName = useMemo(() => {
-    return months[currentDate.getMonth()];
-  }, [currentDate]);
+    return months[new Date().getMonth()];
+  }, []);
   
   const saintsForCurrentMonth = useMemo(() => {
     return saintsOfTheDay.filter(day => day.month === currentMonthName);
   }, [currentMonthName]);
 
+  const handleNavigation = useCallback((direction: 'prev' | 'next') => {
+    if (!emblaApi) return;
+    if (direction === 'prev') {
+      emblaApi.scrollPrev();
+    } else {
+      emblaApi.scrollNext();
+    }
+  }, [emblaApi]);
+
+  const onSelect = useCallback((emblaApi: EmblaCarouselType) => {
+    setCurrentDayIndex(emblaApi.selectedScrollSnap());
+    setSelectedSaintInDayIndex(0);
+  }, []);
+
   useEffect(() => {
-    if (typeof window !== 'undefined') {
+    if (!emblaApi) return;
+
+    // Set initial slide
+    if (!hydrated && saintsForCurrentMonth.length > 0) {
       const dayOfMonth = new Date().getDate();
-      const index = saintsForCurrentMonth.findIndex(day => day.day >= dayOfMonth);
-      setCurrentDayIndex(index !== -1 ? index : 0);
-      setSelectedSaintInDayIndex(0);
+      const initialIndex = saintsForCurrentMonth.findIndex(day => day.day >= dayOfMonth);
+      const startIndex = initialIndex !== -1 ? initialIndex : 0;
+      
+      setCurrentDayIndex(startIndex);
+      emblaApi.scrollTo(startIndex, true); // Use instant scroll for setup
       setHydrated(true);
     }
-  }, [saintsForCurrentMonth]);
-  
-  const handleNavigation = (direction: 'prev' | 'next') => {
-    setCurrentDayIndex((prev) => {
-      if (direction === 'prev') {
-        return prev > 0 ? prev - 1 : saintsForCurrentMonth.length - 1;
-      } else {
-        return prev < saintsForCurrentMonth.length - 1 ? prev + 1 : 0;
-      }
-    });
-    setSelectedSaintInDayIndex(0);
-  };
-  
+    
+    emblaApi.on('select', onSelect);
+
+    return () => {
+      emblaApi.off('select', onSelect);
+    };
+  }, [emblaApi, onSelect, hydrated, saintsForCurrentMonth]);
+
   const currentDayData = saintsForCurrentMonth[currentDayIndex];
   const currentSaintData = currentDayData?.saints[selectedSaintInDayIndex];
 
@@ -130,86 +143,94 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
   }
   
   return (
-    <div className="p-4 md:p-6 bg-gray-100/70 backdrop-blur-sm rounded-xl shadow-lg mt-8">
-      <Accordion 
-        type="single" 
-        collapsible 
-        className="w-full"
-        value={openAccordion}
-        onValueChange={setOpenAccordion}
-      >
-        <AccordionItem value={`saint-day-${currentDayIndex}`} className="border-none">
-          <div className="relative group">
-            <AccordionTrigger className={cn(
-                "flex-1 p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow data-[state=open]:rounded-b-none saint-day-trigger data-[state=open]:pb-12",
-                "[&[data-state=open]>svg]:text-primary-foreground",
-                triggerTheme
-            )}>
-              <div className="flex items-center gap-4 text-left w-full">
-                <SaintImages saints={currentDayData.saints} />
-                <div className="flex flex-1 flex-col saint-name-container items-start">
-                  <div className="date-capsule">
-                    {currentDayData.day} de {currentDayData.month}
+    <div className="p-4 md:p-6 bg-gray-100/70 backdrop-blur-sm rounded-xl shadow-lg mt-8 saint-day-carousel">
+      <div className="embla" ref={emblaRef}>
+        <div className="embla__container">
+          {saintsForCurrentMonth.map((dayData, index) => (
+            <div className="embla__slide" key={index}>
+              <Accordion 
+                type="single" 
+                collapsible 
+                className="w-full"
+                value={openAccordion}
+                onValueChange={setOpenAccordion}
+              >
+                <AccordionItem value={`saint-day-${index}`} className="border-none">
+                  <div className="relative group">
+                    <AccordionTrigger className={cn(
+                        "flex-1 p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow data-[state=open]:rounded-b-none saint-day-trigger data-[state=open]:pb-12",
+                        "[&[data-state=open]>svg]:text-primary-foreground",
+                        triggerTheme
+                    )}>
+                      <div className="flex items-center gap-4 text-left w-full">
+                        <SaintImages saints={dayData.saints} />
+                        <div className="flex flex-1 flex-col saint-name-container items-start">
+                          <div className="date-capsule">
+                            {dayData.day} de {dayData.month}
+                          </div>
+                          <p className="font-brand font-semibold mt-2 text-lg">
+                            {dayData.saints.map(s => s.name).join(' & ')}
+                          </p>
+                        </div>
+                      </div>
+                    </AccordionTrigger>
+
+                    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 flex items-center justify-center gap-2 z-20">
+                        <Button
+                          variant="outline"
+                          className="h-8 px-4 bg-white/70 backdrop-blur-sm text-primary hover:bg-primary hover:text-primary-foreground shadow-lg border-primary/20 border" 
+                          onClick={(e) => { e.stopPropagation(); e.currentTarget.blur(); handleNavigation('prev'); }}
+                        >
+                          Dia anterior
+                        </Button>
+                        <Button 
+                          variant="outline"
+                          className="h-8 px-4 bg-white/70 backdrop-blur-sm text-primary hover:bg-primary hover:text-primary-foreground shadow-lg border-primary/20 border" 
+                          onClick={(e) => { e.stopPropagation(); e.currentTarget.blur(); handleNavigation('next'); }}
+                        >
+                          Próximo dia
+                        </Button>
+                    </div>
                   </div>
-                  <p className="font-brand font-semibold mt-2 text-lg">
-                    {currentDayData.saints.map(s => s.name).join(' & ')}
-                  </p>
-                </div>
-              </div>
-            </AccordionTrigger>
+                  
+                  <AccordionContent className={cn("relative p-6 pt-12 rounded-b-lg shadow-inner-top saint-day-content", `theme-${theme}`)}>
+                    <ThemeSelector theme={theme} setTheme={setTheme} />
 
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 flex items-center justify-center gap-2 z-20">
-                <Button
-                  variant="outline"
-                  className="h-8 px-4 bg-white/70 backdrop-blur-sm text-primary hover:bg-primary hover:text-primary-foreground shadow-lg border-primary/20 border" 
-                  onClick={(e) => { e.stopPropagation(); handleNavigation('prev'); }}
-                >
-                  Dia anterior
-                </Button>
-                <Button 
-                  variant="outline"
-                  className="h-8 px-4 bg-white/70 backdrop-blur-sm text-primary hover:bg-primary hover:text-primary-foreground shadow-lg border-primary/20 border" 
-                  onClick={(e) => { e.stopPropagation(); handleNavigation('next'); }}
-                >
-                  Próximo dia
-                </Button>
-            </div>
-          </div>
-          
-          <AccordionContent className={cn("relative p-6 pt-12 rounded-b-lg shadow-inner-top saint-day-content", `theme-${theme}`)}>
-            <ThemeSelector theme={theme} setTheme={setTheme} />
-
-            {currentDayData.saints.length > 1 && (
-              <div className="mb-4 flex justify-center gap-2">
-                {currentDayData.saints.map((saint, index) => (
-                  <Button
-                    key={saint.name}
-                    variant={selectedSaintInDayIndex === index ? 'default' : 'outline'}
-                    size="sm"
-                    onClick={() => setSelectedSaintInDayIndex(index)}
-                    className={cn(
-                      'transition-all duration-200',
-                       theme === 'light' 
-                          ? selectedSaintInDayIndex === index 
-                            ? 'bg-primary text-primary-foreground' 
-                            : 'bg-black/5 hover:bg-black/10 text-primary'
-                          : selectedSaintInDayIndex === index 
-                            ? 'bg-accent text-accent-foreground' 
-                            : 'bg-white/10 hover:bg-white/20 text-white'
+                    {dayData.saints.length > 1 && (
+                      <div className="mb-4 flex justify-center gap-2">
+                        {dayData.saints.map((saint, saintIndex) => (
+                          <Button
+                            key={saint.name}
+                            variant={selectedSaintInDayIndex === saintIndex ? 'default' : 'outline'}
+                            size="sm"
+                            onClick={() => setSelectedSaintInDayIndex(saintIndex)}
+                            className={cn(
+                              'transition-all duration-200',
+                              theme === 'light' 
+                                  ? selectedSaintInDayIndex === saintIndex 
+                                    ? 'bg-primary text-primary-foreground' 
+                                    : 'bg-black/5 hover:bg-black/10 text-primary'
+                                  : selectedSaintInDayIndex === saintIndex 
+                                    ? 'bg-accent text-accent-foreground' 
+                                    : 'bg-white/10 hover:bg-white/20 text-white'
+                            )}
+                          >
+                            {saint.name}
+                          </Button>
+                        ))}
+                      </div>
                     )}
-                  >
-                    {saint.name}
-                  </Button>
-                ))}
-              </div>
-            )}
-            
-            <div className="p-1">
-              <div className="prose prose-sm max-w-none pt-4" dangerouslySetInnerHTML={{ __html: currentSaintData.story }} />
+                    
+                    <div className="p-1">
+                      <div className="prose prose-sm max-w-none pt-4" dangerouslySetInnerHTML={{ __html: currentSaintData.story }} />
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
             </div>
-          </AccordionContent>
-        </AccordionItem>
-      </Accordion>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
