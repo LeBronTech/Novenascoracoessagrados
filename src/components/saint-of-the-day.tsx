@@ -95,8 +95,8 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
     setHydrated(true);
   }, []);
 
-  const currentDate = useMemo(() => new Date(), [hydrated]);
-
+  const currentDate = useMemo(() => new Date(), []);
+  
   const currentMonthName = useMemo(() => {
     return months[currentDate.getMonth()];
   }, [currentDate]);
@@ -106,11 +106,10 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
   }, [currentMonthName]);
   
   const startIndex = useMemo(() => {
-    if (!hydrated) return 0;
     const dayOfMonth = currentDate.getDate();
     const index = saintsForCurrentMonth.findIndex(day => day.day >= dayOfMonth);
     return index !== -1 ? index : 0;
-  }, [hydrated, currentDate, saintsForCurrentMonth]);
+  }, [currentDate, saintsForCurrentMonth]);
 
   useEffect(() => {
     if (!api) return;
@@ -120,9 +119,12 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
     };
 
     api.on('select', onSelect);
-    setCurrentSlide(api.selectedScrollSnap()); // Set initial slide
-    if(hydrated && api.selectedScrollSnap() !== startIndex) {
-      api.scrollTo(startIndex, true);
+    
+    if (hydrated) {
+        if(api.selectedScrollSnap() !== startIndex) {
+            api.scrollTo(startIndex, true);
+        }
+        setCurrentSlide(startIndex);
     }
 
     return () => {
@@ -133,7 +135,7 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
   const handleAccordionChange = (value: string | undefined) => {
     setOpenAccordion(value);
   };
-
+  
   const currentDayData = saintsForCurrentMonth[currentSlide];
 
   if (!hydrated) {
@@ -210,3 +212,5 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
     </div>
   );
 }
+
+    
