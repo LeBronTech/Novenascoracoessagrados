@@ -60,11 +60,14 @@ function SaintImages({ saints }: { saints: SaintStory[] }) {
 
 function ThemeSelector({ theme, setTheme }: { theme: Theme, setTheme: (theme: Theme) => void }) {
     return (
-        <div className="absolute top-2 right-3 flex gap-2 bg-transparent px-2 py-1 rounded-full z-20">
+        <div className="absolute top-3 right-3 flex gap-2 bg-transparent px-2 py-1 rounded-full z-20">
             {(['light', 'dark'] as Theme[]).map((t) => (
                 <button
                     key={t}
-                    onClick={() => setTheme(t)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setTheme(t);
+                    }}
                     title={`Tema ${t === 'light' ? 'Claro' : 'Escuro'}`}
                     className={cn(
                         'w-4 h-4 rounded-full cursor-pointer transition-all duration-200 border border-black/20 shadow-md',
