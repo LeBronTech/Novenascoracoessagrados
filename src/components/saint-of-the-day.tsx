@@ -8,7 +8,8 @@ import type { SaintStory } from '@/lib/data';
 import { cn } from '@/lib/utils';
 import type { Theme as NovenaTheme } from '@/app/page';
 import { Button } from '@/components/ui/button';
-import useEmblaCarousel, { type UseEmblaCarouselType, type EmblaOptionsType } from 'embla-carousel-react';
+import useEmblaCarousel, { type UseEmblaCarouselType } from 'embla-carousel-react';
+import type { EmblaOptionsType } from 'embla-carousel';
 import { ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react';
 
 
