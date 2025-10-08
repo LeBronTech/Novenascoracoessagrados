@@ -308,11 +308,11 @@
   
   .group.is-open .saint-image-wrapper.multiple .image-1 {
     transform: translate(0, -1rem) scale(1.5);
-    left: auto;
+    left: 20%;
   }
   .group.is-open .saint-image-wrapper.multiple .image-2 {
     transform: translate(0, 1rem) scale(1.5);
-    left: 0;
+    left: -20%;
     bottom: auto;
     top: 50%;
   }
