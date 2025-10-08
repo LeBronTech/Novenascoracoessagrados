@@ -9,7 +9,7 @@ import { cn } from '@/lib/utils';
 import type { Theme as NovenaTheme } from '@/app/page';
 import { Button } from '@/components/ui/button';
 import useEmblaCarousel, { type EmblaCarouselType, type EmblaOptionsType } from 'embla-carousel-react';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react';
 
 
 type Theme = 'light' | 'dark';
@@ -200,6 +200,17 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
                 {isOpen && (
                   <div className={cn("relative p-6 pt-12 rounded-b-lg shadow-inner-top saint-day-content", `theme-${theme}`)}>
                     <ThemeSelector theme={theme} setTheme={setTheme} />
+                    
+                    <div className="flex items-center justify-center gap-4 mb-6">
+                      <Button variant="ghost" size="icon" onClick={() => handleNavigation('prev')} className={cn('h-8 w-8', theme === 'dark' ? 'text-white hover:bg-white/10 hover:text-white' : 'text-primary hover:bg-black/5 hover:text-primary')}>
+                        <ChevronLeft className="h-5 w-5" />
+                      </Button>
+                      <span className="text-sm font-bold">Navegar dias</span>
+                      <Button variant="ghost" size="icon" onClick={() => handleNavigation('next')} className={cn('h-8 w-8', theme === 'dark' ? 'text-white hover:bg-white/10 hover:text-white' : 'text-primary hover:bg-black/5 hover:text-primary')}>
+                        <ChevronRight className="h-5 w-5" />
+                      </Button>
+                    </div>
+
 
                     {currentDayData.saints.length > 1 && (
                       <div className="mb-4 flex justify-center gap-2">
