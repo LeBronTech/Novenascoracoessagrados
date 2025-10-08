@@ -244,10 +244,10 @@
   }
 
   .saint-image-wrapper.multiple .image-1 {
-    @apply absolute top-0 left-1/2 -translate-x-1/2 z-0 transform-gpu;
+    @apply absolute top-0 left-[45%] -translate-x-1/2 z-0 transform-gpu;
   }
   .saint-image-wrapper.multiple .image-2 {
-    @apply absolute bottom-0 left-1/2 -translate-x-1/2 z-10 transform-gpu;
+    @apply absolute bottom-0 left-[55%] -translate-x-1/2 z-10 transform-gpu;
   }
   
   .group[data-state=open] .saint-image-wrapper {
