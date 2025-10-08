@@ -154,7 +154,7 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
                       )}>
                         <div className="flex items-center gap-4 text-left w-full">
                            <SaintImages saints={dayData.saints} />
-                           <div className={cn("flex flex-col saint-name-container", hasMultipleSaints ? "items-end text-right" : "items-start")}>
+                           <div className={cn("flex flex-1 flex-col saint-name-container", hasMultipleSaints ? "items-end text-right" : "items-start")}>
                              <div className="date-capsule">
                                {dayData.day} de {dayData.month}
                              </div>
