@@ -19,7 +19,7 @@ const themeDotClasses: Record<Theme, string> = {
   'dark': 'bg-gray-700',
 };
 
-function SaintImages({ saints, isOpen }: { saints: SaintStory[]; isOpen: boolean }) {
+function SaintImages({ saints, isOpen, selectedIndex }: { saints: SaintStory[]; isOpen: boolean; selectedIndex: number; }) {
     if (saints.length === 1) {
         return (
             <div className={cn("saint-image-wrapper single", isOpen && "open")}>
@@ -37,20 +37,19 @@ function SaintImages({ saints, isOpen }: { saints: SaintStory[]; isOpen: boolean
     if (saints.length > 1) {
         return (
             <div className={cn("saint-image-wrapper multiple", isOpen && "open")}>
-                <Image
-                    src={saints[0].imageUrl}
-                    alt={saints[0].name}
-                    width={64}
-                    height={64}
-                    className="saint-image image-1"
-                />
-                <Image
-                    src={saints[1].imageUrl}
-                    alt={saints[1].name}
-                    width={64}
-                    height={64}
-                    className="saint-image image-2"
-                />
+                {saints.map((saint, index) => (
+                    <Image
+                        key={saint.name}
+                        src={saint.imageUrl}
+                        alt={saint.name}
+                        width={64}
+                        height={64}
+                        className={cn(
+                            "saint-image",
+                            isOpen && (index === selectedIndex ? 'saint-image--active' : 'saint-image--inactive')
+                        )}
+                    />
+                ))}
             </div>
         );
     }
@@ -168,14 +167,14 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
                   )}
                 >
                   <div className="flex items-center gap-4 text-left w-full">
-                    <SaintImages saints={dayData.saints} isOpen={isOpen} />
+                    <SaintImages saints={dayData.saints} isOpen={isOpen} selectedIndex={selectedSaintInDayIndex} />
                     <div className={cn(
                       "flex flex-1 flex-col items-start saint-name-container",
                        isOpen && dayData.saints.length > 1 && "md:items-end"
                       )}>
                       <div className={cn(
                         "date-capsule",
-                        isOpen && "text-xs"
+                         isOpen && "text-xs md:text-right"
                         )}>
                         {dayData.day} de {dayData.month}
                       </div>

@@ -248,7 +248,7 @@
   }
 
   .saint-image-wrapper .saint-image {
-    @apply w-16 h-16 rounded-full object-cover border-2 border-white shadow-sm transition-all duration-200 ease-in-out transform-gpu;
+    @apply w-16 h-16 rounded-full object-cover border-2 border-white shadow-sm transition-all duration-300 ease-in-out transform-gpu;
   }
   
   .saint-image-wrapper.multiple {
@@ -274,21 +274,26 @@
 
   .group.is-open .saint-image-wrapper.multiple {
       transform: translateY(-2rem);
-      width: 8rem;
+      width: 10rem;
       height: 10rem;
   }
 
   .group.is-open .saint-image-wrapper.multiple .saint-image {
-    @apply scale-[1.6];
+    @apply absolute left-1/2 -translate-x-1/2;
   }
 
-  .group.is-open .saint-image-wrapper.multiple .image-1 {
-    @apply absolute top-0 left-1/2 -translate-x-1/2;
+  .group.is-open .saint-image-wrapper.multiple .saint-image--active {
+    transform: scale(1.8) translateY(-1rem);
+    opacity: 1;
+    z-index: 10;
   }
   
-  .group.is-open .saint-image-wrapper.multiple .image-2 {
-    @apply absolute bottom-0 left-1/2 -translate-x-1/2;
+  .group.is-open .saint-image-wrapper.multiple .saint-image--inactive {
+    transform: scale(1.3) translateY(1.5rem);
+    opacity: 0.4;
+    z-index: 5;
   }
+
 
   .saint-day-content-nav {
     @apply absolute top-1/2 -translate-y-1/2 z-10 w-10 h-20 flex items-center justify-center cursor-pointer transition-all duration-200;
