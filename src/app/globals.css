@@ -270,10 +270,10 @@
   }
   
   .group[data-state=open] .saint-image-wrapper.multiple .image-1 {
-    transform: translate(-1.5rem, -1.5rem) scale(1.5);
+    transform: translate(-3rem, -1.5rem) scale(1.5);
   }
   .group[data-state=open] .saint-image-wrapper.multiple .image-2 {
-    transform: translate(-0.5rem, 1.5rem) scale(1.5);
+    transform: translate(-2rem, 1.5rem) scale(1.5);
   }
 
   .saint-day-content-nav {
@@ -316,3 +316,5 @@
         animation-delay: 700ms;
     }
 }
+
+    
