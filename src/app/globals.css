@@ -160,6 +160,13 @@
   }
   
   /* Fix for Saint of the Day Carousel Overflow */
+  .saint-day-carousel .embla__viewport {
+    overflow: initial; /* Allow buttons to be visible outside */
+  }
+  .saint-day-carousel .embla__slide {
+    padding-bottom: 2rem; /* Add space for the overlapping buttons */
+  }
+
   .saint-day-carousel .embla__viewport:has(.group[data-state=open]) {
       overflow: visible;
   }
