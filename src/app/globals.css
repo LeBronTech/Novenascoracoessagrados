@@ -279,10 +279,10 @@
         transform: translateY(-2.5rem);
     }
     .group.is-open .saint-image-wrapper.multiple .image-1 {
-        transform: translate(-3rem, -1rem) scale(1.5);
+        transform: translate(0, -1rem) scale(1.5);
     }
     .group.is-open .saint-image-wrapper.multiple .image-2 {
-        transform: translate(-2rem, 1rem) scale(1.5);
+        transform: translate(0, 1rem) scale(1.5);
     }
   }
 
@@ -307,10 +307,14 @@
   }
   
   .group.is-open .saint-image-wrapper.multiple .image-1 {
-    transform: translate(-3rem, -1rem) scale(1.5);
+    transform: translate(0, -1rem) scale(1.5);
+    left: auto;
   }
   .group.is-open .saint-image-wrapper.multiple .image-2 {
-    transform: translate(-2rem, 1rem) scale(1.5);
+    transform: translate(0, 1rem) scale(1.5);
+    left: auto;
+    bottom: auto;
+    top: 50%;
   }
 
   .saint-day-content-nav {
@@ -353,3 +357,5 @@
         animation-delay: 700ms;
     }
 }
+
+    
