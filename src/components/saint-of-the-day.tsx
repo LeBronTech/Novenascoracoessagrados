@@ -143,29 +143,49 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
             
             return (
               <CarouselItem key={index} className="pl-4">
-                <div className="p-1 relative group">
+                <div className="p-1 relative">
                   <Accordion type="single" collapsible value={openAccordion} onValueChange={setOpenAccordion}>
-                    <AccordionItem value={`item-${index}`} className="border-none">
-                      <AccordionTrigger className={cn(
-                        "p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow data-[state=open]:rounded-b-none saint-day-trigger data-[state=open]:pb-8",
-                        "[&[data-state=open]>svg]:text-primary-foreground",
-                        triggerTheme
-                      )}>
-                        <div className="flex items-center gap-4 text-left w-full">
-                           <SaintImages saints={dayData.saints} />
-                           <div className={cn("flex flex-1 flex-col saint-name-container", hasMultipleSaints ? "items-end text-right" : "items-start")}>
-                             <div className="date-capsule">
-                               {dayData.day} de {dayData.month}
-                             </div>
-                             <p className={cn(
-                                "font-brand font-semibold mt-2",
-                                hasMultipleSaints ? "text-sm md:text-base" : "text-lg"
-                             )}>
-                               {saintNames}
-                             </p>
-                           </div>
-                         </div>
-                      </AccordionTrigger>
+                    <AccordionItem value={`item-${index}`} className="border-none group">
+                       <div className="relative">
+                          <AccordionTrigger className={cn(
+                            "p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow data-[state=open]:rounded-b-none saint-day-trigger data-[state=open]:pb-8",
+                            "[&[data-state=open]>svg]:text-primary-foreground",
+                            triggerTheme
+                          )}>
+                            <div className="flex items-center gap-4 text-left w-full">
+                              <SaintImages saints={dayData.saints} />
+                              <div className={cn("flex flex-1 flex-col saint-name-container", hasMultipleSaints ? "items-end text-right" : "items-start")}>
+                                <div className="date-capsule">
+                                  {dayData.day} de {dayData.month}
+                                </div>
+                                <p className={cn(
+                                  "font-brand font-semibold mt-2",
+                                  hasMultipleSaints ? "text-sm md:text-base" : "text-lg"
+                                )}>
+                                  {saintNames}
+                                </p>
+                              </div>
+                            </div>
+                          </AccordionTrigger>
+                          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 z-20 flex gap-2">
+                             <Button
+                                size="sm"
+                                className="bg-white/70 backdrop-blur-sm text-primary hover:bg-primary hover:text-primary-foreground shadow-lg border-primary/20 border"
+                                onClick={() => api?.scrollPrev()}
+                            >
+                                <ChevronLeft className="w-4 h-4 mr-1" />
+                                Dia anterior
+                            </Button>
+                            <Button
+                                size="sm"
+                                className="bg-white/70 backdrop-blur-sm text-primary hover:bg-primary hover:text-primary-foreground shadow-lg border-primary/20 border"
+                                onClick={() => api?.scrollNext()}
+                            >
+                                Próximo dia
+                                <ChevronRight className="w-4 h-4 ml-1" />
+                            </Button>
+                          </div>
+                       </div>
                       <AccordionContent className={cn("relative p-6 pt-12 rounded-b-lg shadow-inner-top saint-day-content", `theme-${theme}`)}>
                         <ThemeSelector theme={theme} setTheme={setTheme} />
                                                 
@@ -188,28 +208,10 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
                             ))}
                           </div>
                         )}
-                        <div className="prose prose-sm max-w-none" dangerouslySetInnerHTML={{ __html: currentSaint.story }} />
+                        <div className="prose prose-sm max-w-none pt-4" dangerouslySetInnerHTML={{ __html: currentSaint.story }} />
                       </AccordionContent>
                     </AccordionItem>
                   </Accordion>
-                  <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 z-20 flex gap-2">
-                     <Button
-                        size="sm"
-                        className="bg-white/70 backdrop-blur-sm text-primary hover:bg-primary hover:text-primary-foreground shadow-lg border-primary/20 border"
-                        onClick={() => api?.scrollPrev()}
-                    >
-                        <ChevronLeft className="w-4 h-4 mr-1" />
-                        Dia anterior
-                    </Button>
-                    <Button
-                        size="sm"
-                        className="bg-white/70 backdrop-blur-sm text-primary hover:bg-primary hover:text-primary-foreground shadow-lg border-primary/20 border"
-                        onClick={() => api?.scrollNext()}
-                    >
-                        Próximo dia
-                        <ChevronRight className="w-4 h-4 ml-1" />
-                    </Button>
-                  </div>
                 </div>
               </CarouselItem>
             );
