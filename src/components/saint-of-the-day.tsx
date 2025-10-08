@@ -1,7 +1,7 @@
 
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import Image from 'next/image';
 import { saintsOfTheDay, months } from '@/lib/data';
 import type { SaintStory } from '@/lib/data';
@@ -86,17 +86,18 @@ interface SaintOfTheDayProps {
 export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
-  const [count, setCount] = useState(0);
-  const [currentDate, setCurrentDate] = useState<Date | null>(null);
   const [hydrated, setHydrated] = useState(false);
   const [theme, setTheme] = useState<Theme>('light');
   const [selectedSaintIndices, setSelectedSaintIndices] = useState<Record<number, number>>({});
 
   useEffect(() => {
     setHydrated(true);
-    const today = new Date();
-    setCurrentDate(today);
   }, []);
+
+  const currentDate = useMemo(() => {
+    if (!hydrated) return null;
+    return new Date();
+  }, [hydrated]);
 
   const currentMonthName = useMemo(() => {
     if (!currentDate) return '';
@@ -116,22 +117,24 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
   }, [currentDate, saintsForCurrentMonth]);
 
   useEffect(() => {
-    if (api && hydrated && saintsForCurrentMonth.length > 0) {
-      if (current === 0) { // Only scroll to start index on initial load
+    if (api && saintsForCurrentMonth.length > 0 && api.selectedScrollSnap() !== startIndex) {
         api.scrollTo(startIndex, true);
-      }
+        setCurrent(startIndex);
     }
-  }, [api, hydrated, startIndex, saintsForCurrentMonth.length, current]);
+  }, [api, hydrated, startIndex, saintsForCurrentMonth.length]);
 
   useEffect(() => {
     if (!api) {
       return;
     }
-    setCount(api.scrollSnapList().length);
-    setCurrent(api.selectedScrollSnap());
-    api.on("select", () => {
+    const onSelect = () => {
       setCurrent(api.selectedScrollSnap());
-    });
+    };
+    api.on("select", onSelect);
+
+    return () => {
+      api.off("select", onSelect);
+    };
   }, [api]);
   
   const handleSelectSaint = (e: React.MouseEvent, dayIndex: number, saintIndex: number) => {
@@ -145,73 +148,92 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
   
   return (
     <div className="p-4 md:p-6 bg-gray-100/70 backdrop-blur-sm rounded-xl shadow-lg mt-8">
-      <Accordion type="single" collapsible className="w-full">
-        <AccordionItem value="item-1" className="border-none group">
-          <AccordionTrigger className={cn(
-              "p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow data-[state=open]:rounded-b-none saint-day-trigger data-[state=open]:pb-8",
-              "[&[data-state=open]>svg]:text-primary-foreground",
-              triggerTheme
-          )}>
-            <div className="flex items-center gap-4 text-left w-full">
-              {saintsForCurrentMonth[current] && <SaintImages saints={saintsForCurrentMonth[current].saints} />}
-              <div className="flex flex-1 flex-col saint-name-container items-start">
-                  {saintsForCurrentMonth[current] && (
-                    <>
-                      <div className="date-capsule">
-                        {saintsForCurrentMonth[current].day} de {saintsForCurrentMonth[current].month}
-                      </div>
-                      <p className="font-brand font-semibold mt-2 text-lg">
-                        {saintsForCurrentMonth[current].saints.map(s => s.name).join(' & ')}
-                      </p>
-                    </>
-                  )}
-              </div>
+      <Carousel setApi={setApi} opts={{ startIndex, loop: true }} className="w-full saint-day-carousel">
+        <Accordion type="single" collapsible className="w-full">
+          <AccordionItem value="item-1" className="border-none group">
+            <div className="flex items-center">
+              <CarouselPrevious className="relative static translate-y-0 bg-white/70 backdrop-blur-sm text-primary hover:bg-primary hover:text-primary-foreground shadow-lg border-primary/20 border -mr-2 z-10" />
+              <AccordionTrigger className={cn(
+                  "flex-1 p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow data-[state=open]:rounded-b-none saint-day-trigger data-[state=open]:pb-8",
+                  "[&[data-state=open]>svg]:text-primary-foreground",
+                  triggerTheme
+              )}>
+                <div className="flex items-center gap-4 text-left w-full">
+                  {saintsForCurrentMonth[current] && <SaintImages saints={saintsForCurrentMonth[current].saints} />}
+                  <div className="flex flex-1 flex-col saint-name-container items-start">
+                      {saintsForCurrentMonth[current] && (
+                        <>
+                          <div className="date-capsule">
+                            {saintsForCurrentMonth[current].day} de {saintsForCurrentMonth[current].month}
+                          </div>
+                          <p className="font-brand font-semibold mt-2 text-lg">
+                            {saintsForCurrentMonth[current].saints.map(s => s.name).join(' & ')}
+                          </p>
+                        </>
+                      )}
+                  </div>
+                </div>
+              </AccordionTrigger>
+              <CarouselNext className="relative static translate-y-0 bg-white/70 backdrop-blur-sm text-primary hover:bg-primary hover:text-primary-foreground shadow-lg border-primary/20 border -ml-2 z-10" />
             </div>
-          </AccordionTrigger>
-          <AccordionContent className={cn("relative p-6 pt-12 rounded-b-lg shadow-inner-top saint-day-content", `theme-${theme}`)}>
-            <ThemeSelector theme={theme} setTheme={setTheme} />
-            <Carousel setApi={setApi} opts={{ startIndex, loop: true }} className="w-full saint-day-carousel">
-              <CarouselContent>
-                {saintsForCurrentMonth.map((dayData, index) => {
-                  const selectedSaintIndex = selectedSaintIndices[index] ?? 0;
+            
+            <AccordionContent className={cn("relative p-6 pt-12 rounded-b-lg shadow-inner-top saint-day-content", `theme-${theme}`)}>
+              <ThemeSelector theme={theme} setTheme={setTheme} />
+              
+              <CarouselContent className="!hidden">
+                {/* This is a dummy content to make the carousel api work correctly with the outer buttons */}
+                {saintsForCurrentMonth.map((_, index) => <CarouselItem key={index}></CarouselItem>)}
+              </CarouselContent>
+
+              <div className="p-1">
+                {(() => {
+                  const dayData = saintsForCurrentMonth[current];
+                  if (!dayData) return null;
+
+                  const selectedSaintIndex = selectedSaintIndices[current] ?? 0;
                   const currentSaint = dayData.saints[selectedSaintIndex];
                   const hasMultipleSaints = dayData.saints.length > 1;
 
                   return (
+                    <>
+                      {hasMultipleSaints && (
+                        <div className="flex justify-center gap-2 mb-4">
+                          {dayData.saints.map((saint, saintIdx) => (
+                            <button
+                              key={saintIdx}
+                              onClick={(e) => handleSelectSaint(e, current, saintIdx)}
+                              className={cn(
+                                "rounded-full h-8 px-4 text-sm font-semibold transition-colors",
+                                selectedSaintIndex === saintIdx
+                                  ? "bg-primary text-primary-foreground"
+                                  : (theme === 'light' ? "border border-primary text-primary bg-transparent hover:bg-primary/10" : "border border-white/50 text-white bg-transparent hover:bg-white/10")
+                              )}
+                            >
+                              {saint.name}
+                            </button>
+                          ))}
+                        </div>
+                      )}
+                      <div className="prose prose-sm max-w-none pt-4" dangerouslySetInnerHTML={{ __html: currentSaint.story }} />
+                    </>
+                  );
+                })()}
+              </div>
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
+        
+        <div className="hidden">
+            <CarouselContent>
+                {saintsForCurrentMonth.map((dayData, index) => {
+                  return (
                     <CarouselItem key={index}>
-                      <div className="p-1">
-                          {hasMultipleSaints && (
-                            <div className="flex justify-center gap-2 mb-4">
-                                {dayData.saints.map((saint, saintIdx) => (
-                                <button
-                                    key={saintIdx}
-                                    onClick={(e) => handleSelectSaint(e, index, saintIdx)}
-                                    className={cn(
-                                    "rounded-full h-8 px-4 text-sm font-semibold transition-colors",
-                                    selectedSaintIndex === saintIdx
-                                        ? "bg-primary text-primary-foreground"
-                                        : (theme === 'light' ? "border border-primary text-primary bg-transparent hover:bg-primary/10" : "border border-white/50 text-white bg-transparent hover:bg-white/10")
-                                    )}
-                                >
-                                    {saint.name}
-                                </button>
-                                ))}
-                            </div>
-                          )}
-                          <div className="prose prose-sm max-w-none pt-4" dangerouslySetInnerHTML={{ __html: currentSaint.story }} />
-                      </div>
                     </CarouselItem>
                   );
                 })}
-              </CarouselContent>
-              <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 z-20 flex gap-2">
-                <CarouselPrevious className="relative static translate-y-0 bg-white/70 backdrop-blur-sm text-primary hover:bg-primary hover:text-primary-foreground shadow-lg border-primary/20 border" />
-                <CarouselNext className="relative static translate-y-0 bg-white/70 backdrop-blur-sm text-primary hover:bg-primary hover:text-primary-foreground shadow-lg border-primary/20 border" />
-              </div>
-            </Carousel>
-          </AccordionContent>
-        </AccordionItem>
-      </Accordion>
+            </CarouselContent>
+        </div>
+      </Carousel>
     </div>
   );
 }
