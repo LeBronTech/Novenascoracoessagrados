@@ -139,7 +139,7 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
             const selectedSaintIndex = selectedSaintIndices[index] ?? 0;
             const currentSaint = dayData.saints[selectedSaintIndex];
             const hasMultipleSaints = dayData.saints.length > 1;
-            const saintNames = dayData.saints.map(s => s.name).join(' e ');
+            const saintNames = dayData.saints.map(s => s.name).join(' & ');
             const isLongName = saintNames.length > 25;
 
             return (
@@ -178,7 +178,7 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
                         </button>
                         
                         {hasMultipleSaints && (
-                          <div className="flex justify-center gap-2 mb-4">
+                          <div className="flex justify-center gap-2 mb-4 mt-4">
                             {dayData.saints.map((saint, saintIdx) => (
                               <Button
                                 key={saintIdx}
