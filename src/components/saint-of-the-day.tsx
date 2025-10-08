@@ -132,7 +132,7 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
   const arrowClasses = 'text-primary bg-transparent hover:bg-primary hover:text-primary-foreground';
 
   return (
-    <div className="p-4 md:p-6">
+    <div className="p-4 md:p-6 bg-gray-100/70 backdrop-blur-sm rounded-xl shadow-lg mt-8">
       <Carousel setApi={setApi} opts={{ startIndex, loop: true }} className="w-full saint-day-carousel">
         <CarouselContent className="-ml-4">
           {saintsForCurrentMonth.map((dayData, index) => {
@@ -140,11 +140,10 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
             const currentSaint = dayData.saints[selectedSaintIndex];
             const hasMultipleSaints = dayData.saints.length > 1;
             const saintNames = dayData.saints.map(s => s.name).join(' & ');
-            const isLongName = saintNames.length > 25;
-
+            
             return (
               <CarouselItem key={index} className="pl-4">
-                <div className="p-1">
+                <div className="p-1 relative">
                   <Accordion type="single" collapsible value={openAccordion} onValueChange={setOpenAccordion}>
                     <AccordionItem value={`item-${index}`} className="border-none group">
                       <AccordionTrigger className={cn(
@@ -167,18 +166,11 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
                            </div>
                          </div>
                       </AccordionTrigger>
-                      <AccordionContent className={cn("relative p-6 rounded-b-lg shadow-inner-top saint-day-content", `theme-${theme}`)}>
+                      <AccordionContent className={cn("relative p-6 pt-12 rounded-b-lg shadow-inner-top saint-day-content", `theme-${theme}`)}>
                         <ThemeSelector theme={theme} setTheme={setTheme} />
-                        
-                        <button onClick={() => api?.scrollPrev()} className="saint-day-content-nav prev">
-                            <ChevronLeft className="w-6 h-6" />
-                        </button>
-                        <button onClick={() => api?.scrollNext()} className="saint-day-content-nav next">
-                            <ChevronRight className="w-6 h-6" />
-                        </button>
-                        
+                                                
                         {hasMultipleSaints && (
-                          <div className="flex justify-center gap-2 mb-4 mt-4">
+                          <div className="flex justify-center gap-2 mb-4">
                             {dayData.saints.map((saint, saintIdx) => (
                               <Button
                                 key={saintIdx}
@@ -200,22 +192,31 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
                       </AccordionContent>
                     </AccordionItem>
                   </Accordion>
+                  <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 z-20 flex gap-2">
+                     <Button
+                        size="sm"
+                        className="bg-white/70 backdrop-blur-sm text-primary hover:bg-primary hover:text-primary-foreground shadow-lg border-primary/20 border"
+                        onClick={() => api?.scrollPrev()}
+                    >
+                        <ChevronLeft className="w-4 h-4 mr-1" />
+                        Dia anterior
+                    </Button>
+                    <Button
+                        size="sm"
+                        className="bg-white/70 backdrop-blur-sm text-primary hover:bg-primary hover:text-primary-foreground shadow-lg border-primary/20 border"
+                        onClick={() => api?.scrollNext()}
+                    >
+                        Próximo dia
+                        <ChevronRight className="w-4 h-4 ml-1" />
+                    </Button>
+                  </div>
                 </div>
               </CarouselItem>
             );
           })}
         </CarouselContent>
-        <div className="flex justify-center items-center mt-4 gap-4">
-          <Button variant="ghost" className={cn(arrowClasses, "shadow-md")} onClick={() => api?.scrollPrev()}>
-            <ArrowLeft />
-            <span className="ml-2">Dia anterior</span>
-          </Button>
-          <Button variant="ghost" className={cn(arrowClasses, "shadow-md")} onClick={() => api?.scrollNext()}>
-            <span className="mr-2">Próximo dia</span>
-            <ArrowRight />
-          </Button>
-        </div>
       </Carousel>
     </div>
   );
 }
+
