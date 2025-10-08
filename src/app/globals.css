@@ -276,16 +276,17 @@
     }
     .group.is-open .saint-image-wrapper.multiple {
       height: 10rem;
-      transform: translateY(-2rem);
+      width: 8rem;
     }
     .group.is-open .saint-image-wrapper.multiple .image-1 {
-      transform: translate(-50%, -1.5rem) scale(1.6);
+      transform: translate(-50%, 0) scale(1.6);
       left: 50%;
+      top: 0;
     }
     .group.is-open .saint-image-wrapper.multiple .image-2 {
-      transform: translate(-50%, 2.5rem) scale(1.6);
+      transform: translate(-50%, 0) scale(1.6);
       left: 50%;
-      top: 50%;
+      top: 5rem; /* Moves the second image down */
     }
   }
 
@@ -359,5 +360,3 @@
         animation-delay: 700ms;
     }
 }
-
-    
