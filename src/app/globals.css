@@ -263,34 +263,6 @@
     @apply absolute bottom-0 left-[55%] -translate-x-1/2 z-10;
   }
   
-  @media (min-width: 768px) {
-    .saint-image-wrapper.multiple {
-      width: 8rem; /* w-32 */
-      height: 4rem; /* h-16 */
-    }
-    .saint-image-wrapper.multiple .image-1 {
-      @apply left-[35%] top-auto;
-    }
-    .saint-image-wrapper.multiple .image-2 {
-      @apply left-[65%] top-auto;
-    }
-    .group.is-open .saint-image-wrapper.multiple {
-      height: 10rem;
-      width: 8rem;
-    }
-    .group.is-open .saint-image-wrapper.multiple .image-1 {
-      transform: translate(-50%, 0) scale(1.6);
-      left: 50%;
-      top: 0;
-    }
-    .group.is-open .saint-image-wrapper.multiple .image-2 {
-      transform: translate(-50%, 0) scale(1.6);
-      left: 50%;
-      top: 5rem; /* Moves the second image down */
-    }
-  }
-
-
   .group.is-open .saint-image-wrapper {
     @apply z-20;
     margin-bottom: -2.5rem;
@@ -302,22 +274,20 @@
 
   .group.is-open .saint-image-wrapper.multiple {
       transform: translateY(-2rem);
+      width: 8rem;
+      height: 10rem;
   }
 
-  .group.is-open .saint-image-wrapper.multiple .image-1,
-  .group.is-open .saint-image-wrapper.multiple .image-2 {
-      @apply scale-[1.6] relative;
+  .group.is-open .saint-image-wrapper.multiple .saint-image {
+    @apply scale-[1.6];
+  }
+
+  .group.is-open .saint-image-wrapper.multiple .image-1 {
+    @apply absolute top-0 left-1/2 -translate-x-1/2;
   }
   
-  .group.is-open .saint-image-wrapper.multiple .image-1 {
-    transform: translate(0, 0) scale(1.6);
-    left: auto;
-  }
   .group.is-open .saint-image-wrapper.multiple .image-2 {
-    transform: translate(0, 0) scale(1.6);
-    left: auto;
-    bottom: auto;
-    top: auto;
+    @apply absolute bottom-0 left-1/2 -translate-x-1/2;
   }
 
   .saint-day-content-nav {
