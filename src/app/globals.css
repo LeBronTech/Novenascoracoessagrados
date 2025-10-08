@@ -262,14 +262,14 @@
       @apply left-[65%] top-auto;
     }
     .group[data-state=open] .saint-image-wrapper.multiple {
-      height: 8rem !important; /* Re-apply stacked height on open */
-      transform: translateY(-2.5rem);
+        height: 8rem; /* Re-apply stacked height on open */
+        transform: translateY(-2.5rem);
     }
     .group[data-state=open] .saint-image-wrapper.multiple .image-1 {
-      transform: translate(-3rem, -1.5rem) scale(1.5);
+        transform: translate(-3rem, -1.5rem) scale(1.5);
     }
     .group[data-state=open] .saint-image-wrapper.multiple .image-2 {
-      transform: translate(-2rem, 1.5rem) scale(1.5);
+        transform: translate(-2rem, 1.5rem) scale(1.5);
     }
   }
 
