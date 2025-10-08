@@ -205,7 +205,7 @@
   }
 
   .saint-day-trigger .date-capsule {
-    @apply bg-white text-primary text-sm font-bold px-3 py-1 rounded-full shadow;
+    @apply bg-white text-primary text-sm font-bold px-3 py-1 rounded-full shadow transition-all duration-200;
   }
   
   .saint-name-container {
@@ -279,10 +279,10 @@
         transform: translateY(-2.5rem);
     }
     .group.is-open .saint-image-wrapper.multiple .image-1 {
-        transform: translate(-3rem, -1.5rem) scale(1.5);
+        transform: translate(-3rem, -1rem) scale(1.5);
     }
     .group.is-open .saint-image-wrapper.multiple .image-2 {
-        transform: translate(-2rem, 1.5rem) scale(1.5);
+        transform: translate(-2rem, 1rem) scale(1.5);
     }
   }
 
@@ -307,10 +307,10 @@
   }
   
   .group.is-open .saint-image-wrapper.multiple .image-1 {
-    transform: translate(-3rem, -1.5rem) scale(1.5);
+    transform: translate(-3rem, -1rem) scale(1.5);
   }
   .group.is-open .saint-image-wrapper.multiple .image-2 {
-    transform: translate(-2rem, 1.5rem) scale(1.5);
+    transform: translate(-2rem, 1rem) scale(1.5);
   }
 
   .saint-day-content-nav {
@@ -353,5 +353,3 @@
         animation-delay: 700ms;
     }
 }
-
-    
