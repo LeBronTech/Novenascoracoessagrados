@@ -5,11 +5,11 @@ import { useState, useEffect, useMemo, useCallback } from 'react';
 import Image from 'next/image';
 import { saintsOfTheDay, months } from '@/lib/data';
 import type { SaintStory } from '@/lib/data';
-import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from '@/components/ui/carousel';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { cn } from '@/lib/utils';
 import type { Theme as NovenaTheme } from '@/app/page';
 import { Button } from '@/components/ui/button';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 type Theme = 'light' | 'dark';
 
@@ -85,16 +85,11 @@ interface SaintOfTheDayProps {
 }
 
 export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
-  const [api, setApi] = useState<CarouselApi>();
   const [openAccordion, setOpenAccordion] = useState<string | undefined>(undefined);
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [currentDayIndex, setCurrentDayIndex] = useState(0);
   const [hydrated, setHydrated] = useState(false);
   const [theme, setTheme] = useState<Theme>('light');
   
-  useEffect(() => {
-    setHydrated(true);
-  }, []);
-
   const currentDate = useMemo(() => new Date(), []);
   
   const currentMonthName = useMemo(() => {
@@ -104,41 +99,27 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
   const saintsForCurrentMonth = useMemo(() => {
     return saintsOfTheDay.filter(day => day.month === currentMonthName);
   }, [currentMonthName]);
-  
-  const startIndex = useMemo(() => {
-    const dayOfMonth = currentDate.getDate();
-    const index = saintsForCurrentMonth.findIndex(day => day.day >= dayOfMonth);
-    return index !== -1 ? index : 0;
-  }, [currentDate, saintsForCurrentMonth]);
 
   useEffect(() => {
-    if (!api) return;
-    
-    const onSelect = (emblaApi: CarouselApi) => {
-      setCurrentSlide(emblaApi.selectedScrollSnap());
-    };
+    const dayOfMonth = currentDate.getDate();
+    const index = saintsForCurrentMonth.findIndex(day => day.day >= dayOfMonth);
+    setCurrentDayIndex(index !== -1 ? index : 0);
+    setHydrated(true);
+  }, [currentDate, saintsForCurrentMonth]);
 
-    api.on('select', onSelect);
-    
-    if (hydrated) {
-        if(api.selectedScrollSnap() !== startIndex) {
-            api.scrollTo(startIndex, true);
-        }
-        setCurrentSlide(startIndex);
-    }
+  const handlePrevDay = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCurrentDayIndex((prev) => (prev > 0 ? prev - 1 : saintsForCurrentMonth.length - 1));
+  };
 
-    return () => {
-      api.off('select', onSelect);
-    };
-  }, [api, hydrated, startIndex]);
-
-  const handleAccordionChange = (value: string | undefined) => {
-    setOpenAccordion(value);
+  const handleNextDay = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCurrentDayIndex((prev) => (prev < saintsForCurrentMonth.length - 1 ? prev + 1 : 0));
   };
   
-  const currentDayData = saintsForCurrentMonth[currentSlide];
+  const currentDayData = saintsForCurrentMonth[currentDayIndex];
 
-  if (!hydrated) {
+  if (!hydrated || !currentDayData) {
     return <div className="p-4 text-center text-gray-500">A carregar santos...</div>;
   }
   
@@ -149,7 +130,7 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
         collapsible 
         className="w-full"
         value={openAccordion}
-        onValueChange={handleAccordionChange}
+        onValueChange={setOpenAccordion}
       >
         <AccordionItem value="saint-of-the-day" className="border-none">
           <div className="relative group">
@@ -177,14 +158,14 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
                 <Button
                   variant="outline"
                   className="h-8 px-4 bg-white/70 backdrop-blur-sm text-primary hover:bg-primary hover:text-primary-foreground shadow-lg border-primary/20 border" 
-                  onClick={(e) => { e.stopPropagation(); api?.scrollPrev(); }}
+                  onClick={handlePrevDay}
                 >
                   Dia anterior
                 </Button>
                 <Button 
                   variant="outline"
                   className="h-8 px-4 bg-white/70 backdrop-blur-sm text-primary hover:bg-primary hover:text-primary-foreground shadow-lg border-primary/20 border" 
-                  onClick={(e) => { e.stopPropagation(); api?.scrollNext(); }}
+                  onClick={handleNextDay}
                 >
                   Próximo dia
                 </Button>
@@ -193,24 +174,14 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
           
           <AccordionContent className={cn("relative p-6 pt-12 rounded-b-lg shadow-inner-top saint-day-content", `theme-${theme}`)}>
             <ThemeSelector theme={theme} setTheme={setTheme} />
-            <Carousel setApi={setApi} opts={{ startIndex, loop: true }} className="w-full saint-day-carousel">
-              <CarouselContent>
-                {saintsForCurrentMonth.map((day, index) => (
-                  <CarouselItem key={index}>
-                    <div className="p-1">
-                      {day.saints.length > 0 ? (
-                        <div className="prose prose-sm max-w-none pt-4" dangerouslySetInnerHTML={{ __html: day.saints.map(s => s.story).join('<hr class="my-4"/>') }} />
-                      ) : null}
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-            </Carousel>
+            <div className="p-1">
+              {currentDayData.saints.length > 0 ? (
+                <div className="prose prose-sm max-w-none pt-4" dangerouslySetInnerHTML={{ __html: currentDayData.saints.map(s => s.story).join('<hr class="my-4"/>') }} />
+              ) : null}
+            </div>
           </AccordionContent>
         </AccordionItem>
       </Accordion>
     </div>
   );
 }
-
-    
