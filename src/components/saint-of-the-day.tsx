@@ -169,7 +169,10 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
                 >
                   <div className="flex items-center gap-4 text-left w-full">
                     <SaintImages saints={dayData.saints} isOpen={isOpen} />
-                    <div className="flex flex-1 flex-col saint-name-container items-start">
+                    <div className={cn(
+                      "flex flex-1 flex-col saint-name-container items-start",
+                      isOpen && dayData.saints.length > 1 && "md:items-end"
+                      )}>
                       <div className="date-capsule">
                         {dayData.day} de {dayData.month}
                       </div>
@@ -177,7 +180,7 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
                         {dayData.saints.map(s => s.name).join(' & ')}
                       </p>
                     </div>
-                    <ChevronDown className={cn("h-4 w-4 shrink-0 transition-transform duration-200", isOpen && "rotate-180")} />
+                    <ChevronDown className={cn("h-4 w-4 shrink-0 transition-transform duration-200 text-primary-foreground", isOpen && "rotate-180")} />
                   </div>
                 </button>
 
@@ -258,5 +261,4 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
     </div>
   );
 }
-
 
