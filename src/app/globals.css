@@ -160,6 +160,9 @@
   }
   
   /* Fix for Saint of the Day Carousel Overflow */
+  .saint-day-carousel .embla {
+    overflow: hidden;
+  }
   .saint-day-carousel .embla__viewport {
     overflow: hidden;
   }
@@ -256,6 +259,10 @@
     height: 6rem; /* h-24 */
   }
 
+  .saint-image-wrapper.multiple .saint-image {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
   .saint-image-wrapper.multiple .image-1 {
     @apply absolute top-0 left-[45%] -translate-x-1/2 z-0;
   }
@@ -283,13 +290,13 @@
   }
 
   .group.is-open .saint-image-wrapper.multiple .saint-image--active {
-    transform: scale(1.8) translateY(-1rem);
+    transform: scale(1.8) translate(-50%, -1rem);
     opacity: 1;
     z-index: 10;
   }
   
   .group.is-open .saint-image-wrapper.multiple .saint-image--inactive {
-    transform: scale(1.3) translateY(1.5rem);
+    transform: scale(1.3) translate(-50%, 1.5rem);
     opacity: 0.4;
     z-index: 5;
   }
