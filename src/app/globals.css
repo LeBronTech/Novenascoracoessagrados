@@ -237,7 +237,7 @@
   .saint-image-wrapper .saint-image {
     @apply w-16 h-16 rounded-full object-cover border-2 border-white shadow-sm transition-all duration-500 ease-in-out;
   }
-
+  
   .saint-image-wrapper.multiple {
     width: 6rem; /* w-24 */
     height: 6rem; /* h-24 */
@@ -250,6 +250,30 @@
     @apply absolute bottom-0 left-[55%] -translate-x-1/2 z-10 transform-gpu;
   }
   
+  @media (min-width: 768px) {
+    .saint-image-wrapper.multiple {
+      width: 8rem; /* w-32 */
+      height: 4rem; /* h-16 */
+    }
+    .saint-image-wrapper.multiple .image-1 {
+      @apply left-[35%];
+    }
+    .saint-image-wrapper.multiple .image-2 {
+      @apply left-[65%];
+    }
+    .group[data-state=open] .saint-image-wrapper.multiple {
+      height: 8rem !important; /* Re-apply stacked height on open */
+      transform: translateY(-2.5rem);
+    }
+    .group[data-state=open] .saint-image-wrapper.multiple .image-1 {
+      transform: translate(-3rem, -1.5rem) scale(1.5);
+    }
+    .group[data-state=open] .saint-image-wrapper.multiple .image-2 {
+      transform: translate(-2rem, 1.5rem) scale(1.5);
+    }
+  }
+
+
   .group[data-state=open] .saint-image-wrapper {
     @apply z-20;
     margin-bottom: -2.5rem;
@@ -316,5 +340,3 @@
         animation-delay: 700ms;
     }
 }
-
-    
