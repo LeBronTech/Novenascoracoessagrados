@@ -213,7 +213,7 @@
   }
 
   .group.is-open .saint-name-container {
-    transform: translateY(2rem);
+    transform: translateY(2.5rem);
   }
 
   .saint-day-content.theme-light {
@@ -275,14 +275,14 @@
       @apply left-[65%] top-auto;
     }
     .group.is-open .saint-image-wrapper.multiple {
-        height: 8rem; /* Re-apply stacked height on open */
-        transform: translateY(-2.5rem);
+        height: auto; /* Re-apply stacked height on open */
+        transform: translateY(-2rem);
     }
     .group.is-open .saint-image-wrapper.multiple .image-1 {
-        transform: translate(0, -1rem) scale(1.5);
+        transform: translate(-1.5rem, 0) scale(1.6);
     }
     .group.is-open .saint-image-wrapper.multiple .image-2 {
-        transform: translate(0, 1rem) scale(1.5);
+        transform: translate(1.5rem, 0) scale(1.6);
     }
   }
 
@@ -293,28 +293,27 @@
   }
 
   .group.is-open .saint-image-wrapper.single {
-      transform: translateY(-2.5rem) scale(1.8);
+      transform: translateY(-2rem) scale(2);
   }
 
   .group.is-open .saint-image-wrapper.multiple {
-      height: 8rem;
-      transform: translateY(-2.5rem);
+      transform: translateY(-2rem);
   }
 
   .group.is-open .saint-image-wrapper.multiple .image-1,
   .group.is-open .saint-image-wrapper.multiple .image-2 {
-      @apply scale-[1.5] relative;
+      @apply scale-[1.6] relative;
   }
   
   .group.is-open .saint-image-wrapper.multiple .image-1 {
-    transform: translate(0, -1rem) scale(1.5);
-    left: 20%;
+    transform: translate(0, -1.2rem) scale(1.6);
+    left: auto;
   }
   .group.is-open .saint-image-wrapper.multiple .image-2 {
-    transform: translate(0, 1rem) scale(1.5);
-    left: -20%;
+    transform: translate(0, 1.2rem) scale(1.6);
+    left: auto;
     bottom: auto;
-    top: 50%;
+    top: auto;
   }
 
   .saint-day-content-nav {
