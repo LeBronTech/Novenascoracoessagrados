@@ -89,7 +89,7 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
   const [hydrated, setHydrated] = useState(false);
   const [theme, setTheme] = useState<Theme>('light');
   const [selectedSaintIndices, setSelectedSaintIndices] = useState<Record<number, number>>({});
-
+  
   useEffect(() => {
     setHydrated(true);
   }, []);
@@ -112,30 +112,33 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
   const startIndex = useMemo(() => {
     if (!currentDate || saintsForCurrentMonth.length === 0) return 0;
     const dayOfMonth = currentDate.getDate();
+    // Find the first saint with a day greater than or equal to today's date
     const index = saintsForCurrentMonth.findIndex(day => day.day >= dayOfMonth);
+    // If not found (e.g., end of the month), default to the first saint of the month
     return index !== -1 ? index : 0;
   }, [currentDate, saintsForCurrentMonth]);
 
   useEffect(() => {
-    if (api && saintsForCurrentMonth.length > 0 && api.selectedScrollSnap() !== startIndex) {
-        api.scrollTo(startIndex, true);
-        setCurrent(startIndex);
-    }
-  }, [api, hydrated, startIndex, saintsForCurrentMonth.length]);
-
-  useEffect(() => {
-    if (!api) {
+    if (!api || !hydrated) {
       return;
     }
+    
+    // Set initial slide without animation and update current state
+    if (api.selectedScrollSnap() !== startIndex) {
+        api.scrollTo(startIndex, true);
+    }
+    setCurrent(startIndex);
+    
     const onSelect = () => {
       setCurrent(api.selectedScrollSnap());
     };
+
     api.on("select", onSelect);
 
     return () => {
       api.off("select", onSelect);
     };
-  }, [api]);
+  }, [api, hydrated, startIndex]);
   
   const handleSelectSaint = (e: React.MouseEvent, dayIndex: number, saintIndex: number) => {
     e.stopPropagation();
@@ -146,6 +149,10 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
     return <div className="p-4 text-center text-gray-500">A carregar santos...</div>;
   }
   
+  const currentDayData = saintsForCurrentMonth[current];
+  const currentSaintIndex = selectedSaintIndices[current] ?? 0;
+  const currentSaint = currentDayData?.saints[currentSaintIndex];
+
   return (
     <div className="p-4 md:p-6 bg-gray-100/70 backdrop-blur-sm rounded-xl shadow-lg mt-8">
       <Carousel setApi={setApi} opts={{ startIndex, loop: true }} className="w-full saint-day-carousel">
@@ -159,15 +166,15 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
                   triggerTheme
               )}>
                 <div className="flex items-center gap-4 text-left w-full">
-                  {saintsForCurrentMonth[current] && <SaintImages saints={saintsForCurrentMonth[current].saints} />}
+                  {currentDayData && <SaintImages saints={currentDayData.saints} />}
                   <div className="flex flex-1 flex-col saint-name-container items-start">
-                      {saintsForCurrentMonth[current] && (
+                      {currentDayData && (
                         <>
                           <div className="date-capsule">
-                            {saintsForCurrentMonth[current].day} de {saintsForCurrentMonth[current].month}
+                            {currentDayData.day} de {currentDayData.month}
                           </div>
                           <p className="font-brand font-semibold mt-2 text-lg">
-                            {saintsForCurrentMonth[current].saints.map(s => s.name).join(' & ')}
+                            {currentDayData.saints.map(s => s.name).join(' & ')}
                           </p>
                         </>
                       )}
@@ -180,60 +187,45 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
             <AccordionContent className={cn("relative p-6 pt-12 rounded-b-lg shadow-inner-top saint-day-content", `theme-${theme}`)}>
               <ThemeSelector theme={theme} setTheme={setTheme} />
               
-              <CarouselContent className="!hidden">
-                {/* This is a dummy content to make the carousel api work correctly with the outer buttons */}
-                {saintsForCurrentMonth.map((_, index) => <CarouselItem key={index}></CarouselItem>)}
-              </CarouselContent>
-
               <div className="p-1">
-                {(() => {
-                  const dayData = saintsForCurrentMonth[current];
-                  if (!dayData) return null;
-
-                  const selectedSaintIndex = selectedSaintIndices[current] ?? 0;
-                  const currentSaint = dayData.saints[selectedSaintIndex];
-                  const hasMultipleSaints = dayData.saints.length > 1;
-
-                  return (
-                    <>
-                      {hasMultipleSaints && (
-                        <div className="flex justify-center gap-2 mb-4">
-                          {dayData.saints.map((saint, saintIdx) => (
-                            <button
-                              key={saintIdx}
-                              onClick={(e) => handleSelectSaint(e, current, saintIdx)}
-                              className={cn(
-                                "rounded-full h-8 px-4 text-sm font-semibold transition-colors",
-                                selectedSaintIndex === saintIdx
-                                  ? "bg-primary text-primary-foreground"
-                                  : (theme === 'light' ? "border border-primary text-primary bg-transparent hover:bg-primary/10" : "border border-white/50 text-white bg-transparent hover:bg-white/10")
-                              )}
-                            >
-                              {saint.name}
-                            </button>
-                          ))}
-                        </div>
-                      )}
-                      <div className="prose prose-sm max-w-none pt-4" dangerouslySetInnerHTML={{ __html: currentSaint.story }} />
-                    </>
-                  );
-                })()}
+                {currentSaint ? (
+                  <>
+                    {currentDayData.saints.length > 1 && (
+                      <div className="flex justify-center gap-2 mb-4">
+                        {currentDayData.saints.map((saint, saintIdx) => (
+                          <button
+                            key={saintIdx}
+                            onClick={(e) => handleSelectSaint(e, current, saintIdx)}
+                            className={cn(
+                              "rounded-full h-8 px-4 text-sm font-semibold transition-colors",
+                              currentSaintIndex === saintIdx
+                                ? "bg-primary text-primary-foreground"
+                                : (theme === 'light' ? "border border-primary text-primary bg-transparent hover:bg-primary/10" : "border border-white/50 text-white bg-transparent hover:bg-white/10")
+                            )}
+                          >
+                            {saint.name}
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                    <div className="prose prose-sm max-w-none pt-4" dangerouslySetInnerHTML={{ __html: currentSaint.story }} />
+                  </>
+                ) : null}
               </div>
             </AccordionContent>
           </AccordionItem>
         </Accordion>
         
+        {/* Hidden Carousel for logic */}
         <div className="hidden">
             <CarouselContent>
-                {saintsForCurrentMonth.map((dayData, index) => {
-                  return (
-                    <CarouselItem key={index}>
-                    </CarouselItem>
-                  );
-                })}
+                {saintsForCurrentMonth.map((_, index) => (
+                    <CarouselItem key={index}></CarouselItem>
+                ))}
             </CarouselContent>
         </div>
       </Carousel>
     </div>
   );
 }
+
