@@ -8,7 +8,7 @@ import type { SaintStory } from '@/lib/data';
 import { cn } from '@/lib/utils';
 import type { Theme as NovenaTheme } from '@/app/page';
 import { Button } from '@/components/ui/button';
-import useEmblaCarousel, { type EmblaCarouselType, type EmblaOptionsType } from 'embla-carousel-react';
+import useEmblaCarousel, { type UseEmblaCarouselType, type EmblaOptionsType } from 'embla-carousel-react';
 import { ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react';
 
 
@@ -103,7 +103,8 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
     return saintsOfTheDay.filter(day => day.month === currentMonthName);
   }, [currentMonthName]);
 
-  const onSelect = useCallback((api: EmblaCarouselType) => {
+  const onSelect = useCallback((api: UseEmblaCarouselType[1]) => {
+    if (!api) return;
     setCurrentSlide(api.selectedScrollSnap());
     setSelectedSaintInDayIndex(0); // Reset when changing day
     setIsOpen(false); // Close accordion when changing day
