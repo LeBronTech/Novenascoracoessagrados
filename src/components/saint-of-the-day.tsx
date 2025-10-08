@@ -143,7 +143,7 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
             
             return (
               <CarouselItem key={index} className="pl-4">
-                <div className="p-1 relative">
+                <div className="p-1">
                   <Accordion type="single" collapsible value={openAccordion} onValueChange={setOpenAccordion}>
                     <AccordionItem value={`item-${index}`} className="border-none group">
                        <div className="relative">
@@ -167,11 +167,11 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
                               </div>
                             </div>
                           </AccordionTrigger>
-                          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 z-20 flex gap-2">
+                           <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-2/3 z-20 flex gap-2">
                              <Button
                                 size="sm"
                                 className="bg-white/70 backdrop-blur-sm text-primary hover:bg-primary hover:text-primary-foreground shadow-lg border-primary/20 border"
-                                onClick={() => api?.scrollPrev()}
+                                onClick={(e) => { e.stopPropagation(); api?.scrollPrev(); }}
                             >
                                 <ChevronLeft className="w-4 h-4 mr-1" />
                                 Dia anterior
@@ -179,7 +179,7 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
                             <Button
                                 size="sm"
                                 className="bg-white/70 backdrop-blur-sm text-primary hover:bg-primary hover:text-primary-foreground shadow-lg border-primary/20 border"
-                                onClick={() => api?.scrollNext()}
+                                onClick={(e) => { e.stopPropagation(); api?.scrollNext(); }}
                             >
                                 Próximo dia
                                 <ChevronRight className="w-4 h-4 ml-1" />
