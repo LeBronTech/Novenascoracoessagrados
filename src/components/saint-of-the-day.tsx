@@ -173,11 +173,11 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
                       <div className="date-capsule">
                         {dayData.day} de {dayData.month}
                       </div>
-                      <p className="font-brand font-semibold mt-2 text-lg">
+                      <p className={cn("font-brand font-semibold mt-2", dayData.saints.length > 1 ? "text-base" : "text-lg")}>
                         {dayData.saints.map(s => s.name).join(' & ')}
                       </p>
                     </div>
-                    <ChevronDown className={cn("h-4 w-4 shrink-0 transition-transform duration-200 text-primary-foreground", isOpen && "rotate-180")} />
+                    <ChevronDown className={cn("h-4 w-4 shrink-0 transition-transform duration-200", isOpen && "rotate-180")} />
                   </div>
                 </button>
 
@@ -258,4 +258,5 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
     </div>
   );
 }
+
 
