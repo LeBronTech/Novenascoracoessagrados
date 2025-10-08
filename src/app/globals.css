@@ -282,7 +282,7 @@
         transform: translate(-1.5rem, 0) scale(1.6);
     }
     .group.is-open .saint-image-wrapper.multiple .image-2 {
-        transform: translate(1.5rem, 0) scale(1.6);
+        transform: translate(2.5rem, 0) scale(1.6);
     }
   }
 
@@ -306,11 +306,11 @@
   }
   
   .group.is-open .saint-image-wrapper.multiple .image-1 {
-    transform: translate(0, -1.2rem) scale(1.6);
+    transform: translate(0, 0) scale(1.6);
     left: auto;
   }
   .group.is-open .saint-image-wrapper.multiple .image-2 {
-    transform: translate(0, 1.2rem) scale(1.6);
+    transform: translate(0, 0) scale(1.6);
     left: auto;
     bottom: auto;
     top: auto;
