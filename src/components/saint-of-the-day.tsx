@@ -113,7 +113,6 @@ const SaintOfTheDay = forwardRef<SaintOfTheDayRef, SaintOfTheDayProps>(({ trigge
     if (!api) return;
     setCurrentSlide(api.selectedScrollSnap());
     setSelectedSaintInDayIndex(0); // Reset when changing day
-    setIsOpen(false); // Close accordion when changing day
   }, []);
 
   useEffect(() => {
