@@ -185,7 +185,7 @@
   .saint-day-trigger.theme-dark-gray { @apply bg-gray-700; }
   .saint-day-trigger.theme-default { @apply bg-[#949da4]; }
   .saint-day-trigger.theme-light-gray { @apply bg-gray-200 text-gray-800; }
-  .saint-day-trigger.theme-light-gray .date-capsule { @apply bg-white text-primary; }
+  .saint-day-trigger.theme-light-gray .date-capsule { @apply bg-white/70 backdrop-blur-sm text-primary; }
 
 
   .saint-day-trigger:hover {
@@ -197,7 +197,7 @@
   }
 
   .saint-day-trigger .date-capsule {
-    @apply bg-white text-primary text-sm font-bold px-3 py-1 rounded-full shadow transition-all duration-200;
+    @apply bg-white/70 backdrop-blur-sm text-primary text-sm font-bold px-3 py-1 rounded-full shadow transition-all duration-200;
   }
   
   .saint-name-container {
