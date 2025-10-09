@@ -94,7 +94,7 @@ const OPTIONS: EmblaOptionsType = { loop: true };
 
 const SaintOfTheDay = forwardRef<SaintOfTheDayRef, SaintOfTheDayProps>(({ triggerTheme, onToggle }, ref) => {
   const [emblaRef, emblaApi] = useEmblaCarousel(OPTIONS);
-  const [isOpen, setIsOpen] = useState(false);
+  const [openAccordionIndex, setOpenAccordionIndex] = useState<number | null>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [selectedSaintInDayIndex, setSelectedSaintInDayIndex] = useState(0);
   const [hydrated, setHydrated] = useState(false);
@@ -112,8 +112,8 @@ const SaintOfTheDay = forwardRef<SaintOfTheDayRef, SaintOfTheDayProps>(({ trigge
   const onSelect = useCallback((api: EmblaCarouselType) => {
     if (!api) return;
     setCurrentSlide(api.selectedScrollSnap());
-    setSelectedSaintInDayIndex(0); // Reset when changing day
-    setIsOpen(false);
+    setSelectedSaintInDayIndex(0);
+    setOpenAccordionIndex(null); 
     if(onToggle) onToggle(false);
   }, [onToggle]);
 
@@ -123,16 +123,16 @@ const SaintOfTheDay = forwardRef<SaintOfTheDayRef, SaintOfTheDayProps>(({ trigge
 
   useEffect(() => {
     if (!emblaApi || !hydrated || saintsForCurrentMonth.length === 0) return;
-
+  
     const dayOfMonth = new Date().getDate();
     const initialIndex = saintsForCurrentMonth.findIndex(day => day.day >= dayOfMonth);
     const startIndex = initialIndex !== -1 ? initialIndex : 0;
     
     if (emblaApi.selectedScrollSnap() !== startIndex) {
-        emblaApi.scrollTo(startIndex, true); // Instant scroll
+        emblaApi.scrollTo(startIndex, true);
     }
-    setCurrentSlide(startIndex); // Set initial slide state
-
+    setCurrentSlide(startIndex);
+  
     emblaApi.on('select', onSelect);
     
     return () => {
@@ -154,29 +154,31 @@ const SaintOfTheDay = forwardRef<SaintOfTheDayRef, SaintOfTheDayProps>(({ trigge
   }));
 
 
-  const toggleOpen = () => {
-    const newIsOpen = !isOpen;
-    setIsOpen(newIsOpen);
+  const toggleAccordion = (index: number) => {
+    const newOpenIndex = openAccordionIndex === index ? null : index;
+    setOpenAccordionIndex(newOpenIndex);
     if(onToggle) {
-      onToggle(newIsOpen);
+      onToggle(newOpenIndex !== null);
     }
   }
 
-  const currentDayData = saintsForCurrentMonth[currentSlide];
-  if (!hydrated || !currentDayData) {
+  if (!hydrated || saintsForCurrentMonth.length === 0) {
     return <div className="p-4 text-center text-gray-500">A carregar santos...</div>;
   }
-  const currentSaintData = currentDayData.saints[selectedSaintInDayIndex];
 
   return (
-    <div className="p-4 md:p-6 bg-gray-100/70 backdrop-blur-sm rounded-xl shadow-lg mt-2 saint-day-carousel relative z-10">
+    <div className="p-4 md:p-6 bg-gray-100/70 backdrop-blur-sm rounded-xl shadow-lg mt-2 saint-day-carousel relative">
       <div className="embla" ref={emblaRef}>
         <div className="embla__container">
-          {saintsForCurrentMonth.map((dayData, index) => (
+          {saintsForCurrentMonth.map((dayData, index) => {
+            const isOpen = openAccordionIndex === index;
+            const currentSaintData = dayData.saints[isOpen ? selectedSaintInDayIndex : 0];
+
+            return (
             <div className="embla__slide px-2" key={index}>
               <div className={cn("relative group", isOpen && "is-open")}>
                 <button
-                  onClick={toggleOpen}
+                  onClick={() => toggleAccordion(index)}
                   className={cn(
                       "flex-1 p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow w-full saint-day-trigger",
                       isOpen ? "rounded-b-none pb-12" : "",
@@ -229,14 +231,14 @@ const SaintOfTheDay = forwardRef<SaintOfTheDayRef, SaintOfTheDayProps>(({ trigge
                     </div>
 
 
-                    {currentDayData.saints.length > 1 && (
+                    {dayData.saints.length > 1 && (
                       <div className="mb-4 flex justify-center gap-2">
-                        {currentDayData.saints.map((saint, saintIndex) => (
+                        {dayData.saints.map((saint, saintIndex) => (
                           <Button
                             key={saint.name}
                             variant={selectedSaintInDayIndex === saintIndex ? 'default' : 'outline'}
                             size="sm"
-                            onClick={() => setSelectedSaintInDayIndex(saintIndex)}
+                            onClick={(e) => { e.stopPropagation(); setSelectedSaintInDayIndex(saintIndex); }}
                             className={cn(
                               'transition-all duration-200',
                               theme === 'light' 
@@ -261,7 +263,8 @@ const SaintOfTheDay = forwardRef<SaintOfTheDayRef, SaintOfTheDayProps>(({ trigge
                 )}
               </div>
             </div>
-          ))}
+            )
+          })}
         </div>
       </div>
     </div>
@@ -270,3 +273,5 @@ const SaintOfTheDay = forwardRef<SaintOfTheDayRef, SaintOfTheDayProps>(({ trigge
 
 SaintOfTheDay.displayName = 'SaintOfTheDay';
 export default SaintOfTheDay;
+
+    
