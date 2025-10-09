@@ -257,7 +257,7 @@ const SaintOfTheDay = forwardRef<SaintOfTheDayRef, SaintOfTheDayProps>(({ trigge
                     )}
                     
                     <div className="p-1">
-                      {currentSaintData && <div className="prose prose-sm max-w-none pt-4 animate-fade-in" dangerouslySetInnerHTML={{ __html: currentSaintData.story }} />}
+                      {currentSaintData && <div className="prose prose-sm max-w-none pt-4" dangerouslySetInnerHTML={{ __html: currentSaintData.story }} />}
                     </div>
                   </div>
                 )}
