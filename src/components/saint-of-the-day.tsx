@@ -1,7 +1,7 @@
 
 'use client';
 
-import { useState, useEffect, useMemo, useCallback } from 'react';
+import { useState, useEffect, useMemo, useCallback, forwardRef, useImperativeHandle } from 'react';
 import Image from 'next/image';
 import { saintsOfTheDay, months } from '@/lib/data';
 import type { SaintStory } from '@/lib/data';
@@ -9,8 +9,8 @@ import { cn } from '@/lib/utils';
 import type { Theme as NovenaTheme } from '@/app/page';
 import { Button } from '@/components/ui/button';
 import useEmblaCarousel, { type UseEmblaCarouselType } from 'embla-carousel-react';
-import type { EmblaOptionsType } from 'embla-carousel';
-import { ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react';
+import type { EmblaCarouselType, EmblaOptionsType } from 'embla-carousel';
+import { ChevronDown } from 'lucide-react';
 
 
 type Theme = 'light' | 'dark';
@@ -81,13 +81,18 @@ function ThemeSelector({ theme, setTheme }: { theme: Theme, setTheme: (theme: Th
     );
 }
 
+export interface SaintOfTheDayRef {
+  navigate: (direction: 'prev' | 'next') => void;
+}
+
 interface SaintOfTheDayProps {
   triggerTheme: NovenaTheme;
+  onToggle?: (isOpen: boolean) => void;
 }
 
 const OPTIONS: EmblaOptionsType = { loop: true };
 
-export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
+const SaintOfTheDay = forwardRef<SaintOfTheDayRef, SaintOfTheDayProps>(({ triggerTheme, onToggle }, ref) => {
   const [emblaRef, emblaApi] = useEmblaCarousel(OPTIONS);
   const [isOpen, setIsOpen] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -104,7 +109,7 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
     return saintsOfTheDay.filter(day => day.month === currentMonthName);
   }, [currentMonthName]);
 
-  const onSelect = useCallback((api: UseEmblaCarouselType[1]) => {
+  const onSelect = useCallback((api: EmblaCarouselType) => {
     if (!api) return;
     setCurrentSlide(api.selectedScrollSnap());
     setSelectedSaintInDayIndex(0); // Reset when changing day
@@ -143,8 +148,17 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
     }
   }, [emblaApi]);
 
+  useImperativeHandle(ref, () => ({
+    navigate: handleNavigation
+  }));
+
+
   const toggleOpen = () => {
-    setIsOpen(prev => !prev);
+    const newIsOpen = !isOpen;
+    setIsOpen(newIsOpen);
+    if(onToggle) {
+      onToggle(newIsOpen);
+    }
   }
 
   const currentDayData = saintsForCurrentMonth[currentSlide];
@@ -154,7 +168,7 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
   const currentSaintData = currentDayData.saints[selectedSaintInDayIndex];
 
   return (
-    <div className="relative z-10 p-4 md:p-6 bg-gray-100/70 backdrop-blur-sm rounded-xl shadow-lg mt-8 saint-day-carousel">
+    <div className="p-4 md:p-6 bg-gray-100/70 backdrop-blur-sm rounded-xl shadow-lg mt-2 saint-day-carousel">
       <div className="embla" ref={emblaRef}>
         <div className="embla__container">
           {saintsForCurrentMonth.map((dayData, index) => (
@@ -191,23 +205,6 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
                     <ChevronDown className={cn("h-4 w-4 shrink-0 transition-transform duration-200", isOpen && "rotate-180", "text-primary-foreground")} />
                   </div>
                 </button>
-
-                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 flex items-center justify-center gap-2 z-20">
-                    <Button
-                      variant="outline"
-                      className="h-8 px-4 bg-white/70 backdrop-blur-sm text-primary hover:bg-primary hover:text-primary-foreground shadow-lg border-primary/20 border" 
-                      onClick={(e) => { e.stopPropagation(); e.currentTarget.blur(); handleNavigation('prev'); }}
-                    >
-                      Dia anterior
-                    </Button>
-                    <Button 
-                      variant="outline"
-                      className="h-8 px-4 bg-white/70 backdrop-blur-sm text-primary hover:bg-primary hover:text-primary-foreground shadow-lg border-primary/20 border" 
-                      onClick={(e) => { e.stopPropagation(); e.currentTarget.blur(); handleNavigation('next'); }}
-                    >
-                      Próximo dia
-                    </Button>
-                </div>
                 
                 {isOpen && (
                   <div className={cn("relative p-6 pt-12 rounded-b-lg shadow-inner-top saint-day-content", `theme-${theme}`)}>
@@ -268,4 +265,7 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
       </div>
     </div>
   );
-}
+});
+
+SaintOfTheDay.displayName = 'SaintOfTheDay';
+export default SaintOfTheDay;

@@ -1,17 +1,18 @@
 
 'use client';
 
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect, useRef } from 'react';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
 import SaintSelector from '@/components/saint-selector';
 import NovenaDisplay from '@/components/novena-display';
-import SaintOfTheDay from '@/components/saint-of-the-day';
+import SaintOfTheDay, { type SaintOfTheDayRef } from '@/components/saint-of-the-day';
 import { saints, months, novenaData } from '@/lib/data';
 import type { Saint, Novena } from '@/lib/data';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetTrigger } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
 import { Menu } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 export type Theme = 'theme-default' | 'theme-dark-gray' | 'theme-light-gray' | 'theme-red';
 
@@ -20,6 +21,8 @@ export default function Home() {
   const [selectedSaintId, setSelectedSaintId] = useState<string | null>(null);
   const [hydrated, setHydrated] = useState(false);
   const [theme, setTheme] = useState<Theme>('theme-dark-gray');
+  const saintOfTheDayRef = useRef<SaintOfTheDayRef>(null);
+  const [isSaintOfTheDayOpen, setIsSaintOfTheDayOpen] = useState(false);
   
   useEffect(() => {
     const hash = window.location.hash.substring(1);
@@ -72,6 +75,10 @@ export default function Home() {
     }
   }
 
+  const handleSaintOfTheDayNavigation = (direction: 'prev' | 'next') => {
+    saintOfTheDayRef.current?.navigate(direction);
+  }
+
   // Prevent rendering until the client-side has determined the initial state from URL
   if (!hydrated) {
     return null; // Or a loading spinner
@@ -99,12 +106,40 @@ export default function Home() {
 
       <Header />
       
-      <h2 className="text-xl font-brand text-center text-gray-700 mt-8">
-        Santo do Dia
-      </h2>
-      <SaintOfTheDay triggerTheme={theme} />
+      <div className="relative">
+        <h2 className="text-xl font-brand text-center text-gray-700 mt-8">
+          Santo do Dia
+        </h2>
+        <SaintOfTheDay 
+          ref={saintOfTheDayRef} 
+          triggerTheme={theme}
+          onToggle={setIsSaintOfTheDayOpen}
+        />
+        <div 
+            className={cn(
+              "absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 flex items-center justify-center gap-2 z-20 transition-opacity",
+              isSaintOfTheDayOpen ? "opacity-0 pointer-events-none" : "opacity-100"
+            )}
+        >
+            <Button
+              variant="outline"
+              className="h-8 px-4 bg-white/70 backdrop-blur-sm text-primary hover:bg-primary hover:text-primary-foreground shadow-lg border-primary/20 border" 
+              onClick={(e) => { e.stopPropagation(); e.currentTarget.blur(); handleSaintOfTheDayNavigation('prev'); }}
+            >
+              Dia anterior
+            </Button>
+            <Button 
+              variant="outline"
+              className="h-8 px-4 bg-white/70 backdrop-blur-sm text-primary hover:bg-primary hover:text-primary-foreground shadow-lg border-primary/20 border" 
+              onClick={(e) => { e.stopPropagation(); e.currentTarget.blur(); handleSaintOfTheDayNavigation('next'); }}
+            >
+              Próximo dia
+            </Button>
+        </div>
+      </div>
 
-      <div className="bg-gray-100/70 backdrop-blur-sm rounded-xl shadow-lg p-4 mt-4">
+
+      <div className="bg-gray-100/70 backdrop-blur-sm rounded-xl shadow-lg p-4 mt-12">
         <h2 id="saints-nav-title" className="text-xl font-brand text-center text-gray-700 mb-4">
           Novenas de {selectedMonth}
         </h2>
