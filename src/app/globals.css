@@ -174,7 +174,6 @@
   .saint-day-carousel .embla__slide {
     flex: 0 0 100%;
     min-width: 0;
-    padding-bottom: 2rem; /* Add space for the overlapping buttons */
   }
 
   /* Saint of the Day Accordion */
