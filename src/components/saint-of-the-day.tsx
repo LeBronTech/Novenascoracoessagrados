@@ -154,7 +154,7 @@ export default function SaintOfTheDay({ triggerTheme }: SaintOfTheDayProps) {
   const currentSaintData = currentDayData.saints[selectedSaintInDayIndex];
 
   return (
-    <div className="p-4 md:p-6 bg-gray-100/70 backdrop-blur-sm rounded-xl shadow-lg mt-8 saint-day-carousel">
+    <div className="relative z-10 p-4 md:p-6 bg-gray-100/70 backdrop-blur-sm rounded-xl shadow-lg mt-8 saint-day-carousel">
       <div className="embla" ref={emblaRef}>
         <div className="embla__container">
           {saintsForCurrentMonth.map((dayData, index) => (
