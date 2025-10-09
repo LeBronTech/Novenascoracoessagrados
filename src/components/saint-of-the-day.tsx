@@ -113,7 +113,9 @@ const SaintOfTheDay = forwardRef<SaintOfTheDayRef, SaintOfTheDayProps>(({ trigge
     if (!api) return;
     setCurrentSlide(api.selectedScrollSnap());
     setSelectedSaintInDayIndex(0); // Reset when changing day
-  }, []);
+    setIsOpen(false);
+    if(onToggle) onToggle(false);
+  }, [onToggle]);
 
   useEffect(() => {
     setHydrated(true);
@@ -167,7 +169,7 @@ const SaintOfTheDay = forwardRef<SaintOfTheDayRef, SaintOfTheDayProps>(({ trigge
   const currentSaintData = currentDayData.saints[selectedSaintInDayIndex];
 
   return (
-    <div className="p-4 md:p-6 bg-gray-100/70 backdrop-blur-sm rounded-xl shadow-lg mt-2 saint-day-carousel">
+    <div className="p-4 md:p-6 bg-gray-100/70 backdrop-blur-sm rounded-xl shadow-lg mt-2 saint-day-carousel relative z-10">
       <div className="embla" ref={emblaRef}>
         <div className="embla__container">
           {saintsForCurrentMonth.map((dayData, index) => (

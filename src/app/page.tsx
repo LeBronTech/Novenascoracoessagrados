@@ -116,10 +116,9 @@ export default function Home() {
           onToggle={setIsSaintOfTheDayOpen}
         />
         <div 
-            className={cn(
-              "absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 flex items-center justify-center gap-2 z-20 transition-opacity",
-              isSaintOfTheDayOpen ? "opacity-0 pointer-events-none" : "opacity-100"
-            )}
+          className={cn(
+            "absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 flex items-center justify-center gap-2 z-20"
+          )}
         >
             <Button
               variant="outline"
