@@ -160,12 +160,8 @@
   }
   
   /* Fix for Saint of the Day Carousel Overflow */
-  .saint-day-carousel .embla,
   .saint-day-carousel .embla__viewport {
     overflow: visible;
-  }
-  .saint-day-carousel .embla:not(:has(.is-open)) {
-    overflow: hidden;
   }
 
   .saint-day-carousel .embla__container {
