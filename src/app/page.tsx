@@ -22,6 +22,7 @@ export default function Home() {
   const [hydrated, setHydrated] = useState(false);
   const [theme, setTheme] = useState<Theme>('theme-dark-gray');
   const saintOfTheDayRef = useRef<SaintOfTheDayRef>(null);
+  const saintOfTheDaySectionRef = useRef<HTMLDivElement>(null);
   const [isSaintOfTheDayOpen, setIsSaintOfTheDayOpen] = useState(false);
   
   useEffect(() => {
@@ -77,6 +78,7 @@ export default function Home() {
 
   const handleSaintOfTheDayNavigation = (direction: 'prev' | 'next') => {
     saintOfTheDayRef.current?.navigate(direction);
+    saintOfTheDaySectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   // Prevent rendering until the client-side has determined the initial state from URL
@@ -106,7 +108,7 @@ export default function Home() {
 
       <Header />
       
-      <div className="relative">
+      <div className="relative" ref={saintOfTheDaySectionRef}>
         <h2 className="text-xl font-brand text-center text-gray-700 mt-8">
           Santo do Dia
         </h2>
