@@ -94,6 +94,7 @@ const SaintOfTheDay = forwardRef<SaintOfTheDayRef, SaintOfTheDayProps>(({ trigge
   const [selectedSaintInDayIndex, setSelectedSaintInDayIndex] = useState(0);
   const [hydrated, setHydrated] = useState(false);
   const [theme, setTheme] = useState<Theme>('light');
+  const [isAnimating, setIsAnimating] = useState(false);
   
   const currentMonthName = useMemo(() => {
     if (!hydrated) return months[new Date().getMonth()];
@@ -104,13 +105,6 @@ const SaintOfTheDay = forwardRef<SaintOfTheDayRef, SaintOfTheDayProps>(({ trigge
     return saintsOfTheDay.filter(day => day.month === currentMonthName);
   }, [currentMonthName]);
 
-  const handleDayChange = useCallback((newIndex: number) => {
-    setCurrentSlide(newIndex);
-    setSelectedSaintInDayIndex(0);
-    setOpenAccordionIndex(null); 
-    if(onToggle) onToggle(false);
-  }, [onToggle]);
-
   useEffect(() => {
     setHydrated(true);
     const dayOfMonth = new Date().getDate();
@@ -120,17 +114,31 @@ const SaintOfTheDay = forwardRef<SaintOfTheDayRef, SaintOfTheDayProps>(({ trigge
   }, [saintsForCurrentMonth]);
 
   const handleNavigation = useCallback((direction: 'prev' | 'next') => {
-    const totalSlides = saintsForCurrentMonth.length;
-    if (totalSlides === 0) return;
+    if (isAnimating) return;
+    setIsAnimating(true);
+    
+    setTimeout(() => {
+        const totalSlides = saintsForCurrentMonth.length;
+        if (totalSlides === 0) {
+            setIsAnimating(false);
+            return;
+        };
 
-    let newIndex;
-    if (direction === 'prev') {
-      newIndex = (currentSlide - 1 + totalSlides) % totalSlides;
-    } else {
-      newIndex = (currentSlide + 1) % totalSlides;
-    }
-    handleDayChange(newIndex);
-  }, [currentSlide, saintsForCurrentMonth, handleDayChange]);
+        let newIndex;
+        if (direction === 'prev') {
+            newIndex = (currentSlide - 1 + totalSlides) % totalSlides;
+        } else {
+            newIndex = (currentSlide + 1) % totalSlides;
+        }
+        
+        setCurrentSlide(newIndex);
+        setSelectedSaintInDayIndex(0);
+        setOpenAccordionIndex(null); 
+        if(onToggle) onToggle(false);
+
+        setTimeout(() => setIsAnimating(false), 150);
+    }, 150);
+  }, [currentSlide, saintsForCurrentMonth, isAnimating, onToggle]);
 
   useImperativeHandle(ref, () => ({
     navigate: handleNavigation
@@ -156,97 +164,81 @@ const SaintOfTheDay = forwardRef<SaintOfTheDayRef, SaintOfTheDayProps>(({ trigge
   
   const isOpen = openAccordionIndex === currentSlide;
   const currentSaintData = dayData.saints[isOpen ? selectedSaintInDayIndex : 0];
+  
+  const animationClass = isAnimating ? 'animate-fade-out' : 'animate-fade-in';
 
   return (
     <div className="p-4 md:p-6 bg-gray-100/70 backdrop-blur-sm rounded-xl shadow-lg mt-2 relative">
-        <div className="px-2">
-            <div className={cn("relative group", isOpen && "is-open")}>
-            <button
-                onClick={() => toggleAccordion(currentSlide)}
-                className={cn(
-                    "flex-1 p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow w-full saint-day-trigger",
-                    isOpen ? "rounded-b-none pb-12" : "",
-                    triggerTheme
-                )}
-            >
-                <div className="flex items-center gap-4 text-left w-full">
-                <SaintImages saints={dayData.saints} isOpen={isOpen} selectedIndex={selectedSaintInDayIndex} />
-                <div className={cn(
-                    "flex flex-1 flex-col items-start saint-name-container",
-                    isOpen && dayData.saints.length > 1 && "md:items-end"
-                    )}>
-                    <div className={cn(
-                    "date-capsule",
-                        isOpen && "text-xs md:text-right"
-                    )}>
-                    {dayData.day} de {dayData.month}
-                    </div>
-                    <p className={cn(
-                    "font-brand font-semibold mt-2 text-left", 
-                    dayData.saints.length > 1 ? "text-base" : "text-lg",
-                    isOpen && dayData.saints.length > 1 && "md:text-right"
-                    )}>
-                    {dayData.saints.map(s => s.name).join(' & ')}
-                    </p>
-                </div>
-                <ChevronDown className={cn("h-4 w-4 shrink-0 transition-transform duration-200", isOpen && "rotate-180", "text-primary-foreground")} />
-                </div>
-            </button>
-            
-            {isOpen && (
-                <div className={cn("relative p-6 pt-12 rounded-b-lg shadow-inner-top saint-day-content", `theme-${theme}`)}>
-                <ThemeSelector theme={theme} setTheme={setTheme} />
-                
-                <div className="flex items-center justify-center gap-2 mb-6">
-                    <Button
-                        variant="outline"
-                        className="h-8 px-4 bg-white/70 backdrop-blur-sm text-primary hover:bg-primary hover:text-primary-foreground shadow-lg border-primary/20 border" 
-                        onClick={(e) => { e.stopPropagation(); e.currentTarget.blur(); handleNavigation('prev'); }}
-                    >
-                        Dia anterior
-                    </Button>
-                    <Button 
-                        variant="outline"
-                        className="h-8 px-4 bg-white/70 backdrop-blur-sm text-primary hover:bg-primary hover:text-primary-foreground shadow-lg border-primary/20 border" 
-                        onClick={(e) => { e.stopPropagation(); e.currentTarget.blur(); handleNavigation('next'); }}
-                    >
-                        Próximo dia
-                    </Button>
-                </div>
-
-
-                {dayData.saints.length > 1 && (
-                    <div className="mb-4 flex justify-center gap-2">
-                    {dayData.saints.map((saint, saintIndex) => (
-                        <Button
-                        key={saint.name}
-                        variant={selectedSaintInDayIndex === saintIndex ? 'default' : 'outline'}
-                        size="sm"
-                        onClick={(e) => { e.stopPropagation(); setSelectedSaintInDayIndex(saintIndex); }}
-                        className={cn(
-                            'transition-all duration-200',
-                            theme === 'light' 
-                                ? selectedSaintInDayIndex === saintIndex 
-                                ? 'bg-primary text-primary-foreground' 
-                                : 'bg-black/5 hover:bg-black/10 text-primary'
-                                : selectedSaintInDayIndex === saintIndex 
-                                ? 'bg-accent text-accent-foreground' 
-                                : 'bg-white/10 hover:bg-white/20 text-white'
-                        )}
-                        >
-                        {saint.name}
-                        </Button>
-                    ))}
-                    </div>
-                )}
-                
-                <div className="p-1">
-                    {currentSaintData && <div className="prose prose-sm max-w-none pt-4" dangerouslySetInnerHTML={{ __html: currentSaintData.story }} />}
-                </div>
-                </div>
-            )}
-            </div>
-        </div>
+      <div className={cn("px-2 transition-opacity duration-150", animationClass)}>
+          <div className={cn("relative group", isOpen && "is-open")}>
+          <button
+              onClick={() => toggleAccordion(currentSlide)}
+              className={cn(
+                  "flex-1 p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow w-full saint-day-trigger",
+                  isOpen ? "rounded-b-none pb-12" : "",
+                  triggerTheme
+              )}
+          >
+              <div className="flex items-center gap-4 text-left w-full">
+              <SaintImages saints={dayData.saints} isOpen={isOpen} selectedIndex={selectedSaintInDayIndex} />
+              <div className={cn(
+                  "flex flex-1 flex-col items-start saint-name-container",
+                  isOpen && dayData.saints.length > 1 && "md:items-end"
+                  )}>
+                  <div className={cn(
+                  "date-capsule",
+                      isOpen && "text-xs md:text-right"
+                  )}>
+                  {dayData.day} de {dayData.month}
+                  </div>
+                  <p className={cn(
+                  "font-brand font-semibold mt-2 text-left", 
+                  dayData.saints.length > 1 ? "text-base" : "text-lg",
+                  isOpen && dayData.saints.length > 1 && "md:text-right"
+                  )}>
+                  {dayData.saints.map(s => s.name).join(' & ')}
+                  </p>
+              </div>
+              <ChevronDown className={cn("h-4 w-4 shrink-0 transition-transform duration-200", isOpen && "rotate-180", "text-primary-foreground")} />
+              </div>
+          </button>
+          
+          {isOpen && (
+              <div className={cn("relative p-6 pt-12 rounded-b-lg shadow-inner-top saint-day-content", `theme-${theme}`)}>
+              <ThemeSelector theme={theme} setTheme={setTheme} />
+              
+              {dayData.saints.length > 1 && (
+                  <div className="mb-4 flex justify-center gap-2">
+                  {dayData.saints.map((saint, saintIndex) => (
+                      <Button
+                      key={saint.name}
+                      variant={selectedSaintInDayIndex === saintIndex ? 'default' : 'outline'}
+                      size="sm"
+                      onClick={(e) => { e.stopPropagation(); setSelectedSaintInDayIndex(saintIndex); }}
+                      className={cn(
+                          'transition-all duration-200',
+                          theme === 'light' 
+                              ? selectedSaintInDayIndex === saintIndex 
+                              ? 'bg-primary text-primary-foreground' 
+                              : 'bg-black/5 hover:bg-black/10 text-primary'
+                              : selectedSaintInDayIndex === saintIndex 
+                              ? 'bg-accent text-accent-foreground' 
+                              : 'bg-white/10 hover:bg-white/20 text-white'
+                      )}
+                      >
+                      {saint.name}
+                      </Button>
+                  ))}
+                  </div>
+              )}
+              
+              <div className="p-1">
+                  {currentSaintData && <div className="prose prose-sm max-w-none pt-4" dangerouslySetInnerHTML={{ __html: currentSaintData.story }} />}
+              </div>
+              </div>
+          )}
+          </div>
+      </div>
     </div>
   );
 });
