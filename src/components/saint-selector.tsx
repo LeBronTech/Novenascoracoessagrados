@@ -158,7 +158,7 @@ export default function SaintSelector({
               <p className="text-sm font-semibold text-gray-700 font-brand leading-tight mt-1">{saint.name}</p>
               <p className="text-xs text-gray-500">Início: {saint.startDate}</p>
               <div className="mt-1 bg-primary text-primary-foreground px-4 py-1 rounded-full text-xs font-bold leading-tight">
-                Dia {saint.feastDay.split('/')[0]}
+                {saint.isMartyr ? `Mártir - Dia ${saint.feastDay.split('/')[0]}` : `Dia ${saint.feastDay.split('/')[0]}`}
               </div>
             </div>
           ))

@@ -159,13 +159,18 @@ export default function NovenaDisplay({ saint, novena, theme, setTheme }: Novena
               {description || ''}
             </p>
             {saint.startDate && (
-              <div className="mt-3">
+              <div className="mt-3 flex items-center justify-center sm:justify-start gap-2">
                 <span className={cn(
                   "inline-block text-xs font-bold px-4 py-1 rounded-full",
                    isRedTheme ? "bg-white text-primary" : "bg-primary text-white"
                 )}>
                   Novena: {saint.startDate} a {saint.endDate}
                 </span>
+                {saint.isMartyr && (
+                  <span className="text-xs font-bold px-3 py-1 rounded-full bg-red-700/80 text-white">
+                    Mártir
+                  </span>
+                )}
               </div>
             )}
           </div>
