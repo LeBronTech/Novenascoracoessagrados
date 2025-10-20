@@ -186,11 +186,13 @@ const SaintOfTheDay = forwardRef<SaintOfTheDayRef, SaintOfTheDayProps>(({ trigge
                   isOpen && dayData.saints.length > 1 && "md:items-end"
                   )}>
                   <div className={cn(
-                  "date-capsule",
+                  "date-capsule flex items-center gap-2",
                       isOpen && "text-xs md:text-right"
                   )}>
                     {dayData.day} de {dayData.month}
-                    {currentSaintData.isMartyr && <span className="ml-2 text-red-600 font-bold">(Mártir)</span>}
+                    {currentSaintData.isMartyr && (
+                      <span className="text-xs font-bold px-3 py-1 rounded-full bg-red-700/80 text-white">Mártir</span>
+                    )}
                   </div>
                   <p className={cn(
                   "font-brand font-semibold mt-2 text-left", 
