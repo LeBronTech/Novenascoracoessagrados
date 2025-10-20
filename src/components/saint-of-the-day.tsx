@@ -189,7 +189,8 @@ const SaintOfTheDay = forwardRef<SaintOfTheDayRef, SaintOfTheDayProps>(({ trigge
                   "date-capsule",
                       isOpen && "text-xs md:text-right"
                   )}>
-                  {dayData.day} de {dayData.month}
+                    {dayData.day} de {dayData.month}
+                    {currentSaintData.isMartyr && <span className="ml-2 text-red-600 font-bold">(Mártir)</span>}
                   </div>
                   <p className={cn(
                   "font-brand font-semibold mt-2 text-left", 
