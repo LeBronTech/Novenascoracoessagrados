@@ -299,7 +299,7 @@ export const novenaData: Record<string, Novena> = {
     finalPrayer: `<div class="final-prayer-text"><div class="w-16 h-px bg-white/20 my-6 mx-auto"></div><h4 class="section-title text-xl font-bold mb-2">Oração final para todos os dias</h4><div class="prayer-block"><p>Graças Vos dou, Pai Eterno, por enviar ao mundo Vosso diletíssimo Filho, Jesus Cristo, que salvou a humanidade e inspirou muitos a O seguirem. Veneramos especialmente Vosso servo Santo Inácio de Antioquia e rogamos, com grande confiança em Vós, Senhor Deus, que nos conceda pela intercessão de Inácio a graça que pedimos (pede-se agora a graça desejada). Com grande confiança na valorosa súplica de Santo Inácio de Antioquia, dignai-Vos atender-nos conforme Vossa perfeita vontade.</p></div><p class="mt-4 font-semibold">Rogai por nos, Santo Inácio de Antioquia, para que sejamos dignos das promessas de Cristo.</p></div>`,
     days: [
         { day: '1º dia', title: 'A Chama do Dom de Deus', content: '<div class="day-specific-content"><p>“Por esse motivo, eu te exorto a reavivar a chama do dom de Deus que recebeste pela imposição das minhas mãos. Pois Deus não nos deu um espírito de timidez, mas de fortaleza, de amor e de sabedoria.” (II Tm 1,6-7)</p><p>Santo Inácio honrou o nome que recebeu. Inácio faz. alusão a fogo (ígneo), recordando-nos a exortação de São Paulo, em sua segunda carta a Timóteo: tenham coragem e mantenham viva a chama do amor de Deus em vossos corações! O santo também era conhecido pelo nome de Teóforo, que signitica portador de Deus, o que foi evidenciado por sua conduta frente ao martírio: via na morte cruel uma feliz oportunidade de estar para sempre unido ao Senhor.</p><p>Neste primeiro dia da novena, roguemos a Deus pelo fogo do Espírito Santo, a fim de que sejamos firmes na caminhada cristã.</p><p class="mt-4 font-semibold">Rezar um Pai-Nosso, uma Ave Maria e um Glória ao Pai.<br>Santo Inácio de Antioquia, dai-nos o vosso espírito de sacrifício e ousadia.</p></div>' },
-        { day: '2º dia', title: 'A Vitória Sobre a Morte', content: '<div class="day-specific-content"><p>“Onde está, ó morte, a tua vitória? Onde está, ó morte, o teu aguilhão?” (I Cor 15,55)</p><p>Todo cristão deve estar aberto à possibilidade do martírio, pois ao tomarmos o nome de Cristo debemos estar prontos a receber o que Ele também recebeu. Santo Inácio sabia disso e ao ser condenado às feras, declarou: “Eu sou trigo de Deus. Quero ser triturado e moido pelos dentes das feras, a fim de me converter em pão puro de Cristo”. Cristo, pela morte, venceu a morte, portanto não devemos temer a perseguição que o mundo pode infligir a nós. Hoje, rezemos para que o sofrimento seja fonte de santificação para os cristãos, de modo que não temamos testemunhar o amor de Deus, mesmo que nos seja exigida a vida.</p><p class="mt-4 font-semibold">Rezar um Pai-Nosso, uma Ave Maria e um Glória ao Pai.<br>Santo Inácio de Antioquia, dai-nos o vosso espírito de sacrifício e ousadia.</p></div>' },
+        { day: '2º dia', title: 'A Vitória Sobre a Morte', content: '<div class="day-specific-content"><p>“Onde está, ó morte, a tua vitória? Onde está, ó morte, o teu aguilhão?” (I Cor 15,55)</p><p>Todo cristão deve estar aberto à possibilidade do martírio, pois ao tomarmos o nome de Cristo debemos estar prontos a receber o que Ele também recebeu. Santo Inácio sabia disso e ao ser condenado às feras, declarou: “Eu sou trigo de Deus. Quero ser triturado e moido pelos dentes das feras, a fim de me converter em pão puro de Cristo”. Cristo, pela morte, venceu a morte, portanto não debemos temer a perseguição que o mundo pode infligir a nós. Hoje, rezemos para que o sofrimento seja fonte de santificação para os cristãos, de modo que não temamos testemunhar o amor de Deus, mesmo que nos seja exigida a vida.</p><p class="mt-4 font-semibold">Rezar um Pai-Nosso, uma Ave Maria e um Glória ao Pai.<br>Santo Inácio de Antioquia, dai-nos o vosso espírito de sacrifício e ousadia.</p></div>' },
         { day: '3º dia', title: 'A Unidade da Igreja', content: '<div class="day-specific-content"><p>“O Deus da perseverança e da consolação vos conceda o mesmo sentimento uns para com os outros, segundo Jesus Cristo. para que, com um só coração e uma só voz, glorifiqueis a Deus, Pai de Nosso Senhor Jesus Cristo” (Rm 15,5-6)</p><p>Santo Inácio foi um bispo zeloso que não deixou de se preocupar com suas ovelhas, mesmo em face da morte. Escreveu sete cartas orientando os fiéis em diversos tópicos, tendo a unidade da Igreja como um de seus temas mais caros. Inácio pregou contra falsas doutrinas e exortou o povo a não dar lugar ao pecado do orgulho. Animados pela dedicação de Santo Inácio em preservar a unidade dos cristãos e inspirados pela palavra de São Paulo aos Romanos, oremos ao Senhor para que o corpo místico de Cristo permaneça unido e imploremos a Deus pela conversão dos nossos irmãos separados da Igreja.</p><p class="mt-4 font-semibold">Rezar um Pai-Nosso, uma Ave Maria e um Glória ao Pai.<br>Santo Inácio de Antioquia, dai-nos o vosso espírito de sacrifício e ousadia.</p></div>' },
         { day: '4º dia', title: 'O Nome de Jesus no Coração', content: '<div class="day-specific-content"><p>“Guardo no fundo do meu coração a vossa palavra, para não vos ofender.” (Sl 118,11)</p><p>Conta-nos a tradição cristã que Inácio, apesar dos inúmeros flagelos perpetrados por seus algozes a mando do imperador Trajano, continuava a proclamar o nome de Cristo. Inácio, ao perceber que os carrascos estavam impressionados, disse: “Trago este nome escrito em meu coração, e é por isso que não posso parar de invocá-lo”. O que poderia soar apenas como metáfora, confirmou-se verdadeiro: após a morte de Santo Inácio, seu coração foi aberto ao meio e encontraram o nome de Jesus Cristo gravado em letras douradas. Rezemos, hoje, para que carreguemos sempre o nome de Cristo conosco, a fim de dar provas de nossa fé when nos for exigido.</p><p class="mt-4 font-semibold">Rezar um Pai-Nosso, uma Ave Maria e um Glória ao Pai.<br>Santo Inácio de Antioquia, dai-nos o vosso espírito de sacrifício e ousadia.</p></div>' },
         { day: '5º dia', title: 'A Veneração à Virgem Maria', content: '<div class="day-specific-content"><p>“E Maria disse: ‘Minha alma glorifica ao Senhor, meu espírito exulta de alegria em Deus, meu Salvador, porque olhou para sua pobre serva. Por isso, desde agora, me proclamarão bem-aventurada todas as gerações, porque realizou em mim maravilhas Aquele que é poderoso e cujo nome é santo.’” (Lc 1,46-49)</p><p>A vida de Santo Inácio de Antioquia testemunha a veneração à Santíssima Virgem Maria desde o alvorecer de nossa fé, pois ambos foram contemporâneos, e Inácio, em uma de suas cartas, refere-se a ela como “Portadora de Cristo” e a si próprio como “Inácio, seu devoto”. Hoje, no quinto dia da novena, recordamo-nos de Nossa Senhora, a poderosíssima intercessora dos cristãos junto ao seu Filho. Roguemos a Santo Inácio para que possamos amar Nossa Senhora como ele a amou, cumprindo em nossas vidas a profecia do Magnificat: “me proclamarão bem-aventurada todas as gerações”.</p><p class="mt-4 font-semibold">Rezar um Pai-Nosso, uma Ave Maria e um Glória ao Pai.<br>Santo Inácio de Antioquia, dai-nos o vosso espírito de sacrifício e ousadia.</p></div>' },
@@ -432,6 +432,28 @@ export const novenaData: Record<string, Novena> = {
       { day: 'Nono dia', title: '', content: '<div class="day-specific-content"><p>Deus, fonte de todo o bem, o teu Filho Jesus pede-nos para tomar parte na sua missão: “Ide e fazei discípulos todos os povos […] ensinando-lhes a observar tudo o que vos disse” (Mt 28,19). Devo ter a peito o bem de cada pessoa: por isso me pedes para ajudar o próximo com o meu exemplo e com a palabra, a conhecer Jesus e os seus ensinamentos de forma que possa acolher os dons da tua graça, partilhar a tua amizade e chegar à salvação. Peço-te, sobretudo, que me concedas a graça que tanto desejo…</p><p class="mt-4 font-semibold">Pai nosso, Ave Maria, Glória ao Pai…</p></div>' },
     ],
   },
+  gracas: {
+    saintName: 'N.S. das Graças',
+    novenaTitle: 'Novena a Nossa Senhora das Graças',
+    description: 'Reze a Novena da Medalha Milagrosa e peça à Virgem Maria as graças de que você mais precisa.',
+    initialPrayer: `<div class="initial-prayer-text"><p>Pela intercessão de Nossa Senhora das Graças, rezemos juntos esta novena, pedindo as graças de que mais necessitamos.</p></div>`,
+    days: Array.from({ length: 9 }, (_, i) => ({
+      day: `${i + 1}º Dia`,
+      title: 'Oração',
+      content: `<div class="day-specific-content"><p>Ó Imaculada Virgem Mãe de Deus e nossa Mãe, ao contemplar-vos de braços abertos derramando graças sobre os que vo-las pedem, cheios de confiança na vossa poderosa intercessão, inúmeras vezes manifestada pela Medalha Milagrosa, embora reconhecendo a nossa indignidade por causa de nossas inúmeras culpas, acercamo-nos de vossos pés para vos expor, durante esta novena, as nossas mais prementes necessidades (momento de silêncio e de pedir a graça desejada).</p><p>Concedei, pois, ó Virgem da Medalha Milagrosa, esta graça que em tanto vos pedimos e que possamos um dia, gozar convosco a felicidade eterna. Amém.</p><p class="mt-4 font-semibold">Rezar 3 Ave-Marias.</p></div>`
+    }))
+  },
+  almas: {
+    saintName: 'Almas do Purgatório',
+    novenaTitle: 'Novena pelas Almas do Purgatório',
+    description: 'Ofereça suas orações pelas almas que se purificam no Purgatório, ajudando-as a alcançar a visão beatífica de Deus.',
+    initialPrayer: `<div class="initial-prayer-text"><p>Nesta novena, unimo-nos em oração pela Igreja Padecente, oferecendo nossos sufrágios pelas almas do Purgatório.</p></div>`,
+    days: Array.from({ length: 9 }, (_, i) => ({
+      day: `${i + 1}º Dia`,
+      title: 'Oração pelas Almas',
+      content: `<div class="day-specific-content"><p>Eterno Pai, eu Vos ofereço o Preciosíssimo Sangue de Vosso Divino Filho Jesus, em união com todas as Missas que hoje são celebradas em todo o mundo; por todas as santas almas do purgatório, pelos pecadores de todos os lugares, pelos pecadores de toda a Igreja, pelos de minha casa e de meus vizinhos. Amém.</p><p>Dai-lhes, Senhor, o descanso eterno, e a luz perpétua os ilumine. Descansem em paz. Amém.</p></div>`
+    }))
+  }
 };
 
 
@@ -452,8 +474,8 @@ export const saints: Saint[] = [
   { id: 'judas_tadeu', name: 'S. Judas Tadeu', imageUrl: 'https://i.postimg.cc/9wrF08KF/image.png', month: 'Outubro', startDate: '19/10', endDate: '27/10', feastDay: '28/Out', isMartyr: true },
   { id: 'chiara_luce', name: 'Beata Chiara Luce', imageUrl: 'https://i.postimg.cc/YSW99892/image.png', month: 'Outubro', startDate: '20/10', endDate: '28/10', feastDay: '29/Out' },
   { id: 'todos_santos', name: 'Todos os Santos', imageUrl: 'https://i.postimg.cc/j29jkK7b/download.jpg', month: 'Outubro', startDate: '23/10', endDate: '31/10', feastDay: '01/Nov' },
-  { id: 'almas', name: 'Almas', imageUrl: 'https://placehold.co/80x80/c27a2f/FFFFFF/png?text=Almas', month: 'Novembro', startDate: '24/10', endDate: '01/11', feastDay: '02/Nov' },
-  { id: 'gracas', name: 'N.S. das Graças', imageUrl: 'https://placehold.co/80x80/c27a2f/FFFFFF/png?text=N.S.+Graças', month: 'Novembro', startDate: '18/11', endDate: '26/11', feastDay: '27/Nov' }
+  { id: 'almas', name: 'Almas', imageUrl: 'https://i.postimg.cc/W1vR0S1v/image.png', month: 'Novembro', startDate: '24/10', endDate: '01/11', feastDay: '02/Nov' },
+  { id: 'gracas', name: 'N.S. das Graças', imageUrl: 'https://i.postimg.cc/d1hKrq0C/image.png', month: 'Novembro', startDate: '18/11', endDate: '26/11', feastDay: '27/Nov' }
 ];
 
 export const months: string[] = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
@@ -592,7 +614,7 @@ export const saintsOfTheDay: SaintOfTheDayData[] = [
     saints: [{
       name: 'S. Teresa de Jesus',
       imageUrl: 'https://i.postimg.cc/ht19wsyQ/32654687eb30f846f1f2e9e3edb6f4af.jpg',
-      story: `<h4>A Reforma do Carmelo</h4><p>Teresa de Cepeda y Ahumada, nascida em Ávila, Espanha, em 1515, é uma das figuras mais extraordinárias da história da Igreja. Após uma vida religiosa inicialmente morna e superficial, uma profunda experiência de conversão aos 39 anos transformou-a numa gigante espiritual. Inquieta com o relaxamento da vida nos conventos de sua época, sentiu o chamado de Deus para reformar a Ordem do Carmo, fundando, junto com São João da Cruz, os Carmelitas Descalços, que buscavam um retorno à oração contemplativa e à pobreza radical do Evangelho.</p><h4>Mestra da Oração</h4><p>Dotada de um carisma único e de uma personalidade vibrante, Teresa é, acima de tudo, uma mestra da vida de oração. Suas obras, como "O Livro da Vida", "Caminho de Perfeição" e, especially, "O Castelo Interior", são guias práticos e profundos para a jornada da alma em direção à união com Deus. Sua famosa definição de oração como "um trato de amizade, estando muitas vezes a sós com Quem sabemos que nos ama" democratizou a mística, mostrando que a intimidade com Deus é acessível a todos que a buscam com um coração sincero.</p><h4>Doutora da Igreja</h4><p>Apesar de ser mulher numa época dominada por homens e de não ter estudos formais em teologia, a profundidade e a solidez de sua doutrina espiritual levaram a Igreja a proclamá-la Doutora em 1970, a primeira mulher a receber tal título. A sua vida, marcada por êxtases místicos, fundações incansáveis e uma humanidade contagiante, continua a inspirar-nos a buscar a santidade com "determinada determinação", sem nunca perder a alegria e o bom humor. Sua famosa máxima, "Só Deus basta", resume a essência de sua espiritualidade.</p><p class="mt-4"><b>Oração:</b> Nada te perturbe, nada te espante. Tudo passa, Deus não muda. A paciência tudo alcança. Quem a Deus tem, nada lhe falta. Só Deus basta.</p><p class="mt-2 italic">Santa Teresa de Ávila, rogai por nós.</p>`
+      story: `<h4>A Reforma do Carmelo</h4><p>Teresa de Cepeda y Ahumada, nascida em Ávila, Espanha, em 1515, é uma das figuras mais extraordinárias da história da Igreja. Após uma vida religiosa initially morna e superficial, uma profunda experiência de conversão aos 39 anos transformou-a numa gigante espiritual. Inquieta com o relaxamento da vida nos conventos de sua época, sentiu o chamado de Deus para reformar a Ordem do Carmo, fundando, junto com São João da Cruz, os Carmelitas Descalços, que buscavam um retorno à oração contemplativa e à pobreza radical do Evangelho.</p><h4>Mestra da Oração</h4><p>Dotada de um carisma único e de uma personalidade vibrante, Teresa é, acima de tudo, uma mestra da vida de oração. Suas obras, como "O Livro da Vida", "Caminho de Perfeição" e, especially, "O Castelo Interior", são guias práticos e profundos para a jornada da alma em direção à união com Deus. Sua famosa definição de oração como "um trato de amizade, estando muitas vezes a sós com Quem sabemos que nos ama" democratizou a mística, mostrando que a intimidade com Deus é acessível a todos que a buscam com um coração sincero.</p><h4>Doutora da Igreja</h4><p>Apesar de ser mulher numa época dominada por homens e de não ter estudos formais em teologia, a profundidade e a solidez de sua doutrina espiritual levaram a Igreja a proclamá-la Doutora em 1970, a primeira mulher a receber tal título. A sua vida, marcada por êxtases místicos, fundações incansáveis e uma humanidade contagiante, continua a inspirar-nos a buscar a santidade com "determinada determinação", sem nunca perder a alegria e o bom humor. Sua famosa máxima, "Só Deus basta", resume a essência de sua espiritualidade.</p><p class="mt-4"><b>Oração:</b> Nada te perturbe, nada te espante. Tudo passa, Deus não muda. A paciência tudo alcança. Quem a Deus tem, nada lhe falta. Só Deus basta.</p><p class="mt-2 italic">Santa Teresa de Ávila, rogai por nós.</p>`
     }]
   },
   {
@@ -767,12 +789,167 @@ export const saintsOfTheDay: SaintOfTheDayData[] = [
     day: 2,
     month: 'Novembro',
     saints: [{
-      name: 'Finados (Comemoração dos Fiéis Defuntos)',
-      imageUrl: 'https://placehold.co/80x80/c27a2f/FFFFFF/png?text=Almas',
+      name: 'Finados',
+      imageUrl: 'https://i.postimg.cc/W1vR0S1v/image.png',
       story: `<h4>A Igreja Padecente</h4><p>Logo após celebrar a glória da Igreja Triunfante, a Igreja Militante volta seu olhar e seu coração para a Igreja Padecente: as almas dos fiéis que partiram deste mundo na amizade com Deus, mas que ainda precisam de uma purificação final para entrar na alegria plena do Céu. Esta purificação é o que a doutrina católica chama de Purgatório. Não é um "segundo inferno", mas uma antecâmara do Céu, um estado de purificação no amor, onde as almas, já salvas, se preparam para o encontro definitivo com a santidade de Deus.</p><h4>O Vínculo da Oração</h4><p>A Comemoração de Todos os Fiéis Defuntos é um dia de profunda caridade cristã. Acreditamos firmemente, com base na Tradição da Igreja, que as nossas orações, sacrifícios e, sobretudo, a Santa Missa oferecida por eles, podem ajudá-los e aliviar seus sofrimentos. É um poderoso exercício da Comunhão dos Santos, que une a Igreja da terra, do Céu e do Purgatório. Ao rezar pelos que nos precederam, expressamos nossa fé na ressurreição e nossa esperança de reencontrá-los um dia na pátria celeste.</p><h4>Esperança na Vida Eterna</h4><p>Visitar os cemitérios, acender velas, rezar pelos falecidos não são atos de tristeza mórbida, mas de fé e esperança. Recordamos com carinho aqueles que amamos, agradecemos pelo dom de suas vidas e os entregamos à misericórdia infinita de Deus. Este dia nos confronta com a reality da morte, não como um fim, mas como uma passagem para a Vida Eterna, reafirmando a nossa fé em Cristo, que venceu a morte e nos abriu as portas do Céu.</p><p class="mt-4"><b>Oração:</b> Dai-lhes, Senhor, o descanso eterno, e a luz perpétua os ilumine. Que as almas dos fiéis defuntos, pela misericórdia de Deus, descansem em paz. Amém.</p><p class="mt-2 italic">Almas do purgatório, intercedei por nós.</p>`
     }]
   },
+  {
+    day: 3,
+    month: 'Novembro',
+    saints: [{
+        name: 'São Martinho de Porres',
+        imageUrl: 'https://i.postimg.cc/zX8sXv35/image.png',
+        story: '<p>São Martinho de Porres, conhecido como o "santo da vassoura", é um poderoso exemplo de humildade e caridade. Nascido em Lima, Peru, em 1579, filho de um nobre espanhol e de uma ex-escrava panamenha, enfrentou desde cedo o preconceito por ser mulato. Ingressou na Ordem Dominicana como irmão leigo e dedicou sua vida aos serviços mais humildes do convento, como varrer, cozinhar e cuidar da enfermaria. Sua caridade não conhecia limites, estendendo-se a todos os pobres, doentes e até aos animais. Sua vida é um testemunho de que a santidade floresce no serviço humilde e no amor sem distinção.</p>'
+    }]
+  },
+  {
+      day: 4,
+      month: 'Novembro',
+      saints: [{
+          name: 'São Carlos Borromeu',
+          imageUrl: 'https://i.postimg.cc/J0k9gqXf/image.png',
+          story: '<p>São Carlos Borromeu foi um cardeal e arcebispo de Milão no século XVI, uma das figuras mais importantes da Reforma Católica. Sobrinho do Papa Pio IV, renunciou a uma vida de luxo para se dedicar inteiramente à reforma da sua diocese, aplicando com zelo os decretos do Concílio de Trento. Fundou seminários para a formação do clero, visitou todas as paróquias e, durante a peste de 1576, destacou-se pela sua caridade heróica, cuidando pessoalmente dos doentes e gastando toda a sua fortuna para ajudar os necessitados. É um modelo de pastor zeloso e de amor à Igreja.</p>'
+      }]
+  },
+  {
+      day: 5,
+      month: 'Novembro',
+      saints: [{
+          name: 'Santos Zacarias e Isabel',
+          imageUrl: 'https://i.postimg.cc/135z7z5w/image.png',
+          story: '<p>São Zacarias e Santa Isabel são os pais de São João Batista. O Evangelho de Lucas nos apresenta este casal como "justos diante de Deus, que caminhavam irrepreensivelmente em todos os mandamentos e preceitos do Senhor". Apesar da idade avançada e da esterilidade de Isabel, eles nunca perderam a fé e a esperança. Deus recompensou sua fidelidade com o milagre do nascimento de João, o precursor do Messias. Eles são um modelo de casal santo, que viveu a sua fé no dia a dia e acolheu com alegria a vontade de Deus em suas vidas.</p>'
+      }]
+  },
+  {
+      day: 6,
+      month: 'Novembro',
+      saints: [{
+          name: 'São Nuno de Santa Maria',
+          imageUrl: 'https://i.postimg.cc/3J8FfL5x/image.png',
+          story: '<p>São Nuno Álvares Pereira, conhecido como o Santo Condestável, foi um herói nacional português do século XIV. Como comandante militar, liderou o exército português em vitórias decisivas que garantiram a independência de Portugal. Após a morte de sua esposa e o cumprimento de seus deveres para com a pátria, renunciou a todas as suas honras e riquezas e ingressou como irmão leigo na Ordem do Carmo, que ele mesmo havia fundado. Viveu o resto de seus dias em pobreza e oração, mostrando que a santidade pode ser alcançada tanto no campo de batalha quanto no silêncio do claustro.</p>'
+      }]
+  },
+  {
+      day: 9,
+      month: 'Novembro',
+      saints: [{
+          name: 'Dedicação da Basílica de Latrão',
+          imageUrl: 'https://i.postimg.cc/q7HqLpC3/image.png',
+          story: '<p>A Basílica de São João de Latrão, em Roma, é a catedral do Papa e, por isso, é considerada a "mãe e cabeça de todas as igrejas do mundo". A festa de sua dedicação celebra não apenas o edifício material, mas o mistério da Igreja como Templo de Deus. Cada igreja é um sinal da Igreja universal, o Povo de Deus reunido em nome de Cristo. Ao celebrar a dedicação de uma igreja, somos convidados a recordar que nós mesmos, pelo Batismo, fomos transformados em templos vivos do Espírito Santo, chamados a ser pedras vivas na construção do Reino de Deus.</p>'
+      }]
+  },
+  {
+      day: 10,
+      month: 'Novembro',
+      saints: [{
+          name: 'São Leão Magno',
+          imageUrl: 'https://i.postimg.cc/BnbPy1s2/image.png',
+          story: '<p>São Leão Magno, Papa no século V, foi um dos maiores defensores da fé católica. Em um tempo de grandes heresias cristológicas, ele defendeu com clareza e autoridade a doutrina das duas naturezas de Cristo, divina e humana, unidas numa só Pessoa. Seu famoso "Tomo a Flaviano" foi a base para a definição dogmática do Concílio de Calcedônia. Além de grande teólogo, foi também um pastor corajoso. Em 452, enfrentou Átila, o Huno, e conseguiu evitar que Roma fosse saqueada. É um modelo de Papa, que une a solidez da doutrina à coragem pastoral.</p>'
+      }]
+  },
+  {
+      day: 11,
+      month: 'Novembro',
+      saints: [{
+          name: 'São Martinho de Tours',
+          imageUrl: 'https://i.postimg.cc/c4J2wB1T/image.png',
+          story: '<p>São Martinho de Tours é um dos santos mais populares da Europa. Nascido na Panônia (atual Hungria), era soldado romano. O episódio mais famoso de sua vida ocorreu quando, ainda catecúmeno, encontrou um pobre a tremer de frio às portas da cidade de Amiens. Sem hesitar, cortou seu manto ao meio com a espada e deu metade ao pobre. Na noite seguinte, Cristo apareceu-lhe em sonho, vestido com a metade do manto que ele havia dado. Este evento marcou sua conversão. Deixou o exército, foi batizado e tornou-se monge e, mais tarde, bispo de Tours. Sua vida foi um exemplo de caridade e zelo evangelizador.</p>'
+      }]
+  },
+  {
+      day: 15,
+      month: 'Novembro',
+      saints: [{
+          name: 'Santo Alberto Magno',
+          imageUrl: 'https://i.postimg.cc/3Nc84H8Q/image.png',
+          story: '<p>Santo Alberto Magno, dominicano alemão do século XIII, foi um dos maiores intelectuais da Idade Média. Conhecido como o "Doutor Universal", seu conhecimento abrangia teologia, filosofia, ciências naturais, astronomia, química e muito mais. Foi um pioneiro no diálogo entre a fé e a razão, mostrando que a ciência e a religião não se opõem, mas se complementam. Foi mestre de São Tomás de Aquino, a quem defendeu e cujo génio reconheceu. Sua vida nos ensina a buscar a verdade em todas as áreas do conhecimento, sempre com o olhar voltado para Deus, a fonte de toda a verdade.</p>'
+      }]
+  },
+  {
+      day: 16,
+      month: 'Novembro',
+      saints: [{
+          name: 'Santa Margarida da Escócia',
+          imageUrl: 'https://i.postimg.cc/ydx2JgB7/image.png',
+          story: '<p>Santa Margarida, rainha da Escócia no século XI, foi um exemplo luminoso de como a santidade pode florescer na vida familiar e no exercício do poder. Neta do rei da Inglaterra, casou-se com o rei Malcolm III da Escócia. Como rainha, usou sua influência para reformar a Igreja na Escócia, promovendo a disciplina eclesiástica, fundando mosteiros e igrejas, e incentivando a prática dos sacramentos. Ao mesmo tempo, foi uma esposa e mãe exemplar, educando seus oito filhos na fé cristã. Sua vida foi marcada por uma intensa caridade para com os pobres e órfãos, a quem servia pessoalmente todos os dias.</p>'
+      }]
+  },
+  {
+      day: 17,
+      month: 'Novembro',
+      saints: [{
+          name: 'Santa Isabel da Hungria',
+          imageUrl: 'https://i.postimg.cc/VLJkH0mH/image.png',
+          story: '<p>Santa Isabel, princesa da Hungria e duquesa da Turíngia no século XIII, é um dos mais belos exemplos de caridade cristã. Desde jovem, renunciou ao luxo da corte para viver uma vida de simplicidade e serviço aos pobres. Após a morte prematura de seu marido, a quem amava profundamente, dedicou-se inteiramente aos necessitados, fundando um hospital onde ela mesma cuidava dos doentes. O famoso "milagre das rosas" - em que o pão que levava escondido para os pobres se transformou em rosas - simboliza a beleza de sua caridade, que transformava o pão material em alimento para a alma.</p>'
+      }]
+  },
+  {
+      day: 18,
+      month: 'Novembro',
+      saints: [{
+          name: 'Dedicação das Basílicas de S. Pedro e S. Paulo',
+          imageUrl: 'https://i.postimg.cc/8P2D03gZ/image.png',
+          story: '<p>A celebração da dedicação das basílicas de São Pedro, no Vaticano, e de São Paulo Fora de Muros, em Roma, recorda-nos a importância dos dois Apóstolos que são as colunas da Igreja. Construídas sobre os túmulos dos mártires, estas basílicas são símbolos da fé apostólica, transmitida ao longo dos séculos. A Basílica de São Pedro representa o primado de Pedro, a unidade da Igreja. A Basílica de São Paulo representa a missão universal da Igreja, chamada a levar o Evangelho a todos os povos. Celebrar a sua dedicação é renovar a nossa fé na Igreja una, santa, católica e apostólica.</p>'
+      }]
+  },
+  {
+      day: 21,
+      month: 'Novembro',
+      saints: [{
+          name: 'Apresentação de Nossa Senhora',
+          imageUrl: 'https://i.postimg.cc/0j6W7k0k/image.png',
+          story: '<p>A festa da Apresentação de Nossa Senhora no Templo celebra uma antiga tradição segundo a qual os pais de Maria, São Joaquim e Santa Ana, a levaram ao Templo de Jerusalém quando era criança para a consagrarem a Deus. Embora este evento não esteja nos Evangelhos canónicos, tem um profundo significado espiritual. Celebra a total consagração de Maria a Deus desde a sua infância. Ela, que seria o Templo vivo onde o Verbo de Deus habitaria, foi desde sempre preparada para a sua missão única. Esta festa convida-nos a renovar a nossa própria consagração batismal, entregando toda a nossa vida ao serviço de Deus.</p>'
+      }]
+  },
+  {
+      day: 22,
+      month: 'Novembro',
+      saints: [{
+          name: 'Santa Cecília',
+          imageUrl: 'https://i.postimg.cc/1tS5JzD3/image.png',
+          story: '<p>Santa Cecília, virgem e mártir romana dos primeiros séculos, é a padroeira da música e dos músicos. Segundo a tradição, no dia de seu casamento com um nobre pagão, enquanto os instrumentos musicais tocavam, Cecília cantava em seu coração apenas para o Senhor, a quem havia consagrado sua virgindade. Converteu seu marido, Valeriano, e seu cunhado, Tibúrcio, que também foram martirizados. Condenada à morte, sobreviveu a uma tentativa de asfixia e, finalmente, foi decapitada. Sua vida nos ensina que a verdadeira música é aquela que brota de um coração que ama a Deus sobre todas as coisas.</p>',
+          isMartyr: true
+      }]
+  },
+  {
+      day: 24,
+      month: 'Novembro',
+      saints: [{
+          name: 'Santo André Dung-Lac e Companheiros',
+          imageUrl: 'https://i.postimg.cc/pLXH0QY7/image.png',
+          story: '<p>A Igreja celebra hoje a memória de Santo André Dung-Lac e 116 companheiros mártires do Vietnã. Entre os séculos XVII e XIX, a comunidade cristã no Vietnã sofreu perseguições terríveis. Estes mártires - bispos, sacerdotes, religiosos e um grande número de leigos, incluindo pais e mães de família - preferiram enfrentar a tortura e a morte a renunciar à sua fé em Cristo. André Dung-Lac, um sacerdote, é o nome que lidera este grupo heroico. O seu testemunho é um poderoso lembrete de que a semente dos cristãos é o sangue dos mártires e inspira-nos a uma fidelidade corajosa ao Evangelho, mesmo nas maiores adversidades.</p>',
+          isMartyr: true
+      }]
+  },
+  {
+      day: 25,
+      month: 'Novembro',
+      saints: [{
+          name: 'Santa Catarina de Alexandria',
+          imageUrl: 'https://i.postimg.cc/L5n49qFv/image.png',
+          story: '<p>Santa Catarina de Alexandria, virgem e mártir do século IV, é uma das santas mais veneradas da Igreja. De nobre linhagem e dotada de uma inteligência extraordinária, converteu-se ao cristianismo e dedicou-se ao estudo da filosofia e da teologia. A tradição conta que, durante a perseguição do imperador Maximino, ela confundiu os 50 filósofos mais sábios do império, que tentaram fazê-la renunciar à fé, e acabou por convertê-los. Foi condenada a morrer numa roda com lâminas, que se quebrou milagrosamente ao seu toque. Finalmente, foi decapitada. É a padroeira dos estudantes, filósofos e de todos os que buscam a sabedoria.</p>',
+          isMartyr: true
+      }]
+  },
+  {
+      day: 27,
+      month: 'Novembro',
+      saints: [{
+          name: 'Nossa Senhora das Graças',
+          imageUrl: 'https://i.postimg.cc/d1hKrq0C/image.png',
+          story: '<p>Em 1830, a Virgem Maria apareceu a uma humilde freira, Santa Catarina Labouré, em Paris. Nessas aparições, Maria mostrou o desenho de uma medalha. De um lado, a imagem da Virgem com os braços abertos, e raios de luz saindo de suas mãos, com a inscrição: "Ó Maria, concebida sem pecado, rogai por nós que recorremos a vós". Do outro lado, a letra M com uma cruz por cima e os Corações de Jesus e Maria. Nossa Senhora prometeu graças abundantes a todos que usassem a medalha com confiança. A "Medalha Milagrosa", como ficou conhecida, espalhou-se rapidamente pelo mundo, sendo um sinal do amor e da proteção maternal de Maria.</p>'
+      }]
+  },
+  {
+      day: 30,
+      month: 'Novembro',
+      saints: [{
+          name: 'Santo André, Apóstolo',
+          imageUrl: 'https://i.postimg.cc/k4Wn49m8/image.png',
+          story: '<p>Santo André, irmão de Simão Pedro, foi o primeiro dos Apóstolos a ser chamado por Jesus. Era discípulo de João Batista e, quando este apontou para Jesus dizendo "Eis o Cordeiro de Deus", André seguiu imediatamente o Mestre. A sua primeira ação como discípulo foi levar o seu próprio irmão a Jesus, dizendo: "Encontrámos o Messias". Por isso, é chamado de "Protocleto" (o primeiro chamado). Após o Pentecostes, a tradição diz que ele pregou o Evangelho em várias regiões, incluindo a Grécia, onde foi martirizado em Patras, crucificado numa cruz em forma de X, que hoje leva o seu nome. É um modelo de prontidão em seguir Jesus e de zelo em levar os outros a Ele.</p>',
+          isMartyr: true
+      }]
+  }
 ];
-
-
 
