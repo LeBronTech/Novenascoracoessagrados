@@ -40,6 +40,60 @@ export type SaintOfTheDayData = {
 
 
 export const novenaData: Record<string, Novena> = {
+  teresinha: {
+    saintName: 'Santa Teresinha',
+    novenaTitle: 'Novena Milagrosa de Santa Terezinha do Menino Jesus',
+    description: 'A Novena das Rosas',
+    initialPrayer: `<div class="initial-prayer-text"><div class="prayer-block"><p>Santíssima Trindade: Pai, Filho e Espírito Santo: eu vos agradeço por todas as graças com que enriqueceste a vida de vossa serva, Santa Terezinha do Menino Jesus e da Sagrada Face, nestes 24 anos que passou na terra. E pelos méritos de tão querida santinha, concedei-me a graça que ardentemente vos peço … (faça aqui o pedido), se for conforme a Vossa Santíssima Vontade e para a salvação de minha alma (ou da pessoa por quem está rezando).</p><p>Ajudai minha fé e minha esperança, Santa Terezinha, cumprindo mais uma vez vossa promessa de que ficareis no Céu a fazer o bem na terra, permitindo que eu ganhe um rosa em sinal de que alcançarei a graça pedida.</p></div></div>`,
+    finalPrayer: `<div class="final-prayer-text"><p class="mt-4 font-semibold">Em seguida rezar 24 vezes, por cada ano de Santa Terezinha na terra:<br>“Glória ao Pai, ao Filho e ao Espírito Santo como era no princípio, agora e sempre. Amém.”<br>Santa Terezinha do Menino Jesus e da Sagrada Face, rogai por mim (ou o nome da pessoa por quem está intercedendo).</p><p class="mt-4 font-semibold">Para finalizar rezar: 1 Ave-Maria e 1 Pai-Nosso.</p></div>`,
+    days: [
+        {
+            day: 'Primeiro Dia',
+            title: 'Pelo Clero',
+            content: '<div class="day-specific-content"><p>Neste dia rezemos pelos que exercem o ministério sacerdotal, pela santificação do Clero e pelas intenções do coração do Santo Padre.</p></div>'
+        },
+        {
+            day: 'Segundo Dia',
+            title: 'Pelos Missionários',
+            content: '<div class="day-specific-content"><p>Neste dia rezemos pelos missionários espalhados no mundo inteiro e suas necessidades espirituais e materiais.</p></div>'
+        },
+        {
+            day: 'Terceiro Dia',
+            title: 'Pelos Cristãos perseguidos e martirizados',
+            content: '<div class="day-specific-content"><p>Neste dia rezemos pelos Cristãos que são perseguidos e martirizados por sua fidelidade e amor a Cristo.</p></div>'
+        },
+        {
+            day: 'Quarto Dia',
+            title: 'Pelas Famílias',
+            content: '<div class="day-specific-content"><p>Neste dia rezemos pela união e santificação das famílias.</p></div>'
+        },
+        {
+            day: 'Quinto Dia',
+            title: 'Pelos Jovens',
+            content: '<div class="day-specific-content"><p>Neste dia rezemos pelos jovens do Projeto Juventude para Jesus e pela juventude do mundo inteiro.</p></div>'
+        },
+        {
+            day: 'Sexto Dia',
+            title: 'Pelos que sofrem de depressão',
+            content: '<div class="day-specific-content"><p>Neste dia rezemos pelos que sofrem de depressão, pelos que vivem oprimidos e sem sentido de vida.</p></div>'
+        },
+        {
+            day: 'Sétimo Dia',
+            title: 'Para que todos amem a Cristo',
+            content: '<div class="day-specific-content"><p>Neste dia rezemos para que todos tenham um coração inflamado de amor a Cristo.</p></div>'
+        },
+        {
+            day: 'Oitavo Dia',
+            title: 'Pelos prisioneiros',
+            content: '<div class="day-specific-content"><p>Neste dia rezemos por todos os encarcerados e pelos que se encontram presos em si mesmo, pelo pecado.</p></div>'
+        },
+        {
+            day: 'Nono Dia',
+            title: 'Pelos incrédulos',
+            content: '<div class="day-specific-content"><p>Neste último dia da Novena de Santa Terezinha, rezemos pelos que não creem, não esperam e não confiam em Deus.</p></div>'
+        }
+    ]
+  },
   lucas: {
     saintName: 'S. Lucas',
     novenaTitle: 'Novena a São Lucas pela Saúde',
@@ -330,6 +384,7 @@ export const novenaData: Record<string, Novena> = {
 
 
 export const saints: Saint[] = [
+  { id: 'teresinha', name: 'S. Teresinha', imageUrl: 'https://i.postimg.cc/G2y7k85b/image.png', month: 'Outubro', startDate: '22/Set', endDate: '30/Set', feastDay: '01/Out' },
   { id: 'faustina', name: 'Santa Faustina', imageUrl: 'https://i.postimg.cc/qBKkbHTj/39a80df1d720976f7e55e00f40eadc90-1.jpg', month: 'Outubro', startDate: '26/Set', endDate: '04/Out', feastDay: '05/Out' },
   { id: 'rosario', name: 'N.S. do Rosário', imageUrl: 'https://i.postimg.cc/2669v1gr/nsr.jpg', month: 'Outubro', startDate: '28/Set', endDate: '06/Out', feastDay: '07/Out' },
   { id: 'aparecida', name: 'N.S. Aparecida', imageUrl: 'https://i.postimg.cc/Lsyj4XMh/4011bde1376c5422265a41f3a652c540.jpg', month: 'Outubro', startDate: '03/Out', endDate: '11/Out', feastDay: '12/Out' },
@@ -666,4 +721,5 @@ export const saintsOfTheDay: SaintOfTheDayData[] = [
     }]
   },
 ];
+
 
