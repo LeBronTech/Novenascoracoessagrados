@@ -13,7 +13,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetTr
 import { Button } from '@/components/ui/button';
 import { Menu } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { parse, isAfter, isToday, differenceInDays, getYear } from 'date-fns';
+import { parse, differenceInDays, getYear } from 'date-fns';
 
 export type Theme = 'theme-default' | 'theme-dark-gray' | 'theme-light-gray' | 'theme-red';
 
@@ -31,13 +31,11 @@ export default function Home() {
     let initialMonth: string | null = null;
     let initialNovenaId: string | null = null;
 
-    // 1. Prioritize URL hash
     if (hash && saints.some(s => s.id === hash)) {
       const saint = saints.find(s => s.id === hash)!;
       initialMonth = saint.month;
       initialNovenaId = saint.id;
     } else {
-      // 2. Find the most relevant novena based on a date
       const today = new Date();
       today.setHours(0, 0, 0, 0); 
       const currentYear = getYear(today);
@@ -46,16 +44,19 @@ export default function Home() {
       let minDiff = Infinity;
 
       saints.forEach(saint => {
-        const startDateString = `${saint.startDate}/${currentYear}`;
-        const startDate = parse(startDateString, 'dd/MM/yyyy', new Date());
-        
-        // Consider saints whose novena starts today or in the future
-        if (isToday(startDate) || isAfter(startDate, today)) {
-          const diff = differenceInDays(startDate, today);
-          if (diff < minDiff) {
-            minDiff = diff;
-            closestSaint = saint;
-          }
+        try {
+            const startDateString = `${saint.startDate}/${currentYear}`;
+            const startDate = parse(startDateString, 'dd/MM/yyyy', new Date());
+            
+            if (!isNaN(startDate.getTime())) { // Check if the date is valid
+                const diff = Math.abs(differenceInDays(startDate, today));
+                if (diff < minDiff) {
+                    minDiff = diff;
+                    closestSaint = saint;
+                }
+            }
+        } catch (e) {
+            // Ignore invalid date formats in data
         }
       });
       
@@ -63,14 +64,12 @@ export default function Home() {
         initialNovenaId = closestSaint.id;
         initialMonth = closestSaint.month;
       } else {
-        // 3. Fallback to the first saint of the current month
         const currentMonthName = months[today.getMonth()];
         const firstSaintOfCurrentMonth = saints.find(s => s.month === currentMonthName);
         if (firstSaintOfCurrentMonth) {
           initialNovenaId = firstSaintOfCurrentMonth.id;
           initialMonth = firstSaintOfCurrentMonth.month;
         } else {
-          // 4. Ultimate fallback to a default (e.g., first saint of October)
           const firstSaintOfOctober = saints.find(s => s.month === 'Outubro');
           if (firstSaintOfOctober) {
             initialNovenaId = firstSaintOfOctober.id;
