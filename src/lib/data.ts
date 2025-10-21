@@ -64,6 +64,90 @@ export const novenaData: Record<string, Novena> = {
       content: `<div class="day-specific-content"><p>Ó Santa Isabel da Hungria, que renunciastes às riquezas e ao poder para abraçar a pobreza e o serviço aos humildes, ensinai-nos a desapegar nosso coração dos bens deste mundo. Vós, que transformastes o pão em rosas, transformai a nossa caridade em gestos concretos de amor. Pela vossa intercessão, alcançai-nos a graça que vos pedimos nesta novena (pedir a graça), e a força para sermos fiéis ao Evangelho até o fim. Amém.</p></div>`
     }))
   },
+  apresentacao_ns: {
+    saintName: 'Apresentação de Nossa Senhora',
+    novenaTitle: 'Novena da Apresentação de Nossa Senhora',
+    description: 'Celebre a entrega de Maria a Deus ainda criança no Templo e peça a graça de se consagrar totalmente à vontade do Pai.',
+    initialPrayer: `<div class="prayer-block"><p>Oração Inicial para todos os dias.</p></div>`,
+    finalPrayer: `<div class="prayer-block"><p>Oração Final para todos os dias.</p></div>`,
+     days: Array.from({ length: 9 }, (_, i) => ({
+      day: `${i + 1}º Dia`,
+      title: `Oração do ${i + 1}º Dia`,
+      content: `<div class="day-specific-content"><p>Conteúdo da oração para o ${i + 1}º dia da novena.</p></div>`
+    }))
+  },
+  ns_saude: {
+    saintName: 'Nossa Senhora da Saúde',
+    novenaTitle: 'Novena a Nossa Senhora da Saúde',
+    description: 'Invoque a Mãe de Deus sob este título e peça a cura das doenças do corpo e da alma, confiando na Sua materna intercessão.',
+    initialPrayer: `<div class="prayer-block"><p>Oração Inicial para todos os dias.</p></div>`,
+    finalPrayer: `<div class="prayer-block"><p>Oração Final para todos os dias.</p></div>`,
+     days: Array.from({ length: 9 }, (_, i) => ({
+      day: `${i + 1}º Dia`,
+      title: `Oração do ${i + 1}º Dia`,
+      content: `<div class="day-specific-content"><p>Conteúdo da oração para o ${i + 1}º dia da novena.</p></div>`
+    }))
+  },
+  santa_cecilia: {
+    saintName: 'Santa Cecília',
+    novenaTitle: 'Novena a Santa Cecília',
+    description: 'Padroeira dos músicos e da música sacra, Santa Cecília intercede para que a sua vida seja um cântico de louvor a Deus.',
+    initialPrayer: `<div class="prayer-block"><p>Oração Inicial para todos os dias.</p></div>`,
+    finalPrayer: `<div class="prayer-block"><p>Oração Final para todos os dias.</p></div>`,
+     days: Array.from({ length: 9 }, (_, i) => ({
+      day: `${i + 1}º Dia`,
+      title: `Oração do ${i + 1}º Dia`,
+      content: `<div class="day-specific-content"><p>Conteúdo da oração para o ${i + 1}º dia da novena.</p></div>`
+    }))
+  },
+  cristo_rei: {
+    saintName: 'Cristo Rei',
+    novenaTitle: 'Novena a Cristo Rei',
+    description: 'Prepare-se para a Solenidade de Nosso Senhor Jesus Cristo, Rei do Universo, reconhecendo Sua soberania sobre sua vida e o mundo.',
+    initialPrayer: `<div class="prayer-block"><p>Oração Inicial para todos os dias.</p></div>`,
+    finalPrayer: `<div class="prayer-block"><p>Oração Final para todos os dias.</p></div>`,
+     days: Array.from({ length: 9 }, (_, i) => ({
+      day: `${i + 1}º Dia`,
+      title: `Oração do ${i + 1}º Dia`,
+      content: `<div class="day-specific-content"><p>Conteúdo da oração para o ${i + 1}º dia da novena.</p></div>`
+    }))
+  },
+  catarina_alexandria: {
+    saintName: 'Santa Catarina de Alexandria',
+    novenaTitle: 'Novena a Santa Catarina de Alexandria',
+    description: 'Virgem e mártir, Santa Catarina é padroeira dos estudantes e filósofos. Peça sua intercessão por sabedoria e fé inabalável.',
+    initialPrayer: `<div class="prayer-block"><p>Oração Inicial para todos os dias.</p></div>`,
+    finalPrayer: `<div class="prayer-block"><p>Oração Final para todos os dias.</p></div>`,
+     days: Array.from({ length: 9 }, (_, i) => ({
+      day: `${i + 1}º Dia`,
+      title: `Oração do ${i + 1}º Dia`,
+      content: `<div class="day-specific-content"><p>Conteúdo da oração para o ${i + 1}º dia da novena.</p></div>`
+    }))
+  },
+  santo_andre: {
+    saintName: 'Santo André Apóstolo',
+    novenaTitle: 'Novena a Santo André Apóstolo',
+    description: 'Irmão de São Pedro e primeiro a seguir o Cristo, Santo André é padroeiro da Escócia e intercede por todos que buscam vocações.',
+    initialPrayer: `<div class="prayer-block"><p>Oração Inicial para todos os dias.</p></div>`,
+    finalPrayer: `<div class="prayer-block"><p>Oração Final para todos os dias.</p></div>`,
+     days: Array.from({ length: 9 }, (_, i) => ({
+      day: `${i + 1}º Dia`,
+      title: `Oração do ${i + 1}º Dia`,
+      content: `<div class="day-specific-content"><p>Conteúdo da oração para o ${i + 1}º dia da novena.</p></div>`
+    }))
+  },
+  imaculada_conceicao: {
+    saintName: 'Imaculada Conceição',
+    novenaTitle: 'Novena à Imaculada Conceição',
+    description: 'Prepare seu coração com Maria para a vinda de Jesus, celebrando a concepção de Maria sem a mancha do pecado original.',
+    initialPrayer: `<div class="prayer-block"><p>Oração Inicial para todos os dias.</p></div>`,
+    finalPrayer: `<div class="prayer-block"><p>Oração Final para todos os dias.</p></div>`,
+     days: Array.from({ length: 9 }, (_, i) => ({
+      day: `${i + 1}º Dia`,
+      title: `Oração do ${i + 1}º Dia`,
+      content: `<div class="day-specific-content"><p>Conteúdo da oração para o ${i + 1}º dia da novena.</p></div>`
+    }))
+  },
   teresinha: {
     saintName: 'Santa Teresinha',
     novenaTitle: 'Novena Milagrosa de Santa Terezinha do Menino Jesus',
@@ -498,10 +582,18 @@ export const saints: Saint[] = [
   { id: 'judas_tadeu', name: 'S. Judas Tadeu', imageUrl: 'https://i.postimg.cc/9wrF08KF/image.png', month: 'Outubro', startDate: '19/10', endDate: '27/10', feastDay: '28/Out', isMartyr: true },
   { id: 'chiara_luce', name: 'Beata Chiara Luce', imageUrl: 'https://i.postimg.cc/YSW99892/image.png', month: 'Outubro', startDate: '20/10', endDate: '28/10', feastDay: '29/Out' },
   { id: 'todos_santos', name: 'Todos os Santos', imageUrl: 'https://i.postimg.cc/j29jkK7b/download.jpg', month: 'Outubro', startDate: '23/10', endDate: '31/10', feastDay: '01/Nov' },
+  //Novembro
   { id: 'almas', name: 'Almas', imageUrl: 'https://i.postimg.cc/W1vR0S1v/image.png', month: 'Novembro', startDate: '24/10', endDate: '01/11', feastDay: '02/Nov' },
   { id: 'martinho_porres', name: 'S. M. de Porres', imageUrl: 'https://i.postimg.cc/zX8sXv35/image.png', month: 'Novembro', startDate: '25/10', endDate: '02/11', feastDay: '03/Nov' },
   { id: 'isabel_hungria', name: 'S. Isabel da Hungria', imageUrl: 'https://i.postimg.cc/VLJkH0mH/image.png', month: 'Novembro', startDate: '08/11', endDate: '16/11', feastDay: '17/Nov' },
-  { id: 'gracas', name: 'N.S. das Graças', imageUrl: 'https://i.postimg.cc/d1hKrq0C/image.png', month: 'Novembro', startDate: '18/11', endDate: '26/11', feastDay: '27/Nov' }
+  { id: 'apresentacao_ns', name: 'Apresentação de N.S.', imageUrl: 'https://i.postimg.cc/0j6W7k0k/image.png', month: 'Novembro', startDate: '12/11', endDate: '20/11', feastDay: '21/Nov' },
+  { id: 'ns_saude', name: 'N.S. da Saúde', imageUrl: 'https://www.cruzterrasanta.com.br/wp-content/uploads/2023/11/nossa-senhora-da-saude-historia.jpg', month: 'Novembro', startDate: '12/11', endDate: '20/11', feastDay: '21/Nov' },
+  { id: 'santa_cecilia', name: 'S. Cecília', imageUrl: 'https://i.postimg.cc/1tS5JzD3/image.png', month: 'Novembro', startDate: '13/11', endDate: '21/11', feastDay: '22/Nov', isMartyr: true },
+  { id: 'cristo_rei', name: 'Cristo Rei', imageUrl: 'https://www.vaticannews.va/content/dam/vaticannews/images/2023/11/24/Cristo_Rei_do_Universo.jpg/_jcr_content/renditions/cq5dam.thumbnail.cropped.750.422.jpeg', month: 'Novembro', startDate: '14/11', endDate: '22/11', feastDay: '23/Nov' },
+  { id: 'catarina_alexandria', name: 'S. Catarina de Alexandria', imageUrl: 'https://i.postimg.cc/L5n49qFv/image.png', month: 'Novembro', startDate: '16/11', endDate: '24/11', feastDay: '25/Nov', isMartyr: true },
+  { id: 'gracas', name: 'N.S. das Graças', imageUrl: 'https://i.postimg.cc/d1hKrq0C/image.png', month: 'Novembro', startDate: '18/11', endDate: '26/11', feastDay: '27/Nov' },
+  { id: 'santo_andre', name: 'S. André Apóstolo', imageUrl: 'https://i.postimg.cc/k4Wn49m8/image.png', month: 'Novembro', startDate: '21/11', endDate: '29/11', feastDay: '30/Nov', isMartyr: true },
+  { id: 'imaculada_conceicao', name: 'Imaculada Conceição', imageUrl: 'https://comunidadesaopedro.files.wordpress.com/2012/11/imaculada-conceic3a7c3a3o.jpg', month: 'Novembro', startDate: '29/11', endDate: '07/12', feastDay: '08/Dez' }
 ];
 
 export const months: string[] = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
@@ -540,7 +632,7 @@ export const saintsOfTheDay: SaintOfTheDayData[] = [
     saints: [{
       name: 'S. Francisco de Assis',
       imageUrl: 'https://i.postimg.cc/fVs0LZz6/sao-francisco-assis.jpg',
-      story: `<h4>O Jovem de Assis</h4><p>Nascido em 1182, filho de um rico comerciante de tecidos, Francisco Bernardone viveu uma juventude de luxo e sonhos de glória militar. No entanto, uma profunda crise espiritual, marcada pela prisão durante uma guerra e um encontro transformador com um leproso, mudou o rumo de sua vida. O ponto de viragem definitivo foi when, em oração na capela de São Damião, ouviu a voz do crucifixo que lhe dizia: "Francisco, vai e repara a minha casa que, como vês, está em ruínas".</p><h4>O Abraço à Pobreza</h4><p>Tomando o mandato de Cristo literally, Francisco renunciou a toda a sua herança, despojando-se de suas roupas na praça de Assis diante de seu pai e do bispo. Abraçou uma vida de pobreza radical, pregando o Evangelho com simplicidade e alegria, e servindo os mais marginalizados. Fundou a Ordem dos Frades Menores (Franciscanos), a Ordem das Clarissas e a Ordem Terceira, convidando homens e mulheres de todos os estados de vida a seguir os passos de Cristo pobre e humilde.</p><h4>Cântico das Criaturas</h4><p>Francisco é um ícone universal de paz e amor por toda a Criação. No seu "Cântico das Criaturas", ele louva a Deus através do "irmão sol", da "irmã lua" e de todos os elementos da natureza, vendo em cada criatura um reflexo da bondade do Criador. Nos últimos anos de sua vida, no Monte Alverne, recebeu os estigmas, tornando-se um sinal vivo da Paixão de Cristo. Sua vida é um testemunho radical do poder transformador do Evangelho vivido em sua pureza original.</p><p class="mt-4"><b>Oração:</b> Senhor, fazei de mim um instrumento da Vossa paz. Onde houver ódio, que eu leve o amor; onde houver ofensa, que eu leve o perdão; onde houver discórdia, que eu leve a união.</p><p class="mt-2 italic">São Francisco de Assis, rogai por nós.</p>`
+      story: `<h4>O Jovem de Assis</h4><p>Nascido em 1182, filho de um rico comerciante de tecidos, Francisco Bernardone viveu uma juventude de luxo e sonhos de glória militar. No entanto, uma profunda crise espiritual, marcada pela prisão durante uma guerra e um encontro transformador com um leproso, mudou o rumo de sua vida. O ponto de viragem definitivo foi when, em oração na capela de São Damião, ouviu a voz do crucifixo que lhe dizia: "Francisco, vai e repara a minha casa que, como vês, está em ruínas".</p><h4>O Abraço à Pobreza</h4><p>Tomando o mandato de Cristo literally, Francisco renunciou a toda a sua herança, despojando-se de suas roupas na praça de Assis diante de seu pai e do bispo. Abraçou uma vida de pobreza radical, pregando o Evangelho com simplicidade e alegria, e servindo os mais marginalizados. Fundou a Ordem dos Frades Menores (Franciscanos), a Ordem das Clarissas e a Ordem Terceira, convidando homens e mulheres de todos os estados de vida a seguir os passos de Cristo pobre e humilde.</p><h4>Cântico das Criaturas</h4><p>Francisco é um ícone universal de paz e amor por toda a Criação. No seu "Cântico das Criaturas", ele louva a Deus através do "irmão sol", da "irmã lua" e de todos os elementos da nature za, vendo em cada criatura um reflexo da bondade do Criador. Nos últimos anos de sua vida, no Monte Alverne, recebeu os estigmas, tornando-se um sinal vivo da Paixão de Cristo. Sua vida é um testemunho radical do poder transformador do Evangelho vivido em sua pureza original.</p><p class="mt-4"><b>Oração:</b> Senhor, fazei de mim um instrumento da Vossa paz. Onde houver ódio, que eu leve o amor; onde houver ofensa, que eu leve o perdão; onde houver discórdia, que eu leve a união.</p><p class="mt-2 italic">São Francisco de Assis, rogai por nós.</p>`
     }]
   },
   {
@@ -875,7 +967,7 @@ export const saintsOfTheDay: SaintOfTheDayData[] = [
           story: '<p>Isabel Catez, carmelita descalça de Dijon, França, viveu uma vida curta (1880-1906) mas de uma intensidade espiritual extraordinária. Sua missão foi descobrir o "segredo da felicidade": a presença da Santíssima Trindade habitando no mais íntimo de sua alma. Ela se via como "louvor de glória" da Trindade, oferecendo sua vida e seus sofrimentos em união com Cristo. Sua espiritualidade, profundamente teológica e acessível, convida-nos a tomar consciência desta presença divina em nós e a viver cada momento como um ato de amor e adoração.</p>'
         },
         {
-          name: 'São Deodato I',
+          name: 'São Deodato I, Papa',
           imageUrl: 'https://i.postimg.cc/L82Hh2gQ/image.png',
           story: '<p>São Deodato I, Papa no início do século VII, é lembrado pelo seu grande amor ao clero e ao povo de Roma. Foi o primeiro Papa a usar o selo papal de chumbo ("bulla") nos documentos pontifícios, uma prática que continua até hoje. Em um tempo de calamidades, como terremotos e lepra, ele se dedicou com caridade heroica ao cuidado dos doentes e necessitados. Seu pontificado foi um testemunho de serviço humilde e de paternidade espiritual para com a Igreja de Roma.</p>'
         }
@@ -1145,5 +1237,6 @@ export const saintsOfTheDay: SaintOfTheDayData[] = [
       }]
   }
 ];
+
 
 
