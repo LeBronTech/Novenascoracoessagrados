@@ -13,11 +13,12 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetTr
 import { Button } from '@/components/ui/button';
 import { Menu } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { parse, isAfter, isToday, differenceInDays, getYear } from 'date-fns';
 
 export type Theme = 'theme-default' | 'theme-dark-gray' | 'theme-light-gray' | 'theme-red';
 
 export default function Home() {
-  const [selectedMonth, setSelectedMonth] = useState<string>(months[9]); // Default to October
+  const [selectedMonth, setSelectedMonth] = useState<string>(months[new Date().getMonth()]);
   const [selectedSaintId, setSelectedSaintId] = useState<string | null>(null);
   const [hydrated, setHydrated] = useState(false);
   const [theme, setTheme] = useState<Theme>('theme-dark-gray');
@@ -27,23 +28,64 @@ export default function Home() {
   
   useEffect(() => {
     const hash = window.location.hash.substring(1);
-    let initialMonth = 'Outubro';
+    let initialMonth: string | null = null;
     let initialNovenaId: string | null = null;
-    
+
+    // 1. Prioritize URL hash
     if (hash && saints.some(s => s.id === hash)) {
       const saint = saints.find(s => s.id === hash)!;
       initialMonth = saint.month;
       initialNovenaId = saint.id;
     } else {
-      const firstSaint = saints.find(s => s.month === 'Outubro');
-      if (firstSaint) {
-        initialNovenaId = firstSaint.id;
+      // 2. Find the most relevant novena based on a date
+      const today = new Date();
+      today.setHours(0, 0, 0, 0); 
+      const currentYear = getYear(today);
+
+      let closestSaint: Saint | null = null;
+      let minDiff = Infinity;
+
+      saints.forEach(saint => {
+        const startDateString = `${saint.startDate}/${currentYear}`;
+        const startDate = parse(startDateString, 'dd/MM/yyyy', new Date());
+        
+        // Consider saints whose novena starts today or in the future
+        if (isToday(startDate) || isAfter(startDate, today)) {
+          const diff = differenceInDays(startDate, today);
+          if (diff < minDiff) {
+            minDiff = diff;
+            closestSaint = saint;
+          }
+        }
+      });
+      
+      if (closestSaint) {
+        initialNovenaId = closestSaint.id;
+        initialMonth = closestSaint.month;
+      } else {
+        // 3. Fallback to the first saint of the current month
+        const currentMonthName = months[today.getMonth()];
+        const firstSaintOfCurrentMonth = saints.find(s => s.month === currentMonthName);
+        if (firstSaintOfCurrentMonth) {
+          initialNovenaId = firstSaintOfCurrentMonth.id;
+          initialMonth = firstSaintOfCurrentMonth.month;
+        } else {
+          // 4. Ultimate fallback to a default (e.g., first saint of October)
+          const firstSaintOfOctober = saints.find(s => s.month === 'Outubro');
+          if (firstSaintOfOctober) {
+            initialNovenaId = firstSaintOfOctober.id;
+            initialMonth = firstSaintOfOctober.month;
+          }
+        }
       }
     }
 
-    setSelectedMonth(initialMonth);
-    setSelectedSaintId(initialNovenaId);
-    setHydrated(true); 
+    if (initialMonth && initialNovenaId) {
+      setSelectedMonth(initialMonth);
+      setSelectedSaintId(initialNovenaId);
+    }
+    
+    setHydrated(true);
   }, []);
 
   useEffect(() => {
@@ -81,7 +123,7 @@ export default function Home() {
     saintOfTheDaySectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
-  // Prevent rendering until the client-side has determined the initial state from URL
+  // Prevent rendering until the client-side has determined the initial state
   if (!hydrated) {
     return null; // Or a loading spinner
   }
