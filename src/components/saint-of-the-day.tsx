@@ -100,10 +100,11 @@ const SaintOfTheDay = forwardRef<SaintOfTheDayRef, SaintOfTheDayProps>(({ trigge
   const [hydrated, setHydrated] = useState(false);
   const [theme, setTheme] = useState<Theme>('light');
   
-  const [selectedMonth, setSelectedMonth] = useState<string>(months[new Date().getMonth()]);
+  const [selectedMonth, setSelectedMonth] = useState<string | null>(null);
   const [monthCarouselRef, monthCarouselApi] = useEmblaCarousel(MONTH_CAROUSEL_OPTIONS);
 
   const saintsForCurrentMonth = useMemo(() => {
+    if (!selectedMonth) return [];
     return saintsOfTheDay.filter(day => day.month === selectedMonth);
   }, [selectedMonth]);
   
@@ -126,9 +127,11 @@ const SaintOfTheDay = forwardRef<SaintOfTheDayRef, SaintOfTheDayProps>(({ trigge
     }
     monthCarouselApi.on('select', onSelect);
     // Initial sync
-    const initialMonthIndex = months.indexOf(selectedMonth);
-    if (initialMonthIndex !== -1 && initialMonthIndex !== monthCarouselApi.selectedScrollSnap()) {
-        monthCarouselApi.scrollTo(initialMonthIndex, true);
+    if (selectedMonth) {
+        const initialMonthIndex = months.indexOf(selectedMonth);
+        if (initialMonthIndex !== -1 && initialMonthIndex !== monthCarouselApi.selectedScrollSnap()) {
+            monthCarouselApi.scrollTo(initialMonthIndex, true);
+        }
     }
     onSelect();
     
@@ -139,21 +142,15 @@ const SaintOfTheDay = forwardRef<SaintOfTheDayRef, SaintOfTheDayProps>(({ trigge
   useEffect(() => {
     const today = new Date();
     const currentMonthName = months[today.getMonth()];
+    setSelectedMonth(currentMonthName);
     
-    if (selectedMonth === currentMonthName) {
-        const dayOfMonth = today.getDate();
-        const initialIndex = saintsOfTheDay.filter(s => s.month === currentMonthName).findIndex(day => day.day >= dayOfMonth);
-        const startIndex = initialIndex !== -1 ? initialIndex : 0;
-        setCurrentSlide(startIndex);
-    } else {
-        setCurrentSlide(0);
-    }
+    const dayOfMonth = today.getDate();
+    const initialIndex = saintsOfTheDay.filter(s => s.month === currentMonthName).findIndex(day => day.day >= dayOfMonth);
+    const startIndex = initialIndex !== -1 ? initialIndex : 0;
+    setCurrentSlide(startIndex);
     
-    setTimeout(() => {
-      setHydrated(true);
-    }, 100);
-
-  }, [selectedMonth]);
+    setHydrated(true);
+  }, []);
 
   const handleNavigation = useCallback((direction: 'prev' | 'next') => {
     const totalSlides = saintsForCurrentMonth.length;
@@ -181,7 +178,7 @@ const SaintOfTheDay = forwardRef<SaintOfTheDayRef, SaintOfTheDayProps>(({ trigge
     setOpenAccordion(newOpenState);
   }
 
-  if (!hydrated) {
+  if (!hydrated || !selectedMonth) {
     return <SaintOfTheDay.Skeleton />;
   }
 
@@ -301,5 +298,3 @@ SaintOfTheDay.Skeleton = function SaintOfTheDaySkeleton() {
 };
 
 export default SaintOfTheDay;
-
-    
