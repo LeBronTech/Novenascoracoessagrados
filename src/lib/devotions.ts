@@ -18,7 +18,7 @@ export const weeklyDevotions: Devotion[] = [
       day: 'Segunda',
       title: 'Segunda-feira',
       devotion: 'Espírito Santo e Almas do Purgatório',
-      icon: 'Shield',
+      icon: 'Flame',
     },
     {
       day: 'Terça',

@@ -5,19 +5,18 @@ import { useState, useEffect } from 'react';
 import { weeklyDevotions } from '@/lib/devotions';
 import { cn } from '@/lib/utils';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-import { Flame, Shield, Users, Hammer, Grape, Beef, Heart } from 'lucide-react';
+import { Flame, Users, Hammer, Grape, Beef, Heart } from 'lucide-react';
 import type { LucideProps } from 'lucide-react';
 import React from 'react';
 
 // A mapping from icon names to actual components
 const iconComponents: { [key: string]: React.FC<LucideProps> } = {
   Heart,
-  Shield,
+  Flame,
   Users,
   Hammer,
   Grape,
   Beef,
-  Flame,
 };
 
 export default function WeeklyDevotions() {
