@@ -118,7 +118,7 @@ export function getLiturgicalInfo(date: Date): LiturgicalInfo {
 
     // Simplified logic for seasons
     if ((month === 11 && dayOfMonth >= 1 && dayOfMonth < 25) || (month === 2 && dayOfMonth > 10)) { // Advent & Lent
-        return { color: 'purple', season: 'Advento/Quaresma', week: week % 4 + 1, verse };
+        return { color: 'purple', season: 'Tempo Comum', week: week % 4 + 1, verse };
     }
     if ((month === 11 && dayOfMonth >= 25) || month === 0 && dayOfMonth < 15) { // Christmas
         return { color: 'white', season: 'Tempo do Natal', week: week % 2 + 1, verse };
