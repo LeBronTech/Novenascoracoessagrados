@@ -122,6 +122,22 @@ export default function WeeklyDevotions() {
   return (
     <div className="flex justify-center items-start flex-wrap gap-2 md:gap-4 my-6">
       <TooltipProvider>
+        {/* Liturgical Info */}
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <div className={cn('devotion-item group', liturgicalColorClasses[liturgicalInfo.color])}>
+              <BookOpen className="devotion-icon" />
+              <div className="text-left">
+                  <span className="text-sm font-bold">{liturgicalInfo.week}ª Semana do {liturgicalInfo.season}</span>
+                  <p className="text-xs italic">{liturgicalInfo.verse}</p>
+              </div>
+            </div>
+          </TooltipTrigger>
+          <TooltipContent className={cn('text-primary-foreground border-primary-foreground/20', liturgicalColorClasses[liturgicalInfo.color])}>
+            <p className="font-bold text-center">Cor Litúrgica: {liturgicalInfo.color}</p>
+          </TooltipContent>
+        </Tooltip>
+
         {/* Weekly Devotion */}
         <Tooltip>
           <TooltipTrigger asChild>
@@ -146,22 +162,6 @@ export default function WeeklyDevotions() {
           <TooltipContent className="bg-primary text-primary-foreground border-primary-foreground/20">
             <p className="font-bold">{weeklyDevotion.title}</p>
             {weeklyDevotion.alert && <p className="mt-1 text-red-300 font-semibold">{weeklyDevotion.alert}</p>}
-          </TooltipContent>
-        </Tooltip>
-
-        {/* Liturgical Info */}
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <div className={cn('devotion-item group', liturgicalColorClasses[liturgicalInfo.color])}>
-              <BookOpen className="devotion-icon" />
-              <div className="text-left">
-                  <span className="text-sm font-bold">{liturgicalInfo.week}ª Semana do {liturgicalInfo.season}</span>
-                  <p className="text-xs italic">{liturgicalInfo.verse}</p>
-              </div>
-            </div>
-          </TooltipTrigger>
-          <TooltipContent className={cn('text-primary-foreground border-primary-foreground/20', liturgicalColorClasses[liturgicalInfo.color])}>
-            <p className="font-bold text-center">Cor Litúrgica: {liturgicalInfo.color}</p>
           </TooltipContent>
         </Tooltip>
 
