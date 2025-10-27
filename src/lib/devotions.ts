@@ -107,24 +107,18 @@ export function getLiturgicalInfo(date: Date): LiturgicalInfo {
     
     // Hardcoding for the 30th week of Ordinary Time for now as requested.
     const week = 30; 
-
-    // Placeholder verses - in a real app this would come from an API
-    const verses = [
-        "Jo 3,16", "Mt 28,19", "Lc 1,38", "Sl 23,1", "1Cor 13,4",
-        "Fl 4,13", "Rm 8,28", "Is 41,10", "Jr 29,11", "Pv 3,5"
-    ];
-    const verse = verses[(dayOfMonth -1) % verses.length];
+    const verse = "Lc 6, 27-38";
 
 
     // Simplified logic for seasons
     if ((month === 11 && dayOfMonth >= 1 && dayOfMonth < 25) || (month === 2 && dayOfMonth > 10)) { // Advent & Lent
-        return { color: 'purple', season: 'Tempo Comum', week: week % 4 + 1, verse };
+        return { color: 'purple', season: 'Tempo Comum', week: week, verse };
     }
     if ((month === 11 && dayOfMonth >= 25) || month === 0 && dayOfMonth < 15) { // Christmas
-        return { color: 'white', season: 'Tempo do Natal', week: week % 2 + 1, verse };
+        return { color: 'white', season: 'Tempo do Natal', week: week, verse };
     }
      if (month === 4 || month === 5) { // Easter
-        return { color: 'white', season: 'Tempo Pascal', week: week % 7 + 1, verse };
+        return { color: 'white', season: 'Tempo Pascal', week: week, verse };
     }
 
     // Ordinary Time
