@@ -111,13 +111,13 @@ export default function WeeklyDevotions() {
             <div className={cn('devotion-item group', liturgicalColorClasses[liturgicalInfo.color])}>
               <BookOpen className="devotion-icon" />
               <div className="text-left">
-                  <span className="text-sm font-bold">{liturgicalInfo.citation}</span>
-                  <p className="text-xs italic">Evangelho do Dia</p>
+                  <span className="text-sm font-bold">{liturgicalInfo.week}ª Semana</span>
+                  <p className="text-xs italic">{liturgicalInfo.season}</p>
               </div>
             </div>
           </TooltipTrigger>
           <TooltipContent className={cn('text-primary-foreground border-primary-foreground/20', liturgicalColorClasses[liturgicalInfo.color])}>
-            <p className="font-bold text-center">"{liturgicalInfo.verse}"</p>
+            <p className="font-bold text-center">Cor Litúrgica: {liturgicalInfo.color}</p>
           </TooltipContent>
         </Tooltip>
 
@@ -141,4 +141,3 @@ export default function WeeklyDevotions() {
     </div>
   );
 }
-

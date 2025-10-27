@@ -13,7 +13,6 @@ import { Skeleton } from '@/components/ui/skeleton';
 import useEmblaCarousel from 'embla-carousel-react';
 import type { EmblaCarouselType, EmblaOptionsType } from 'embla-carousel';
 
-type EmblaApi = EmblaCarouselType[1];
 const MONTH_CAROUSEL_OPTIONS: EmblaOptionsType = { loop: true, align: 'center', containScroll: false };
 
 type Theme = 'light' | 'dark';
@@ -113,9 +112,10 @@ const SaintOfTheDay = forwardRef<SaintOfTheDayRef, SaintOfTheDayProps>(({ trigge
     setSelectedMonth(month);
     setCurrentSlide(0); 
     setSelectedSaintInDayIndex(0);
-    setOpenAccordion(false);
-    if(onToggle) onToggle(false);
-  }, [onToggle]);
+    if(openAccordion) {
+      setOpenAccordion(false);
+    }
+  }, [openAccordion]);
 
   useEffect(() => {
     if (!monthCarouselApi) return;
@@ -137,7 +137,6 @@ const SaintOfTheDay = forwardRef<SaintOfTheDayRef, SaintOfTheDayProps>(({ trigge
 
 
   useEffect(() => {
-    setHydrated(true);
     const today = new Date();
     const currentMonthName = months[today.getMonth()];
     
@@ -149,6 +148,10 @@ const SaintOfTheDay = forwardRef<SaintOfTheDayRef, SaintOfTheDayProps>(({ trigge
     } else {
         setCurrentSlide(0);
     }
+    
+    setTimeout(() => {
+      setHydrated(true);
+    }, 100);
 
   }, [selectedMonth]);
 
@@ -162,10 +165,11 @@ const SaintOfTheDay = forwardRef<SaintOfTheDayRef, SaintOfTheDayProps>(({ trigge
     });
 
     setSelectedSaintInDayIndex(0);
-    setOpenAccordion(false);
-    if(onToggle) onToggle(false);
+    if(openAccordion) {
+      setOpenAccordion(false);
+    }
 
-  }, [saintsForCurrentMonth, onToggle]);
+  }, [saintsForCurrentMonth, openAccordion]);
 
   useImperativeHandle(ref, () => ({
     navigate: handleNavigation
@@ -175,9 +179,6 @@ const SaintOfTheDay = forwardRef<SaintOfTheDayRef, SaintOfTheDayProps>(({ trigge
   const toggleAccordion = () => {
     const newOpenState = !openAccordion;
     setOpenAccordion(newOpenState);
-    if(onToggle) {
-      onToggle(newOpenState);
-    }
   }
 
   if (!hydrated) {

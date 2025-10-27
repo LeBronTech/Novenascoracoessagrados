@@ -17,8 +17,8 @@ export type MonthlyDevotion = {
 
 export type LiturgicalInfo = {
     color: 'green' | 'purple' | 'red' | 'white' | 'rose';
-    verse: string;
-    citation: string;
+    season: string;
+    week: number;
 };
 
 export const weeklyDevotions: Devotion[] = [
@@ -89,30 +89,32 @@ export const monthlyDevotions: MonthlyDevotion[] = [
     { month: 11, name: 'Dezembro', devotion: 'Advento e Natal', icon: 'monthly-dec' },
 ];
 
+function getWeek(date: Date) {
+    const start = new Date(date.getFullYear(), 0, 1);
+    const diff = (date.getTime() - start.getTime() + (start.getTimezoneOffset() - date.getTimezoneOffset()) * 60 * 1000);
+    const oneDay = 1000 * 60 * 60 * 24;
+    const day = Math.floor(diff / oneDay);
+    return Math.ceil((day + start.getDay() + 1) / 7);
+}
+
+
 // Mock function for liturgical data.
 // A real implementation would require a complex liturgical calendar logic.
 export function getLiturgicalInfo(date: Date): LiturgicalInfo {
-    const dayOfYear = Math.floor((date.getTime() - new Date(date.getFullYear(), 0, 0).getTime()) / 86400000);
-    
-    // This is a simplified logic, not a real liturgical calendar.
-    if (date.getMonth() === 11 && date.getDate() < 25) {
-        return { color: 'purple', verse: "Vigiai, pois, porque não sabeis o dia nem a hora.", citation: "Mt 25, 13" };
-    }
-    if (date.getDay() === 0) { // Sunday
-        return { color: 'white', verse: "Este é o dia que o Senhor fez; exultemos e alegremo-nos nele.", citation: "Sl 118, 24" };
-    }
-    
-    const colors: LiturgicalInfo['color'][] = ['green', 'white', 'red', 'purple'];
-    const color = colors[dayOfYear % colors.length];
+    const month = date.getMonth();
+    const week = getWeek(date);
 
-    switch(color) {
-        case 'red':
-            return { color: 'red', verse: "Quem quiser ser o primeiro, seja o servo de todos.", citation: "Mc 10, 44" };
-        case 'white':
-            return { color: 'white', verse: "Eu sou a luz do mundo; quem me segue não andará nas trevas.", citation: "Jo 8, 12" };
-        case 'purple':
-            return { color: 'purple', verse: "Convertei-vos, porque o Reino dos Céus está próximo.", citation: "Mt 3, 2" };
-        default:
-            return { color: 'green', verse: "A messe é grande, mas os trabalhadores são poucos.", citation: "Lc 10, 2" };
+    // Simplified logic for seasons
+    if ((month === 11 && date.getDate() >= 1 && date.getDate() < 25) || (month === 2 && date.getDate() > 10)) { // Advent & Lent
+        return { color: 'purple', season: 'Advento/Quaresma', week: week % 4 + 1 };
     }
+    if ((month === 11 && date.getDate() >= 25) || month === 0 && date.getDate() < 15) { // Christmas
+        return { color: 'white', season: 'Tempo do Natal', week: week % 2 + 1 };
+    }
+     if (month === 4 || month === 5) { // Easter
+        return { color: 'white', season: 'Tempo Pascal', week: week % 7 + 1 };
+    }
+
+    // Ordinary Time
+    return { color: 'green', season: 'Tempo Comum', week: week };
 }
