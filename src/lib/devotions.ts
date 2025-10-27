@@ -52,3 +52,5 @@ export const weeklyDevotions: Devotion[] = [
       icon: 'saturday',
     },
 ];
+
+    
