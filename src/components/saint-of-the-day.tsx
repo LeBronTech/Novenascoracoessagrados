@@ -102,7 +102,7 @@ const SaintOfTheDay = forwardRef<SaintOfTheDayRef, SaintOfTheDayProps>(({ trigge
   const [theme, setTheme] = useState<Theme>('light');
   
   const [selectedMonth, setSelectedMonth] = useState<string>(months[new Date().getMonth()]);
-  const [monthCarouselApi, setMonthCarouselApi] = useState<EmblaApi>();
+  const [monthCarouselRef, monthCarouselApi] = useEmblaCarousel(MONTH_CAROUSEL_OPTIONS);
 
   const saintsForCurrentMonth = useMemo(() => {
     return saintsOfTheDay.filter(day => day.month === selectedMonth);
@@ -119,10 +119,21 @@ const SaintOfTheDay = forwardRef<SaintOfTheDayRef, SaintOfTheDayProps>(({ trigge
 
   useEffect(() => {
     if (!monthCarouselApi) return;
-    const onSelect = () => handleMonthChange(monthCarouselApi.selectedScrollSnap());
+    const onSelect = () => {
+      if (monthCarouselApi) {
+        handleMonthChange(monthCarouselApi.selectedScrollSnap());
+      }
+    }
     monthCarouselApi.on('select', onSelect);
+    // Initial sync
+    const initialMonthIndex = months.indexOf(selectedMonth);
+    if (initialMonthIndex !== -1 && initialMonthIndex !== monthCarouselApi.selectedScrollSnap()) {
+        monthCarouselApi.scrollTo(initialMonthIndex, true);
+    }
+    onSelect();
+    
     return () => { monthCarouselApi.off('select', onSelect) };
-  }, [monthCarouselApi, handleMonthChange]);
+  }, [monthCarouselApi, handleMonthChange, selectedMonth]);
 
 
   useEffect(() => {
@@ -140,15 +151,6 @@ const SaintOfTheDay = forwardRef<SaintOfTheDayRef, SaintOfTheDayProps>(({ trigge
     }
 
   }, [selectedMonth]);
-
-  useEffect(() => {
-      if (monthCarouselApi) {
-          const initialMonthIndex = months.indexOf(selectedMonth);
-          if (initialMonthIndex !== -1) {
-              monthCarouselApi.scrollTo(initialMonthIndex, true);
-          }
-      }
-  }, [monthCarouselApi, selectedMonth]);
 
   const handleNavigation = useCallback((direction: 'prev' | 'next') => {
     const totalSlides = saintsForCurrentMonth.length;
@@ -194,7 +196,7 @@ const SaintOfTheDay = forwardRef<SaintOfTheDayRef, SaintOfTheDayProps>(({ trigge
     <div className="p-4 md:p-6 bg-gray-100/70 backdrop-blur-sm rounded-xl shadow-lg mt-2 relative">
       <div className="flex items-center justify-between mb-2">
         <Button variant="ghost" size="icon" onClick={() => monthCarouselApi?.scrollPrev()}><ChevronLeft /></Button>
-        <div className="overflow-hidden w-full" ref={setMonthCarouselApi}>
+        <div className="overflow-hidden w-full" ref={monthCarouselRef}>
             <div className="flex">
                 {months.map((month) => (
                     <div key={month} className="flex-[0_0_100%] min-w-0">
@@ -299,3 +301,4 @@ SaintOfTheDay.Skeleton = function SaintOfTheDaySkeleton() {
 
 export default SaintOfTheDay;
 
+    
