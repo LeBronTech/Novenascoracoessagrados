@@ -9,44 +9,44 @@ export type Devotion = {
 
 export const weeklyDevotions: Devotion[] = [
     {
-      day: 'Dom',
-      title: 'Domingo',
+      day: 'Domingo',
+      title: 'Domingo - Dia do Senhor',
       devotion: 'Ressurreição de Cristo',
-      icon: 'Flame',
+      icon: 'Heart',
     },
     {
-      day: 'Seg',
+      day: 'Segunda',
       title: 'Segunda-feira',
       devotion: 'Espírito Santo e Almas do Purgatório',
       icon: 'Shield',
     },
     {
-      day: 'Ter',
+      day: 'Terça',
       title: 'Terça-feira',
       devotion: 'Santos Anjos',
       icon: 'Users',
     },
     {
-      day: 'Qua',
+      day: 'Quarta',
       title: 'Quarta-feira',
       devotion: 'São José',
       icon: 'Hammer',
     },
     {
-      day: 'Qui',
+      day: 'Quinta',
       title: 'Quinta-feira',
       devotion: 'Santíssimo Sacramento',
       icon: 'Grape',
     },
     {
-      day: 'Sex',
+      day: 'Sexta',
       title: 'Sexta-feira',
       devotion: 'Paixão de Cristo e Sagrado Coração',
       icon: 'Beef',
       alert: 'Abstinência de carne',
     },
     {
-      day: 'Sáb',
+      day: 'Sábado',
       title: 'Sábado',
       devotion: 'Nossa Senhora',
       icon: 'Heart',
