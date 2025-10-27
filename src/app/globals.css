@@ -305,17 +305,43 @@
   
   /* Weekly Devotions */
   .devotion-item {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    @apply flex items-center justify-center gap-3 w-auto h-auto px-4 py-3 rounded-full border-2 border-gray-300/50 bg-gray-100/70 backdrop-blur-sm cursor-pointer transition-all duration-300;
   }
   .devotion-item:hover {
     @apply opacity-80 scale-105;
   }
   .devotion-item .devotion-icon {
-    transition: transform 0.3s ease-in-out;
+    @apply w-6 h-6 text-gray-600 transition-transform duration-300 ease-in-out;
   }
   .devotion-item:hover .devotion-icon {
     transform: scale(1.1);
   }
+
+  .devotion-item--green { @apply bg-green-600/80 text-white border-green-400/50; }
+  .devotion-item--green .devotion-icon { @apply text-white; }
+  .devotion-item--green .text-sm { @apply text-white; }
+  .devotion-item--green .text-xs { @apply text-green-200; }
+  
+  .devotion-item--purple { @apply bg-purple-600/80 text-white border-purple-400/50; }
+  .devotion-item--purple .devotion-icon { @apply text-white; }
+  .devotion-item--purple .text-sm { @apply text-white; }
+  .devotion-item--purple .text-xs { @apply text-purple-200; }
+
+  .devotion-item--red { @apply bg-red-700/80 text-white border-red-500/50; }
+  .devotion-item--red .devotion-icon { @apply text-white; }
+  .devotion-item--red .text-sm { @apply text-white; }
+  .devotion-item--red .text-xs { @apply text-red-200; }
+  
+  .devotion-item--white { @apply bg-white/90 text-gray-800 border-gray-300/50; }
+  .devotion-item--white .devotion-icon { @apply text-primary; }
+  .devotion-item--white .text-sm { @apply text-gray-800; }
+  .devotion-item--white .text-xs { @apply text-gray-600; }
+  
+  .devotion-item--rose { @apply bg-rose-400/80 text-white border-rose-300/50; }
+  .devotion-item--rose .devotion-icon { @apply text-white; }
+  .devotion-item--rose .text-sm { @apply text-white; }
+  .devotion-item--rose .text-xs { @apply text-rose-100; }
+
 }
 
 @layer components {
