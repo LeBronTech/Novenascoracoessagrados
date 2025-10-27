@@ -1,21 +1,56 @@
 
 'use client';
 
-import { useState, useMemo, useEffect, useRef } from 'react';
+import { useState, useMemo, useEffect, useRef, forwardRef } from 'react';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
 import SaintSelector from '@/components/saint-selector';
 import NovenaDisplay from '@/components/novena-display';
 import SaintOfTheDay, { type SaintOfTheDayRef } from '@/components/saint-of-the-day';
+import WeeklyDevotions from '@/components/weekly-devotions';
 import { saints, months, novenaData } from '@/lib/data';
 import type { Saint, Novena } from '@/lib/data';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetTrigger } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
-import { Menu } from 'lucide-react';
+import { Menu, Heart } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { parse, differenceInDays, getYear } from 'date-fns';
+import { Skeleton } from '@/components/ui/skeleton';
 
 export type Theme = 'theme-default' | 'theme-dark-gray' | 'theme-light-gray' | 'theme-red';
+
+const PageSkeleton = () => (
+    <div className="container mx-auto p-4 md:p-8 max-w-5xl text-stone-900">
+        <Skeleton className="fixed top-4 left-4 z-20 h-10 w-10 rounded-md" />
+        <Header />
+        <div className="flex justify-center gap-2 md:gap-4 mb-8">
+            {Array.from({ length: 7 }).map((_, i) => (
+                <Skeleton key={i} className="w-16 h-20 md:w-20 md:h-24 rounded-full" />
+            ))}
+        </div>
+        <div className="relative">
+            <h2 className="text-xl font-brand text-center text-gray-700 mt-8">
+                Santo do Dia
+            </h2>
+            <SaintOfTheDay.Skeleton />
+        </div>
+        <div className="bg-gray-100/70 backdrop-blur-sm rounded-xl shadow-lg p-4 mt-12">
+            <h2 className="text-xl font-brand text-center text-gray-700 mb-4">
+                Novenas do Mês
+            </h2>
+            <SaintSelector.Skeleton />
+        </div>
+        <div className="mt-8">
+            <div className="flex flex-col items-center justify-center p-16 text-center bg-transparent border-2 border-dashed rounded-2xl">
+                <Heart className="mx-auto h-12 w-12 text-primary/30 mb-4 animate-pulse" strokeWidth={1} />
+                <Skeleton className="h-8 w-3/4 mb-2" />
+                <Skeleton className="h-4 w-1/2" />
+            </div>
+        </div>
+        <Footer />
+    </div>
+);
+
 
 export default function Home() {
   const [selectedMonth, setSelectedMonth] = useState<string>(months[new Date().getMonth()]);
@@ -118,13 +153,18 @@ export default function Home() {
   }
 
   const handleSaintOfTheDayNavigation = (direction: 'prev' | 'next') => {
-    saintOfTheDayRef.current?.navigate(direction);
-    saintOfTheDaySectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
+    setIsSaintOfTheDayOpen(false); // Close accordion before navigating
+    // Add a small delay to allow the accordion to close before changing the slide
+    setTimeout(() => {
+        saintOfTheDayRef.current?.navigate(direction);
+        saintOfTheDaySectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 200);
+}
+
 
   // Prevent rendering until the client-side has determined the initial state
   if (!hydrated) {
-    return null; // Or a loading spinner
+    return <PageSkeleton />;
   }
 
   return (
@@ -142,12 +182,13 @@ export default function Home() {
             <SheetDescription className="sr-only">Navegue para ver o santo de cada dia do mês.</SheetDescription>
           </SheetHeader>
           <div className="h-[calc(100vh-80px)] overflow-y-auto">
-            <SaintOfTheDay triggerTheme={theme} />
+            <SaintOfTheDay triggerTheme={theme} isOpenInitially={isSaintOfTheDayOpen} onToggle={setIsSaintOfTheDayOpen} />
           </div>
         </SheetContent>
       </Sheet>
 
       <Header />
+      <WeeklyDevotions />
       
       <div className="relative" ref={saintOfTheDaySectionRef}>
         <h2 className="text-xl font-brand text-center text-gray-700 mt-8">
@@ -156,6 +197,7 @@ export default function Home() {
         <SaintOfTheDay 
           ref={saintOfTheDayRef} 
           triggerTheme={theme}
+          isOpenInitially={isSaintOfTheDayOpen}
           onToggle={setIsSaintOfTheDayOpen}
         />
         <div 
@@ -208,3 +250,4 @@ export default function Home() {
     </div>
   );
 }
+

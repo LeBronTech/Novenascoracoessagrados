@@ -302,6 +302,30 @@
   .saint-day-content.theme-dark .saint-day-content-nav {
     @apply bg-gray-700/70 text-gray-300 hover:bg-gray-600 hover:text-white;
   }
+  
+  /* Weekly Devotions */
+  .devotion-item {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .devotion-item:not(.active-day) {
+    @apply opacity-60;
+  }
+  .devotion-item:hover:not(.active-day) {
+    @apply opacity-100 scale-105;
+  }
+  .devotion-item .devotion-icon {
+    transition: transform 0.3s ease-in-out;
+  }
+  .devotion-item:hover .devotion-icon {
+    transform: scale(1.2);
+  }
+  .active-day {
+    @apply bg-primary/10 border-primary;
+  }
+  .active-day .devotion-icon {
+    @apply text-primary;
+    transform: scale(1.25);
+  }
 }
 
 @layer components {

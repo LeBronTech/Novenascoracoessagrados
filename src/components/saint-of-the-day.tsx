@@ -1,15 +1,20 @@
 
 'use client';
 
-import { useState, useEffect, useMemo, useCallback, forwardRef, useImperativeHandle } from 'react';
+import { useState, useEffect, useMemo, useCallback, forwardRef, useImperativeHandle, useRef } from 'react';
 import Image from 'next/image';
 import { saintsOfTheDay, months } from '@/lib/data';
 import type { SaintStory } from '@/lib/data';
 import { cn } from '@/lib/utils';
 import type { Theme as NovenaTheme } from '@/app/page';
 import { Button } from '@/components/ui/button';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Skeleton } from '@/components/ui/skeleton';
+import useEmblaCarousel from 'embla-carousel-react';
+import type { EmblaCarouselType, EmblaOptionsType } from 'embla-carousel';
 
+type EmblaApi = EmblaCarouselType[1];
+const MONTH_CAROUSEL_OPTIONS: EmblaOptionsType = { loop: true, align: 'center', containScroll: false };
 
 type Theme = 'light' | 'dark';
 
@@ -85,94 +90,125 @@ export interface SaintOfTheDayRef {
 
 interface SaintOfTheDayProps {
   triggerTheme: NovenaTheme;
+  isOpenInitially?: boolean;
   onToggle?: (isOpen: boolean) => void;
 }
 
-const SaintOfTheDay = forwardRef<SaintOfTheDayRef, SaintOfTheDayProps>(({ triggerTheme, onToggle }, ref) => {
-  const [openAccordionIndex, setOpenAccordionIndex] = useState<number | null>(null);
+const SaintOfTheDay = forwardRef<SaintOfTheDayRef, SaintOfTheDayProps>(({ triggerTheme, isOpenInitially = false, onToggle }, ref) => {
+  const [openAccordion, setOpenAccordion] = useState(isOpenInitially);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [selectedSaintInDayIndex, setSelectedSaintInDayIndex] = useState(0);
   const [hydrated, setHydrated] = useState(false);
   const [theme, setTheme] = useState<Theme>('light');
-  const [isAnimating, setIsAnimating] = useState(false);
   
-  const currentMonthName = useMemo(() => {
-    if (!hydrated) return months[new Date().getMonth()];
-    return months[new Date().getMonth()];
-  }, [hydrated]);
-  
+  const [selectedMonth, setSelectedMonth] = useState<string>(months[new Date().getMonth()]);
+  const [monthCarouselApi, setMonthCarouselApi] = useState<EmblaApi>();
+
   const saintsForCurrentMonth = useMemo(() => {
-    return saintsOfTheDay.filter(day => day.month === currentMonthName);
-  }, [currentMonthName]);
+    return saintsOfTheDay.filter(day => day.month === selectedMonth);
+  }, [selectedMonth]);
+  
+  const handleMonthChange = useCallback((monthIndex: number) => {
+    const month = months[monthIndex];
+    setSelectedMonth(month);
+    setCurrentSlide(0); 
+    setSelectedSaintInDayIndex(0);
+    setOpenAccordion(false);
+    if(onToggle) onToggle(false);
+  }, [onToggle]);
+
+  useEffect(() => {
+    if (!monthCarouselApi) return;
+    const onSelect = () => handleMonthChange(monthCarouselApi.selectedScrollSnap());
+    monthCarouselApi.on('select', onSelect);
+    return () => { monthCarouselApi.off('select', onSelect) };
+  }, [monthCarouselApi, handleMonthChange]);
+
 
   useEffect(() => {
     setHydrated(true);
-    const dayOfMonth = new Date().getDate();
-    const initialIndex = saintsForCurrentMonth.findIndex(day => day.day >= dayOfMonth);
-    const startIndex = initialIndex !== -1 ? initialIndex : 0;
-    setCurrentSlide(startIndex);
-  }, [saintsForCurrentMonth]);
+    const today = new Date();
+    const currentMonthName = months[today.getMonth()];
+    
+    if (selectedMonth === currentMonthName) {
+        const dayOfMonth = today.getDate();
+        const initialIndex = saintsOfTheDay.filter(s => s.month === currentMonthName).findIndex(day => day.day >= dayOfMonth);
+        const startIndex = initialIndex !== -1 ? initialIndex : 0;
+        setCurrentSlide(startIndex);
+    } else {
+        setCurrentSlide(0);
+    }
+
+  }, [selectedMonth]);
+
+  useEffect(() => {
+      if (monthCarouselApi) {
+          const initialMonthIndex = months.indexOf(selectedMonth);
+          if (initialMonthIndex !== -1) {
+              monthCarouselApi.scrollTo(initialMonthIndex, true);
+          }
+      }
+  }, [monthCarouselApi, selectedMonth]);
 
   const handleNavigation = useCallback((direction: 'prev' | 'next') => {
-    if (isAnimating) return;
-    setIsAnimating(true);
-    
-    setTimeout(() => {
-        const totalSlides = saintsForCurrentMonth.length;
-        if (totalSlides === 0) {
-            setIsAnimating(false);
-            return;
-        };
+    const totalSlides = saintsForCurrentMonth.length;
+    if (totalSlides === 0) return;
 
-        let newIndex;
-        if (direction === 'prev') {
-            newIndex = (currentSlide - 1 + totalSlides) % totalSlides;
-        } else {
-            newIndex = (currentSlide + 1) % totalSlides;
-        }
-        
-        setCurrentSlide(newIndex);
-        setSelectedSaintInDayIndex(0);
-        setOpenAccordionIndex(null); 
-        if(onToggle) onToggle(false);
+    setCurrentSlide(prev => {
+        const newIndex = direction === 'prev' ? (prev - 1 + totalSlides) % totalSlides : (prev + 1) % totalSlides;
+        return newIndex;
+    });
 
-        setTimeout(() => setIsAnimating(false), 150);
-    }, 150);
-  }, [currentSlide, saintsForCurrentMonth, isAnimating, onToggle]);
+    setSelectedSaintInDayIndex(0);
+    setOpenAccordion(false);
+    if(onToggle) onToggle(false);
+
+  }, [saintsForCurrentMonth, onToggle]);
 
   useImperativeHandle(ref, () => ({
     navigate: handleNavigation
   }));
 
 
-  const toggleAccordion = (index: number) => {
-    const newOpenIndex = openAccordionIndex === index ? null : index;
-    setOpenAccordionIndex(newOpenIndex);
+  const toggleAccordion = () => {
+    const newOpenState = !openAccordion;
+    setOpenAccordion(newOpenState);
     if(onToggle) {
-      onToggle(newOpenIndex !== null);
+      onToggle(newOpenState);
     }
   }
 
-  if (!hydrated || saintsForCurrentMonth.length === 0) {
-    return <div className="p-4 text-center text-gray-500">A carregar santos...</div>;
+  if (!hydrated) {
+    return <SaintOfTheDay.Skeleton />;
   }
 
   const dayData = saintsForCurrentMonth[currentSlide];
   if (!dayData) {
-    return <div className="p-4 text-center text-gray-500">Santo não encontrado.</div>;
+    return <div className="p-4 text-center text-gray-500">Nenhum santo encontrado para este mês.</div>;
   }
   
-  const isOpen = openAccordionIndex === currentSlide;
+  const isOpen = openAccordion;
   const currentSaintData = dayData.saints[isOpen ? selectedSaintInDayIndex : 0];
   
-  const animationClass = isAnimating ? 'animate-fade-out' : 'animate-fade-in';
-
   return (
     <div className="p-4 md:p-6 bg-gray-100/70 backdrop-blur-sm rounded-xl shadow-lg mt-2 relative">
-      <div className={cn("px-2 transition-opacity duration-150", animationClass)}>
+      <div className="flex items-center justify-between mb-2">
+        <Button variant="ghost" size="icon" onClick={() => monthCarouselApi?.scrollPrev()}><ChevronLeft /></Button>
+        <div className="overflow-hidden w-full" ref={setMonthCarouselApi}>
+            <div className="flex">
+                {months.map((month) => (
+                    <div key={month} className="flex-[0_0_100%] min-w-0">
+                        <p className="text-lg font-brand text-center text-primary font-bold">{month}</p>
+                    </div>
+                ))}
+            </div>
+        </div>
+        <Button variant="ghost" size="icon" onClick={() => monthCarouselApi?.scrollNext()}><ChevronRight /></Button>
+      </div>
+      <div className={cn("px-2")}>
           <div className={cn("relative group", isOpen && "is-open")}>
           <button
-              onClick={() => toggleAccordion(currentSlide)}
+              onClick={toggleAccordion}
               className={cn(
                   "flex-1 p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow w-full saint-day-trigger",
                   isOpen ? "rounded-b-none pb-12" : "",
@@ -247,4 +283,19 @@ const SaintOfTheDay = forwardRef<SaintOfTheDayRef, SaintOfTheDayProps>(({ trigge
 });
 
 SaintOfTheDay.displayName = 'SaintOfTheDay';
+
+SaintOfTheDay.Skeleton = function SaintOfTheDaySkeleton() {
+    return (
+        <div className="p-4 md:p-6 bg-gray-100/70 backdrop-blur-sm rounded-xl shadow-lg mt-2 relative">
+            <div className="flex items-center justify-between mb-2">
+                <Skeleton className="h-10 w-10" />
+                <Skeleton className="h-6 w-32" />
+                <Skeleton className="h-10 w-10" />
+            </div>
+            <Skeleton className="h-24 w-full rounded-lg" />
+        </div>
+    );
+};
+
 export default SaintOfTheDay;
+

@@ -9,6 +9,7 @@ import { cn } from '@/lib/utils';
 import type { Saint } from '@/lib/data';
 import { Card, CardContent } from '@/components/ui/card';
 import { Heart } from 'lucide-react';
+import { Skeleton } from '@/components/ui/skeleton';
 
 const OPTIONS: EmblaOptionsType = { loop: true, align: 'center', containScroll: false };
 type EmblaApi = UseEmblaCarouselType[1];
@@ -113,7 +114,7 @@ const MonthCarousel = memo(({ months, selectedMonth, onMonthChange }: Pick<Saint
 MonthCarousel.displayName = 'MonthCarousel';
 
 
-export default function SaintSelector({
+function SaintSelector({
   saints,
   months,
   selectedMonth,
@@ -178,3 +179,25 @@ export default function SaintSelector({
     </section>
   );
 }
+
+SaintSelector.Skeleton = function SaintSelectorSkeleton() {
+    return (
+        <section className="w-full">
+            <div className="py-4 flex justify-center">
+                <Skeleton className="h-8 w-32" />
+            </div>
+            <div className="flex items-start gap-x-4 overflow-x-auto pb-2 mt-4 border-t border-gray-300 pt-4">
+                {Array.from({ length: 5 }).map((_, i) => (
+                    <div key={i} className="flex flex-col items-center gap-1 w-[100px] shrink-0">
+                        <Skeleton className="w-20 h-20 rounded-full" />
+                        <Skeleton className="h-4 w-16 mt-1" />
+                        <Skeleton className="h-3 w-12" />
+                        <Skeleton className="h-5 w-10 mt-1 rounded-full" />
+                    </div>
+                ))}
+            </div>
+        </section>
+    );
+};
+
+export default SaintSelector;
