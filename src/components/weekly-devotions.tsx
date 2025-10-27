@@ -76,7 +76,7 @@ export default function WeeklyDevotions() {
   };
 
   return (
-    <div className="flex justify-center items-center flex-wrap gap-2 md:gap-4 my-6">
+    <div className="flex justify-center items-start flex-wrap gap-2 md:gap-4 my-6">
       <TooltipProvider>
         {/* Weekly Devotion */}
         <Tooltip>
@@ -108,12 +108,17 @@ export default function WeeklyDevotions() {
         {/* Liturgical Info */}
         <Tooltip>
           <TooltipTrigger asChild>
-            <div className={cn('devotion-item group', liturgicalColorClasses[liturgicalInfo.color])}>
-              <BookOpen className="devotion-icon" />
-              <div className="text-left">
-                  <span className="text-sm font-bold">{liturgicalInfo.week}ª Semana</span>
-                  <p className="text-xs italic">{liturgicalInfo.season}</p>
-              </div>
+            <div className="relative">
+                <div className={cn('devotion-item group', liturgicalColorClasses[liturgicalInfo.color])}>
+                <BookOpen className="devotion-icon" />
+                <div className="text-left">
+                    <span className="text-sm font-bold">{liturgicalInfo.week}ª Semana</span>
+                    <p className="text-xs italic">{liturgicalInfo.season}</p>
+                </div>
+                </div>
+                <div className="verse-semicircle">
+                    <span className="text-xs font-semibold text-gray-600">{liturgicalInfo.verse}</span>
+                </div>
             </div>
           </TooltipTrigger>
           <TooltipContent className={cn('text-primary-foreground border-primary-foreground/20', liturgicalColorClasses[liturgicalInfo.color])}>

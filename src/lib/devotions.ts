@@ -19,6 +19,7 @@ export type LiturgicalInfo = {
     color: 'green' | 'purple' | 'red' | 'white' | 'rose';
     season: string;
     week: number;
+    verse: string;
 };
 
 export const weeklyDevotions: Devotion[] = [
@@ -102,19 +103,28 @@ function getWeek(date: Date) {
 // A real implementation would require a complex liturgical calendar logic.
 export function getLiturgicalInfo(date: Date): LiturgicalInfo {
     const month = date.getMonth();
+    const dayOfMonth = date.getDate();
     const week = getWeek(date);
 
+    // Placeholder verses - in a real app this would come from an API
+    const verses = [
+        "Jo 3,16", "Mt 28,19", "Lc 1,38", "Sl 23,1", "1Cor 13,4",
+        "Fl 4,13", "Rm 8,28", "Is 41,10", "Jr 29,11", "Pv 3,5"
+    ];
+    const verse = verses[(dayOfMonth -1) % verses.length];
+
+
     // Simplified logic for seasons
-    if ((month === 11 && date.getDate() >= 1 && date.getDate() < 25) || (month === 2 && date.getDate() > 10)) { // Advent & Lent
-        return { color: 'purple', season: 'Advento/Quaresma', week: week % 4 + 1 };
+    if ((month === 11 && dayOfMonth >= 1 && dayOfMonth < 25) || (month === 2 && dayOfMonth > 10)) { // Advent & Lent
+        return { color: 'purple', season: 'Advento/Quaresma', week: week % 4 + 1, verse };
     }
-    if ((month === 11 && date.getDate() >= 25) || month === 0 && date.getDate() < 15) { // Christmas
-        return { color: 'white', season: 'Tempo do Natal', week: week % 2 + 1 };
+    if ((month === 11 && dayOfMonth >= 25) || month === 0 && dayOfMonth < 15) { // Christmas
+        return { color: 'white', season: 'Tempo do Natal', week: week % 2 + 1, verse };
     }
      if (month === 4 || month === 5) { // Easter
-        return { color: 'white', season: 'Tempo Pascal', week: week % 7 + 1 };
+        return { color: 'white', season: 'Tempo Pascal', week: week % 7 + 1, verse };
     }
 
     // Ordinary Time
-    return { color: 'green', season: 'Tempo Comum', week: week };
+    return { color: 'green', season: 'Tempo Comum', week: week, verse };
 }
