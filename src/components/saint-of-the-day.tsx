@@ -3,7 +3,7 @@
 
 import { useState, useEffect, useMemo, useCallback, forwardRef, useImperativeHandle, useRef } from 'react';
 import Image from 'next/image';
-import { saintsOfTheDay, months } from '@/lib/data';
+import { saintsOfTheDay, months as allMonths } from '@/lib/data';
 import type { SaintStory } from '@/lib/data';
 import { cn } from '@/lib/utils';
 import type { Theme as NovenaTheme } from '@/app/page';
@@ -100,11 +100,11 @@ const SaintOfTheDay = forwardRef<SaintOfTheDayRef, SaintOfTheDayProps>(({ trigge
   const [hydrated, setHydrated] = useState(false);
   const [theme, setTheme] = useState<Theme>('light');
   
-  const [selectedMonth, setSelectedMonth] = useState<string | null>(null);
+  const months = useMemo(() => ['Outubro', 'Novembro'], []);
+  const [selectedMonth, setSelectedMonth] = useState<string>(months[0]);
   const [monthCarouselRef, monthCarouselApi] = useEmblaCarousel(MONTH_CAROUSEL_OPTIONS);
 
   const saintsForCurrentMonth = useMemo(() => {
-    if (!selectedMonth) return [];
     return saintsOfTheDay.filter(day => day.month === selectedMonth);
   }, [selectedMonth]);
   
@@ -116,41 +116,55 @@ const SaintOfTheDay = forwardRef<SaintOfTheDayRef, SaintOfTheDayProps>(({ trigge
     if(openAccordion) {
       setOpenAccordion(false);
     }
-  }, [openAccordion]);
+  }, [months, openAccordion]);
 
   useEffect(() => {
     if (!monthCarouselApi) return;
     const onSelect = () => {
       if (monthCarouselApi) {
-        handleMonthChange(monthCarouselApi.selectedScrollSnap());
+        const selectedIndex = monthCarouselApi.selectedScrollSnap();
+        if (months[selectedIndex] !== selectedMonth) {
+            handleMonthChange(selectedIndex);
+        }
       }
     }
     monthCarouselApi.on('select', onSelect);
-    // Initial sync
-    if (selectedMonth) {
-        const initialMonthIndex = months.indexOf(selectedMonth);
-        if (initialMonthIndex !== -1 && initialMonthIndex !== monthCarouselApi.selectedScrollSnap()) {
-            monthCarouselApi.scrollTo(initialMonthIndex, true);
-        }
-    }
-    onSelect();
     
     return () => { monthCarouselApi.off('select', onSelect) };
-  }, [monthCarouselApi, handleMonthChange, selectedMonth]);
+  }, [monthCarouselApi, handleMonthChange, months, selectedMonth]);
 
 
   useEffect(() => {
     const today = new Date();
-    const currentMonthName = months[today.getMonth()];
-    setSelectedMonth(currentMonthName);
+    const currentMonthName = allMonths[today.getMonth()];
     
-    const dayOfMonth = today.getDate();
-    const initialIndex = saintsOfTheDay.filter(s => s.month === currentMonthName).findIndex(day => day.day >= dayOfMonth);
-    const startIndex = initialIndex !== -1 ? initialIndex : 0;
-    setCurrentSlide(startIndex);
+    // Only set month if it's one of the allowed ones
+    if (months.includes(currentMonthName)) {
+      setSelectedMonth(currentMonthName);
+      if (monthCarouselApi) {
+        const targetIndex = months.indexOf(currentMonthName);
+        if (targetIndex !== -1) {
+            monthCarouselApi.scrollTo(targetIndex, true);
+        }
+      }
+      
+      const dayOfMonth = today.getDate();
+      const initialIndex = saintsOfTheDay
+        .filter(s => s.month === currentMonthName)
+        .findIndex(day => day.day >= dayOfMonth);
+      
+      const startIndex = initialIndex !== -1 ? initialIndex : 0;
+      setCurrentSlide(startIndex);
+    } else {
+      // Default to October if current month is not in the list
+      setSelectedMonth('Outubro');
+      if (monthCarouselApi) {
+          monthCarouselApi.scrollTo(0, true);
+      }
+    }
     
     setHydrated(true);
-  }, []);
+  }, [monthCarouselApi, months]);
 
   const handleNavigation = useCallback((direction: 'prev' | 'next') => {
     const totalSlides = saintsForCurrentMonth.length;
@@ -298,3 +312,5 @@ SaintOfTheDay.Skeleton = function SaintOfTheDaySkeleton() {
 };
 
 export default SaintOfTheDay;
+
+    
