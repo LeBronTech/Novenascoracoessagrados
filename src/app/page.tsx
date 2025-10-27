@@ -1,7 +1,7 @@
 
 'use client';
 
-import { useState, useMemo, useEffect, useRef, forwardRef } from 'react';
+import { useState, useMemo, useEffect, useRef } from 'react';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
 import SaintSelector from '@/components/saint-selector';
@@ -9,45 +9,34 @@ import NovenaDisplay from '@/components/novena-display';
 import SaintOfTheDay, { type SaintOfTheDayRef } from '@/components/saint-of-the-day';
 import WeeklyDevotions from '@/components/weekly-devotions';
 import { saints, months, novenaData } from '@/lib/data';
-import type { Saint, Novena } from '@/lib/data';
+import type { Saint } from '@/lib/data';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetTrigger } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
 import { Menu, Heart } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { parse, differenceInDays, getYear } from 'date-fns';
-import { Skeleton } from '@/components/ui/skeleton';
+import Image from 'next/image';
 
 export type Theme = 'theme-default' | 'theme-dark-gray' | 'theme-light-gray' | 'theme-red';
 
-const PageSkeleton = () => (
-    <div className="container mx-auto p-4 md:p-8 max-w-5xl text-stone-900">
-        <Skeleton className="fixed top-4 left-4 z-20 h-10 w-10 rounded-md" />
-        <Header />
-        <div className="flex justify-center gap-2 md:gap-4 mb-8">
-            {Array.from({ length: 7 }).map((_, i) => (
-                <Skeleton key={i} className="w-16 h-20 md:w-20 md:h-24 rounded-full" />
-            ))}
+const LoadingScreen = ({ isLoading }: { isLoading: boolean }) => (
+    <div
+        className={cn(
+            'fixed inset-0 z-50 flex items-center justify-center transition-opacity duration-500',
+            isLoading ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        )}
+        style={{ backgroundImage: 'linear-gradient(to bottom, #ffffff 0%, #e0e0e0 25%, #c3c3c3 50%, #949da4 100%)' }}
+    >
+        <div className={cn('transform transition-all duration-700 ease-in-out', isLoading ? 'scale-100 animate-pulse-and-shrink' : 'scale-0')}>
+            <Image 
+                src="https://i.postimg.cc/ZRrzGs1g/Capa-para-facebook-arquitetura-moderno-vermelho-1.png" 
+                alt="Logo Corações Sagrados" 
+                width={448} 
+                height={166}
+                className="w-full max-w-md rounded-md"
+                priority
+            />
         </div>
-        <div className="relative">
-            <h2 className="text-xl font-brand text-center text-gray-700 mt-8">
-                Santo do Dia
-            </h2>
-            <SaintOfTheDay.Skeleton />
-        </div>
-        <div className="bg-gray-100/70 backdrop-blur-sm rounded-xl shadow-lg p-4 mt-12">
-            <h2 className="text-xl font-brand text-center text-gray-700 mb-4">
-                Novenas do Mês
-            </h2>
-            <SaintSelector.Skeleton />
-        </div>
-        <div className="mt-8">
-            <div className="flex flex-col items-center justify-center p-16 text-center bg-transparent border-2 border-dashed rounded-2xl">
-                <Heart className="mx-auto h-12 w-12 text-primary/30 mb-4 animate-pulse" strokeWidth={1} />
-                <Skeleton className="h-8 w-3/4 mb-2" />
-                <Skeleton className="h-4 w-1/2" />
-            </div>
-        </div>
-        <Footer />
     </div>
 );
 
@@ -119,7 +108,8 @@ export default function Home() {
       setSelectedSaintId(initialNovenaId);
     }
     
-    setHydrated(true);
+    // Delay hydration to allow loading animation to play
+    setTimeout(() => setHydrated(true), 1500);
   }, []);
 
   useEffect(() => {
@@ -161,93 +151,93 @@ export default function Home() {
     }, 200);
 }
 
-
-  // Prevent rendering until the client-side has determined the initial state
-  if (!hydrated) {
-    return <PageSkeleton />;
-  }
-
   return (
-    <div className="container mx-auto p-4 md:p-8 max-w-5xl text-stone-900">
-      <Sheet>
-        <SheetTrigger asChild>
-          <Button variant="outline" size="icon" className="fixed top-4 left-4 z-20 bg-white/70 backdrop-blur-sm hover:bg-primary hover:text-primary-foreground">
-            <Menu className="h-6 w-6" />
-            <span className="sr-only">Abrir menu</span>
-          </Button>
-        </SheetTrigger>
-        <SheetContent side="left" className="w-[380px] sm:w-[540px] bg-gray-100 p-0">
-          <SheetHeader className="p-6 bg-white shadow-sm">
-            <SheetTitle className="text-xl font-brand text-gray-800">Santo do Dia</SheetTitle>
-            <SheetDescription className="sr-only">Navegue para ver o santo de cada dia do mês.</SheetDescription>
-          </SheetHeader>
-          <div className="h-[calc(100vh-80px)] overflow-y-auto">
-            <SaintOfTheDay triggerTheme={theme} isOpenInitially={isSaintOfTheDayOpen} onToggle={setIsSaintOfTheDayOpen} />
-          </div>
-        </SheetContent>
-      </Sheet>
+    <>
+      <LoadingScreen isLoading={!hydrated} />
+      <div className={cn("transition-opacity duration-1000", hydrated ? "opacity-100" : "opacity-0")}>
+        <div className="container mx-auto p-4 md:p-8 max-w-5xl text-stone-900">
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button variant="outline" size="icon" className="fixed top-4 left-4 z-20 bg-white/70 backdrop-blur-sm hover:bg-primary hover:text-primary-foreground">
+                <Menu className="h-6 w-6" />
+                <span className="sr-only">Abrir menu</span>
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="left" className="w-[380px] sm:w-[540px] bg-gray-100 p-0">
+              <SheetHeader className="p-6 bg-white shadow-sm">
+                <SheetTitle className="text-xl font-brand text-gray-800">Santo do Dia</SheetTitle>
+                <SheetDescription className="sr-only">Navegue para ver o santo de cada dia do mês.</SheetDescription>
+              </SheetHeader>
+              <div className="h-[calc(100vh-80px)] overflow-y-auto">
+                <SaintOfTheDay triggerTheme={theme} isOpenInitially={isSaintOfTheDayOpen} onToggle={setIsSaintOfTheDayOpen} />
+              </div>
+            </SheetContent>
+          </Sheet>
 
-      <Header />
-      <WeeklyDevotions />
-      
-      <div className="relative" ref={saintOfTheDaySectionRef}>
-        <h2 className="text-xl font-brand text-center text-gray-700 mt-8">
-          Santo do Dia
-        </h2>
-        <SaintOfTheDay 
-          ref={saintOfTheDayRef} 
-          triggerTheme={theme}
-          isOpenInitially={isSaintOfTheDayOpen}
-          onToggle={setIsSaintOfTheDayOpen}
-        />
-        <div 
-          className={cn(
-            "absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 flex items-center justify-center gap-2 z-20"
-          )}
-        >
-            <Button
-              variant="outline"
-              className="h-8 px-4 bg-white/70 backdrop-blur-sm text-primary hover:bg-primary hover:text-primary-foreground shadow-lg border-primary/20 border" 
-              onClick={(e) => { e.stopPropagation(); e.currentTarget.blur(); handleSaintOfTheDayNavigation('prev'); }}
+          <Header />
+          <WeeklyDevotions />
+          
+          <div className="relative" ref={saintOfTheDaySectionRef}>
+            <h2 className="text-xl font-brand text-center text-gray-700 mt-8">
+              Santo do Dia
+            </h2>
+            <SaintOfTheDay 
+              ref={saintOfTheDayRef} 
+              triggerTheme={theme}
+              isOpenInitially={isSaintOfTheDayOpen}
+              onToggle={setIsSaintOfTheDayOpen}
+            />
+            <div 
+              className={cn(
+                "absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 flex items-center justify-center gap-2 z-20"
+              )}
             >
-              Dia anterior
-            </Button>
-            <Button 
-              variant="outline"
-              className="h-8 px-4 bg-white/70 backdrop-blur-sm text-primary hover:bg-primary hover:text-primary-foreground shadow-lg border-primary/20 border" 
-              onClick={(e) => { e.stopPropagation(); e.currentTarget.blur(); handleSaintOfTheDayNavigation('next'); }}
-            >
-              Próximo dia
-            </Button>
+                <Button
+                  variant="outline"
+                  className="h-8 px-4 bg-white/70 backdrop-blur-sm text-primary hover:bg-primary hover:text-primary-foreground shadow-lg border-primary/20 border" 
+                  onClick={(e) => { e.stopPropagation(); e.currentTarget.blur(); handleSaintOfTheDayNavigation('prev'); }}
+                >
+                  Dia anterior
+                </Button>
+                <Button 
+                  variant="outline"
+                  className="h-8 px-4 bg-white/70 backdrop-blur-sm text-primary hover:bg-primary hover:text-primary-foreground shadow-lg border-primary/20 border" 
+                  onClick={(e) => { e.stopPropagation(); e.currentTarget.blur(); handleSaintOfTheDayNavigation('next'); }}
+                >
+                  Próximo dia
+                </Button>
+            </div>
+          </div>
+
+
+          <div className="bg-gray-100/70 backdrop-blur-sm rounded-xl shadow-lg p-4 mt-12">
+            <h2 id="saints-nav-title" className="text-xl font-brand text-center text-gray-700 mb-4">
+              Novenas de {selectedMonth}
+            </h2>
+            <SaintSelector
+              saints={saints}
+              months={months}
+              selectedMonth={selectedMonth}
+              onMonthChange={handleMonthChange}
+              selectedSaintId={selectedSaintId}
+              onSaintSelect={handleSelectSaint}
+            />
+          </div>
+
+          <div className="mt-8">
+            <NovenaDisplay
+              key={selectedSaintId}
+              novena={selectedNovena}
+              saint={selectedSaint}
+              theme={theme}
+              setTheme={setTheme}
+            />
+          </div>
+          <Footer />
         </div>
       </div>
-
-
-      <div className="bg-gray-100/70 backdrop-blur-sm rounded-xl shadow-lg p-4 mt-12">
-        <h2 id="saints-nav-title" className="text-xl font-brand text-center text-gray-700 mb-4">
-          Novenas de {selectedMonth}
-        </h2>
-        <SaintSelector
-          saints={saints}
-          months={months}
-          selectedMonth={selectedMonth}
-          onMonthChange={handleMonthChange}
-          selectedSaintId={selectedSaintId}
-          onSaintSelect={handleSelectSaint}
-        />
-      </div>
-
-      <div className="mt-8">
-        <NovenaDisplay
-          key={selectedSaintId}
-          novena={selectedNovena}
-          saint={selectedSaint}
-          theme={theme}
-          setTheme={setTheme}
-        />
-      </div>
-      <Footer />
-    </div>
+    </>
   );
 }
 
+    
