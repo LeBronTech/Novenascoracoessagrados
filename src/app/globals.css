@@ -343,7 +343,7 @@
   .devotion-item--rose .text-xs { @apply text-rose-100; }
 
   .verse-semicircle {
-    @apply absolute -bottom-3 left-1/2 -translate-x-1/2 w-[calc(100%-1rem)] h-8 bg-gray-200/80 backdrop-blur-sm rounded-b-xl flex items-center justify-center pt-2 shadow-inner-top z-[-1];
+    @apply absolute -bottom-4 left-1/2 -translate-x-1/2 w-[calc(100%-1rem)] h-8 bg-gray-200/80 backdrop-blur-sm rounded-b-xl flex items-center justify-center pt-2 shadow-inner-top z-[-1];
   }
 
 }
@@ -373,4 +373,5 @@
 }
 
     
+
 

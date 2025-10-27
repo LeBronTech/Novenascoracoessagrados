@@ -104,7 +104,9 @@ function getWeek(date: Date) {
 export function getLiturgicalInfo(date: Date): LiturgicalInfo {
     const month = date.getMonth();
     const dayOfMonth = date.getDate();
-    const week = getWeek(date);
+    
+    // Hardcoding for the 30th week of Ordinary Time for now as requested.
+    const week = 30; 
 
     // Placeholder verses - in a real app this would come from an API
     const verses = [
