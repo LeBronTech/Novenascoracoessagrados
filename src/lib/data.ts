@@ -589,7 +589,7 @@ export const saints: Saint[] = [
   { id: 'apresentacao_ns', name: 'Apresentação de N.S.', imageUrl: 'https://i.postimg.cc/3Js86PzK/image.png', month: 'Novembro', startDate: '12/11', endDate: '20/11', feastDay: '21/Nov' },
   { id: 'ns_saude', name: 'N.S. da Saúde', imageUrl: 'https://i.postimg.cc/RCdhqSqh/image.png', month: 'Novembro', startDate: '12/11', endDate: '20/11', feastDay: '21/Nov' },
   { id: 'santa_cecilia', name: 'S. Cecília', imageUrl: 'https://i.postimg.cc/4xDNjn2c/image.png', month: 'Novembro', startDate: '13/11', endDate: '21/11', feastDay: '22/Nov', isMartyr: true },
-  { id: 'cristo_rei', name: 'Cristo Rei', imageUrl: 'https://www.vaticannews.va/content/dam/vaticannews/images/2023/11/24/Cristo_Rei_do_Universo.jpg/_jcr_content/renditions/cq5dam.thumbnail.cropped.750.422.jpeg', month: 'Novembro', startDate: '14/11', endDate: '22/11', feastDay: '23/Nov' },
+  { id: 'cristo_rei', name: 'Cristo Rei', imageUrl: 'https://i.postimg.cc/zBJ51hCg/image.png', month: 'Novembro', startDate: '14/11', endDate: '22/11', feastDay: '23/Nov' },
   { id: 'catarina_alexandria', name: 'S. Catarina de Alexandria', imageUrl: 'https://i.postimg.cc/L5n49qFv/image.png', month: 'Novembro', startDate: '16/11', endDate: '24/11', feastDay: '25/Nov', isMartyr: true },
   { id: 'gracas', name: 'N.S. das Graças', imageUrl: 'https://i.postimg.cc/d1hKrq0C/image.png', month: 'Novembro', startDate: '18/11', endDate: '26/11', feastDay: '27/Nov' },
   { id: 'santo_andre', name: 'S. André Apóstolo', imageUrl: 'https://i.postimg.cc/k4Wn49m8/image.png', month: 'Novembro', startDate: '21/11', endDate: '29/11', feastDay: '30/Nov', isMartyr: true },
