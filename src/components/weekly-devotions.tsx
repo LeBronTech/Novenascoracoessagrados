@@ -38,10 +38,10 @@ const Icon = ({ name, className }: { name: string, className?: string }) => {
     ),
     'tuesday': (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={cn("h-7 w-7", className)}>
-        <path d="M2.38 8.08c.03-1.12 1-2.15 2.08-2.31 3.36-.5 6.63.18 9.54 1.55"/>
-        <path d="M21.62 8.08c-.03-1.12-1-2.15-2.08-2.31-3.36-.5-6.63.18-9.54 1.55"/>
-        <path d="M5.31 10.43c-1.3 1.13-2.17 2.82-2.17 4.67 0 3.39 2.76 6.15 6.15 6.15 2.22 0 4.19-1.18 5.25-3"/>
-        <path d="M18.69 10.43c1.3 1.13 2.17 2.82 2.17 4.67 0 3.39-2.76 6.15-6.15 6.15-2.22 0-4.19-1.18-5.25-3"/>
+        <ellipse cx="12" cy="5" rx="5" ry="2"/>
+        <circle cx="12" cy="14" r="7"/>
+        <path d="M6.5 12.5c-2-1-2.5-2.5-1-4s3 0 4 1"/>
+        <path d="M17.5 12.5c2-1 2.5-2.5 1-4s-3 0-4 1"/>
       </svg>
     ),
     'wednesday': (
@@ -124,7 +124,9 @@ export default function WeeklyDevotions() {
         <Tooltip>
           <TooltipTrigger asChild>
             <div className={cn('devotion-item group', liturgicalColorClasses[liturgicalInfo.color])}>
-              <BookOpen className="devotion-icon" />
+              <div className="relative">
+                <BookOpen className="devotion-icon" />
+              </div>
               <div className="text-left">
                   <span className="text-sm font-bold">{liturgicalInfo.week}ª Semana do {liturgicalInfo.season}</span>
                   <p className="text-xs italic">{liturgicalInfo.verse}</p>
@@ -132,7 +134,7 @@ export default function WeeklyDevotions() {
             </div>
           </TooltipTrigger>
           <TooltipContent className={cn('text-primary-foreground border-primary-foreground/20', liturgicalColorClasses[liturgicalInfo.color])}>
-            <p className="font-bold text-center">Cor Litúrgica: {liturgicalInfo.color}</p>
+            <p className="font-bold text-center">Cor Litúrgica: {liturgicalInfo.color.charAt(0).toUpperCase() + liturgicalInfo.color.slice(1)}</p>
           </TooltipContent>
         </Tooltip>
 
