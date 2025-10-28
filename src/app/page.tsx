@@ -51,14 +51,15 @@ export default function Home() {
   const [isSaintOfTheDayOpen, setIsSaintOfTheDayOpen] = useState(false);
   
   useEffect(() => {
-    const hash = window.location.hash.substring(1);
     let initialMonth: string | null = null;
     let initialNovenaId: string | null = null;
 
-    if (hash && saints.some(s => s.id === hash)) {
-      const saint = saints.find(s => s.id === hash)!;
-      initialMonth = saint.month;
-      initialNovenaId = saint.id;
+    const hash = window.location.hash.substring(1);
+    const saintFromHash = saints.find(s => s.id === hash);
+
+    if (saintFromHash) {
+      initialMonth = saintFromHash.month;
+      initialNovenaId = saintFromHash.id;
     } else {
       const today = new Date();
       today.setHours(0, 0, 0, 0); 
@@ -88,17 +89,11 @@ export default function Home() {
         initialNovenaId = closestSaint.id;
         initialMonth = closestSaint.month;
       } else {
-        const currentMonthName = months[today.getMonth()];
-        const firstSaintOfCurrentMonth = saints.find(s => s.month === currentMonthName);
-        if (firstSaintOfCurrentMonth) {
-          initialNovenaId = firstSaintOfCurrentMonth.id;
-          initialMonth = firstSaintOfCurrentMonth.month;
-        } else {
-          const firstSaintOfOctober = saints.find(s => s.month === 'Outubro');
-          if (firstSaintOfOctober) {
-            initialNovenaId = firstSaintOfOctober.id;
-            initialMonth = firstSaintOfOctober.month;
-          }
+        // Fallback if no closest saint is found
+        const firstSaint = saints[0];
+        if (firstSaint) {
+          initialNovenaId = firstSaint.id;
+          initialMonth = firstSaint.month;
         }
       }
     }
@@ -239,5 +234,3 @@ export default function Home() {
     </>
   );
 }
-
-    
