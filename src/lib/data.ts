@@ -585,8 +585,8 @@ export const saints: Saint[] = [
   //Novembro
   { id: 'almas', name: 'Almas', imageUrl: 'https://i.postimg.cc/65GbHSd8/image.png', month: 'Novembro', startDate: '24/10', endDate: '01/11', feastDay: '02/Nov' },
   { id: 'martinho_porres', name: 'S. M. de Porres', imageUrl: 'https://i.postimg.cc/cHbThMCt/image.png', month: 'Novembro', startDate: '25/10', endDate: '02/11', feastDay: '03/Nov' },
-  { id: 'isabel_hungria', name: 'S. Isabel da Hungria', imageUrl: 'https://i.postimg.cc/VLJkH0mH/image.png', month: 'Novembro', startDate: '08/11', endDate: '16/11', feastDay: '17/Nov' },
-  { id: 'apresentacao_ns', name: 'Apresentação de N.S.', imageUrl: 'https://i.postimg.cc/0j6W7k0k/image.png', month: 'Novembro', startDate: '12/11', endDate: '20/11', feastDay: '21/Nov' },
+  { id: 'isabel_hungria', name: 'S. Isabel da Hungria', imageUrl: 'https://i.postimg.cc/pdDpq2dk/image.png', month: 'Novembro', startDate: '08/11', endDate: '16/11', feastDay: '17/Nov' },
+  { id: 'apresentacao_ns', name: 'Apresentação de N.S.', imageUrl: 'https://i.postimg.cc/3Js86PzK/image.png', month: 'Novembro', startDate: '12/11', endDate: '20/11', feastDay: '21/Nov' },
   { id: 'ns_saude', name: 'N.S. da Saúde', imageUrl: 'https://www.cruzterrasanta.com.br/wp-content/uploads/2023/11/nossa-senhora-da-saude-historia.jpg', month: 'Novembro', startDate: '12/11', endDate: '20/11', feastDay: '21/Nov' },
   { id: 'santa_cecilia', name: 'S. Cecília', imageUrl: 'https://i.postimg.cc/1tS5JzD3/image.png', month: 'Novembro', startDate: '13/11', endDate: '21/11', feastDay: '22/Nov', isMartyr: true },
   { id: 'cristo_rei', name: 'Cristo Rei', imageUrl: 'https://www.vaticannews.va/content/dam/vaticannews/images/2023/11/24/Cristo_Rei_do_Universo.jpg/_jcr_content/renditions/cq5dam.thumbnail.cropped.750.422.jpeg', month: 'Novembro', startDate: '14/11', endDate: '22/11', feastDay: '23/Nov' },
@@ -1242,3 +1242,6 @@ export const saintsOfTheDay: SaintOfTheDayData[] = [
 
 
 
+
+
+  
