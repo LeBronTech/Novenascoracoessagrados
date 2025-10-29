@@ -62,29 +62,26 @@ export default function Home() {
       initialNovenaId = saintFromHash.id;
     } else {
       const today = new Date();
-      today.setHours(0, 0, 0, 0); 
+      today.setHours(0, 0, 0, 0);
       const currentYear = getYear(today);
 
-      let closestSaint: Saint | null = null;
-      let minDiff = Infinity;
-
-      saints.forEach(saint => {
+      const closestSaint = saints.reduce((closest, saint) => {
         try {
-            const startDateString = `${saint.startDate}/${currentYear}`;
-            const startDate = parse(startDateString, 'dd/MM/yyyy', new Date());
-            
-            if (!isNaN(startDate.getTime())) { 
-                const diff = Math.abs(differenceInDays(startDate, today));
-                if (diff < minDiff) {
-                    minDiff = diff;
-                    closestSaint = saint;
-                }
-            }
+          const startDateString = `${saint.startDate}/${currentYear}`;
+          const startDate = parse(startDateString, 'dd/MM/yyyy', new Date());
+          if (isNaN(startDate.getTime())) return closest;
+
+          const diff = Math.abs(differenceInDays(startDate, today));
+
+          if (diff < closest.minDiff) {
+            return { minDiff: diff, saint: saint };
+          }
         } catch (e) {
-            // Ignore invalid date formats in data
+          // Ignore invalid date formats
         }
-      });
-      
+        return closest;
+      }, { minDiff: Infinity, saint: null as Saint | null }).saint;
+
       if (closestSaint) {
         initialNovenaId = closestSaint.id;
         initialMonth = closestSaint.month;
