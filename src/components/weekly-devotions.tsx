@@ -9,6 +9,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 import React from 'react';
 import { Skeleton } from './ui/skeleton';
 import { BookOpen, Calendar } from 'lucide-react';
+import Image from 'next/image';
 
 
 function DevotionSkeleton() {
@@ -42,14 +43,7 @@ const Icon = ({ name, className }: { name: string, className?: string }) => {
         </svg>
     ),
     'wednesday': (
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={cn("h-7 w-7", className)}>
-        <path d="M16 14.5a2.5 2.5 0 1 0 5 0 2.5 2.5 0 1 0-5 0Z"/>
-        <path d="m16 14.5-1-10.5" />
-        <path d="M10 6.5 12 5l2 1.5"/>
-        <path d="M12 5v6"/>
-        <path d="M12 11c-4 0-6-2-6-6"/>
-        <path d="M12 11c4 0 6-2 6-6"/>
-      </svg>
+      <Image src="https://i.postimg.cc/wT3GrX7F/Brown-Aesthetic-Social-Media-Strategy-Carousel-Instagram-Post-20251029-110406-0000.png" alt="Ícone de São José" width={28} height={28} className={cn("h-7 w-7 object-contain", className)} />
     ),
     'thursday': (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={cn("h-7 w-7", className)}>
@@ -78,7 +72,7 @@ const Icon = ({ name, className }: { name: string, className?: string }) => {
     'saturday': (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={cn("h-7 w-7", className)}>
         <path d="M10 20.562c.383-1.15.993-2.21 1.83-3.062 1.34-1.34 3.1-2.125 5.006-2.125h.328c.03.1.06.2.1.3s.07.2.1.3c.383 1.15.993 2.21 1.83 3.062"/>
-        <path d="M12 11.875a5.56 5.56 0 0 1 5.5-5.562c.28 0 .5.224.5.5V8c0 .28-.22.5-.5.5s-.5-.224-.5-.5V7c-1.33 0-2.58.5-3.5 1.5s-1.5 2.17-1.5 3.5v.5c0 .28-.22.5-.5.5s-.5-.224-.5-.5v-.575Z"/>
+        <path d="M12 11.875a5.56 5.56 0 0 1 5.5-5.562c.28 0 .5.224.5.5V8c0 .28-.22.5-.5.5s-.5-.224-.5-.5V7c-1.33 0-2.58.5-3.5 1.5s-1.5 2.17-1.5 3.5v.5c0 .28-.22.5-.5.s-.5-.224-.5-.5v-.575Z"/>
         <path d="M12 3c-1.875 1.25-3.125 3.125-3.125 5.625v.375a.5.5 0 0 1-1 0V8.5c0-1.33.5-2.58 1.5-3.5S10.67 3.5 12 3.5"/>
       </svg>
     ),
@@ -183,3 +177,5 @@ export default function WeeklyDevotions() {
     </div>
   );
 }
+
+    
