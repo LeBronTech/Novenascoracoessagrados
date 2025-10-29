@@ -43,7 +43,7 @@ const Icon = ({ name, className }: { name: string, className?: string }) => {
         </svg>
     ),
     'wednesday': (
-      <Image src="https://i.postimg.cc/wT3GrX7F/Brown-Aesthetic-Social-Media-Strategy-Carousel-Instagram-Post-20251029-110406-0000.png" alt="Ícone de São José" width={28} height={28} className={cn("h-7 w-7 object-contain rounded-full", className)} />
+      <Image src="https://i.postimg.cc/MGDLNq8J/photo-2025-10-29-12-36-38.jpg" alt="Ícone de São José" width={28} height={28} className={cn("h-7 w-7 object-contain rounded-full", className)} />
     ),
     'thursday': (
         <Image src="https://i.postimg.cc/rmstCwwP/photo-2025-10-29-11-23-53.jpg" alt="Ícone do Santíssimo Sacramento" width={28} height={28} className={cn("h-7 w-7 object-contain", className)} />

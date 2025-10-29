@@ -121,7 +121,7 @@ export const weeklyDevotions: Devotion[] = [
       dayOfWeek: 3,
       day: 'Quarta',
       title: 'Quarta-feira',
-      devotion: 'São José',
+      devotion: 'dedicado a São José',
       icon: 'wednesday',
     },
     {
@@ -338,10 +338,8 @@ export function getLiturgicalInfo(date: Date): LiturgicalInfo {
     let verse = dailyGospels[verseKey] || `Ev. ${cycle === 'A' ? 'Mateus' : cycle === 'B' ? 'Marcos' : 'Lucas'}`;
 
     let finalSeasonText = season;
-    if (season === 'Tempo Comum' || season === 'Advento' || season === 'Quaresma' || season === 'Tempo Pascal') {
-        if (week > 0) {
-             finalSeasonText = 'Tempo Comum';
-        }
+    if (season === 'Tempo Comum') {
+        finalSeasonText = 'Tempo Comum';
     }
     
     if(dayOfMonth === 2 && month === 11) {
@@ -351,3 +349,4 @@ export function getLiturgicalInfo(date: Date): LiturgicalInfo {
 
     return { color, season: finalSeasonText, week, verse, cycle };
 }
+
