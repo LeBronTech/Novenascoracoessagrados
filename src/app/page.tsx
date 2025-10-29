@@ -73,7 +73,7 @@ export default function Home() {
             const startDateString = `${saint.startDate}/${currentYear}`;
             const startDate = parse(startDateString, 'dd/MM/yyyy', new Date());
             
-            if (!isNaN(startDate.getTime())) { // Check if the date is valid
+            if (!isNaN(startDate.getTime())) { 
                 const diff = Math.abs(differenceInDays(startDate, today));
                 if (diff < minDiff) {
                     minDiff = diff;
