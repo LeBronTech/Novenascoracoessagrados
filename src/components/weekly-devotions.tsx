@@ -24,64 +24,68 @@ function DevotionSkeleton() {
 const Icon = ({ name, className }: { name: string, className?: string }) => {
   const icons: { [key: string]: React.ReactNode } = {
     'sunday': (
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className={cn("h-7 w-7", className)}>
-        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09A5.992 5.992 0 0116.5 3C19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" strokeLinejoin="round"/>
-        <path d="M10 2c-1.5 1.5-2 3.5-1 5s2.5 2.5 4 1" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M12 4c.5 1.5 1.5 2.5 2.5 2.5S17 6 17 4" strokeLinecap="round" strokeLinejoin="round"/>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={cn("h-7 w-7", className)}>
+        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
       </svg>
     ),
     'monday': (
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className={cn("h-7 w-7", className)}>
-        <path d="M12 5v14" />
-        <path d="M5 12h14" />
+       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={cn("h-7 w-7", className)}>
+        <path d="M12 5v14"/>
+        <path d="M5 12h14"/>
       </svg>
     ),
     'tuesday': (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={cn("h-7 w-7", className)}>
-        <ellipse cx="12" cy="5" rx="5" ry="2"/>
-        <circle cx="12" cy="14" r="7"/>
-        <path d="M6.5 12.5c-2-1-2.5-2.5-1-4s3 0 4 1"/>
-        <path d="M17.5 12.5c2-1 2.5-2.5 1-4s-3 0-4 1"/>
+          <path d="M17.5 12.5c2-1 2.5-2.5 1-4s-3 0-4 1"/>
+          <path d="M6.5 12.5c-2-1-2.5-2.5-1-4s3 0 4 1"/>
+          <path d="M12 14c-4 0-7 2-7 5v1h14v-1c0-3-3-5-7-5Z"/>
+          <path d="M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z"/>
+          <path d="M16 3.13a8.9 8.9 0 0 1 0 5.74"/>
       </svg>
     ),
     'wednesday': (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={cn("h-7 w-7", className)}>
-        <path d="M8 7l-5.3 5.3a1 1 0 000 1.4L8 19" />
-        <path d="M18 15l-5-5" />
-        <path d="M13 10L19 4" />
-        <path d="M13.5 2.5l5 5" />
-        <path d="M21 8V6.5a2.5 2.5 0 00-5 0V8" />
-        <path d="M16 11h-1.5a2.5 2.5 0 000 5H16" />
-        <path d="M18 21a2 2 0 100-4 2 2 0 000 4z" />
-        <path d="M14.5 17.5C14.5 16.5 15.5 15 17 15" />
-        <path d="M11 20c0-1.5-1-2.5-2.5-2.5S6 18.5 6 20" />
+        <path d="m14 12-4 4"/>
+        <path d="M16 8 8 16"/>
+        <path d="M12 22v-4"/>
+        <path d="M12 8V2"/>
+        <path d="m17.6 15.6 3.4-1.9a1 1 0 0 0 0-1.8l-3.4-1.9"/>
+        <path d="m6.4 15.6-3.4-1.9a1 1 0 0 1 0-1.8l3.4-1.9"/>
+        <path d="M12 10a2 2 0 1 0-4 0"/>
+        <path d="M14 16.5h.01"/>
+        <path d="M18 13h.01"/>
       </svg>
     ),
     'thursday': (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={cn("h-7 w-7", className)}>
-        <path d="M12 21.5V17" />
-        <path d="M9 17h6" />
-        <path d="M12 14a5 5 0 100-10 5 5 0 000 10z" />
-        <path d="M12 11.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z" />
-        <path d="M12 6.5V5.5" />
-        <path d="M12 17l-3.5 4.5h7L12 17z" />
-        <path d="M5.52 7.66L4.5 7" /><path d="M7.66 5.52L7 4.5" />
-        <path d="M18.48 7.66L19.5 7" /><path d="M16.34 5.52L17 4.5" />
-        <path d="M18.48 16.34L19.5 17" /><path d="M16.34 18.48L17 19.5" />
-        <path d="M5.52 16.34L4.5 17" /><path d="M7.66 18.48L7 19.5" />
-        <path d="M12 10.25V8.5" /><path d="M10.75 9.5h3" />
+        <path d="M12 21.5V17"/>
+        <path d="M9 17h6"/>
+        <path d="M12 14a5 5 0 1 0 0-10 5 5 0 0 0 0 10z"/>
+        <path d="M12 11.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
       </svg>
     ),
     'friday': (
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" className={cn("h-6 w-6", className)}><path d="M495.2 133.2c-2.3-3.6-5.2-6.8-8.8-9.4L351.4 34c-9-6.3-21.2-7.8-31.9-4-10.7 3.8-18.6 13.4-20.1 24.5l-2.5 19.3c-12.8-5-26.6-7.8-41-7.8s-28.2 2.8-41 7.8l-2.5-19.3c-1.5-11.2-9.4-20.7-20.1-24.5-10.7-3.8-22.9-2.3-31.9 4L19.2 123.8c-3.6 2.6-6.5 5.8-8.8 9.4-7.8 12.3-9.5 27.6-4.9 41.4l115.5 346.4c2.8 8.4 9.4 14.6 18.2 16.4 1.9.4 3.7.6 5.6.6 6.8 0 13.3-3.6 16.7-9.6l64-112 64 112c3.4 6 9.8 9.6 16.7 9.6 1.9 0 3.7-.2 5.6-.6 8.7-1.8 15.4-8 18.2-16.4l115.5-346.4c4.6-13.8 2.9-29.1-4.9-41.4zM256 226c-25.4 0-46.1-20.6-46.1-46.1S230.6 133.8 256 133.8s46.1 20.6 46.1 46.1S281.4 226 256 226z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={cn("h-7 w-7", className)}>
+        <path d="M15.48 4.49a2.5 2.5 0 0 0-3.53 0L3.49 12.94a2.5 2.5 0 0 0 0 3.53l.01.01a2.5 2.5 0 0 0 3.53 0L15.48 7.99a2.5 2.5 0 0 1 3.53 0l.01.01a2.5 2.5 0 0 1 0 3.53L10.56 20.01a2.5 2.5 0 0 1-3.53 0l-.01-.01a2.5 2.5 0 0 1 0-3.53L12 11.51"/>
+        <path d="m15.5 8-1-1"/>
+        <path d="m12.5 11-1-1"/>
+        <path d="m11 10 1 1"/>
+        <path d="m8 13 1 1"/>
+        <path d="m5.5 15.5 1 1"/>
+        <path d="M22 17v-1.5a1.5 1.5 0 0 0-1.5-1.5v0a1.5 1.5 0 0 0-1.5 1.5V17"/>
+        <path d="M19 14v-1a1 1 0 0 0-1-1v0a1 1 0 0 0-1 1v1"/>
+        <path d="M2 17v-1.5a1.5 1.5 0 0 1 1.5-1.5v0A1.5 1.5 0 0 1 5 15.5V17"/>
+        <path d="M5 14v-1a1 1 0 0 1 1-1v0a1 1 0 0 1 1 1v1"/>
+        <path d="M12.5 2.5 11 4"/>
+      </svg>
     ),
     'saturday': (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={cn("h-8 w-8", className)}>
-        <path d="M12 2a4.5 4.5 0 00-4.5 4.5c0 1.99 1.45 3.61 3.5 4.23" />
-        <path d="M12 2a4.5 4.5 0 014.5 4.5c0 1.99-1.45 3.61-3.5 4.23" />
-        <path d="M11 10.75c-3.5 1-6 4-6 7.75V22h14v-3.5c0-3.75-2.5-6.75-6-7.75" />
-        <path d="M12 14v1" />
-        <path d="M10.5 16.5L12 18l1.5-1.5" />
+        <path d="M12 2a4.5 4.5 0 0 0-4.5 4.5c0 1.99 1.45 3.61 3.5 4.23"/>
+        <path d="M12 2a4.5 4.5 0 0 1 4.5 4.5c0 1.99-1.45 3.61-3.5 4.23"/>
+        <path d="M11 10.75c-3.5 1-6 4-6 7.75V22h14v-3.5c0-3.75-2.5-6.75-6-7.75"/>
+        <path d="M12 14v1"/>
+        <path d="M10.5 16.5L12 18l1.5-1.5"/>
       </svg>
     ),
   };

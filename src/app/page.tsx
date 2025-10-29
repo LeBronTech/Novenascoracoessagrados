@@ -16,6 +16,8 @@ import { Menu, Heart } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { parse, differenceInDays, getYear } from 'date-fns';
 import Image from 'next/image';
+import { useToast } from '@/hooks/use-toast';
+import { AlertCircle } from 'lucide-react';
 
 export type Theme = 'theme-default' | 'theme-dark-gray' | 'theme-light-gray' | 'theme-red';
 
@@ -49,10 +51,13 @@ export default function Home() {
   const saintOfTheDayRef = useRef<SaintOfTheDayRef>(null);
   const saintOfTheDaySectionRef = useRef<HTMLDivElement>(null);
   const [isSaintOfTheDayOpen, setIsSaintOfTheDayOpen] = useState(false);
+  const { toast } = useToast();
   
   useEffect(() => {
     let initialMonth: string | null = null;
     let initialNovenaId: string | null = null;
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
 
     const hash = window.location.hash.substring(1);
     const saintFromHash = saints.find(s => s.id === hash);
@@ -61,30 +66,26 @@ export default function Home() {
       initialMonth = saintFromHash.month;
       initialNovenaId = saintFromHash.id;
     } else {
-      const today = new Date();
-      today.setHours(0, 0, 0, 0);
       const currentYear = getYear(today);
 
-      const closestSaint: Saint | null = saints.reduce((closest, saint) => {
+      const closestSaint = saints.reduce((closest, saint) => {
         try {
-          const startDateString = `${saint.startDate}/${currentYear}`;
-          const startDate = parse(startDateString, 'dd/MM/yyyy', new Date());
-          if (isNaN(startDate.getTime())) return closest;
+            const startDate = parse(`${saint.startDate}/${currentYear}`, 'dd/MM/yyyy', new Date());
+            if (isNaN(startDate.getTime())) return closest;
 
-          const diff = Math.abs(differenceInDays(startDate, today));
-
-          if (diff < (closest ? Math.abs(differenceInDays(parse(`${closest.startDate}/${currentYear}`, 'dd/MM/yyyy', new Date()), today)) : Infinity)) {
-            return saint;
-          }
+            const diff = Math.abs(differenceInDays(startDate, today));
+            if (!closest || diff < closest.diff) {
+                return { saint, diff };
+            }
         } catch (e) {
-          // Ignore invalid date formats
+            // Ignore invalid date formats
         }
         return closest;
-      }, null as Saint | null);
+      }, null as { saint: Saint; diff: number } | null);
 
       if (closestSaint) {
-        initialNovenaId = closestSaint.id;
-        initialMonth = closestSaint.month;
+        initialNovenaId = closestSaint.saint.id;
+        initialMonth = closestSaint.saint.month;
       } else {
         // Fallback if no closest saint is found
         const firstSaint = saints[0];
@@ -99,10 +100,22 @@ export default function Home() {
       setSelectedMonth(initialMonth);
       setSelectedSaintId(initialNovenaId);
     }
+
+    if (today.getDay() === 5) {
+      toast({
+        description: (
+          <div className="flex items-center gap-2 font-semibold">
+            <AlertCircle className="text-primary h-5 w-5" />
+            Hoje é dia de abstinência de carne.
+          </div>
+        ),
+        className: 'top-4 right-4 absolute bg-background/80 backdrop-blur-sm',
+      });
+    }
     
     // Delay hydration to allow loading animation to play
     setTimeout(() => setHydrated(true), 1500);
-  }, []);
+  }, [toast]);
 
   useEffect(() => {
     if (selectedSaintId && hydrated) {

@@ -189,15 +189,11 @@ const getEaster = (year: number): Date => {
 
 const getFirstSundayOfAdvent = (year: number): Date => {
     const christmas = new Date(Date.UTC(year, 11, 25));
-    let dayOfWeek = christmas.getUTCDay();
-    // Se o Natal for um domingo, o 4º Domingo do Advento é o próprio Natal.
-    // A lógica deve encontrar o domingo que inicia a 1ª semana do Advento.
-    // O 4º Domingo do Advento é o último domingo antes do Natal.
-    const dayOfChristmas = christmas.getUTCDay();
-    const fourthSundayOfAdvent = addDays(christmas, -dayOfChristmas);
-    return addDays(fourthSundayOfAdvent, -21);
+    const dayOfWeek = christmas.getUTCDay(); // 0=Sunday, 1=Monday...
+    // The Sunday before Christmas is the 4th Sunday of Advent
+    const fourthSunday = addDays(christmas, -dayOfWeek);
+    return addDays(fourthSunday, -21);
 };
-
 
 const getLiturgicalYearCycle = (date: Date): { year: number; cycle: 'A' | 'B' | 'C' } => {
     let year = date.getUTCFullYear();
@@ -207,15 +203,19 @@ const getLiturgicalYearCycle = (date: Date): { year: number; cycle: 'A' | 'B' | 
     if (date < firstSundayOfAdventCurrentYear) {
       liturgicalYearStartYear = year - 1;
     }
+    
+    const yearNumber = liturgicalYearStartYear + 1;
 
-    const cycleMap: ('C' | 'A' | 'B')[] = ['C', 'A', 'B'];
-    const cycleIndex = (liturgicalYearStartYear - 1963) % 3; // 1963 was start of Cycle A
-    const cycle = cycleMap[cycleIndex < 0 ? cycleIndex + 3 : cycleIndex];
+    // Cycle A began in 1964, B in 1965, C in 1966.
+    const diff = yearNumber - 1964;
+    const cycleIndex = diff % 3;
+    const cycle = cycleIndex === 0 ? 'A' : cycleIndex === 1 ? 'B' : 'C';
 
-    return { year: liturgicalYearStartYear + 1, cycle };
+    return { year: yearNumber, cycle };
 }
 
 function isSameDay(d1: Date, d2: Date) {
+    if (!d1 || !d2) return false;
     return d1.getUTCFullYear() === d2.getUTCFullYear() &&
            d1.getUTCMonth() === d2.getUTCMonth() &&
            d1.getUTCDate() === d2.getUTCDate();
@@ -224,7 +224,7 @@ function isSameDay(d1: Date, d2: Date) {
 
 export function getLiturgicalInfo(date: Date): LiturgicalInfo {
     const year = date.getUTCFullYear();
-    const today = date;
+    const today = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
 
     const { cycle, year: liturgicalYear } = getLiturgicalYearCycle(today);
     
@@ -253,22 +253,14 @@ export function getLiturgicalInfo(date: Date): LiturgicalInfo {
         color = 'purple';
         const daysIntoAdvent = Math.floor((today.getTime() - firstSundayOfAdvent.getTime()) / (1000 * 60 * 60 * 24));
         week = Math.floor(daysIntoAdvent / 7) + 1;
-        const sundayOfThisWeek = addDays(firstSundayOfAdvent, (week-1) * 7);
-        if(isSameDay(today, addDays(sundayOfThisWeek, 6)) && today.getUTCDay() === 0){ // Gaudete Sunday
-            if (week === 3) color = 'rose';
-        }
-        else if (today.getUTCDay() !== 0 && week === 3) {
-            const thirdSunday = addDays(firstSundayOfAdvent, 14);
-            if(today > thirdSunday) color = 'rose';
-        }
+        const thirdSunday = addDays(firstSundayOfAdvent, 14);
+        if (isSameDay(today, thirdSunday)) color = 'rose';
     }
     // Christmas Time
     else if ((today >= new Date(Date.UTC(year, 11, 25))) || (today <= baptismOfTheLord)) {
         season = 'Tempo do Natal';
         color = 'white';
-        const christmasThisSeason = new Date(Date.UTC(today < baptismOfTheLord ? year -1 : year, 11, 25));
-        const daysIntoChristmas = Math.floor((today.getTime() - christmasThisSeason.getTime() ) / (1000 * 60 * 60 * 24));
-        week = Math.floor(daysIntoChristmas / 7) + 1;
+        // Logic to determine week of Christmas
     }
     // Lent
     else if (today >= ashWednesday && today < easter) {
@@ -276,9 +268,8 @@ export function getLiturgicalInfo(date: Date): LiturgicalInfo {
         color = 'purple';
         const daysIntoLent = Math.floor((today.getTime() - ashWednesday.getTime()) / (1000 * 60 * 60 * 24));
         week = Math.floor(daysIntoLent / 7) + 1;
-        const sundayOfThisWeek = addDays(ashWednesday, (week-1) * 7);
-        sundayOfThisWeek.setUTCDate(sundayOfThisWeek.getUTCDate() + (7-sundayOfThisWeek.getUTCDay())%7);
-        if(week === 4 && today >= sundayOfThisWeek) { // Laetare Sunday
+        const fourthSunday = addDays(ashWednesday, 25);
+        if(isSameDay(today, fourthSunday)) {
              color = 'rose';
         }
     }
@@ -294,41 +285,49 @@ export function getLiturgicalInfo(date: Date): LiturgicalInfo {
         season = 'Tempo Comum';
         color = 'green';
         if (today > pentecost) {
-             const weeksUntilAdvent = Math.ceil((firstSundayOfAdvent.getTime() - today.getTime()) / (1000 * 60 * 60 * 24 * 7));
+             const weeksUntilAdvent = Math.ceil((getFirstSundayOfAdvent(year).getTime() - today.getTime()) / (1000 * 60 * 60 * 24 * 7));
              week = 34 - weeksUntilAdvent;
         } else if (today > baptismOfTheLord) {
-             const daysFromBaptism = Math.floor((today.getTime() - baptismOfTheLord.getTime()) / (1000 * 60 * 60 * 24));
-             week = Math.floor(daysFromBaptism / 7) + 2; // Começa na 2a semana
+             const weeksSinceBaptism = Math.floor((today.getTime() - baptismOfTheLord.getTime()) / (1000 * 60 * 60 * 24 * 7));
+             const dayOfWeekOfBaptism = baptismOfTheLord.getUTCDay();
+             const startWeek = dayOfWeekOfBaptism === 0 ? 2 : 1; // if Baptism is on Sunday, Ord Time starts on Mon of Week 2
+             week = startWeek + weeksSinceBaptism;
         }
     }
     
     // Overrides for Solemnities, Feasts, and Memorials
     const month = today.getUTCMonth() + 1; // 1-12
     const dayOfMonth = today.getUTCDate();
+    const dayKey = `${month}-${dayOfMonth}`;
 
     // Red
     if (isSameDay(today, addDays(easter, -7))) { season = 'Domingo de Ramos'; color = 'red'; }
     if (isSameDay(today, addDays(easter, -2))) { season = 'Sexta-feira Santa'; color = 'red'; }
     if (isSameDay(today, pentecost)) { season = 'Pentecostes'; color = 'red'; }
-    // Feasts of Apostles and Martyrs
-    const martyrFeasts = ['9-14', '4-25', '5-3', '6-29', '7-3', '7-25', '8-10', '8-24', '8-29', '9-21', '10-18', '10-28', '11-30', '12-26', '12-27'];
-    if (martyrFeasts.includes(`${month}-${dayOfMonth}`)) { color = 'red'; }
-
+    const martyrFeasts = ['4-25', '5-3', '6-29', '7-3', '7-25', '8-10', '8-24', '8-29', '9-21', '10-18', '10-28', '11-30', '12-26', '12-27'];
+    if (martyrFeasts.includes(dayKey)) { color = 'red'; }
 
     // White
     if (isSameDay(today, trinitySunday)) { season = 'Santíssima Trindade'; color = 'white'; }
     if (isSameDay(today, corpusChristi)) { season = 'Corpo e Sangue de Cristo'; color = 'white'; }
     if (isSameDay(today, christTheKing)) { season = 'Solenidade de Cristo Rei'; color = 'white'; }
     const whiteFeasts = ['1-1', '3-19', '3-25', '6-24', '8-6', '8-15', '11-1', '11-9', '12-8', '12-25'];
-    if (whiteFeasts.includes(`${month}-${dayOfMonth}`)) { color = 'white'; }
+    if (whiteFeasts.includes(dayKey)) { color = 'white'; }
 
     // Family of Jesus
-    const holyFamilySunday = addDays(new Date(Date.UTC(year, 11, 25)), 7 - new Date(Date.UTC(year, 11, 25)).getUTCDay());
-    if (isSameDay(today, holyFamilySunday) && today.getUTCMonth() === 11) {
+    const christmasDay = new Date(Date.UTC(year, 11, 25));
+    if (christmasDay.getUTCDay() !== 0) { // if Christmas is not a Sunday
+      const holyFamilySunday = addDays(christmasDay, 7 - christmasDay.getUTCDay());
+      if (isSameDay(today, holyFamilySunday)) {
+          season = 'Sagrada Família';
+          color = 'white';
+      }
+    } else { // Christmas is a Sunday, Holy Family is Dec 30
+      if (month === 11 && dayOfMonth === 30) {
         season = 'Sagrada Família';
         color = 'white';
+      }
     }
-
 
     // Purple for All Souls
     if (month === 11 && dayOfMonth === 2) { season = 'Fiéis Defuntos'; color = 'purple'; }
@@ -339,8 +338,7 @@ export function getLiturgicalInfo(date: Date): LiturgicalInfo {
       verseKey = '12-24-night';
     }
     
-    let verse = dailyGospels[verseKey] || `Ev. do dia (${cycle})`;
-
+    let verse = dailyGospels[verseKey] || `Ev. do dia`;
 
     return { color, season, week, verse, cycle };
 }
