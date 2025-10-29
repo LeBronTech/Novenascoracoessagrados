@@ -9,7 +9,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import React from 'react';
 import { Skeleton } from './ui/skeleton';
-import { BookOpen, Calendar, ChevronDown } from 'lucide-react';
+import { BookOpen, Calendar, ChevronDown, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 
@@ -86,7 +86,7 @@ const WeeklyDevotions = forwardRef<WeeklyDevotionsRef, WeeklyDevotionsProps>(({ 
 
   const handleDevotionClick = (dayOfWeek: number) => {
     if (dayOfWeek === 3) { // Wednesday for São José
-      setOpenDevotion(openDevotion === 3 ? null : 3);
+        setOpenDevotion(openDevotion === 3 ? null : 3);
     }
   };
 
@@ -123,118 +123,124 @@ const WeeklyDevotions = forwardRef<WeeklyDevotionsRef, WeeklyDevotionsProps>(({ 
   };
 
   return (
-    <div className="flex justify-center items-start flex-wrap gap-2 md:gap-4 my-6">
-      <TooltipProvider>
-        {/* Liturgical Info */}
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <div className={cn('devotion-item group', liturgicalColorClasses[liturgicalInfo.color])}>
-              <div className="relative">
-                <BookOpen className="devotion-icon" />
+    <div className="flex flex-col items-center justify-center gap-2 md:gap-4 my-6">
+      <div className="flex justify-center items-start flex-wrap gap-2 md:gap-4">
+        <TooltipProvider>
+          {/* Liturgical Info */}
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <div className={cn('devotion-item group', liturgicalColorClasses[liturgicalInfo.color])}>
+                <div className="relative">
+                  <BookOpen className="devotion-icon" />
+                </div>
+                <div className="text-left">
+                    <span className="text-sm font-bold">{liturgicalInfo.season}</span>
+                    <p className="text-xs italic">{liturgicalInfo.verse}</p>
+                </div>
               </div>
-              <div className="text-left">
-                  <span className="text-sm font-bold">{liturgicalInfo.season}</span>
-                  <p className="text-xs italic">{liturgicalInfo.verse}</p>
-              </div>
-            </div>
-          </TooltipTrigger>
-          <TooltipContent className={cn('text-primary-foreground border-primary-foreground/20', liturgicalColorClasses[liturgicalInfo.color])}>
-            <p className="font-bold text-center">Cor Litúrgica: {liturgicalInfo.color.charAt(0).toUpperCase() + liturgicalInfo.color.slice(1)}</p>
-          </TooltipContent>
-        </Tooltip>
+            </TooltipTrigger>
+            <TooltipContent className={cn('text-primary-foreground border-primary-foreground/20', liturgicalColorClasses[liturgicalInfo.color])}>
+              <p className="font-bold text-center">Cor Litúrgica: {liturgicalInfo.color.charAt(0).toUpperCase() + liturgicalInfo.color.slice(1)}</p>
+            </TooltipContent>
+          </Tooltip>
 
-        {/* Weekly Devotion */}
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <div className={cn('devotion-item group', dailyColorClasses[dayOfWeek])}>
-              <div className="relative">
-                <Icon name={weeklyDevotion.icon} className="devotion-icon" />
-                {weeklyDevotion.alert && dayOfWeek === 5 && (
-                    <div className="absolute -top-1 -right-1">
-                      <span className="relative flex h-3 w-3">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                        <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
-                      </span>
-                    </div>
-                )}
+          {/* Weekly Devotion */}
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <div className={cn('devotion-item group', dailyColorClasses[dayOfWeek])}>
+                <div className="relative">
+                  <Icon name={weeklyDevotion.icon} className="devotion-icon" />
+                  {weeklyDevotion.alert && dayOfWeek === 5 && (
+                      <div className="absolute -top-1 -right-1">
+                        <span className="relative flex h-3 w-3">
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                          <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+                        </span>
+                      </div>
+                  )}
+                </div>
+                <div className="text-left">
+                    <span className="text-sm font-bold">{weeklyDevotion.day}</span>
+                    <p className="text-xs">{weeklyDevotion.devotion}</p>
+                </div>
               </div>
-              <div className="text-left">
-                  <span className="text-sm font-bold">{weeklyDevotion.day}</span>
-                  <p className="text-xs">{weeklyDevotion.devotion}</p>
-              </div>
-            </div>
-          </TooltipTrigger>
-          <TooltipContent className="bg-primary text-primary-foreground border-primary-foreground/20">
-            <p className="font-bold">{weeklyDevotion.title}</p>
-            {weeklyDevotion.alert && dayOfWeek === 5 && <p className="mt-1 text-red-300 font-semibold">{weeklyDevotion.alert}</p>}
-          </TooltipContent>
-        </Tooltip>
+            </TooltipTrigger>
+            <TooltipContent className="bg-primary text-primary-foreground border-primary-foreground/20">
+              <p className="font-bold">{weeklyDevotion.title}</p>
+              {weeklyDevotion.alert && dayOfWeek === 5 && <p className="mt-1 text-red-300 font-semibold">{weeklyDevotion.alert}</p>}
+            </TooltipContent>
+          </Tooltip>
 
-        {/* Monthly Devotion */}
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <div className='devotion-item group'>
-              <Calendar className="devotion-icon" />
-              <div className="text-left">
-                  <span className="text-sm font-bold text-gray-700">{monthlyDevotion.name}</span>
-                  <p className="text-xs text-gray-600">{monthlyDevotion.devotion}</p>
+          {/* Monthly Devotion */}
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <div className='devotion-item group'>
+                <Calendar className="devotion-icon" />
+                <div className="text-left">
+                    <span className="text-sm font-bold text-gray-700">{monthlyDevotion.name}</span>
+                    <p className="text-xs text-gray-600">{monthlyDevotion.devotion}</p>
+                </div>
               </div>
-            </div>
-          </TooltipTrigger>
-          <TooltipContent className="bg-primary text-primary-foreground border-primary-foreground/20">
-            <p className="font-bold">Devoção do Mês: {monthlyDevotion.name}</p>
-            <p>{monthlyDevotion.devotion}</p>
-          </TooltipContent>
-        </Tooltip>
-      </TooltipProvider>
+            </TooltipTrigger>
+            <TooltipContent className="bg-primary text-primary-foreground border-primary-foreground/20">
+              <p className="font-bold">Devoção do Mês: {monthlyDevotion.name}</p>
+              <p>{monthlyDevotion.devotion}</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+      </div>
 
       {/* Expandable Wednesday devotion */}
        <div className="w-full flex justify-center mt-2">
-            <div className="relative w-full max-w-lg">
-                <div className={cn("relative group", openDevotion === 3 && "is-open")}>
-                    <button
-                        onClick={() => handleDevotionClick(3)}
-                        className={cn(
-                            "flex items-center justify-center gap-3 w-auto h-auto px-4 py-3 rounded-full border-2 cursor-pointer transition-all duration-300 mx-auto",
-                            "devotion-item--wednesday",
-                            openDevotion === 3 && "rounded-b-none"
-                        )}
-                    >
-                      <Icon name="wednesday" className="devotion-icon" />
-                      <div className="text-left">
-                          <span className="text-sm font-bold">Quarta-feira</span>
-                          <p className="text-xs">dedicado a São José</p>
-                      </div>
-                      <ChevronDown className={cn("h-4 w-4 shrink-0 transition-transform duration-200", openDevotion === 3 && "rotate-180")} />
-                    </button>
-                    
-                    {openDevotion === 3 && (
-                        <div className={cn("absolute left-0 right-0 top-full -mt-2 z-10 p-4 pt-6 rounded-b-lg shadow-lg bg-green-800/95 text-white transition-all duration-300 animate-accordion-down")}>
-                           <div className="flex flex-col sm:flex-row items-center gap-4">
-                                <Image src="https://i.postimg.cc/fWc5jPFT/image.png" alt="São José" width={100} height={100} className="w-24 h-24 rounded-full object-cover border-2 border-green-200/50 shadow-md flex-shrink-0" />
-                                <Tabs defaultValue="francisco" className="w-full">
-                                    <TabsList className="grid w-full grid-cols-2 bg-green-900/50">
-                                        <TabsTrigger value="francisco">Oração do Papa Francisco</TabsTrigger>
-                                        <TabsTrigger value="tradicional">Oração Tradicional</TabsTrigger>
-                                    </TabsList>
-                                    <TabsContent value="francisco" className="prose prose-sm text-green-100 max-w-none mt-4 text-left text-xs sm:text-sm">
-                                        <p>Salve, guardião do Redentor e esposo da Virgem Maria!<br/>A vós, Deus confiou o seu Filho; em vós, Maria depositou a sua confiança; convosco, Cristo tornou-Se homem.</p>
-                                        <p>Ó Bem-aventurado José, mostrai-vos pai também para nós e guiai-nos no caminho da vida. Alcançai-nos graça, misericórdia e coragem, e defendei-nos de todo o mal. Amen.</p>
-                                        <p className="text-right italic text-green-200/80 text-xs">- Papa Francisco, Patris Corde</p>
-                                    </TabsContent>
-                                    <TabsContent value="tradicional" className="prose prose-sm text-green-100 max-w-none mt-4 text-left text-xs sm:text-sm">
-                                        <p>Glorioso São José, que fostes exaltado pelo Eterno Pai, obedecido pelo Verbo Encarnado, favorecido pelo Espírito Santo e amado pela Virgem Maria; louvo e bendigo a Santíssima Trindade pelos privilégios e méritos com que vos enriqueceu. Sois poderosíssimo e jamais se ouviu dizer que alguém tenha recorrido a vós e fosse por vós desamparado.</p>
-                                        <p>Sois o consolador dos aflitos, o amparo dos míseros e o advogado dos pecadores. Acolhei, pois, com bondade paternal a quem vos invoca com filial confiança e alcançai-me as graças que vos peço. Sede, depois de Jesus e Maria, minha consolação, meu refúgio, meu guia e meu pai. Obtende-me, finalmente, uma boa e santa morte. Amém.</p>
-                                    </TabsContent>
-                                </Tabs>
-                           </div>
-                           <div className="text-center mt-4">
-                                <Button onClick={onNavigateToNovena} size="sm" className="bg-green-200 text-green-900 hover:bg-white">
-                                    Conheça também a novena a São José
-                                </Button>
-                           </div>
-                        </div>
+            <div className="w-full max-w-lg">
+                <button
+                    onClick={() => handleDevotionClick(3)}
+                    className={cn(
+                        "flex items-center justify-center gap-3 w-auto h-auto px-4 py-3 rounded-full border-2 cursor-pointer transition-all duration-300 mx-auto",
+                        "devotion-item--wednesday",
+                        openDevotion === 3 && "rounded-b-none"
                     )}
+                >
+                  <Icon name="wednesday" className="devotion-icon" />
+                  <div className="text-left">
+                      <span className="text-sm font-bold">Oração a São José</span>
+                  </div>
+                  <ChevronDown className={cn("h-4 w-4 shrink-0 transition-transform duration-200", openDevotion === 3 && "rotate-180")} />
+                </button>
+                
+                <div 
+                  data-state={openDevotion === 3 ? 'open' : 'closed'}
+                  className={cn("accordion-content relative rounded-b-lg shadow-lg bg-green-800/95 text-white transition-all duration-300")}
+                >
+                   <div className="p-4 pt-4">
+                      <button onClick={() => setOpenDevotion(null)} className="absolute top-2 right-2 p-1 rounded-full hover:bg-white/20 transition-colors">
+                          <X className="w-4 h-4" />
+                          <span className="sr-only">Fechar</span>
+                      </button>
+                      <div className="flex flex-col sm:flex-row items-center gap-4">
+                          <Image src="https://i.postimg.cc/fWc5jPFT/image.png" alt="São José" width={100} height={100} className="w-24 h-24 rounded-full object-cover border-2 border-green-200/50 shadow-md flex-shrink-0" />
+                          <Tabs defaultValue="francisco" className="w-full">
+                              <TabsList className="grid w-full grid-cols-2 bg-green-900/50">
+                                  <TabsTrigger value="francisco">Oração do Papa Francisco</TabsTrigger>
+                                  <TabsTrigger value="tradicional">Oração Tradicional</TabsTrigger>
+                              </TabsList>
+                              <TabsContent value="francisco" className="prose prose-sm text-green-100 max-w-none mt-4 text-left text-xs sm:text-sm">
+                                  <p>Salve, guardião do Redentor e esposo da Virgem Maria!<br/>A vós, Deus confiou o seu Filho; em vós, Maria depositou a sua confiança; convosco, Cristo tornou-Se homem.</p>
+                                  <p>Ó Bem-aventurado José, mostrai-vos pai também para nós e guiai-nos no caminho da vida. Alcançai-nos graça, misericórdia e coragem, e defendei-nos de todo o mal. Amen.</p>
+                                  <p className="text-right italic text-green-200/80 text-xs">- Papa Francisco, Patris Corde</p>
+                              </TabsContent>
+                              <TabsContent value="tradicional" className="prose prose-sm text-green-100 max-w-none mt-4 text-left text-xs sm:text-sm">
+                                  <p>Glorioso São José, que fostes exaltado pelo Eterno Pai, obedecido pelo Verbo Encarnado, favorecido pelo Espírito Santo e amado pela Virgem Maria; louvo e bendigo a Santíssima Trindade pelos privilégios e méritos com que vos enriqueceu. Sois poderosíssimo e jamais se ouviu dizer que alguém tenha recorrido a vós e fosse por vós desamparado.</p>
+                                  <p>Sois o consolador dos aflitos, o amparo dos míseros e o advogado dos pecadores. Acolhei, pois, com bondade paternal a quem vos invoca com filial confiança e alcançai-me as graças que vos peço. Sede, depois de Jesus e Maria, minha consolação, meu refúgio, meu guia e meu pai. Obtende-me, finalmente, uma boa e santa morte. Amém.</p>
+                              </TabsContent>
+                          </Tabs>
+                      </div>
+                      <div className="text-center mt-4">
+                          <Button onClick={onNavigateToNovena} size="sm" className="bg-green-200 text-green-900 hover:bg-white">
+                              Conheça também a novena a São José
+                          </Button>
+                      </div>
+                   </div>
                 </div>
             </div>
        </div>
@@ -245,5 +251,3 @@ const WeeklyDevotions = forwardRef<WeeklyDevotionsRef, WeeklyDevotionsProps>(({ 
 
 WeeklyDevotions.displayName = 'WeeklyDevotions';
 export default WeeklyDevotions;
-
-    

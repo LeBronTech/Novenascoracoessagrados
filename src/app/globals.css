@@ -401,4 +401,19 @@
     .animation-delay-700 {
         animation-delay: 700ms;
     }
+    .accordion-content {
+      overflow: hidden;
+      transition-property: max-height, padding;
+      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      transition-duration: 300ms;
+    }
+
+    .accordion-content[data-state='closed'] {
+      max-height: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+    .accordion-content[data-state='open'] {
+      max-height: var(--radix-accordion-content-height);
+    }
 }
