@@ -6,13 +6,14 @@ import Header from '@/components/header';
 import Footer from '@/components/footer';
 import SaintSelector from '@/components/saint-selector';
 import NovenaDisplay from '@/components/novena-display';
-import SaintOfTheDay, { type SaintOfTheDayRef, SaintOfTheDaySkeleton } from '@/components/saint-of-the-day';
-import WeeklyDevotions from '@/components/weekly-devotions';
+import SaintOfTheDay, { type SaintOfTheDayRef } from '@/components/saint-of-the-day';
+import WeeklyDevotions, { type WeeklyDevotionsRef } from '@/components/weekly-devotions';
 import { saints, months, novenaData } from '@/lib/data';
 import type { Saint } from '@/lib/data';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetTrigger } from '@/components/ui/sheet';
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog';
 import { Button } from '@/components/ui/button';
-import { Menu, Heart } from 'lucide-react';
+import { Menu } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { parse, differenceInDays, getYear } from 'date-fns';
 import Image from 'next/image';
@@ -49,8 +50,12 @@ export default function Home() {
   const [hydrated, setHydrated] = useState(false);
   const [theme, setTheme] = useState<Theme>('theme-dark-gray');
   const saintOfTheDayRef = useRef<SaintOfTheDayRef>(null);
+  const weeklyDevotionsRef = useRef<WeeklyDevotionsRef>(null);
   const saintOfTheDaySectionRef = useRef<HTMLDivElement>(null);
+  const novenaSectionRef = useRef<HTMLDivElement>(null);
   const [isSaintOfTheDayOpen, setIsSaintOfTheDayOpen] = useState(false);
+  const [showJoseNovenaDialog, setShowJoseNovenaDialog] = useState(false);
+
   const { toast } = useToast();
   
   useEffect(() => {
@@ -154,7 +159,20 @@ export default function Home() {
         saintOfTheDayRef.current?.navigate(direction);
         saintOfTheDaySectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }, 200);
-}
+  }
+
+  const handleNavigateToNovena = (saintId: string) => {
+    weeklyDevotionsRef.current?.closeAllDevotions();
+    setShowJoseNovenaDialog(false);
+    setTimeout(() => {
+        const saint = saints.find(s => s.id === saintId);
+        if(saint) {
+            setSelectedMonth(saint.month);
+            setSelectedSaintId(saint.id);
+            novenaSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }, 200);
+  }
 
   return (
     <>
@@ -180,7 +198,10 @@ export default function Home() {
           </Sheet>
 
           <Header />
-          <WeeklyDevotions />
+          <WeeklyDevotions 
+            ref={weeklyDevotionsRef}
+            onNavigateToNovena={() => setShowJoseNovenaDialog(true)} 
+          />
           
           <div className="relative" ref={saintOfTheDaySectionRef}>
             <h2 className="text-xl font-brand text-center text-gray-700 mt-8">
@@ -215,7 +236,7 @@ export default function Home() {
           </div>
 
 
-          <div className="bg-gray-100/70 backdrop-blur-sm rounded-xl shadow-lg p-4 mt-12">
+          <div ref={novenaSectionRef} className="bg-gray-100/70 backdrop-blur-sm rounded-xl shadow-lg p-4 mt-12">
             <h2 id="saints-nav-title" className="text-xl font-brand text-center text-gray-700 mb-4">
               Novenas de {selectedMonth}
             </h2>
@@ -241,6 +262,27 @@ export default function Home() {
           <Footer />
         </div>
       </div>
+       <AlertDialog open={showJoseNovenaDialog} onOpenChange={setShowJoseNovenaDialog}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Qual novena a São José você gostaria de rezar?</AlertDialogTitle>
+            <AlertDialogDescription>
+              A Igreja dedica dois dias a São José, com diferentes ênfases em sua missão.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogAction onClick={() => handleNavigateToNovena('sao_jose')}>
+                São José, Esposo da Virgem Maria (19 de Março)
+            </AlertDialogAction>
+            <AlertDialogAction onClick={() => handleNavigateToNovena('sao_jose_operario')}>
+                São José Operário (1 de Maio)
+            </AlertDialogAction>
+            <AlertDialogCancel>Cancelar</AlertDialogCancel>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </>
   );
 }
+
+    

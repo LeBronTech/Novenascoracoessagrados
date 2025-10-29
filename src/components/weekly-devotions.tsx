@@ -1,14 +1,16 @@
 
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, forwardRef, useImperativeHandle } from 'react';
 import { weeklyDevotions, monthlyDevotions, getLiturgicalInfo } from '@/lib/devotions';
 import type { Devotion, MonthlyDevotion, LiturgicalInfo } from '@/lib/devotions';
 import { cn } from '@/lib/utils';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import React from 'react';
 import { Skeleton } from './ui/skeleton';
-import { BookOpen, Calendar } from 'lucide-react';
+import { BookOpen, Calendar, ChevronDown } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 
 
@@ -58,13 +60,36 @@ const Icon = ({ name, className }: { name: string, className?: string }) => {
   return icons[name] || null;
 };
 
+export interface WeeklyDevotionsRef {
+  closeAllDevotions: () => void;
+}
 
-export default function WeeklyDevotions() {
+interface WeeklyDevotionsProps {
+  onNavigateToNovena: () => void;
+}
+
+
+const WeeklyDevotions = forwardRef<WeeklyDevotionsRef, WeeklyDevotionsProps>(({ onNavigateToNovena }, ref) => {
   const [today, setToday] = useState<Date | null>(null);
+  const [openDevotion, setOpenDevotion] = useState<number | null>(null);
+
 
   useEffect(() => {
     setToday(new Date());
   }, []);
+
+  useImperativeHandle(ref, () => ({
+    closeAllDevotions: () => {
+      setOpenDevotion(null);
+    }
+  }));
+
+  const handleDevotionClick = (dayOfWeek: number) => {
+    if (dayOfWeek === 3) { // Wednesday for São José
+      setOpenDevotion(openDevotion === 3 ? null : 3);
+    }
+  };
+
 
   if (!today) {
     return <DevotionSkeleton />;
@@ -108,7 +133,7 @@ export default function WeeklyDevotions() {
                 <BookOpen className="devotion-icon" />
               </div>
               <div className="text-left">
-                  <span className="text-sm font-bold">Tempo Comum</span>
+                  <span className="text-sm font-bold">{liturgicalInfo.season}</span>
                   <p className="text-xs italic">{liturgicalInfo.verse}</p>
               </div>
             </div>
@@ -162,6 +187,63 @@ export default function WeeklyDevotions() {
           </TooltipContent>
         </Tooltip>
       </TooltipProvider>
+
+      {/* Expandable Wednesday devotion */}
+       <div className="w-full flex justify-center mt-2">
+            <div className="relative w-full max-w-lg">
+                <div className={cn("relative group", openDevotion === 3 && "is-open")}>
+                    <button
+                        onClick={() => handleDevotionClick(3)}
+                        className={cn(
+                            "flex items-center justify-center gap-3 w-auto h-auto px-4 py-3 rounded-full border-2 cursor-pointer transition-all duration-300 mx-auto",
+                            "devotion-item--wednesday",
+                            openDevotion === 3 && "rounded-b-none"
+                        )}
+                    >
+                      <Icon name="wednesday" className="devotion-icon" />
+                      <div className="text-left">
+                          <span className="text-sm font-bold">Quarta-feira</span>
+                          <p className="text-xs">dedicado a São José</p>
+                      </div>
+                      <ChevronDown className={cn("h-4 w-4 shrink-0 transition-transform duration-200", openDevotion === 3 && "rotate-180")} />
+                    </button>
+                    
+                    {openDevotion === 3 && (
+                        <div className={cn("absolute left-0 right-0 top-full -mt-2 z-10 p-4 pt-6 rounded-b-lg shadow-lg bg-green-800/95 text-white transition-all duration-300 animate-accordion-down")}>
+                           <div className="flex flex-col sm:flex-row items-center gap-4">
+                                <Image src="https://i.postimg.cc/fWc5jPFT/image.png" alt="São José" width={100} height={100} className="w-24 h-24 rounded-full object-cover border-2 border-green-200/50 shadow-md flex-shrink-0" />
+                                <Tabs defaultValue="francisco" className="w-full">
+                                    <TabsList className="grid w-full grid-cols-2 bg-green-900/50">
+                                        <TabsTrigger value="francisco">Oração do Papa Francisco</TabsTrigger>
+                                        <TabsTrigger value="tradicional">Oração Tradicional</TabsTrigger>
+                                    </TabsList>
+                                    <TabsContent value="francisco" className="prose prose-sm text-green-100 max-w-none mt-4 text-left text-xs sm:text-sm">
+                                        <p>Salve, guardião do Redentor e esposo da Virgem Maria!<br/>A vós, Deus confiou o seu Filho; em vós, Maria depositou a sua confiança; convosco, Cristo tornou-Se homem.</p>
+                                        <p>Ó Bem-aventurado José, mostrai-vos pai também para nós e guiai-nos no caminho da vida. Alcançai-nos graça, misericórdia e coragem, e defendei-nos de todo o mal. Amen.</p>
+                                        <p className="text-right italic text-green-200/80 text-xs">- Papa Francisco, Patris Corde</p>
+                                    </TabsContent>
+                                    <TabsContent value="tradicional" className="prose prose-sm text-green-100 max-w-none mt-4 text-left text-xs sm:text-sm">
+                                        <p>Glorioso São José, que fostes exaltado pelo Eterno Pai, obedecido pelo Verbo Encarnado, favorecido pelo Espírito Santo e amado pela Virgem Maria; louvo e bendigo a Santíssima Trindade pelos privilégios e méritos com que vos enriqueceu. Sois poderosíssimo e jamais se ouviu dizer que alguém tenha recorrido a vós e fosse por vós desamparado.</p>
+                                        <p>Sois o consolador dos aflitos, o amparo dos míseros e o advogado dos pecadores. Acolhei, pois, com bondade paternal a quem vos invoca com filial confiança e alcançai-me as graças que vos peço. Sede, depois de Jesus e Maria, minha consolação, meu refúgio, meu guia e meu pai. Obtende-me, finalmente, uma boa e santa morte. Amém.</p>
+                                    </TabsContent>
+                                </Tabs>
+                           </div>
+                           <div className="text-center mt-4">
+                                <Button onClick={onNavigateToNovena} size="sm" className="bg-green-200 text-green-900 hover:bg-white">
+                                    Conheça também a novena a São José
+                                </Button>
+                           </div>
+                        </div>
+                    )}
+                </div>
+            </div>
+       </div>
+
     </div>
   );
-}
+});
+
+WeeklyDevotions.displayName = 'WeeklyDevotions';
+export default WeeklyDevotions;
+
+    
