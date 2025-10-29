@@ -584,14 +584,14 @@ export const saints: Saint[] = [
   { id: 'todos_santos', name: 'Todos os Santos', imageUrl: 'https://i.postimg.cc/j29jkK7b/download.jpg', month: 'Outubro', startDate: '23/10', endDate: '31/10', feastDay: '01/Nov' },
   //Novembro
   { id: 'almas', name: 'Almas', imageUrl: 'https://i.postimg.cc/65GbHSd8/image.png', month: 'Novembro', startDate: '24/10', endDate: '01/11', feastDay: '02/Nov' },
-  { id: 'martinho_porres', name: 'S. M. de Porres', imageUrl: 'https://i.postimg.cc/Pr80rRjM/image.png', month: 'Novembro', startDate: '25/10', endDate: '02/11', feastDay: '03/Nov' },
+  { id: 'martinho_porres', name: 'S. M. de Porres', imageUrl: 'https://i.postimg.cc/Y0tMTg84/image.png', month: 'Novembro', startDate: '25/10', endDate: '02/11', feastDay: '03/Nov' },
   { id: 'isabel_hungria', name: 'S. Isabel da Hungria', imageUrl: 'https://i.postimg.cc/pdDpq2dk/image.png', month: 'Novembro', startDate: '08/11', endDate: '16/11', feastDay: '17/Nov' },
   { id: 'apresentacao_ns', name: 'Apresentação de N.S.', imageUrl: 'https://i.postimg.cc/3Js86PzK/image.png', month: 'Novembro', startDate: '12/11', endDate: '20/11', feastDay: '21/Nov' },
   { id: 'ns_saude', name: 'N.S. da Saúde', imageUrl: 'https://i.postimg.cc/RCdhqSqh/image.png', month: 'Novembro', startDate: '12/11', endDate: '20/11', feastDay: '21/Nov' },
   { id: 'santa_cecilia', name: 'S. Cecília', imageUrl: 'https://i.postimg.cc/4xDNjn2c/image.png', month: 'Novembro', startDate: '13/11', endDate: '21/11', feastDay: '22/Nov', isMartyr: true },
   { id: 'cristo_rei', name: 'Cristo Rei', imageUrl: 'https://i.postimg.cc/zBJ51hCg/image.png', month: 'Novembro', startDate: '14/11', endDate: '22/11', feastDay: '23/Nov' },
-  { id: 'catarina_alexandria', name: 'S. Catarina de Alexandria', imageUrl: 'https://i.postimg.cc/L5n49qFv/image.png', month: 'Novembro', startDate: '16/11', endDate: '24/11', feastDay: '25/Nov', isMartyr: true },
-  { id: 'gracas', name: 'N.S. das Graças', imageUrl: 'https://i.postimg.cc/d1hKrq0C/image.png', month: 'Novembro', startDate: '18/11', endDate: '26/11', feastDay: '27/Nov' },
+  { id: 'catarina_alexandria', name: 'S. Catarina de Alexandria', imageUrl: 'https://i.postimg.cc/s2FFt7gs/image.png', month: 'Novembro', startDate: '16/11', endDate: '24/11', feastDay: '25/Nov', isMartyr: true },
+  { id: 'gracas', name: 'N.S. das Graças', imageUrl: 'https://i.postimg.cc/SsBDK7HJ/Design-sem-nome-2.png', month: 'Novembro', startDate: '18/11', endDate: '26/11', feastDay: '27/Nov' },
   { id: 'santo_andre', name: 'S. André Apóstolo', imageUrl: 'https://i.postimg.cc/k4Wn49m8/image.png', month: 'Novembro', startDate: '21/11', endDate: '29/11', feastDay: '30/Nov', isMartyr: true },
   { id: 'imaculada_conceicao', name: 'Imaculada Conceição', imageUrl: 'https://i.postimg.cc/L5K3PqK8/imaculada-conceic-a-7-o.jpg', month: 'Novembro', startDate: '29/11', endDate: '07/12', feastDay: '08/Dez' }
 ];
@@ -917,7 +917,7 @@ export const saintsOfTheDay: SaintOfTheDayData[] = [
     month: 'Novembro',
     saints: [{
         name: 'São Martinho de Porres',
-        imageUrl: 'https://i.postimg.cc/Pr80rRjM/image.png',
+        imageUrl: 'https://i.postimg.cc/Y0tMTg84/image.png',
         story: '<p>São Martinho de Porres, conhecido como o "santo da vassoura", é um poderoso exemplo de humildade e caridade. Nascido em Lima, Peru, em 1579, filho de um nobre espanhol e de uma ex-escrava panamenha, enfrentou desde cedo o preconceito por ser mulato. Ingressou na Ordem Dominicana como irmão leigo e dedicou sua vida aos serviços mais humildes do convento, como varrer, cozinhar e cuidar da enfermaria. Sua caridade não conhecia limites, estendendo-se a todos os pobres, doentes e até aos animais. Sua vida é um testemunho de que a santidade floresce no serviço humilde e no amor sem distinção.</p>'
     }]
   },
@@ -1163,7 +1163,7 @@ export const saintsOfTheDay: SaintOfTheDayData[] = [
       month: 'Novembro',
       saints: [{
           name: 'Santa Catarina de Alexandria',
-          imageUrl: 'https://i.postimg.cc/L5n49qFv/image.png',
+          imageUrl: 'https://i.postimg.cc/s2FFt7gs/image.png',
           story: '<p>Santa Catarina de Alexandria, virgem e mártir do século IV, é uma das santas mais veneradas da Igreja. De nobre linhagem e dotada de uma inteligência extraordinária, converteu-se ao cristianismo e dedicou-se ao estudo da filosofia e da teologia. A tradição conta que, durante a perseguição do imperador Maximino, ela confundiu os 50 filósofos mais sábios do império, que tentaram fazê-la renunciar à fé, e acabou por convertê-los. Foi condenada a morrer numa roda com lâminas, que se quebrou milagrosamente ao seu toque. Finalmente, foi decapitada. É a padroeira dos estudantes, filósofos e de todos os que buscam a sabedoria.</p>',
           isMartyr: true
       }]
@@ -1189,7 +1189,7 @@ export const saintsOfTheDay: SaintOfTheDayData[] = [
       month: 'Novembro',
       saints: [{
           name: 'Nossa Senhora das Graças',
-          imageUrl: 'https://i.postimg.cc/d1hKrq0C/image.png',
+          imageUrl: 'https://i.postimg.cc/SsBDK7HJ/Design-sem-nome-2.png',
           story: '<p>Em 1830, a Virgem Maria apareceu a uma humilde freira, Santa Catarina Labouré, em Paris. Nessas aparições, Maria mostrou o desenho de uma medalha. De um lado, a imagem da Virgem com os braços abertos, e raios de luz saindo de suas mãos, com a inscrição: "Ó Maria, concebida sem pecado, rogai por nós que recorremos a vós". Do outro lado, a letra M com uma cruz por cima e os Corações de Jesus e Maria. Nossa Senhora prometeu graças abundantes a todos que usassem a medalha com confiança. A "Medalha Milagrosa", como ficou conhecida, espalhou-se rapidamente pelo mundo, sendo um sinal do amor e da proteção maternal de Maria.</p>'
       }]
   },
@@ -1245,6 +1245,7 @@ export const saintsOfTheDay: SaintOfTheDayData[] = [
 
 
   
+
 
 
 
