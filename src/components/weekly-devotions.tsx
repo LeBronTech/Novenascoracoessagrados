@@ -46,13 +46,13 @@ const Icon = ({ name, className }: { name: string, className?: string }) => {
       <Image src="https://i.postimg.cc/wT3GrX7F/Brown-Aesthetic-Social-Media-Strategy-Carousel-Instagram-Post-20251029-110406-0000.png" alt="Ícone de São José" width={28} height={28} className={cn("h-7 w-7 object-contain", className)} />
     ),
     'thursday': (
-        <Image src="https://i.postimg.cc/zfmDvDsY/Brown-Aesthetic-Social-Media-Strategy-Carousel-Instagram-Post-20251029-110630-0000.png" alt="Ícone do Santíssimo Sacramento" width={28} height={28} className={cn("h-7 w-7 object-contain", className)} />
+        <Image src="https://i.postimg.cc/7YdX5jmY/photo-2025-10-29-11-23-53.jpg" alt="Ícone do Santíssimo Sacramento" width={28} height={28} className={cn("h-7 w-7 object-contain", className)} />
     ),
     'friday': (
-      <Image src="https://i.postimg.cc/05Hsr2Sh/Brown-Aesthetic-Social-Media-Strategy-Carousel-Instagram-Post-20251029-110835-0000.png" alt="Ícone da Paixão de Cristo" width={28} height={28} className={cn("h-7 w-7 object-contain", className)} />
+      <Image src="https://i.postimg.cc/rw5GKsDb/photo-2025-10-29-11-23-59.jpg" alt="Ícone da Paixão de Cristo" width={28} height={28} className={cn("h-7 w-7 object-contain", className)} />
     ),
     'saturday': (
-      <Image src="https://i.postimg.cc/9XxWTB3Q/Brown-Aesthetic-Social-Media-Strategy-Carousel-Instagram-Post-20251029-110713-0000.png" alt="Ícone de Nossa Senhora" width={28} height={28} className={cn("h-7 w-7 object-contain", className)} />
+      <Image src="https://i.postimg.cc/B6n2YCmZ/photo-2025-10-29-11-23-57.jpg" alt="Ícone de Nossa Senhora" width={28} height={28} className={cn("h-7 w-7 object-contain", className)} />
     ),
   };
   return icons[name] || null;

@@ -238,28 +238,22 @@ export function getLiturgicalInfo(date: Date): LiturgicalInfo {
     const christTheKing = addDays(firstSundayOfAdvent, -7);
     
     const christmas = new Date(Date.UTC(year, 11, 25));
-    const baptismOfTheLordPrevYear = addDays(getEaster(year - 1), 57); // Fallback-ish
-    const baptismOfTheLord = addDays(getEaster(year), 57); // Also fallback-ish
     
     let color: LiturgicalInfo['color'] = 'green';
     let season = 'Tempo Comum';
     let week = 0;
     
+    const firstSundayOfAdventLastYear = getFirstSundayOfAdvent(year - 1);
+    
     if (today >= firstSundayOfAdvent) {
         season = 'Advento';
         color = 'purple';
         week = getWeekDiff(today, firstSundayOfAdvent) + 1;
-    } else if (today > christTheKing) { // Post-Christ the King, pre-Advent
+    } else if (today >= pentecost && today < firstSundayOfAdvent) {
         season = 'Tempo Comum';
-        week = 34;
-    } else if (today >= pentecost) {
-        season = 'Tempo Comum';
-        // Correct calculation for Ordinary Time after Pentecost
-        week = getWeekDiff(today, pentecost) + 10; // Pentecost is ~24th week OT, so we add weeks to a base. Aprox. 10th week OT.
-                                                   // Let's refine this. A simpler way is to count back from Christ the King.
+        color = 'green';
         const weeksUntilChristTheKing = getWeekDiff(christTheKing, today);
         week = 34 - weeksUntilChristTheKing;
-
     } else if (today >= easter) {
         season = 'Tempo Pascal';
         color = 'white';
@@ -268,15 +262,28 @@ export function getLiturgicalInfo(date: Date): LiturgicalInfo {
         season = 'Quaresma';
         color = 'purple';
         week = getWeekDiff(today, ashWednesday) + 1;
-    } else if (today >= christmas) { // Christmas season
+    } else if (today >= christmas && today < ashWednesday) {
         season = 'Natal';
         color = 'white';
         week = getWeekDiff(today, christmas) + 1;
-    } else { // Ordinary Time before Lent
-        season = 'Tempo Comum';
-        const epiphany = new Date(Date.UTC(year, 0, 6));
-        const sundayAfterEpiphany = addDays(epiphany, (7 - epiphany.getUTCDay()) % 7); // Baptism of the Lord
-        week = getWeekDiff(today, sundayAfterEpiphany) + 1;
+    } else if (today >= firstSundayOfAdventLastYear && today < christmas) {
+        // Handling Advent from previous year spilling into current year
+        const adventLastYear = getFirstSundayOfAdvent(year-1);
+        if (today >= adventLastYear && today < new Date(Date.UTC(year, 0, 1))) {
+            season = 'Advento';
+            color = 'purple';
+            week = getWeekDiff(today, adventLastYear) + 1;
+        } else {
+             season = 'Tempo Comum';
+             color = 'green';
+             const baptismOfTheLordLastYear = addDays(getEaster(year - 1), 57);
+             week = getWeekDiff(today, baptismOfTheLordLastYear) + 1;
+        }
+    } else {
+         season = 'Tempo Comum';
+         color = 'green';
+         const baptismOfTheLord = addDays(getEaster(year), 57);
+         week = getWeekDiff(today, baptismOfTheLord) + 1;
     }
 
 
@@ -309,7 +316,7 @@ export function getLiturgicalInfo(date: Date): LiturgicalInfo {
     if (whiteFeasts.includes(dayKey)) color = 'white';
     
     // Purple for All Souls
-    if (month === 11 && dayOfMonth === 2) { color = 'purple'; season = 'Comemoração de Todos os Fiéis Defuntos'; week = 0; }
+    if (month === 11 && dayOfMonth === 2) { color = 'purple'; season = 'Fiéis Defuntos'; week = 0; }
     
     if (season === 'Natal' && today > new Date(Date.UTC(year, 0, 1))) {
         // Handle Christmas season spilling into the new year
@@ -330,7 +337,17 @@ export function getLiturgicalInfo(date: Date): LiturgicalInfo {
     
     let verse = dailyGospels[verseKey] || `Ev. ${cycle === 'A' ? 'Mateus' : cycle === 'B' ? 'Marcos' : 'Lucas'}`;
 
-    return { color, season, week, verse, cycle };
-}
-
+    let finalSeasonText = season;
+    if (season === 'Tempo Comum' || season === 'Advento' || season === 'Quaresma' || season === 'Tempo Pascal') {
+        if (week > 0) {
+             finalSeasonText = 'Tempo Comum';
+        }
+    }
     
+    if(dayOfMonth === 2 && month === 11) {
+        finalSeasonText = 'Fiéis Defuntos';
+    }
+
+
+    return { color, season: finalSeasonText, week, verse, cycle };
+}
