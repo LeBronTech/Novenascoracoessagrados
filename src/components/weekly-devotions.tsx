@@ -24,6 +24,17 @@ function DevotionSkeleton() {
     )
 }
 
+const LilyIcon = ({ className }: { className?: string }) => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={cn("w-full h-full", className)}>
+        <path d="M12 22a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2h0a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2z"/>
+        <path d="M8 18c-1.5-1.5-2-4-2-6V7a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v5"/>
+        <path d="M16 18c1.5-1.5 2-4 2-6V7a2 2 0 0 0-2-2h0a2 2 0 0 0-2 2v5"/>
+        <path d="M12 2v2"/>
+        <path d="M12 7h.01"/>
+    </svg>
+);
+
+
 const Icon = ({ name, className }: { name: string, className?: string }) => {
   const icons: { [key: string]: React.ReactNode } = {
     'sunday': (
@@ -201,7 +212,6 @@ const WeeklyDevotions = forwardRef<WeeklyDevotionsRef, WeeklyDevotionsProps>(({ 
                         openDevotion === 3 && "rounded-b-none"
                     )}
                 >
-                  <Icon name="wednesday" className="devotion-icon" />
                   <div className="text-left">
                       <span className="text-sm font-bold">Oração a São José</span>
                   </div>
@@ -210,15 +220,18 @@ const WeeklyDevotions = forwardRef<WeeklyDevotionsRef, WeeklyDevotionsProps>(({ 
                 
                 <div 
                   data-state={openDevotion === 3 ? 'open' : 'closed'}
-                  className={cn("accordion-content relative rounded-b-lg shadow-lg bg-green-800/95 text-white transition-all duration-300")}
+                  className={cn("accordion-content relative rounded-b-lg shadow-lg bg-green-800/95 text-white transition-all duration-300 overflow-hidden")}
                 >
                    <div className="p-4 pt-4">
-                      <button onClick={() => setOpenDevotion(null)} className="absolute top-2 right-2 p-1 rounded-full hover:bg-white/20 transition-colors">
+                      <LilyIcon className="absolute top-2 left-2 w-12 h-12 text-green-200/20 opacity-70 -rotate-45" />
+                      <LilyIcon className="absolute bottom-2 right-2 w-12 h-12 text-green-200/20 opacity-70 rotate-[135deg]" />
+
+                      <button onClick={() => setOpenDevotion(null)} className="absolute top-2 right-2 p-1 rounded-full hover:bg-white/20 transition-colors z-10">
                           <X className="w-4 h-4" />
                           <span className="sr-only">Fechar</span>
                       </button>
                       <div className="flex flex-col sm:flex-row items-center gap-4">
-                          <Image src="https://i.postimg.cc/fWc5jPFT/image.png" alt="São José" width={100} height={100} className="w-24 h-24 rounded-full object-cover border-2 border-green-200/50 shadow-md flex-shrink-0" />
+                          <Image src="https://i.postimg.cc/9QfFWvTB/image.png" alt="São José" width={100} height={100} className="w-24 h-24 rounded-lg object-cover border-2 border-green-200/50 shadow-md flex-shrink-0" />
                           <Tabs defaultValue="francisco" className="w-full">
                               <TabsList className="grid w-full grid-cols-2 bg-green-900/50">
                                   <TabsTrigger value="francisco">Oração do Papa Francisco</TabsTrigger>
