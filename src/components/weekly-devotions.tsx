@@ -46,35 +46,13 @@ const Icon = ({ name, className }: { name: string, className?: string }) => {
       <Image src="https://i.postimg.cc/wT3GrX7F/Brown-Aesthetic-Social-Media-Strategy-Carousel-Instagram-Post-20251029-110406-0000.png" alt="Ícone de São José" width={28} height={28} className={cn("h-7 w-7 object-contain", className)} />
     ),
     'thursday': (
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={cn("h-7 w-7", className)}>
-        <path d="M12 5.25a6.75 6.75 0 1 1-6.75 6.75A6.75 6.75 0 0 1 12 5.25z"/>
-        <path d="M12 12a3 3 0 1 1-3 3 3 3 0 0 1 3-3z"/>
-        <path d="M12 2v2M12 20v2M5 12H3M21 12h-2M17.65 6.35l-1.4-1.4M6.35 17.65l-1.4-1.4M17.65 17.65l-1.4 1.4M6.35 6.35l-1.4 1.4"/>
-        <path d="M12 19a7 7 0 0 0-7 7h14a7 7 0 0 0-7-7z"/>
-      </svg>
+        <Image src="https://i.postimg.cc/zfmDvDsY/Brown-Aesthetic-Social-Media-Strategy-Carousel-Instagram-Post-20251029-110630-0000.png" alt="Ícone do Santíssimo Sacramento" width={28} height={28} className={cn("h-7 w-7 object-contain", className)} />
     ),
     'friday': (
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={cn("h-7 w-7", className)}>
-        <path d="M7.38 20.25a2.5 2.5 0 1 0 3.24 0 2.5 2.5 0 1 0-3.24 0Z"/>
-        <path d="M12 14.5a2.5 2.5 0 1 0 3.24 0 2.5 2.5 0 1 0-3.24 0Z"/>
-        <path d="M16.62 20.25a2.5 2.5 0 1 0 3.24 0 2.5 2.5 0 1 0-3.24 0Z"/>
-        <path d="M16.62 8.75a2.5 2.5 0 1 0 3.24 0 2.5 2.5 0 1 0-3.24 0Z"/>
-        <path d="M7.38 8.75a2.5 2.5 0 1 0 3.24 0 2.5 2.5 0 1 0-3.24 0Z"/>
-        <path d="M12 3.25a2.5 2.5 0 1 0 3.24 0 2.5 2.5 0 1 0-3.24 0Z"/>
-        <path d="M9.4 20.25h5.2"/>
-        <path d="M9.4 8.75h5.2"/>
-        <path d="M12 14.5v-3.25"/>
-        <path d="M14.07 8.75c.33-1.42.33-2.84 0-4.25"/>
-        <path d="m15.65 15.6.9-3.85"/>
-        <path d="m8.35 15.6-.9-3.85"/>
-      </svg>
+      <Image src="https://i.postimg.cc/05Hsr2Sh/Brown-Aesthetic-Social-Media-Strategy-Carousel-Instagram-Post-20251029-110835-0000.png" alt="Ícone da Paixão de Cristo" width={28} height={28} className={cn("h-7 w-7 object-contain", className)} />
     ),
     'saturday': (
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={cn("h-7 w-7", className)}>
-        <path d="M10 20.562c.383-1.15.993-2.21 1.83-3.062 1.34-1.34 3.1-2.125 5.006-2.125h.328c.03.1.06.2.1.3s.07.2.1.3c.383 1.15.993 2.21 1.83 3.062"/>
-        <path d="M12 11.875a5.56 5.56 0 0 1 5.5-5.562c.28 0 .5.224.5.5V8c0 .28-.22.5-.5.5s-.5-.224-.5-.5V7c-1.33 0-2.58.5-3.5 1.5s-1.5 2.17-1.5 3.5v.5c0 .28-.22.5-.5.s-.5-.224-.5-.5v-.575Z"/>
-        <path d="M12 3c-1.875 1.25-3.125 3.125-3.125 5.625v.375a.5.5 0 0 1-1 0V8.5c0-1.33.5-2.58 1.5-3.5S10.67 3.5 12 3.5"/>
-      </svg>
+      <Image src="https://i.postimg.cc/9XxWTB3Q/Brown-Aesthetic-Social-Media-Strategy-Carousel-Instagram-Post-20251029-110713-0000.png" alt="Ícone de Nossa Senhora" width={28} height={28} className={cn("h-7 w-7 object-contain", className)} />
     ),
   };
   return icons[name] || null;
@@ -120,7 +98,7 @@ export default function WeeklyDevotions() {
                 <BookOpen className="devotion-icon" />
               </div>
               <div className="text-left">
-                  <span className="text-sm font-bold">{liturgicalInfo.week}ª Semana do {liturgicalInfo.season}</span>
+                  <span className="text-sm font-bold">{liturgicalInfo.season}</span>
                   <p className="text-xs italic">{liturgicalInfo.verse}</p>
               </div>
             </div>
@@ -177,5 +155,3 @@ export default function WeeklyDevotions() {
     </div>
   );
 }
-
-    
