@@ -91,19 +91,10 @@ export const monthlyDevotions: MonthlyDevotion[] = [
     { month: 11, name: 'Dezembro', devotion: 'Advento e Natal', icon: 'monthly-dec' },
 ];
 
-// --- Liturgical Calendar Logic ---
-
 const addDays = (date: Date, days: number): Date => {
   const result = new Date(date);
   result.setDate(result.getDate() + days);
   return result;
-};
-
-const getDayOfYear = (date: Date): number => {
-    const start = new Date(date.getFullYear(), 0, 0);
-    const diff = (date.getTime() - start.getTime()) + ((start.getTimezoneOffset() - date.getTimezoneOffset()) * 60 * 1000);
-    const oneDay = 1000 * 60 * 60 * 24;
-    return Math.floor(diff / oneDay);
 };
 
 const getEaster = (year: number): Date => {
@@ -126,73 +117,76 @@ const getEaster = (year: number): Date => {
 
 const getFirstSundayOfAdvent = (year: number): Date => {
     const christmas = new Date(year, 11, 25);
-    const dayOfWeek = christmas.getDay(); // 0 for Sunday, 1 for Monday, etc.
-    const daysUntilSunday = dayOfWeek === 0 ? 0 : 7 - dayOfWeek;
-    const fourthSundayOfAdvent = addDays(christmas, daysUntilSunday - 7);
-    return addDays(fourthSundayOfAdvent, -21);
+    let dayOfWeek = christmas.getDay();
+    if(dayOfWeek === 0) dayOfWeek = 7; 
+    const daysToSubtract = dayOfWeek + (3 * 7);
+    return addDays(christmas, -daysToSubtract);
 };
 
 const getLiturgicalYearCycle = (date: Date): { year: number; cycle: 'A' | 'B' | 'C' } => {
-    const year = date.getFullYear();
-    const firstSundayOfAdventCurrent = getFirstSundayOfAdvent(year);
-    let liturgicalYearStart = year;
-
-    if (date < firstSundayOfAdventCurrent) {
-        liturgicalYearStart = year - 1;
+    let year = date.getFullYear();
+    const firstSundayOfAdventCurrentYear = getFirstSundayOfAdvent(year);
+    
+    if (date < firstSundayOfAdventCurrentYear) {
+        year--;
     }
 
-    const cycleIndex = liturgicalYearStart % 3;
-    const cycle = cycleIndex === 0 ? 'C' : cycleIndex === 1 ? 'A' : 'B';
-    return { year: liturgicalYearStart, cycle };
+    const cycleIndex = year % 3;
+    const cycle = cycleIndex === 0 ? 'B' : cycleIndex === 1 ? 'C' : 'A'; // Ajustado conforme o ciclo
+    return { year: year, cycle };
 }
+
+function isSameDay(d1: Date, d2: Date) {
+    return d1.getFullYear() === d2.getFullYear() &&
+           d1.getMonth() === d2.getMonth() &&
+           d1.getDate() === d2.getDate();
+}
+
 
 export function getLiturgicalInfo(date: Date): LiturgicalInfo {
     const year = date.getFullYear();
-    const today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    const today = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
 
-    const { year: liturgicalYearNumber, cycle } = getLiturgicalYearCycle(today);
+    const { cycle, year: liturgicalYearNumber } = getLiturgicalYearCycle(today);
+    
+    const firstSundayOfAdventPrevYear = getFirstSundayOfAdvent(liturgicalYearNumber);
+    const firstSundayOfAdventCurrentYear = getFirstSundayOfAdvent(year);
+    
+    const christmas = new Date(Date.UTC(year, 11, 25));
+    const isAfterChristmas = today >= new Date(Date.UTC(year, 11, 25));
 
     const easter = getEaster(year);
     const ashWednesday = addDays(easter, -46);
     const pentecost = addDays(easter, 49);
-    const firstSundayOfAdvent = getFirstSundayOfAdvent(year);
-    const christTheKing = addDays(firstSundayOfAdvent, -7);
-    
-    let nextYearFirstSundayOfAdvent = getFirstSundayOfAdvent(year + 1);
-    if(nextYearFirstSundayOfAdvent <= christTheKing) {
-      nextYearFirstSundayOfAdvent = new Date(year + 1, 11, 31); // Ensure it's in the next year
-    }
-    
-    const baptismOfTheLord = (() => {
-        const epiphanySunday = new Date(year, 0, 6);
-        const dayOfWeek = epiphanySunday.getDay();
-        let baptismDate = addDays(epiphanySunday, 7 - dayOfWeek); // Sunday after Epiphany
-        if (epiphanySunday.getDate() >= 7 && epiphanySunday.getDay() === 0) {
-            baptismDate = addDays(epiphanySunday, 1); // Monday after Epiphany if Epiphany is on Jan 7/8
-        }
-        return baptismDate;
-    })();
+    const trinitySunday = addDays(easter, 56);
+    const corpusChristi = addDays(easter, 60);
 
+    const epiphany = new Date(Date.UTC(year, 0, 6));
+    const dayOfWeekEpiphany = epiphany.getDay();
+    const baptismOfTheLord = dayOfWeekEpiphany > 1 && dayOfWeekEpiphany < 7 ? addDays(epiphany, 7-dayOfWeekEpiphany) : addDays(epiphany, 1);
+
+    const firstSundayOfAdvent = today >= firstSundayOfAdventCurrentYear ? firstSundayOfAdventCurrentYear : firstSundayOfAdventPrevYear;
+    const christTheKing = addDays(firstSundayOfAdvent, (34 * 7) - 1);
+    
     let color: LiturgicalInfo['color'] = 'green';
     let season = 'Tempo Comum';
     let week = 0;
-    let verse = "Ex: Lc 10, 1-9";
+    let verse = `Evangelho: Ano ${cycle}`;
 
     // Advent
-    if (today >= firstSundayOfAdvent && today < new Date(year, 11, 25)) {
+    if (today >= firstSundayOfAdvent && today < christmas) {
         season = 'Advento';
         color = 'purple';
         const daysIntoAdvent = Math.floor((today.getTime() - firstSundayOfAdvent.getTime()) / (1000 * 60 * 60 * 24));
         week = Math.floor(daysIntoAdvent / 7) + 1;
         if (week === 3) color = 'rose'; // Gaudete Sunday
-        verse = "Ex: Mc 1, 1-8";
     }
-    // Christmas
-    else if ((today >= new Date(year, 11, 25) && today <= new Date(year, 11, 31)) || today <= baptismOfTheLord) {
+    // Christmas Time
+    else if ((today >= christmas) || (today.getFullYear() === year && today <= baptismOfTheLord)) {
         season = 'Tempo do Natal';
         color = 'white';
-        week = 1; // Simplified week for Christmas
-        verse = "Ex: Jo 1, 1-18";
+        const daysIntoChristmas = Math.floor((today.getTime() - (isAfterChristmas ? christmas.getTime() : new Date(Date.UTC(year-1, 11, 25)).getTime()) ) / (1000 * 60 * 60 * 24));
+        week = Math.floor(daysIntoChristmas / 7) + 1;
     }
     // Lent
     else if (today >= ashWednesday && today < easter) {
@@ -201,58 +195,55 @@ export function getLiturgicalInfo(date: Date): LiturgicalInfo {
         const daysIntoLent = Math.floor((today.getTime() - ashWednesday.getTime()) / (1000 * 60 * 60 * 24));
         week = Math.floor(daysIntoLent / 7) + 1;
         if (week === 4) color = 'rose'; // Laetare Sunday
-        verse = "Ex: Mt 4, 1-11";
     }
-    // Easter
+    // Easter Time
     else if (today >= easter && today <= pentecost) {
         season = 'Tempo Pascal';
         color = 'white';
         const daysIntoEaster = Math.floor((today.getTime() - easter.getTime()) / (1000 * 60 * 60 * 24));
         week = Math.floor(daysIntoEaster / 7) + 1;
-        verse = "Ex: Jo 20, 19-31";
     }
     // Ordinary Time
     else {
         season = 'Tempo Comum';
         color = 'green';
-        const dayOfYear = getDayOfYear(today);
-        
-        let baseDayOfYear;
-        if (today > pentecost) { // Second part of Ordinary Time
-            baseDayOfYear = getDayOfYear(pentecost);
-            const daysSincePentecost = dayOfYear - baseDayOfYear;
-            const weekOfPentecost = Math.floor((baseDayOfYear - getDayOfYear(baptismOfTheLord)) / 7);
-            const weeksInLentAndEaster = Math.ceil((getDayOfYear(pentecost) - getDayOfYear(ashWednesday)) / 7);
-            week = 34 - Math.floor((getDayOfYear(nextYearFirstSundayOfAdvent) - dayOfYear) / 7);
-        } else { // First part of Ordinary Time
-            baseDayOfYear = getDayOfYear(baptismOfTheLord);
-            const daysSinceBaptism = dayOfYear - baseDayOfYear;
-            week = Math.floor(daysSinceBaptism / 7) + 1;
+        if (today > pentecost) {
+             const daysFromPentecost = Math.floor((today.getTime() - pentecost.getTime()) / (1000 * 60 * 60 * 24));
+             const pentecostWeek = 34 - Math.floor((firstSundayOfAdvent.getTime() - pentecost.getTime()) / (1000 * 60 * 60 * 24 * 7));
+             week = pentecostWeek + Math.floor(daysFromPentecost/7);
+        } else {
+             const daysFromBaptism = Math.floor((today.getTime() - baptismOfTheLord.getTime()) / (1000 * 60 * 60 * 24));
+             week = Math.floor(daysFromBaptism / 7) + 1;
         }
-
-        verse = cycle === 'A' ? "Evangelho: Mateus" : cycle === 'B' ? "Evangelho: Marcos" : "Evangelho: Lucas";
     }
     
-    // Override for specific solemnities/feasts
-    const month = today.getMonth();
-    const dayOfMonth = today.getDate();
+    // Overrides for Solemnities, Feasts, and Memorials
+    const month = today.getUTCMonth();
+    const dayOfMonth = today.getUTCDate();
+    const dayOfWeek = today.getUTCDay();
 
-    if (month === 10 && dayOfMonth === 1) { // All Saints
-        season = 'Solenidade de Todos os Santos';
-        color = 'white';
-    } else if (today.getTime() === pentecost.getTime() || (month === 8 && dayOfMonth === 14) || today.getDay() === 0 && season === 'Tempo Pascal' && week === 8 /* Pentecost Sunday is the 8th Sunday of Easter */) {
-        season = 'Pentecostes';
-        color = 'red';
-    } else if (today.getTime() === christTheKing.getTime()) {
-        season = 'Solenidade de Cristo Rei';
-        color = 'white';
-    } else if (today >= addDays(easter, 57) && today <= addDays(easter, 63)) { // Trinity Sunday
-        season = 'Santíssima Trindade';
-        color = 'white';
-    } else if (today >= addDays(easter, 64) && today <= addDays(easter, 70)) { // Corpus Christi
-        season = 'Corpus Christi';
-        color = 'white';
+    // Red
+    if (isSameDay(today, addDays(easter, -7))) { season = 'Domingo de Ramos'; color = 'red'; }
+    if (isSameDay(today, addDays(easter, -2))) { season = 'Sexta-feira Santa'; color = 'red'; }
+    if (isSameDay(today, pentecost)) { season = 'Pentecostes'; color = 'red'; }
+    if ((month === 8 && dayOfMonth === 14) || (month === 4 && dayOfMonth === 25) || (month === 6 && dayOfMonth === 29) || (month === 10 && dayOfMonth === 28)) {
+        color = 'red'; // Exaltation of the Holy Cross, St. Mark, Sts. Peter and Paul, Sts. Simon and Jude
     }
+
+
+    // White
+    if (isSameDay(today, trinitySunday)) { season = 'Santíssima Trindade'; color = 'white'; }
+    if (isSameDay(today, corpusChristi)) { season = 'Corpo e Sangue de Cristo'; color = 'white'; }
+    if (isSameDay(today, christTheKing)) { season = 'Solenidade de Cristo Rei'; color = 'white'; }
+    if (month === 0 && dayOfMonth === 1) { season = 'Solenidade de Santa Maria, Mãe de Deus'; color = 'white'; }
+    if (month === 2 && dayOfMonth === 19) { season = 'Solenidade de São José'; color = 'white'; }
+    if (month === 2 && dayOfMonth === 25) { season = 'Solenidade da Anunciação do Senhor'; color = 'white'; }
+    if (month === 7 && dayOfMonth === 15) { season = 'Solenidade da Assunção de Nossa Senhora'; color = 'white'; }
+    if (month === 10 && dayOfMonth === 1) { season = 'Solenidade de Todos os Santos'; color = 'white'; }
+    if (month === 11 && dayOfMonth === 8) { season = 'Solenidade da Imaculada Conceição'; color = 'white'; }
+    if (month === 11 && dayOfMonth === 25) { season = 'Natal do Senhor'; color = 'white'; }
     
+    verse = cycle === 'A' ? "Ev. Mateus" : cycle === 'B' ? "Ev. Marcos" : "Ev. Lucas";
+
     return { color, season, week, verse, cycle };
 }
