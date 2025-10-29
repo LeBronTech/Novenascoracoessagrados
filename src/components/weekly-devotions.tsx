@@ -36,15 +36,16 @@ const Icon = ({ name, className }: { name: string, className?: string }) => {
     ),
     'tuesday': (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={cn("h-7 w-7", className)}>
-        <path d="M12 2a2.5 2.5 0 0 1 2.5 2.5v.08a2.5 2.5 0 0 1-5 0V4.5A2.5 2.5 0 0 1 12 2z"/>
-        <path d="M8.5 5.5a3.5 3.5 0 0 0-5.2 2.1 3.5 3.5 0 0 0 1.6 4.8l4.4 2.1a2 2 0 0 1 1.2 1.8V19a1 1 0 0 0 1 1h.1a1 1 0 0 0 1-1v-2.6a2 2 0 0 1 1.2-1.8l4.4-2.1a3.5 3.5 0 0 0 1.6-4.8 3.5 3.5 0 0 0-5.2-2.1"/>
-        <path d="M12 10a2 2 0 0 0-2 2v.1a2 2 0 0 0 4 0V12a2 2 0 0 0-2-2z"/>
+        <path d="M12 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" />
+        <path d="M12 10a14.5 14.5 0 0 1-5.5-1 14.5 14.5 0 0 1-5.5 1" />
+        <path d="M12 10a14.5 14.5 0 0 0 5.5-1 14.5 14.5 0 0 0 5.5 1" />
       </svg>
     ),
     'wednesday': (
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={cn("h-7 w-7", className)}>
-        <path d="M14.2 2.2 12 4.5 9.8 2.2c-1.3-1.4-3.6-1.5-5-.2L3 3.5c-1.4 1.3-1.5 3.6-.2 5l2 2.3 2.5-2.5.7-.8c.2-.2.4-.4.5-.6.2-.3.3-.6.3-.9 0-.3-.1-.6-.3-.9-.2-.2-.4-.4-.5-.6l-.7-.8-2.5-2.5-2-2.3c-1.3-1.4-1.2-3.7.2-5l1.8-1.5c1.4-1.3 3.7-1.2 5 .2z"/>
-        <path d="M17 11.5c.3.2.5.4.6.6.2.3.3.6.3.9 0 .3-.1.6-.3.9-.2.3-.4.5-.6.6l-.8.7-2.5 2.5-2.3 2c-1.4 1.3-3.7 1.2-5-.2l-1.5-1.8c-1.3-1.4-1.2-3.7.2-5l2.3-2 2.5 2.5.8.7Z"/>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={cn("h-7 w-7", className)}>
+        <path d="M14.4 14.4 9.6 9.6" />
+        <path d="m14.5 6.5-1-1c-1-1-3-1.5-4.5-1.5-2 0-4.5 1-6 2.5s-2.5 4-2.5 6c0 1.5.5 3 1.5 4.5s2.5 3.5 4.5 4.5c1.5 1 3 1.5 4.5 1.5s3-.5 4.5-1.5" />
+        <path d="m20.5 9.5.5.5c1.5 1.5 2 3.5 2 5.5s-.5 4-2 5.5-3.5 2-5.5 2-4-.5-5.5-2" />
       </svg>
     ),
     'thursday': (
@@ -57,8 +58,13 @@ const Icon = ({ name, className }: { name: string, className?: string }) => {
     ),
     'friday': (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={cn("h-7 w-7", className)}>
-        <path d="M20.2 17.1c1.1-1.3 1.5-3 1.3-4.6l-.3-2.6c-.3-2.2-2.1-3.9-4.3-3.9H7.1c-2.2 0-4.1 1.7-4.3 3.9l-.3 2.6c-.2 1.6.2 3.3 1.3 4.6l2.1 2.5H4v2h16v-2h-3.3l2.1-2.5zM7.1 6h9.8"/>
-        <path d="m14.9 11.5-2.9 3-2.9-3"/>
+        <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2Z" />
+        <path d="m9 15 3-3 3 3" />
+        <path d="m9 9 3 3 3-3" />
+        <path d="M17.8 7.9 15 6" />
+        <path d="m6.2 7.9 3-1.9" />
+        <path d="m12 22 2.5-2.5" />
+        <path d="m12 22-2.5-2.5" />
       </svg>
     ),
     'saturday': (
