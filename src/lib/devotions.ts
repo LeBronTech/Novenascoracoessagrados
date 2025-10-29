@@ -206,11 +206,13 @@ const getLiturgicalYearCycle = (date: Date): { year: number; cycle: 'A' | 'B' | 
     
     const yearNumber = liturgicalYearStartYear + 1;
 
-    // Cycle A began in 1964, B in 1965, C in 1966.
-    const diff = yearNumber - 1964;
-    const cycleIndex = diff % 3;
-    const cycle = cycleIndex === 0 ? 'A' : cycleIndex === 1 ? 'B' : 'C';
-
+    // Cycle A begins on the first Sunday of Advent in years ending with 3, 6, 9...
+    // Example: Advent 2024 (for 2025) is start of Cycle C. 2025%3 = 1 -> C
+    // Advent 2025 (for 2026) is start of Cycle A. 2026%3 = 2 -> A
+    // Advent 2026 (for 2027) is start of Cycle B. 2027%3 = 0 -> B
+    const cycleIndex = (yearNumber-1) % 3; // Year B: 2023, 2026 ...
+    const cycle = cycleIndex === 0 ? 'B' : cycleIndex === 1 ? 'C' : 'A';
+    
     return { year: yearNumber, cycle };
 }
 
@@ -226,7 +228,7 @@ export function getLiturgicalInfo(date: Date): LiturgicalInfo {
     const year = date.getUTCFullYear();
     const today = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
 
-    const { cycle, year: liturgicalYear } = getLiturgicalYearCycle(today);
+    const { cycle } = getLiturgicalYearCycle(today);
     
     const easter = getEaster(year);
     const ashWednesday = addDays(easter, -46);
@@ -254,7 +256,7 @@ export function getLiturgicalInfo(date: Date): LiturgicalInfo {
         const daysIntoAdvent = Math.floor((today.getTime() - firstSundayOfAdvent.getTime()) / (1000 * 60 * 60 * 24));
         week = Math.floor(daysIntoAdvent / 7) + 1;
         const thirdSunday = addDays(firstSundayOfAdvent, 14);
-        if (isSameDay(today, thirdSunday)) color = 'rose';
+        if (today >= thirdSunday && today < addDays(thirdSunday, 7)) color = 'rose'; // Gaudete
     }
     // Christmas Time
     else if ((today >= new Date(Date.UTC(year, 11, 25))) || (today <= baptismOfTheLord)) {
@@ -269,7 +271,7 @@ export function getLiturgicalInfo(date: Date): LiturgicalInfo {
         const daysIntoLent = Math.floor((today.getTime() - ashWednesday.getTime()) / (1000 * 60 * 60 * 24));
         week = Math.floor(daysIntoLent / 7) + 1;
         const fourthSunday = addDays(ashWednesday, 25);
-        if(isSameDay(today, fourthSunday)) {
+        if(today >= fourthSunday && today < addDays(fourthSunday, 7)) { // Laetare
              color = 'rose';
         }
     }
@@ -285,13 +287,11 @@ export function getLiturgicalInfo(date: Date): LiturgicalInfo {
         season = 'Tempo Comum';
         color = 'green';
         if (today > pentecost) {
-             const weeksUntilAdvent = Math.ceil((getFirstSundayOfAdvent(year).getTime() - today.getTime()) / (1000 * 60 * 60 * 24 * 7));
-             week = 34 - weeksUntilAdvent;
+             const weeksUntilChristTheKing = Math.floor((christTheKing.getTime() - today.getTime()) / (1000 * 60 * 60 * 24 * 7));
+             week = 34 - weeksUntilChristTheKing;
         } else if (today > baptismOfTheLord) {
              const weeksSinceBaptism = Math.floor((today.getTime() - baptismOfTheLord.getTime()) / (1000 * 60 * 60 * 24 * 7));
-             const dayOfWeekOfBaptism = baptismOfTheLord.getUTCDay();
-             const startWeek = dayOfWeekOfBaptism === 0 ? 2 : 1; // if Baptism is on Sunday, Ord Time starts on Mon of Week 2
-             week = startWeek + weeksSinceBaptism;
+             week = weeksSinceBaptism + 2; // Week after baptism is week 2
         }
     }
     
