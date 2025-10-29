@@ -317,6 +317,7 @@
     transform: scale(1.1);
   }
 
+  /* Liturgical Colors */
   .devotion-item--green { @apply bg-green-600/80 text-white border-green-400/50; }
   .devotion-item--green .devotion-icon { @apply text-white; }
   .devotion-item--green .text-sm { @apply text-white; }
@@ -341,6 +342,40 @@
   .devotion-item--rose .devotion-icon { @apply text-white; }
   .devotion-item--rose .text-sm { @apply text-white; }
   .devotion-item--rose .text-xs { @apply text-rose-100; }
+
+  /* Daily Devotion Colors */
+  .devotion-item--sunday { /* Not specified, default used */ }
+  
+  .devotion-item--monday { @apply bg-red-600/80 text-white border-red-400/50; }
+  .devotion-item--monday .devotion-icon { @apply text-white; }
+  .devotion-item--monday .text-sm { @apply text-white; }
+  .devotion-item--monday .text-xs { @apply text-red-200; }
+
+  .devotion-item--tuesday { @apply bg-yellow-400/80 text-gray-800 border-yellow-500/50; }
+  .devotion-item--tuesday .devotion-icon { @apply text-gray-800; }
+  .devotion-item--tuesday .text-sm { @apply text-gray-800; }
+  .devotion-item--tuesday .text-xs { @apply text-yellow-800; }
+
+  .devotion-item--wednesday { @apply bg-green-800/80 text-white border-green-600/50; }
+  .devotion-item--wednesday .devotion-icon { @apply text-white; }
+  .devotion-item--wednesday .text-sm { @apply text-white; }
+  .devotion-item--wednesday .text-xs { @apply text-green-200; }
+
+  .devotion-item--thursday { @apply bg-purple-600/80 text-white border-purple-400/50; }
+  .devotion-item--thursday .devotion-icon { @apply text-white; }
+  .devotion-item--thursday .text-sm { @apply text-white; }
+  .devotion-item--thursday .text-xs { @apply text-purple-200; }
+
+  .devotion-item--friday { @apply bg-red-700/80 text-white border-red-500/50; }
+  .devotion-item--friday .devotion-icon { @apply text-white; }
+  .devotion-item--friday .text-sm { @apply text-white; }
+  .devotion-item--friday .text-xs { @apply text-red-200; }
+  
+  .devotion-item--saturday { @apply bg-sky-400/80 text-white border-sky-300/50; }
+  .devotion-item--saturday .devotion-icon { @apply text-white; }
+  .devotion-item--saturday .text-sm { @apply text-white; }
+  .devotion-item--saturday .text-xs { @apply text-sky-100; }
+
 
 }
 
@@ -367,11 +402,3 @@
         animation-delay: 700ms;
     }
 }
-
-    
-
-
-
-
-
-    
