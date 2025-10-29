@@ -35,18 +35,20 @@ const Icon = ({ name, className }: { name: string, className?: string }) => {
       </svg>
     ),
     'tuesday': (
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={cn("h-7 w-7", className)}>
-        <path d="M12 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" />
-        <path d="M12 10a14.5 14.5 0 0 1-5.5-1 14.5 14.5 0 0 1-5.5 1" />
-        <path d="M12 10a14.5 14.5 0 0 0 5.5-1 14.5 14.5 0 0 0 5.5 1" />
-      </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={cn("h-7 w-7", className)}>
+            <path d="M12 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" />
+            <path d="M12 10a14.5 14.5 0 0 1-5.5-1 14.5 14.5 0 0 1-5.5 1" />
+            <path d="M12 10a14.5 14.5 0 0 0 5.5-1 14.5 14.5 0 0 0 5.5 1" />
+        </svg>
     ),
     'wednesday': (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={cn("h-7 w-7", className)}>
-        <path d="M14.5 6.5-1-1c-1-1-3-1.5-4.5-1.5-2 0-4.5 1-6 2.5s-2.5 4-2.5 6c0 1.5.5 3 1.5 4.5s2.5 3.5 4.5 4.5c1.5 1 3 1.5 4.5 1.5s3-.5 4.5-1.5" />
-        <path d="m20.5 9.5.5.5c1.5 1.5 2 3.5 2 5.5s-.5 4-2 5.5-3.5 2-5.5 2-4-.5-5.5-2" />
-        <path d="M12.5 12.5 7.7 7.7" />
-        <path d="m11.5 15.5-3-3" />
+        <path d="M16 14.5a2.5 2.5 0 1 0 5 0 2.5 2.5 0 1 0-5 0Z"/>
+        <path d="m16 14.5-1-10.5" />
+        <path d="M10 6.5 12 5l2 1.5"/>
+        <path d="M12 5v6"/>
+        <path d="M12 11c-4 0-6-2-6-6"/>
+        <path d="M12 11c4 0 6-2 6-6"/>
       </svg>
     ),
     'thursday': (
@@ -59,19 +61,25 @@ const Icon = ({ name, className }: { name: string, className?: string }) => {
     ),
     'friday': (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={cn("h-7 w-7", className)}>
-        <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2Z" />
-        <path d="m9 15 3-3 3 3" />
-        <path d="m9 9 3 3 3-3" />
-        <path d="M17.8 7.9 15 6" />
-        <path d="m6.2 7.9 3-1.9" />
-        <path d="m12 22 2.5-2.5" />
-        <path d="m12 22-2.5-2.5" />
+        <path d="M7.38 20.25a2.5 2.5 0 1 0 3.24 0 2.5 2.5 0 1 0-3.24 0Z"/>
+        <path d="M12 14.5a2.5 2.5 0 1 0 3.24 0 2.5 2.5 0 1 0-3.24 0Z"/>
+        <path d="M16.62 20.25a2.5 2.5 0 1 0 3.24 0 2.5 2.5 0 1 0-3.24 0Z"/>
+        <path d="M16.62 8.75a2.5 2.5 0 1 0 3.24 0 2.5 2.5 0 1 0-3.24 0Z"/>
+        <path d="M7.38 8.75a2.5 2.5 0 1 0 3.24 0 2.5 2.5 0 1 0-3.24 0Z"/>
+        <path d="M12 3.25a2.5 2.5 0 1 0 3.24 0 2.5 2.5 0 1 0-3.24 0Z"/>
+        <path d="M9.4 20.25h5.2"/>
+        <path d="M9.4 8.75h5.2"/>
+        <path d="M12 14.5v-3.25"/>
+        <path d="M14.07 8.75c.33-1.42.33-2.84 0-4.25"/>
+        <path d="m15.65 15.6.9-3.85"/>
+        <path d="m8.35 15.6-.9-3.85"/>
       </svg>
     ),
     'saturday': (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={cn("h-7 w-7", className)}>
-        <path d="M9 17.65c.32.18.66.3.99.4.45.14.9.25 1.32.35 2.19.49 3.5-1.09 4.05-3.28.32-1.29 1.1-4.29-1.32-5-1.57-.45-3.32.22-4.57 1.57-.99 1.1-.55 2.55.57 3.65.6.6 1.42.99 2.28 1.32"/>
-        <path d="M17.8 13.9c.3.1.5.3.7.5.3.3.5.7.5 1.1s-.2.8-.5 1.1c-.3.3-.7.5-1.1.5h-1.5c-2.1 0-3.5-1.5-4-3.5-.3-1.2-1-4-1.5-5.5-.3-1-.4-1.9-.2-2.8.2-.9.7-1.8 1.3-2.5 1-1.1 2.4-1.9 4-2 .3 0 .7.1 1 .2.5.2.9.5 1.3.8.6.5 1 1.2 1.4 1.9.3.6.6 1.4.7 2.2.1.8.1 1.6-.1 2.4-.2.9-.5 1.7-.8 2.5-.2.6-.5 1.2-.8 1.8"/>
+        <path d="M10 20.562c.383-1.15.993-2.21 1.83-3.062 1.34-1.34 3.1-2.125 5.006-2.125h.328c.03.1.06.2.1.3s.07.2.1.3c.383 1.15.993 2.21 1.83 3.062"/>
+        <path d="M12 11.875a5.56 5.56 0 0 1 5.5-5.562c.28 0 .5.224.5.5V8c0 .28-.22.5-.5.5s-.5-.224-.5-.5V7c-1.33 0-2.58.5-3.5 1.5s-1.5 2.17-1.5 3.5v.5c0 .28-.22.5-.5.5s-.5-.224-.5-.5v-.575Z"/>
+        <path d="M12 3c-1.875 1.25-3.125 3.125-3.125 5.625v.375a.5.5 0 0 1-1 0V8.5c0-1.33.5-2.58 1.5-3.5S10.67 3.5 12 3.5"/>
       </svg>
     ),
   };
