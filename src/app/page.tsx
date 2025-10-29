@@ -6,7 +6,7 @@ import Header from '@/components/header';
 import Footer from '@/components/footer';
 import SaintSelector from '@/components/saint-selector';
 import NovenaDisplay from '@/components/novena-display';
-import SaintOfTheDay, { type SaintOfTheDayRef } from '@/components/saint-of-the-day';
+import SaintOfTheDay, { type SaintOfTheDayRef, SaintOfTheDaySkeleton } from '@/components/saint-of-the-day';
 import WeeklyDevotions from '@/components/weekly-devotions';
 import { saints, months, novenaData } from '@/lib/data';
 import type { Saint } from '@/lib/data';
@@ -65,7 +65,7 @@ export default function Home() {
       today.setHours(0, 0, 0, 0);
       const currentYear = getYear(today);
 
-      const closestSaint = saints.reduce((closest, saint) => {
+      const closestSaint: Saint | null = saints.reduce((closest, saint) => {
         try {
           const startDateString = `${saint.startDate}/${currentYear}`;
           const startDate = parse(startDateString, 'dd/MM/yyyy', new Date());
@@ -73,14 +73,14 @@ export default function Home() {
 
           const diff = Math.abs(differenceInDays(startDate, today));
 
-          if (diff < closest.minDiff) {
-            return { minDiff: diff, saint: saint };
+          if (diff < (closest ? Math.abs(differenceInDays(parse(`${closest.startDate}/${currentYear}`, 'dd/MM/yyyy', new Date()), today)) : Infinity)) {
+            return saint;
           }
         } catch (e) {
           // Ignore invalid date formats
         }
         return closest;
-      }, { minDiff: Infinity, saint: null as Saint | null }).saint;
+      }, null as Saint | null);
 
       if (closestSaint) {
         initialNovenaId = closestSaint.id;

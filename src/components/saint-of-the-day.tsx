@@ -83,6 +83,19 @@ function ThemeSelector({ theme, setTheme }: { theme: Theme, setTheme: (theme: Th
     );
 }
 
+export function SaintOfTheDaySkeleton() {
+    return (
+        <div className="p-4 md:p-6 bg-gray-100/70 backdrop-blur-sm rounded-xl shadow-lg mt-2 relative">
+            <div className="flex items-center justify-between mb-2">
+                <Skeleton className="h-10 w-10" />
+                <Skeleton className="h-6 w-32" />
+                <Skeleton className="h-10 w-10" />
+            </div>
+            <Skeleton className="h-24 w-full rounded-lg" />
+        </div>
+    );
+};
+
 export interface SaintOfTheDayRef {
   navigate: (direction: 'prev' | 'next') => void;
 }
@@ -101,10 +114,11 @@ const SaintOfTheDay = forwardRef<SaintOfTheDayRef, SaintOfTheDayProps>(({ trigge
   const [theme, setTheme] = useState<Theme>('light');
   
   const months = useMemo(() => ['Outubro', 'Novembro'], []);
-  const [selectedMonth, setSelectedMonth] = useState<string>(months[0]);
+  const [selectedMonth, setSelectedMonth] = useState<string | null>(null);
   const [monthCarouselRef, monthCarouselApi] = useEmblaCarousel(MONTH_CAROUSEL_OPTIONS);
 
   const saintsForCurrentMonth = useMemo(() => {
+    if (!selectedMonth) return [];
     return saintsOfTheDay.filter(day => day.month === selectedMonth);
   }, [selectedMonth]);
   
@@ -138,29 +152,27 @@ const SaintOfTheDay = forwardRef<SaintOfTheDayRef, SaintOfTheDayProps>(({ trigge
     const today = new Date();
     const currentMonthName = allMonths[today.getMonth()];
     
-    // Only set month if it's one of the allowed ones
+    let initialMonth = 'Outubro';
     if (months.includes(currentMonthName)) {
-      setSelectedMonth(currentMonthName);
-      if (monthCarouselApi) {
-        const targetIndex = months.indexOf(currentMonthName);
-        if (targetIndex !== -1) {
-            monthCarouselApi.scrollTo(targetIndex, true);
-        }
+      initialMonth = currentMonthName;
+    }
+    setSelectedMonth(initialMonth);
+
+    if (monthCarouselApi) {
+      const targetIndex = months.indexOf(initialMonth);
+      if (targetIndex !== -1) {
+          monthCarouselApi.scrollTo(targetIndex, true);
       }
-      
-      const dayOfMonth = today.getDate();
-      const initialIndex = saintsOfTheDay
-        .filter(s => s.month === currentMonthName)
-        .findIndex(day => day.day >= dayOfMonth);
-      
-      const startIndex = initialIndex !== -1 ? initialIndex : 0;
-      setCurrentSlide(startIndex);
+    }
+
+    if (initialMonth === currentMonthName) {
+        const dayOfMonth = today.getDate();
+        const saintsForTodayMonth = saintsOfTheDay.filter(s => s.month === currentMonthName);
+        const initialIndex = saintsForTodayMonth.findIndex(day => day.day >= dayOfMonth);
+        const startIndex = initialIndex !== -1 ? initialIndex : 0;
+        setCurrentSlide(startIndex);
     } else {
-      // Default to October if current month is not in the list
-      setSelectedMonth('Outubro');
-      if (monthCarouselApi) {
-          monthCarouselApi.scrollTo(0, true);
-      }
+        setCurrentSlide(0);
     }
     
     setHydrated(true);
@@ -193,7 +205,7 @@ const SaintOfTheDay = forwardRef<SaintOfTheDayRef, SaintOfTheDayProps>(({ trigge
   }
 
   if (!hydrated || !selectedMonth) {
-    return <SaintOfTheDay.Skeleton />;
+    return <SaintOfTheDaySkeleton />;
   }
 
   const dayData = saintsForCurrentMonth[currentSlide];
@@ -298,19 +310,4 @@ const SaintOfTheDay = forwardRef<SaintOfTheDayRef, SaintOfTheDayProps>(({ trigge
 
 SaintOfTheDay.displayName = 'SaintOfTheDay';
 
-SaintOfTheDay.Skeleton = function SaintOfTheDaySkeleton() {
-    return (
-        <div className="p-4 md:p-6 bg-gray-100/70 backdrop-blur-sm rounded-xl shadow-lg mt-2 relative">
-            <div className="flex items-center justify-between mb-2">
-                <Skeleton className="h-10 w-10" />
-                <Skeleton className="h-6 w-32" />
-                <Skeleton className="h-10 w-10" />
-            </div>
-            <Skeleton className="h-24 w-full rounded-lg" />
-        </div>
-    );
-};
-
 export default SaintOfTheDay;
-
-    
