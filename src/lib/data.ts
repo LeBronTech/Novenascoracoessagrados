@@ -97,8 +97,7 @@ export const novenaData: Record<string, Novena> = {
   sao_jose_operario: {
     saintName: "São José Operário",
     novenaTitle: "Novena a São José Operário",
-    description: "Esta é uma novena tradicional em honra a São José, pai virginal de Nosso Senhor. A oração pode ser feita a qualquer tempo do ano, mas é especialmente recomendada em preparação para as suas festas.",
-    initialPrayer: `<p>Não me lembro de até hoje lhe ter pedido alguma coisa que não me tenha concedido... Parece-me que Deus concede aos outros santos a graça de nos auxiliar nesta ou naquela necessidade, mas sei por experiência que São José nos socorre em todas, como se Nosso Senhor quisesse fazer-nos compreender que, assim como Ele lhe era submisso na terra, porque estava no lugar de pai e como tal era chamado, também no céu não pode recusar-lhe nada. <em>(Santa Teresa d’Ávila)</em></p>`,
+    description: "Esta é uma novena tradicional em honra a São José, pai virginal de Nosso Senhor. Encontra-se em muitíssimos sítios na internet, razão pela qual dispensamos fazer referência a algum em particular. A oração pode ser feita a qualquer tempo do ano, mas é especialmente recomendada do dia 10 ao 18 de março, em preparação para a solenidade de São José, e do dia 22 ao 30 de abril, véspera da festa de São José Operário.\n\nJá fizemos isto em outras ocasiões, mas não custa lembrar de novo a recomendação feita certa vez por Santa Teresa d’Ávila para que tenhamos devoção ao patriarca da Sagrada Família:\n\nNão me lembro de até hoje lhe ter pedido alguma coisa que não me tenha concedido, nem posso pensar sem admiração nas graças que Deus me tem concedido por sua intercessão e nos perigos de que me tem livrado, tanto para a alma como para o corpo. Parece-me que Deus concede aos outros santos a graça de nos auxiliar nesta ou naquela necessidade, mas sei por experiência que São José nos socorre em todas, como se Nosso Senhor quisesse fazer-nos compreender que, assim como Ele lhe era submisso na terra, porque estava no lugar de pai e como tal era chamado, também no céu não pode recusar-lhe nada.",
     finalPrayer: `<h4 class="section-title text-xl font-bold mt-6 mb-2">Oração Final</h4><div class="prayer-block"><p>Glorioso São José, que fostes exaltado pelo Eterno Pai, obedecido pelo Verbo Encarnado, favorecido pelo Espírito Santo e amado pela Virgem Maria; louvo e bendigo a Santíssima Trindade pelos privilégios e méritos com que vos enriqueceu. Sois poderosíssimo e jamais se ouviu dizer que alguém tenha recorrido a vós e fosse por vós desamparado. Sois o consolador dos aflitos, o amparo dos míseros e o advogado dos pecadores. Acolhei, pois, com bondade paternal a quem vos invoca com filial confiança e alcançai-me as graças que vos peço nesta novena. Eu vos escolho por meu especial protetor. Sede, depois de Jesus e Maria, minha consolação nesta terra, meu refúgio nas desgraças, meu guia nas incertezas, meu conforto nas tribulações, meu pai solícito em todas as necessidades. Obtende-me, finalmente, como coroa dos vossos favores, uma boa e santa morte na graça de Nosso Senhor. Amém.</p></div>`,
     days: [
         { 
@@ -696,7 +695,7 @@ export const saints: Saint[] = [
   { id: 'chiara_luce', name: 'Beata Chiara Luce', imageUrl: 'https://i.postimg.cc/YSW99892/image.png', month: 'Outubro', startDate: '20/10', endDate: '28/10', feastDay: '29/Out' },
   { id: 'todos_santos', name: 'Todos os Santos', imageUrl: 'https://i.postimg.cc/j29jkK7b/download.jpg', month: 'Outubro', startDate: '23/10', endDate: '31/10', feastDay: '01/Nov' },
   //Novembro
-  { id: 'almas', name: 'Almas', imageUrl: 'https://i.postimg.cc/W1vR0S1v/image.png', month: 'Novembro', startDate: '24/10', endDate: '01/11', feastDay: '02/Nov' },
+  { id: 'almas', name: 'Almas', imageUrl: 'https://i.postimg.cc/G2DDG2TC/dfed164f02d4d4d2bccaa939385df13b.jpg', month: 'Novembro', startDate: '24/10', endDate: '01/11', feastDay: '02/Nov' },
   { id: 'martinho_porres', name: 'S. M. de Porres', imageUrl: 'https://i.postimg.cc/Y0tMTg84/image.png', month: 'Novembro', startDate: '25/10', endDate: '02/11', feastDay: '03/Nov' },
   { id: 'isabel_hungria', name: 'S. Isabel da Hungria', imageUrl: 'https://i.postimg.cc/pdDpq2dk/image.png', month: 'Novembro', startDate: '08/11', endDate: '16/11', feastDay: '17/Nov' },
   { id: 'apresentacao_ns', name: 'Apresentação de N.S.', imageUrl: 'https://i.postimg.cc/3Js86PzK/image.png', month: 'Novembro', startDate: '12/11', endDate: '20/11', feastDay: '21/Nov' },
@@ -1020,8 +1019,8 @@ export const saintsOfTheDay: SaintOfTheDayData[] = [
     day: 2,
     month: 'Novembro',
     saints: [{
-      name: 'Finados',
-      imageUrl: 'https://i.postimg.cc/W1vR0S1v/image.png',
+      name: 'Fiéis Defuntos',
+      imageUrl: 'https://i.postimg.cc/G2DDG2TC/dfed164f02d4d4d2bccaa939385df13b.jpg',
       story: `<h4>A Igreja Padecente</h4><p>Logo após celebrar a glória da Igreja Triunfante, a Igreja Militante volta seu olhar e seu coração para a Igreja Padecente: as almas dos fiéis que partiram deste mundo na amizade com Deus, mas que ainda precisam de uma purificação final para entrar na alegria plena do Céu. Esta purificação é o que a doutrina católica chama de Purgatório. Não é um "segundo inferno", mas uma antecâmara do Céu, um estado de purificação no amor, onde as almas, já salvas, se preparam para o encontro definitivo com a santidade de Deus.</p><h4>O Vínculo da Oração</h4><p>A Comemoração de Todos os Fiéis Defuntos é um dia de profunda caridade cristã. Acreditamos firmemente, com base na Tradição da Igreja, que as nossas orações, sacrifícios e, sobretudo, a Santa Missa oferecida por eles, podem ajudá-los e aliviar seus sofrimentos. É um poderoso exercício da Comunhão dos Santos, que une a Igreja da terra, do Céu e do Purgatório. Ao rezar pelos que nos precederam, expressamos nossa fé na ressurreição e nossa esperança de reencontrá-los um dia na pátria celeste.</p><h4>Esperança na Vida Eterna</h4><p>Visitar os cemitérios, acender velas, rezar pelos falecidos não são atos de tristeza mórbida, mas de fé e esperança. Recordamos com carinho aqueles que amamos, agradecemos pelo dom de suas vidas e os entregamos à misericórdia infinita de Deus. Este dia nos confronta com a reality da morte, não como um fim, mas como uma passagem para a Vida Eterna, reafirmando a nossa fé em Cristo, que venceu a morte e nos abriu as portas do Céu.</p><p class="mt-4"><b>Oração:</b> Dai-lhes, Senhor, o descanso eterno, e a luz perpétua os ilumine. Que as almas dos fiéis defuntos, pela misericórdia de Deus, descansem em paz. Amém.</p><p class="mt-2 italic">Almas do purgatório, intercedei por nós.</p>`
     }]
   },
@@ -1040,7 +1039,7 @@ export const saintsOfTheDay: SaintOfTheDayData[] = [
       saints: [{
           name: 'São Carlos Borromeu',
           imageUrl: 'https://i.postimg.cc/J0k9gqXf/image.png',
-          story: '<p>São Carlos Borromeu foi um cardeal e arcebispo de Milão no século XVI, uma das figuras mais importantes da Reforma Católica. Sobrinho do Papa Pio IV, renunciou a uma vida de luxo para se dedicar inteiramente à reforma da sua diocese, aplicando com zelo os decretos do Concílio de Trento. Fundou seminários para a formação do clero, visitou todas as paróquias e, durante a peste de 1576, destacou-se pela sua caridade heróica, cuidando pessoalmente dos doentes e gastando toda a sua fortuna para ajudar os necessitados. É um modelo de pastor zeloso e de amor à Igreja.</p>'
+          story: '<p>São Carlos Borromeu foi um cardeal e arcebispo de Milão no século XVI, uma das figuras mais importantes da Reforma Católica. Sobrinho do Papa Pio IV, renunciou a uma vida de luxo para se dedicar inteiramente à reforma da sua diocese, aplicando com zelo os decretos do Concílio de Trento. Fundou seminários para a formação do clero, visitou todas as paróquias e, durante a peste de 1576, destacou-se pela sua caridade heroica, cuidando pessoalmente dos doentes e gastando toda a sua fortuna para ajudar os necessitados. É um modelo de pastor zeloso e de amor à Igreja.</p>'
       }]
   },
   {
@@ -1363,6 +1362,8 @@ export const saintsOfTheDay: SaintOfTheDayData[] = [
 
 
 
+
+    
 
     
 
