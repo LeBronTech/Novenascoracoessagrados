@@ -1,16 +1,14 @@
 
 'use client';
 
-import { useState, useEffect, forwardRef, useImperativeHandle } from 'react';
+import { useState, useEffect } from 'react';
 import { weeklyDevotions, monthlyDevotions, getLiturgicalInfo } from '@/lib/devotions';
-import type { Devotion, MonthlyDevotion, LiturgicalInfo } from '@/lib/devotions';
+import type { Devotion } from '@/lib/devotions';
 import { cn } from '@/lib/utils';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import React from 'react';
 import { Skeleton } from './ui/skeleton';
-import { BookOpen, Calendar, ChevronDown, Sparkles, X } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { BookOpen, Calendar } from 'lucide-react';
 import Image from 'next/image';
 
 
@@ -24,7 +22,7 @@ function DevotionSkeleton() {
     )
 }
 
-const LilyIcon = ({ className }: { className?: string }) => (
+export const LilyIcon = ({ className }: { className?: string }) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={cn("w-full h-full", className)}>
         <path d="M12 22a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2h0a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2z"/>
         <path d="M8 18c-1.5-1.5-2-4-2-6V7a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v5"/>
@@ -71,34 +69,12 @@ const Icon = ({ name, className }: { name: string, className?: string }) => {
   return icons[name] || null;
 };
 
-export interface WeeklyDevotionsRef {
-  closeAllDevotions: () => void;
-}
-
-interface WeeklyDevotionsProps {
-  onNavigateToNovena: () => void;
-}
-
-
-const WeeklyDevotions = forwardRef<WeeklyDevotionsRef, WeeklyDevotionsProps>(({ onNavigateToNovena }, ref) => {
+const WeeklyDevotions = () => {
   const [today, setToday] = useState<Date | null>(null);
-  const [openDevotion, setOpenDevotion] = useState<string | null>(null);
-
 
   useEffect(() => {
     setToday(new Date());
   }, []);
-
-  useImperativeHandle(ref, () => ({
-    closeAllDevotions: () => {
-      setOpenDevotion(null);
-    }
-  }));
-
-  const handleDevotionClick = (devotion: string) => {
-    setOpenDevotion(openDevotion === devotion ? null : devotion);
-  };
-
 
   if (!today) {
     return <DevotionSkeleton />;
@@ -113,7 +89,7 @@ const WeeklyDevotions = forwardRef<WeeklyDevotionsRef, WeeklyDevotionsProps>(({ 
 
   if (!weeklyDevotion || !monthlyDevotion || !liturgicalInfo) return <DevotionSkeleton />;
 
-  const liturgicalColorClasses: Record<LiturgicalInfo['color'], string> = {
+  const liturgicalColorClasses: Record<string, string> = {
     'green': 'devotion-item--green',
     'purple': 'devotion-item--purple',
     'red': 'devotion-item--red',
@@ -198,98 +174,9 @@ const WeeklyDevotions = forwardRef<WeeklyDevotionsRef, WeeklyDevotionsProps>(({ 
           </Tooltip>
         </TooltipProvider>
       </div>
-
-       <div className="w-full flex flex-col items-center justify-center gap-2 mt-2">
-            {/* St. Joseph Prayer */}
-            <div className="w-full max-w-lg">
-                <button
-                    onClick={() => handleDevotionClick('joseph')}
-                    className={cn(
-                        "flex items-center justify-center gap-3 w-auto h-auto px-4 py-3 rounded-full border-2 cursor-pointer transition-all duration-300 mx-auto",
-                        "devotion-item--wednesday",
-                        openDevotion === 'joseph' && "rounded-b-none"
-                    )}
-                >
-                  <div className="text-left">
-                      <span className="text-sm font-bold">Oração a São José</span>
-                  </div>
-                  <ChevronDown className={cn("h-4 w-4 shrink-0 transition-transform duration-200", openDevotion === 'joseph' && "rotate-180")} />
-                </button>
-                
-                <div 
-                  data-state={openDevotion === 'joseph' ? 'open' : 'closed'}
-                  className={cn("accordion-content relative rounded-b-lg shadow-lg bg-green-800/95 text-white transition-all duration-300 overflow-hidden")}
-                  style={{'--radix-accordion-content-height': 'var(--radix-collapsible-content-height)'} as React.CSSProperties}
-                >
-                   <div className="p-4 pt-4">
-                      <LilyIcon className="absolute top-2 left-2 w-12 h-12 text-green-200/20 opacity-70 -rotate-45" />
-                      <LilyIcon className="absolute bottom-2 right-2 w-12 h-12 text-green-200/20 opacity-70 rotate-[135deg]" />
-
-                      <button onClick={() => setOpenDevotion(null)} className="absolute top-2 right-2 p-1 rounded-full hover:bg-white/20 transition-colors z-10">
-                          <X className="w-4 h-4" />
-                          <span className="sr-only">Fechar</span>
-                      </button>
-                      <div className="flex flex-col sm:flex-row items-center gap-4">
-                          <Image src="https://i.postimg.cc/9QfFWvTB/image.png" alt="São José" width={100} height={100} className="w-24 h-24 rounded-lg object-cover border-2 border-green-200/50 shadow-md flex-shrink-0" />
-                          <Tabs defaultValue="francisco" className="w-full">
-                              <TabsList className="grid w-full grid-cols-2 bg-green-900/50">
-                                  <TabsTrigger value="francisco">Oração do Papa Francisco</TabsTrigger>
-                                  <TabsTrigger value="tradicional">Oração Tradicional</TabsTrigger>
-                              </TabsList>
-                              <TabsContent value="francisco" className="prose prose-sm text-green-100 max-w-none mt-4 text-left text-xs sm:text-sm">
-                                  <p>Salve, guardião do Redentor e esposo da Virgem Maria!<br/>A vós, Deus confiou o seu Filho; em vós, Maria depositou a sua confiança; convosco, Cristo tornou-Se homem.</p>
-                                  <p>Ó Bem-aventurado José, mostrai-vos pai também para nós e guiai-nos no caminho da vida. Alcançai-nos graça, misericórdia e coragem, e defendei-nos de todo o mal. Amen.</p>
-                                  <p className="text-right italic text-green-200/80 text-xs">- Papa Francisco, Patris Corde</p>
-                              </TabsContent>
-                              <TabsContent value="tradicional" className="prose prose-sm text-green-100 max-w-none mt-4 text-left text-xs sm:text-sm">
-                                  <p>Glorioso São José, que fostes exaltado pelo Eterno Pai, obedecido pelo Verbo Encarnado, favorecido pelo Espírito Santo e amado pela Virgem Maria; louvo e bendigo a Santíssima Trindade pelos privilégios e méritos com que vos enriqueceu. Sois poderosíssimo e jamais se ouviu dizer que alguém tenha recorrido a vós e fosse por vós desamparado.</p>
-                                  <p>Sois o consolador dos aflitos, o amparo dos míseros e o advogado dos pecadores. Acolhei, pois, com bondade paternal a quem vos invoca com filial confiança e alcançai-me as graças que vos peço. Sede, depois de Jesus e Maria, minha consolação, meu refúgio, meu guia e meu pai. Obtende-me, finalmente, uma boa e santa morte. Amém.</p>
-                              </TabsContent>
-                          </Tabs>
-                      </div>
-                      <div className="text-center mt-4">
-                          <Button onClick={onNavigateToNovena} size="sm" className="bg-green-200 text-green-900 hover:bg-white">
-                              Conheça também a novena a São José
-                          </Button>
-                      </div>
-                   </div>
-                </div>
-            </div>
-
-            {/* Marian Space */}
-            <div className="w-full max-w-lg">
-                <button
-                    onClick={() => handleDevotionClick('marian')}
-                    className={cn(
-                        "flex items-center justify-center gap-3 w-auto h-auto px-4 py-3 rounded-full border-2 cursor-pointer transition-all duration-300 mx-auto",
-                        "devotion-item--blue",
-                        openDevotion === 'marian' && "rounded-b-none"
-                    )}
-                >
-                  <Sparkles className="h-4 w-4" />
-                  <div className="text-left">
-                      <span className="text-sm font-bold">Espaço Mariano</span>
-                  </div>
-                  <ChevronDown className={cn("h-4 w-4 shrink-0 transition-transform duration-200", openDevotion === 'marian' && "rotate-180")} />
-                </button>
-                
-                <div 
-                  data-state={openDevotion === 'marian' ? 'open' : 'closed'}
-                  className={cn("accordion-content relative rounded-b-lg shadow-lg bg-sky-800/95 text-white transition-all duration-300 overflow-hidden")}
-                  style={{'--radix-accordion-content-height': 'var(--radix-collapsible-content-height)'} as React.CSSProperties}
-                >
-                   <div className="p-4 pt-4 text-center prose prose-sm text-sky-100 max-w-none">
-                       <h4 className='text-white'>Devoção a Nossa Senhora</h4>
-                      <p>Conteúdo sobre histórias e orações a Nossa Senhora em breve...</p>
-                   </div>
-                </div>
-            </div>
-
-       </div>
-
     </div>
   );
-});
+};
 
 WeeklyDevotions.displayName = 'WeeklyDevotions';
 export default WeeklyDevotions;
