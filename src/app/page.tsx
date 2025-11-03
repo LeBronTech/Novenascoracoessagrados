@@ -166,14 +166,12 @@ export default function Home() {
 
   const handleNavigateToNovena = (saintId: string) => {
     setShowJoseNovenaDialog(false);
-    setTimeout(() => {
-        const saint = saints.find(s => s.id === saintId);
-        if(saint) {
-            setSelectedMonth(saint.month);
-            setSelectedSaintId(saint.id);
-            novenaSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-    }, 200);
+    const saint = saints.find(s => s.id === saintId);
+    if(saint) {
+        setSelectedMonth(saint.month);
+        setSelectedSaintId(saint.id);
+        novenaSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   }
 
   return (
