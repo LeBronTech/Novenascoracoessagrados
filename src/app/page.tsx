@@ -57,6 +57,7 @@ export default function Home() {
   const novenaSectionRef = useRef<HTMLDivElement>(null);
   const [isSaintOfTheDayOpen, setIsSaintOfTheDayOpen] = useState(false);
   const [showJoseNovenaDialog, setShowJoseNovenaDialog] = useState(false);
+  const [isJoseDialogOpen, setIsJoseDialogOpen] = useState(false);
 
 
   const { toast } = useToast();
@@ -166,6 +167,7 @@ export default function Home() {
 
   const handleNavigateToNovena = (saintId: string) => {
     setShowJoseNovenaDialog(false);
+    setIsJoseDialogOpen(false);
     const saint = saints.find(s => s.id === saintId);
     if(saint) {
         setSelectedMonth(saint.month);
@@ -234,7 +236,7 @@ export default function Home() {
           
           <div className="mt-16 w-full flex flex-col md:flex-row items-start justify-center gap-4">
              <div className="w-full md:w-auto flex justify-center">
-                <Dialog>
+                <Dialog open={isJoseDialogOpen} onOpenChange={setIsJoseDialogOpen}>
                     <DialogTrigger asChild>
                         <div className="devotion-item devotion-item--wednesday font-bold text-sm">Espaço São José</div>
                     </DialogTrigger>
