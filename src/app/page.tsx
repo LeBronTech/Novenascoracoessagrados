@@ -234,7 +234,7 @@ export default function Home() {
             </div>
           </div>
           
-          <div className="mt-16 w-full flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="mt-16 w-full flex flex-row items-center justify-center gap-4">
             <Dialog open={isJoseDialogOpen} onOpenChange={setIsJoseDialogOpen}>
                 <DialogTrigger asChild>
                     <div className="devotion-item devotion-item--wednesday font-bold text-sm cursor-pointer">Espaço São José</div>
