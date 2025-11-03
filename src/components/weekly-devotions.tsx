@@ -9,7 +9,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import React from 'react';
 import { Skeleton } from './ui/skeleton';
-import { BookOpen, Calendar, ChevronDown, X } from 'lucide-react';
+import { BookOpen, Calendar, ChevronDown, Sparkles, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 
@@ -17,9 +17,9 @@ import Image from 'next/image';
 function DevotionSkeleton() {
     return (
         <div className="flex justify-center items-center flex-wrap gap-2 md:gap-4 my-6">
-            <Skeleton className="h-16 w-48 rounded-full" />
-            <Skeleton className="h-16 w-48 rounded-full" />
-            <Skeleton className="h-16 w-48 rounded-full" />
+            <Skeleton className="h-12 w-36 rounded-full" />
+            <Skeleton className="h-12 w-36 rounded-full" />
+            <Skeleton className="h-12 w-36 rounded-full" />
         </div>
     )
 }
@@ -38,34 +38,34 @@ const LilyIcon = ({ className }: { className?: string }) => (
 const Icon = ({ name, className }: { name: string, className?: string }) => {
   const icons: { [key: string]: React.ReactNode } = {
     'sunday': (
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={cn("h-7 w-7", className)}>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={cn("h-6 w-6", className)}>
         <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
       </svg>
     ),
     'monday': (
-       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={cn("h-7 w-7", className)}>
+       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={cn("h-6 w-6", className)}>
         <path d="M12 5v14"/>
         <path d="M5 12h14"/>
       </svg>
     ),
     'tuesday': (
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={cn("h-7 w-7", className)}>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={cn("h-6 w-6", className)}>
             <path d="M12 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" />
             <path d="M12 10a14.5 14.5 0 0 1-5.5-1 14.5 14.5 0 0 1-5.5 1" />
             <path d="M12 10a14.5 14.5 0 0 0 5.5-1 14.5 14.5 0 0 0 5.5 1" />
         </svg>
     ),
     'wednesday': (
-      <Image src="https://i.postimg.cc/MGDLNq8J/photo-2025-10-29-12-36-38.jpg" alt="Ícone de São José" width={28} height={28} className={cn("h-7 w-7 object-contain rounded-full", className)} />
+      <Image src="https://i.postimg.cc/MGDLNq8J/photo-2025-10-29-12-36-38.jpg" alt="Ícone de São José" width={24} height={24} className={cn("h-6 w-6 object-contain rounded-full", className)} />
     ),
     'thursday': (
-        <Image src="https://i.postimg.cc/rmstCwwP/photo-2025-10-29-11-23-53.jpg" alt="Ícone do Santíssimo Sacramento" width={28} height={28} className={cn("h-7 w-7 object-contain", className)} />
+        <Image src="https://i.postimg.cc/rmstCwwP/photo-2025-10-29-11-23-53.jpg" alt="Ícone do Santíssimo Sacramento" width={24} height={24} className={cn("h-6 w-6 object-contain", className)} />
     ),
     'friday': (
-      <Image src="https://i.postimg.cc/mgSwmhT7/photo-2025-10-29-11-23-59.jpg" alt="Ícone da Paixão de Cristo" width={28} height={28} className={cn("h-7 w-7 object-contain", className)} />
+      <Image src="https://i.postimg.cc/mgSwmhT7/photo-2025-10-29-11-23-59.jpg" alt="Ícone da Paixão de Cristo" width={24} height={24} className={cn("h-6 w-6 object-contain", className)} />
     ),
     'saturday': (
-      <Image src="https://i.postimg.cc/B6n2YCmZ/photo-2025-10-29-11-23-57.jpg" alt="Ícone de Nossa Senhora" width={28} height={28} className={cn("h-7 w-7 object-contain", className)} />
+      <Image src="https://i.postimg.cc/B6n2YCmZ/photo-2025-10-29-11-23-57.jpg" alt="Ícone de Nossa Senhora" width={24} height={24} className={cn("h-6 w-6 object-contain", className)} />
     ),
   };
   return icons[name] || null;
@@ -82,7 +82,7 @@ interface WeeklyDevotionsProps {
 
 const WeeklyDevotions = forwardRef<WeeklyDevotionsRef, WeeklyDevotionsProps>(({ onNavigateToNovena }, ref) => {
   const [today, setToday] = useState<Date | null>(null);
-  const [openDevotion, setOpenDevotion] = useState<number | null>(null);
+  const [openDevotion, setOpenDevotion] = useState<string | null>(null);
 
 
   useEffect(() => {
@@ -95,10 +95,8 @@ const WeeklyDevotions = forwardRef<WeeklyDevotionsRef, WeeklyDevotionsProps>(({ 
     }
   }));
 
-  const handleDevotionClick = (dayOfWeek: number) => {
-    if (dayOfWeek === 3) { // Wednesday for São José
-        setOpenDevotion(openDevotion === 3 ? null : 3);
-    }
+  const handleDevotionClick = (devotion: string) => {
+    setOpenDevotion(openDevotion === devotion ? null : devotion);
   };
 
 
@@ -135,7 +133,7 @@ const WeeklyDevotions = forwardRef<WeeklyDevotionsRef, WeeklyDevotionsProps>(({ 
 
   return (
     <div className="flex flex-col items-center justify-center gap-2 md:gap-4 my-6">
-      <div className="flex justify-center items-start flex-wrap gap-2 md:gap-4">
+      <div className="flex justify-center items-start flex-wrap gap-2 md:gap-3">
         <TooltipProvider>
           {/* Liturgical Info */}
           <Tooltip>
@@ -152,6 +150,23 @@ const WeeklyDevotions = forwardRef<WeeklyDevotionsRef, WeeklyDevotionsProps>(({ 
             </TooltipTrigger>
             <TooltipContent className={cn('text-primary-foreground border-primary-foreground/20', liturgicalColorClasses[liturgicalInfo.color])}>
               <p className="font-bold text-center">Cor Litúrgica: {liturgicalInfo.color.charAt(0).toUpperCase() + liturgicalInfo.color.slice(1)}</p>
+            </TooltipContent>
+          </Tooltip>
+          
+          {/* Monthly Devotion */}
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <div className='devotion-item group'>
+                <Calendar className="devotion-icon" />
+                <div className="text-left">
+                    <span className="text-sm font-bold text-gray-700">{monthlyDevotion.name}</span>
+                    <p className="text-xs text-gray-600">{monthlyDevotion.devotion}</p>
+                </div>
+              </div>
+            </TooltipTrigger>
+            <TooltipContent className="bg-primary text-primary-foreground border-primary-foreground/20">
+              <p className="font-bold">Devoção do Mês: {monthlyDevotion.name}</p>
+              <p>{monthlyDevotion.devotion}</p>
             </TooltipContent>
           </Tooltip>
 
@@ -181,46 +196,30 @@ const WeeklyDevotions = forwardRef<WeeklyDevotionsRef, WeeklyDevotionsProps>(({ 
               {weeklyDevotion.alert && dayOfWeek === 5 && <p className="mt-1 text-red-300 font-semibold">{weeklyDevotion.alert}</p>}
             </TooltipContent>
           </Tooltip>
-
-          {/* Monthly Devotion */}
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <div className='devotion-item group'>
-                <Calendar className="devotion-icon" />
-                <div className="text-left">
-                    <span className="text-sm font-bold text-gray-700">{monthlyDevotion.name}</span>
-                    <p className="text-xs text-gray-600">{monthlyDevotion.devotion}</p>
-                </div>
-              </div>
-            </TooltipTrigger>
-            <TooltipContent className="bg-primary text-primary-foreground border-primary-foreground/20">
-              <p className="font-bold">Devoção do Mês: {monthlyDevotion.name}</p>
-              <p>{monthlyDevotion.devotion}</p>
-            </TooltipContent>
-          </Tooltip>
         </TooltipProvider>
       </div>
 
-      {/* Expandable Wednesday devotion */}
-       <div className="w-full flex justify-center mt-2">
+       <div className="w-full flex flex-col items-center justify-center gap-2 mt-2">
+            {/* St. Joseph Prayer */}
             <div className="w-full max-w-lg">
                 <button
-                    onClick={() => handleDevotionClick(3)}
+                    onClick={() => handleDevotionClick('joseph')}
                     className={cn(
                         "flex items-center justify-center gap-3 w-auto h-auto px-4 py-3 rounded-full border-2 cursor-pointer transition-all duration-300 mx-auto",
                         "devotion-item--wednesday",
-                        openDevotion === 3 && "rounded-b-none"
+                        openDevotion === 'joseph' && "rounded-b-none"
                     )}
                 >
                   <div className="text-left">
                       <span className="text-sm font-bold">Oração a São José</span>
                   </div>
-                  <ChevronDown className={cn("h-4 w-4 shrink-0 transition-transform duration-200", openDevotion === 3 && "rotate-180")} />
+                  <ChevronDown className={cn("h-4 w-4 shrink-0 transition-transform duration-200", openDevotion === 'joseph' && "rotate-180")} />
                 </button>
                 
                 <div 
-                  data-state={openDevotion === 3 ? 'open' : 'closed'}
+                  data-state={openDevotion === 'joseph' ? 'open' : 'closed'}
                   className={cn("accordion-content relative rounded-b-lg shadow-lg bg-green-800/95 text-white transition-all duration-300 overflow-hidden")}
+                  style={{'--radix-accordion-content-height': 'var(--radix-collapsible-content-height)'} as React.CSSProperties}
                 >
                    <div className="p-4 pt-4">
                       <LilyIcon className="absolute top-2 left-2 w-12 h-12 text-green-200/20 opacity-70 -rotate-45" />
@@ -256,6 +255,36 @@ const WeeklyDevotions = forwardRef<WeeklyDevotionsRef, WeeklyDevotionsProps>(({ 
                    </div>
                 </div>
             </div>
+
+            {/* Marian Space */}
+            <div className="w-full max-w-lg">
+                <button
+                    onClick={() => handleDevotionClick('marian')}
+                    className={cn(
+                        "flex items-center justify-center gap-3 w-auto h-auto px-4 py-3 rounded-full border-2 cursor-pointer transition-all duration-300 mx-auto",
+                        "devotion-item--blue",
+                        openDevotion === 'marian' && "rounded-b-none"
+                    )}
+                >
+                  <Sparkles className="h-4 w-4" />
+                  <div className="text-left">
+                      <span className="text-sm font-bold">Espaço Mariano</span>
+                  </div>
+                  <ChevronDown className={cn("h-4 w-4 shrink-0 transition-transform duration-200", openDevotion === 'marian' && "rotate-180")} />
+                </button>
+                
+                <div 
+                  data-state={openDevotion === 'marian' ? 'open' : 'closed'}
+                  className={cn("accordion-content relative rounded-b-lg shadow-lg bg-sky-800/95 text-white transition-all duration-300 overflow-hidden")}
+                  style={{'--radix-accordion-content-height': 'var(--radix-collapsible-content-height)'} as React.CSSProperties}
+                >
+                   <div className="p-4 pt-4 text-center prose prose-sm text-sky-100 max-w-none">
+                       <h4 className='text-white'>Devoção a Nossa Senhora</h4>
+                      <p>Conteúdo sobre histórias e orações a Nossa Senhora em breve...</p>
+                   </div>
+                </div>
+            </div>
+
        </div>
 
     </div>

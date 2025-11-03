@@ -305,13 +305,13 @@
   
   /* Weekly Devotions */
   .devotion-item {
-    @apply flex items-center justify-center gap-3 w-auto h-auto px-4 py-3 rounded-full border-2 border-gray-300/50 bg-gray-100/70 backdrop-blur-sm cursor-pointer transition-all duration-300;
+    @apply flex items-center justify-center gap-2 w-auto h-auto px-3 py-2 rounded-full border-2 border-gray-300/50 bg-gray-100/70 backdrop-blur-sm cursor-pointer transition-all duration-300;
   }
   .devotion-item:hover {
     @apply opacity-80 scale-105;
   }
   .devotion-item .devotion-icon {
-    @apply w-6 h-6 text-gray-600 transition-transform duration-300 ease-in-out;
+    @apply w-5 h-5 text-gray-600 transition-transform duration-300 ease-in-out;
   }
   .devotion-item:hover .devotion-icon {
     transform: scale(1.1);
@@ -342,6 +342,11 @@
   .devotion-item--rose .devotion-icon { @apply text-white; }
   .devotion-item--rose .text-sm { @apply text-white; }
   .devotion-item--rose .text-xs { @apply text-rose-100; }
+  
+  .devotion-item--blue { @apply bg-sky-600/80 text-white border-sky-400/50; }
+  .devotion-item--blue .devotion-icon { @apply text-white; }
+  .devotion-item--blue .text-sm { @apply text-white; }
+  .devotion-item--blue .text-xs { @apply text-sky-100; }
 
   /* Daily Devotion Colors */
   .devotion-item--sunday { /* Not specified, default used */ }
@@ -417,3 +422,4 @@
       max-height: var(--radix-accordion-content-height);
     }
 }
+
