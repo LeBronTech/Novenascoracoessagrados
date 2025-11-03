@@ -7,13 +7,14 @@ import Footer from '@/components/footer';
 import SaintSelector from '@/components/saint-selector';
 import NovenaDisplay from '@/components/novena-display';
 import SaintOfTheDay, { type SaintOfTheDayRef } from '@/components/saint-of-the-day';
-import WeeklyDevotions, { type WeeklyDevotionsRef } from '@/components/weekly-devotions';
+import WeeklyDevotions from '@/components/weekly-devotions';
 import { saints, months, novenaData } from '@/lib/data';
 import type { Saint } from '@/lib/data';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetTrigger } from '@/components/ui/sheet';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { Menu, ChevronDown, X } from 'lucide-react';
+import { Menu } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { parse, differenceInDays, getYear } from 'date-fns';
 import Image from 'next/image';
@@ -52,13 +53,10 @@ export default function Home() {
   const [hydrated, setHydrated] = useState(false);
   const [theme, setTheme] = useState<Theme>('theme-dark-gray');
   const saintOfTheDayRef = useRef<SaintOfTheDayRef>(null);
-  const weeklyDevotionsRef = useRef<WeeklyDevotionsRef>(null);
   const saintOfTheDaySectionRef = useRef<HTMLDivElement>(null);
   const novenaSectionRef = useRef<HTMLDivElement>(null);
   const [isSaintOfTheDayOpen, setIsSaintOfTheDayOpen] = useState(false);
   const [showJoseNovenaDialog, setShowJoseNovenaDialog] = useState(false);
-  const [isJoseOpen, setIsJoseOpen] = useState(false);
-  const [isMarianoOpen, setIsMarianoOpen] = useState(false);
 
 
   const { toast } = useToast();
@@ -178,16 +176,6 @@ export default function Home() {
     }, 200);
   }
 
-  const handleJoseClick = () => {
-    setIsJoseOpen(!isJoseOpen);
-    if (isMarianoOpen) setIsMarianoOpen(false);
-  }
-
-  const handleMarianoClick = () => {
-    setIsMarianoOpen(!isMarianoOpen);
-    if (isJoseOpen) setIsJoseOpen(false);
-  }
-
   return (
     <>
       <LoadingScreen isLoading={!hydrated} />
@@ -245,88 +233,61 @@ export default function Home() {
                 </Button>
             </div>
           </div>
-
+          
           <div className="mt-16 w-full flex flex-col md:flex-row items-start justify-center gap-4">
-             <div className="w-full md:w-1/2">
-                <button
-                    onClick={handleJoseClick}
-                    className={cn(
-                        "flex items-center justify-center gap-3 w-auto h-auto px-4 py-3 rounded-full border-2 cursor-pointer transition-all duration-300 mx-auto",
-                        "devotion-item--wednesday",
-                        isJoseOpen && "rounded-b-none"
-                    )}
-                >
-                  <div className="text-left">
-                      <span className="text-sm font-bold">Espaço São José</span>
-                  </div>
-                  <ChevronDown className={cn("h-4 w-4 shrink-0 transition-transform duration-200", isJoseOpen && "rotate-180")} />
-                </button>
-                
-                <div 
-                  data-state={isJoseOpen ? 'open' : 'closed'}
-                  className={cn("accordion-content relative rounded-b-lg shadow-lg bg-green-800/95 text-white transition-all duration-300 overflow-hidden")}
-                  style={{'--radix-accordion-content-height': 'var(--radix-collapsible-content-height)'} as React.CSSProperties}
-                >
-                   <div className="p-4 pt-4">
-                      <LilyIcon className="absolute top-2 left-2 w-12 h-12 text-green-200/20 opacity-70 -rotate-45" />
-                      <LilyIcon className="absolute bottom-2 right-2 w-12 h-12 text-green-200/20 opacity-70 rotate-[135deg]" />
-
-                      <button onClick={() => setIsJoseOpen(false)} className="absolute top-2 right-2 p-1 rounded-full hover:bg-white/20 transition-colors z-10">
-                          <X className="w-4 h-4" />
-                          <span className="sr-only">Fechar</span>
-                      </button>
-                      <div className="flex flex-col sm:flex-row items-center gap-4">
-                          <Image src="https://i.postimg.cc/9QfFWvTB/image.png" alt="São José" width={100} height={100} className="w-24 h-24 rounded-lg object-cover border-2 border-green-200/50 shadow-md flex-shrink-0" />
-                          <Tabs defaultValue="francisco" className="w-full">
-                              <TabsList className="grid w-full grid-cols-2 bg-green-900/50">
-                                  <TabsTrigger value="francisco">Oração do Papa Francisco</TabsTrigger>
-                                  <TabsTrigger value="tradicional">Oração Tradicional</TabsTrigger>
-                              </TabsList>
-                              <TabsContent value="francisco" className="prose prose-sm text-green-100 max-w-none mt-4 text-left text-xs sm:text-sm">
-                                  <p>Salve, guardião do Redentor e esposo da Virgem Maria!<br/>A vós, Deus confiou o seu Filho; em vós, Maria depositou a sua confiança; convosco, Cristo tornou-Se homem.</p>
-                                  <p>Ó Bem-aventurado José, mostrai-vos pai também para nós e guiai-nos no caminho da vida. Alcançai-nos graça, misericórdia e coragem, e defendei-nos de todo o mal. Amen.</p>
-                                  <p className="text-right italic text-green-200/80 text-xs">- Papa Francisco, Patris Corde</p>
-                              </TabsContent>
-                              <TabsContent value="tradicional" className="prose prose-sm text-green-100 max-w-none mt-4 text-left text-xs sm:text-sm">
-                                  <p>Glorioso São José, que fostes exaltado pelo Eterno Pai, obedecido pelo Verbo Encarnado, favorecido pelo Espírito Santo e amado pela Virgem Maria; louvo e bendigo a Santíssima Trindade pelos privilégios e méritos com que vos enriqueceu. Sois poderosíssimo e jamais se ouviu dizer que alguém tenha recorrido a vós e fosse por vós desamparado.</p>
-                                  <p>Sois o consolador dos aflitos, o amparo dos míseros e o advogado dos pecadores. Acolhei, pois, com bondade paternal a quem vos invoca com filial confiança e alcançai-me as graças que vos peço. Sede, depois de Jesus e Maria, minha consolação, meu refúgio, meu guia e meu pai. Obtende-me, finalmente, uma boa e santa morte. Amém.</p>
-                              </TabsContent>
-                          </Tabs>
-                      </div>
-                      <div className="text-center mt-4">
-                          <Button onClick={() => setShowJoseNovenaDialog(true)} size="sm" className="bg-green-200 text-green-900 hover:bg-white">
-                              Conheça também a novena a São José
-                          </Button>
-                      </div>
-                   </div>
-                </div>
+             <div className="w-full md:w-1/2 flex justify-center">
+                <Dialog>
+                    <DialogTrigger asChild>
+                        <Button className="devotion-item--dark-blue font-bold">Espaço São José</Button>
+                    </DialogTrigger>
+                    <DialogContent className="sm:max-w-[625px] bg-green-800/95 text-white border-green-600/50">
+                        <DialogHeader>
+                            <DialogTitle className="font-brand text-xl text-white flex items-center gap-2"><LilyIcon className="w-6 h-6 text-green-200/50" />Espaço São José</DialogTitle>
+                        </DialogHeader>
+                        <div className="p-4 pt-2">
+                            <div className="flex flex-col sm:flex-row items-center gap-4">
+                                <Image src="https://i.postimg.cc/9QfFWvTB/image.png" alt="São José" width={100} height={100} className="w-24 h-24 rounded-lg object-cover border-2 border-green-200/50 shadow-md flex-shrink-0" />
+                                <Tabs defaultValue="francisco" className="w-full">
+                                    <TabsList className="grid w-full grid-cols-2 bg-green-900/50">
+                                        <TabsTrigger value="francisco">Oração do Papa Francisco</TabsTrigger>
+                                        <TabsTrigger value="tradicional">Oração Tradicional</TabsTrigger>
+                                    </TabsList>
+                                    <TabsContent value="francisco" className="prose prose-sm text-green-100 max-w-none mt-4 text-left text-xs sm:text-sm">
+                                        <p>Salve, guardião do Redentor e esposo da Virgem Maria!<br/>A vós, Deus confiou o seu Filho; em vós, Maria depositou a sua confiança; convosco, Cristo tornou-Se homem.</p>
+                                        <p>Ó Bem-aventurado José, mostrai-vos pai também para nós e guiai-nos no caminho da vida. Alcançai-nos graça, misericórdia e coragem, e defendei-nos de todo o mal. Amen.</p>
+                                        <p className="text-right italic text-green-200/80 text-xs">- Papa Francisco, Patris Corde</p>
+                                    </TabsContent>
+                                    <TabsContent value="tradicional" className="prose prose-sm text-green-100 max-w-none mt-4 text-left text-xs sm:text-sm">
+                                        <p>Glorioso São José, que fostes exaltado pelo Eterno Pai, obedecido pelo Verbo Encarnado, favorecido pelo Espírito Santo e amado pela Virgem Maria; louvo e bendigo a Santíssima Trindade pelos privilégios e méritos com que vos enriqueceu. Sois poderosíssimo e jamais se ouviu dizer que alguém tenha recorrido a vós e fosse por vós desamparado.</p>
+                                        <p>Sois o consolador dos aflitos, o amparo dos míseros e o advogado dos pecadores. Acolhei, pois, com bondade paternal a quem vos invoca com filial confiança e alcançai-me as graças que vos peço. Sede, depois de Jesus e Maria, minha consolação, meu refúgio, meu guia e meu pai. Obtende-me, finalmente, uma boa e santa morte. Amém.</p>
+                                    </TabsContent>
+                                </Tabs>
+                            </div>
+                            <div className="text-center mt-4">
+                                <Button onClick={() => setShowJoseNovenaDialog(true)} size="sm" className="bg-green-200 text-green-900 hover:bg-white">
+                                    Conheça também a novena a São José
+                                </Button>
+                            </div>
+                        </div>
+                    </DialogContent>
+                </Dialog>
             </div>
 
-            <div className="w-full md:w-1/2">
-                <button
-                    onClick={handleMarianoClick}
-                    className={cn(
-                        "flex items-center justify-center gap-3 w-auto h-auto px-4 py-3 rounded-full border-2 cursor-pointer transition-all duration-300 mx-auto",
-                        "devotion-item--dark-blue",
-                        isMarianoOpen && "rounded-b-none"
-                    )}
-                >
-                  <div className="text-left">
-                      <span className="text-sm font-bold">Espaço Mariano</span>
-                  </div>
-                  <ChevronDown className={cn("h-4 w-4 shrink-0 transition-transform duration-200", isMarianoOpen && "rotate-180")} />
-                </button>
-                
-                <div 
-                  data-state={isMarianoOpen ? 'open' : 'closed'}
-                  className={cn("accordion-content relative rounded-b-lg shadow-lg bg-sky-800/95 text-white transition-all duration-300 overflow-hidden")}
-                  style={{'--radix-accordion-content-height': 'var(--radix-collapsible-content-height)'} as React.CSSProperties}
-                >
-                   <div className="p-4 pt-4 text-center prose prose-sm text-sky-100 max-w-none">
-                       <h4 className='text-white'>Devoção a Nossa Senhora</h4>
-                      <p>Conteúdo sobre histórias e orações a Nossa Senhora em breve...</p>
-                   </div>
-                </div>
+            <div className="w-full md:w-1/2 flex justify-center">
+                 <Dialog>
+                    <DialogTrigger asChild>
+                        <Button className="devotion-item--dark-blue font-bold">Espaço Mariano</Button>
+                    </DialogTrigger>
+                    <DialogContent className="sm:max-w-[625px] bg-sky-800/95 text-white border-sky-600/50">
+                        <DialogHeader>
+                           <DialogTitle className="font-brand text-xl text-white">Espaço Mariano</DialogTitle>
+                        </DialogHeader>
+                        <div className="p-4 pt-2 text-center prose prose-sm text-sky-100 max-w-none">
+                            <h4 className='text-white'>Devoção a Nossa Senhora</h4>
+                            <p>Conteúdo sobre histórias e orações a Nossa Senhora em breve...</p>
+                        </div>
+                    </DialogContent>
+                </Dialog>
             </div>
           </div>
 
