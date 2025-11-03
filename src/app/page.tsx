@@ -238,7 +238,7 @@ export default function Home() {
              <div className="w-full md:w-auto flex justify-center">
                 <Dialog>
                     <DialogTrigger asChild>
-                        <Button className="devotion-item devotion-item--wednesday font-bold">Espaço São José</Button>
+                        <div className="devotion-item devotion-item--wednesday font-bold">Espaço São José</div>
                     </DialogTrigger>
                     <DialogContent className="sm:max-w-[625px] bg-green-800/95 text-white border-green-600/50">
                         <DialogHeader>
@@ -276,7 +276,7 @@ export default function Home() {
             <div className="w-full md:w-auto flex justify-center">
                  <Dialog>
                     <DialogTrigger asChild>
-                        <Button className="devotion-item devotion-item--dark-blue font-bold">Espaço Mariano</Button>
+                        <div className="devotion-item devotion-item--dark-blue font-bold">Espaço Mariano</div>
                     </DialogTrigger>
                     <DialogContent className="sm:max-w-[625px] bg-blue-900/95 text-white border-blue-700/50">
                         <DialogHeader>
@@ -340,5 +340,3 @@ export default function Home() {
     </>
   );
 }
-
-    
