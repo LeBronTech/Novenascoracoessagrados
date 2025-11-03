@@ -278,7 +278,7 @@ export default function Home() {
                     <DialogTrigger asChild>
                         <Button className="devotion-item devotion-item--dark-blue font-bold">Espaço Mariano</Button>
                     </DialogTrigger>
-                    <DialogContent className="sm:max-w-[625px] bg-sky-800/95 text-white border-sky-600/50">
+                    <DialogContent className="sm:max-w-[625px] bg-blue-900/95 text-white border-blue-700/50">
                         <DialogHeader>
                            <DialogTitle className="font-brand text-xl text-white">Espaço Mariano</DialogTitle>
                         </DialogHeader>
@@ -340,3 +340,5 @@ export default function Home() {
     </>
   );
 }
+
+    
