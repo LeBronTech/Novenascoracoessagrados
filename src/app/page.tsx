@@ -235,10 +235,10 @@ export default function Home() {
           </div>
           
           <div className="mt-16 w-full flex flex-col md:flex-row items-start justify-center gap-4">
-             <div className="w-full md:w-1/2 flex justify-center">
+             <div className="w-full md:w-auto flex justify-center">
                 <Dialog>
                     <DialogTrigger asChild>
-                        <Button className="devotion-item--dark-blue font-bold">Espaço São José</Button>
+                        <Button className="devotion-item--wednesday font-bold">Espaço São José</Button>
                     </DialogTrigger>
                     <DialogContent className="sm:max-w-[625px] bg-green-800/95 text-white border-green-600/50">
                         <DialogHeader>
@@ -273,7 +273,7 @@ export default function Home() {
                 </Dialog>
             </div>
 
-            <div className="w-full md:w-1/2 flex justify-center">
+            <div className="w-full md:w-auto flex justify-center">
                  <Dialog>
                     <DialogTrigger asChild>
                         <Button className="devotion-item--dark-blue font-bold">Espaço Mariano</Button>
