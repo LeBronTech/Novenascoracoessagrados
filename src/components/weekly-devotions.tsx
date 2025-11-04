@@ -47,11 +47,7 @@ const Icon = ({ name, className }: { name: string, className?: string }) => {
       </svg>
     ),
     'tuesday': (
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={cn("h-6 w-6", className)}>
-            <path d="M12 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" />
-            <path d="M12 10a14.5 14.5 0 0 1-5.5-1 14.5 14.5 0 0 1-5.5 1" />
-            <path d="M12 10a14.5 14.5 0 0 0 5.5-1 14.5 14.5 0 0 0 5.5 1" />
-        </svg>
+        <Image src="https://i.postimg.cc/43GZHxhh/Capa-para-facebook-arquitetura-moderno-vermelho-Logotipo-20251104-130357-0000.png" alt="Ícone dos Santos Anjos" width={24} height={24} className={cn("h-6 w-6 object-contain rounded-full", className)} />
     ),
     'wednesday': (
       <Image src="https://i.postimg.cc/MGDLNq8J/photo-2025-10-29-12-36-38.jpg" alt="Ícone de São José" width={24} height={24} className={cn("h-6 w-6 object-contain rounded-full", className)} />
