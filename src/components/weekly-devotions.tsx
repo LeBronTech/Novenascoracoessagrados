@@ -47,7 +47,7 @@ const Icon = ({ name, className }: { name: string, className?: string }) => {
       </svg>
     ),
     'tuesday': (
-        <Image src="https://i.postimg.cc/43GZHxhh/Capa-para-facebook-arquitetura-moderno-vermelho-Logotipo-20251104-130357-0000.png" alt="Ícone dos Santos Anjos" width={24} height={24} className={cn("h-6 w-6 object-contain rounded-full", className)} />
+        <Image src="https://i.postimg.cc/mgyMHh5f/Capa-para-facebook-arquitetura-moderno-vermelho-Logotipo-20251104-131118-0000.png" alt="Ícone dos Santos Anjos" width={24} height={24} className={cn("h-6 w-6 object-contain rounded-full", className)} />
     ),
     'wednesday': (
       <Image src="https://i.postimg.cc/MGDLNq8J/photo-2025-10-29-12-36-38.jpg" alt="Ícone de São José" width={24} height={24} className={cn("h-6 w-6 object-contain rounded-full", className)} />
