@@ -47,19 +47,19 @@ const Icon = ({ name, className }: { name: string, className?: string }) => {
       </svg>
     ),
     'tuesday': (
-        <Image src="https://i.postimg.cc/mgyMHh5f/Capa-para-facebook-arquitetura-moderno-vermelho-Logotipo-20251104-131118-0000.png" alt="Ícone dos Santos Anjos" width={24} height={24} className={cn("h-6 w-6 object-contain rounded-full", className)} />
+        <Image src="https://i.postimg.cc/qvncr0jQ/6.png" alt="Ícone dos Santos Anjos" width={24} height={24} className={cn("h-6 w-6 object-contain rounded-full", className)} />
     ),
     'wednesday': (
-      <Image src="https://i.postimg.cc/MGDLNq8J/photo-2025-10-29-12-36-38.jpg" alt="Ícone de São José" width={24} height={24} className={cn("h-6 w-6 object-contain rounded-full", className)} />
+      <Image src="https://i.postimg.cc/Qd5gDs00/7.png" alt="Ícone de São José" width={24} height={24} className={cn("h-6 w-6 object-contain rounded-full", className)} />
     ),
     'thursday': (
-        <Image src="https://i.postimg.cc/rmstCwwP/photo-2025-10-29-11-23-53.jpg" alt="Ícone do Santíssimo Sacramento" width={24} height={24} className={cn("h-6 w-6 object-contain", className)} />
+        <Image src="https://i.postimg.cc/VkM9w1DB/8.png" alt="Ícone do Santíssimo Sacramento" width={24} height={24} className={cn("h-6 w-6 object-contain", className)} />
     ),
     'friday': (
-      <Image src="https://i.postimg.cc/mgSwmhT7/photo-2025-10-29-11-23-59.jpg" alt="Ícone da Paixão de Cristo" width={24} height={24} className={cn("h-6 w-6 object-contain", className)} />
+      <Image src="https://i.postimg.cc/cLY7WZXF/9.png" alt="Ícone da Paixão de Cristo" width={24} height={24} className={cn("h-6 w-6 object-contain", className)} />
     ),
     'saturday': (
-      <Image src="https://i.postimg.cc/B6n2YCmZ/photo-2025-10-29-11-23-57.jpg" alt="Ícone de Nossa Senhora" width={24} height={24} className={cn("h-6 w-6 object-contain", className)} />
+      <Image src="https://i.postimg.cc/VkM9w1Dg/10.png" alt="Ícone de Nossa Senhora" width={24} height={24} className={cn("h-6 w-6 object-contain", className)} />
     ),
   };
   return icons[name] || null;
