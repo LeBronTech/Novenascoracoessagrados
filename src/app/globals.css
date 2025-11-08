@@ -321,7 +321,7 @@
   }
 
   .abstinence-pill {
-    @apply relative text-xs font-semibold px-3 py-1 mt-[-8px] rounded-b-lg shadow-sm text-white;
+    @apply relative text-xs font-semibold px-3 py-1 mt-[-12px] rounded-b-lg shadow-sm text-white;
     background-color: inherit;
     border: 2px solid;
     border-color: inherit;
@@ -443,5 +443,3 @@
       max-height: var(--radix-accordion-content-height);
     }
 }
-
-    
