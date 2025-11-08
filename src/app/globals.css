@@ -304,8 +304,11 @@
   }
   
   /* Weekly Devotions */
+  .devotion-item-wrapper {
+    @apply relative flex flex-col items-center cursor-pointer;
+  }
   .devotion-item {
-    @apply flex items-center justify-center gap-2 w-auto h-auto px-2 py-1.5 rounded-full border-2 border-gray-300/50 bg-gray-100/70 backdrop-blur-sm cursor-pointer transition-all duration-300;
+    @apply flex items-center justify-center gap-2 w-auto h-auto px-2 py-1.5 rounded-full border-2 border-gray-300/50 bg-gray-100/70 backdrop-blur-sm transition-all duration-300;
   }
   .devotion-item:hover {
     @apply opacity-80 scale-105;
@@ -315,6 +318,14 @@
   }
   .devotion-item:hover .devotion-icon {
     transform: scale(1.1);
+  }
+
+  .abstinence-pill {
+    @apply relative text-xs font-semibold px-3 py-1 mt-[-10px] rounded-b-lg shadow-sm text-white;
+    background-color: inherit;
+    border: 2px solid;
+    border-color: inherit;
+    border-top: none;
   }
 
   /* Liturgical Colors */
@@ -381,6 +392,10 @@
   .devotion-item--friday .devotion-icon { @apply text-white; }
   .devotion-item--friday .text-sm { @apply text-white; }
   .devotion-item--friday .text-xs { @apply text-red-200; }
+  .devotion-item-wrapper .devotion-item--friday + .abstinence-pill {
+    background-color: hsl(0 72.2% 50.6% / 0.8);
+    border-color: hsl(0 72.2% 50.6% / 0.5);
+  }
   
   .devotion-item--saturday { @apply bg-sky-400/80 text-white border-sky-300/50; }
   .devotion-item--saturday .devotion-icon { @apply text-white; }

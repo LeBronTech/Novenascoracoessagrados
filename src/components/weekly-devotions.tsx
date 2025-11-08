@@ -47,10 +47,10 @@ const Icon = ({ name, className }: { name: string, className?: string }) => {
       </svg>
     ),
     'tuesday': (
-        <Image src="https://i.postimg.cc/qvncr0jQ/6.png" alt="Ícone dos Santos Anjos" width={24} height={24} className={cn("h-6 w-6 object-contain rounded-full", className)} />
+      <Image src="https://i.postimg.cc/mgyMHh5f/Capa-para-facebook-arquitetura-moderno-vermelho-Logotipo-20251104-131118-0000.png" alt="Ícone dos Santos Anjos" width={24} height={24} className={cn("h-6 w-6 object-contain", className)} />
     ),
     'wednesday': (
-      <Image src="https://i.postimg.cc/Qd5gDs00/7.png" alt="Ícone de São José" width={24} height={24} className={cn("h-6 w-6 object-contain rounded-full", className)} />
+      <Image src="https://i.postimg.cc/Qd5gDs00/7.png" alt="Ícone de São José" width={24} height={24} className={cn("h-6 w-6 object-contain", className)} />
     ),
     'thursday': (
         <Image src="https://i.postimg.cc/VkM9w1DB/8.png" alt="Ícone do Santíssimo Sacramento" width={24} height={24} className={cn("h-6 w-6 object-contain", className)} />
@@ -145,23 +145,28 @@ const WeeklyDevotions = () => {
           {/* Weekly Devotion */}
           <Tooltip>
             <TooltipTrigger asChild>
-              <div className={cn('devotion-item group', dailyColorClasses[dayOfWeek])}>
-                <div className="relative">
-                  <Icon name={weeklyDevotion.icon} className="devotion-icon" />
-                  {weeklyDevotion.alert && dayOfWeek === 5 && (
-                      <div className="absolute -top-1 -right-1">
-                        <span className="relative flex h-3 w-3">
-                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                          <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
-                        </span>
-                      </div>
-                  )}
+                <div className="devotion-item-wrapper">
+                    <div className={cn('devotion-item group', dailyColorClasses[dayOfWeek])}>
+                        <div className="relative">
+                            <Icon name={weeklyDevotion.icon} className="devotion-icon" />
+                        </div>
+                        <div className="text-left">
+                            <span className="text-sm font-bold">{weeklyDevotion.day}</span>
+                            <p className="text-xs">{weeklyDevotion.devotion}</p>
+                        </div>
+                    </div>
+                    {weeklyDevotion.alert && dayOfWeek === 5 && (
+                         <div className="abstinence-pill">
+                            {weeklyDevotion.alert}
+                            <div className="absolute -top-1 -right-1">
+                                <span className="relative flex h-3 w-3">
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                                <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+                                </span>
+                            </div>
+                        </div>
+                    )}
                 </div>
-                <div className="text-left">
-                    <span className="text-sm font-bold">{weeklyDevotion.day}</span>
-                    <p className="text-xs">{weeklyDevotion.devotion}</p>
-                </div>
-              </div>
             </TooltipTrigger>
             <TooltipContent className="bg-primary text-primary-foreground border-primary-foreground/20">
               <p className="font-bold">{weeklyDevotion.title}</p>
