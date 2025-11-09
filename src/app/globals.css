@@ -366,17 +366,20 @@
 
 
   /* Daily Devotion Colors */
-  .devotion-item--sunday { /* Not specified, default used */ }
+  .devotion-item--sunday { @apply bg-red-600/80 text-white border-red-400/50; }
+  .devotion-item--sunday .devotion-icon { @apply text-white; }
+  .devotion-item--sunday .text-sm { @apply text-white; }
+  .devotion-item--sunday .text-xs { @apply text-red-200; }
   
-  .devotion-item--monday { @apply bg-red-600/80 text-white border-red-400/50; }
+  .devotion-item--monday { @apply bg-gray-500/80 text-white border-gray-400/50; }
   .devotion-item--monday .devotion-icon { @apply text-white; }
   .devotion-item--monday .text-sm { @apply text-white; }
-  .devotion-item--monday .text-xs { @apply text-red-200; }
+  .devotion-item--monday .text-xs { @apply text-gray-200; }
 
-  .devotion-item--tuesday { @apply bg-yellow-400/80 text-gray-800 border-yellow-500/50; }
-  .devotion-item--tuesday .devotion-icon { @apply text-gray-800; }
-  .devotion-item--tuesday .text-sm { @apply text-gray-800; }
-  .devotion-item--tuesday .text-xs { @apply text-yellow-800; }
+  .devotion-item--tuesday { @apply bg-yellow-600/80 text-white border-yellow-400/50; }
+  .devotion-item--tuesday .devotion-icon { @apply text-white; }
+  .devotion-item--tuesday .text-sm { @apply text-white; }
+  .devotion-item--tuesday .text-xs { @apply text-yellow-200; }
 
   .devotion-item--wednesday { @apply bg-green-800/80 text-white border-green-600/50; }
   .devotion-item--wednesday .devotion-icon { @apply text-white; }

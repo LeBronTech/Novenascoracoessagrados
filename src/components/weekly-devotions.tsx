@@ -47,7 +47,7 @@ const Icon = ({ name, className }: { name: string, className?: string }) => {
       </svg>
     ),
     'tuesday': (
-      <Image src="https://i.postimg.cc/mgyMHh5f/Capa-para-facebook-arquitetura-moderno-vermelho-Logotipo-20251104-131118-0000.png" alt="Ícone dos Santos Anjos" width={24} height={24} className={cn("h-6 w-6 object-contain", className)} />
+      <Image src="https://i.postimg.cc/qvncr0jQ/6.png" alt="Ícone dos Santos Anjos" width={24} height={24} className={cn("h-6 w-6 object-contain", className)} />
     ),
     'wednesday': (
       <Image src="https://i.postimg.cc/Qd5gDs00/7.png" alt="Ícone de São José" width={24} height={24} className={cn("h-6 w-6 object-contain", className)} />
@@ -94,13 +94,13 @@ const WeeklyDevotions = () => {
   };
 
   const dailyColorClasses: { [key: number]: string } = {
+    0: 'devotion-item--sunday',
     1: 'devotion-item--monday',
     2: 'devotion-item--tuesday',
     3: 'devotion-item--wednesday',
     4: 'devotion-item--thursday',
     5: 'devotion-item--friday',
     6: 'devotion-item--saturday',
-    0: 'devotion-item--sunday',
   };
 
   return (
