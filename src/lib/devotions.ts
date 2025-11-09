@@ -190,40 +190,39 @@ const getEaster = (year: number): Date => {
 const getFirstSundayOfAdvent = (year: number): Date => {
     const christmas = new Date(Date.UTC(year, 11, 25));
     const dayOfWeek = christmas.getUTCDay(); // 0=Sunday, 1=Monday...
-    return addDays(christmas, -(dayOfWeek + 21));
+    const daysToSubtract = dayOfWeek + 21; // 3 full weeks before Christmas week's Sunday
+    return addDays(christmas, -daysToSubtract);
 };
 
 const getLiturgicalYearCycle = (date: Date): { year: number; cycle: 'A' | 'B' | 'C' } => {
     const year = date.getUTCFullYear();
     const firstSundayOfAdventCurrentYear = getFirstSundayOfAdvent(year);
     
+    // Determine the liturgical year we are in. It starts with Advent.
     const liturgicalYearStartYear = date >= firstSundayOfAdventCurrentYear ? year : year - 1;
 
-    // The cycle repeats every 3 years. We can find an anchor point.
-    // Advent 2022 began liturgical year 2023, which was Year A.
-    // So, if (liturgicalYearStartYear + 1) % 3 === 1, it's Year A.
-    // (2022 + 1) % 3 = 2023 % 3 = 2. Nope.
-    // Let's adjust the anchor. The cycle for Year A started with Advent 2019. 2019+1 = 2020. 2020 % 3 = 2
-    // Let's try another anchor. Year A began on Advent 2022. liturgicalYearStartYear = 2022.
-    // Year B began on Advent 2023. liturgicalYearStartYear = 2023.
-    // Year C began on Advent 2024. liturgicalYearStartYear = 2024.
-    // Year A will begin on Advent 2025. liturgicalYearStartYear = 2025.
-    
-    // So:
-    // 2022 % 3 = 1 -> A
-    // 2023 % 3 = 2 -> B
-    // 2024 % 3 = 0 -> C
-    // 2025 % 3 = 1 -> A
+    // Anchor point: The liturgical year starting in Advent 2024 is Year C.
+    // 2024 % 3 = 1 -> Year C
+    // 2025 % 3 = 2 -> Year A
+    // 2026 % 3 = 0 -> Year B
+    // Correct mapping should be based on a known cycle start.
+    // Year A starts on Advent 2022. 2022+1 = 2023. 2023 % 3 = 2
+    // Let's use a simpler anchor. Advent 2023 started the 2024 Liturgical Year, which is Year B.
+    // Advent 2024 starts the 2025 Liturgical Year, which is Year C.
+    // Advent 2025 starts the 2026 Liturgical Year, which is Year A.
+
+    const yearNumberForCycle = liturgicalYearStartYear + 1;
+
     let cycle: 'A' | 'B' | 'C';
-    switch ((liturgicalYearStartYear) % 3) {
-        case 0: // 2024 -> C
-            cycle = 'C';
-            break;
-        case 1: // 2022, 2025 -> A
+    switch (yearNumberForCycle % 3) {
+        case 1: // e.g., 2023 (Advent 2022). 2026 (Advent 2025). This is Year A.
             cycle = 'A';
             break;
-        case 2: // 2023 -> B
+        case 2: // e.g., 2024 (Advent 2023). This is Year B.
             cycle = 'B';
+            break;
+        case 0: // e.g., 2025 (Advent 2024). This is Year C.
+            cycle = 'C';
             break;
         default: // Should not happen
             cycle = 'A';
@@ -252,7 +251,8 @@ export function getLiturgicalInfo(date: Date): LiturgicalInfo {
     
     const firstSundayOfAdvent = getFirstSundayOfAdvent(year);
     const christmas = new Date(Date.UTC(year, 11, 25));
-    const baptismOfTheLord = addDays(new Date(Date.UTC(year, 0, 6)), (7-new Date(Date.UTC(year, 0, 6)).getUTCDay()) % 7);
+    const baptismOfTheLordDate = new Date(Date.UTC(year, 0, 6));
+    const baptismOfTheLord = addDays(baptismOfTheLordDate, (7 - baptismOfTheLordDate.getUTCDay()) % 7);
 
     // 1. Determine the Liturgical Season and its base color
     let color: LiturgicalInfo['color'] = 'green';
@@ -261,9 +261,15 @@ export function getLiturgicalInfo(date: Date): LiturgicalInfo {
     if (today >= firstSundayOfAdvent && today < new Date(Date.UTC(year, 11, 24))) {
         season = 'Advento';
         color = 'purple';
-    } else if (today >= christmas || today <= baptismOfTheLord) {
-        season = 'Natal';
-        color = 'white';
+    } else if (today >= christmas || today < baptismOfTheLord) {
+        // Handle year wrap for Christmas season
+        const christmasStart = new Date(Date.UTC(year - 1, 11, 25));
+        const baptismEndPrevYear = addDays(new Date(Date.UTC(year-1, 0, 6)), (7-new Date(Date.UTC(year-1, 0, 6)).getUTCDay()) % 7);
+
+        if (today >= christmas || (today.getFullYear() === year && today < baptismOfTheLord) ) {
+            season = 'Natal';
+            color = 'white';
+        }
     } else if (today >= ashWednesday && today < easter) {
         season = 'Quaresma';
         color = 'purple';
@@ -291,7 +297,8 @@ export function getLiturgicalInfo(date: Date): LiturgicalInfo {
         '10-7', // Our Lady of the Rosary
         '11-1', // All Saints
         '11-9', // Dedication of Lateran Basilica
-        '11-10', // St. Leo the Great
+        '11-10',// St. Leo the Great
+        '11-11',// St. Martin of Tours
         '11-17', // St. Elizabeth of Hungary
         '11-21', // Presentation of Mary
         '11-27', // Our Lady of the Miraculous Medal
@@ -322,6 +329,7 @@ export function getLiturgicalInfo(date: Date): LiturgicalInfo {
         '9-21', // St. Matthew
         '10-18', // St. Luke
         '10-28', // Sts. Simon and Jude
+        '11-12', // St. Josaphat
         '11-22', // St. Cecilia
         '11-24', // Vietnamese Martyrs
         '11-30', // St. Andrew

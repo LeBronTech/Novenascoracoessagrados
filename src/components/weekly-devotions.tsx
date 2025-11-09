@@ -47,10 +47,10 @@ const Icon = ({ name, className }: { name: string, className?: string }) => {
       </svg>
     ),
     'tuesday': (
-      <Image src="https://freeimage.host/i/KbAVB5X" alt="Ícone dos Santos Anjos" width={32} height={32} className={cn("h-8 w-8 object-contain", className)} />
+      <Image src="https://freeimage.host/i/Kb7dxZQ" alt="Ícone dos Santos Anjos" width={32} height={32} className={cn("h-8 w-8 object-contain", className)} />
     ),
     'wednesday': (
-      <Image src="https://i.postimg.cc/Qd5gDs00/7.png" alt="Ícone de São José" width={32} height={32} className={cn("h-8 w-8 object-contain", className)} />
+      <Image src="https://iili.io/Kb7xRyB.png" alt="Ícone de São José" width={32} height={32} className={cn("h-8 w-8 object-contain", className)} />
     ),
     'thursday': (
         <Image src="https://i.postimg.cc/VkM9w1DB/8.png" alt="Ícone do Santíssimo Sacramento" width={32} height={32} className={cn("h-8 w-8 object-contain", className)} />
