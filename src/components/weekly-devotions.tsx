@@ -109,6 +109,7 @@ const WeeklyDevotions = () => {
         <TooltipProvider>
           {/* Test Pill */}
           <div className="devotion-item devotion-item--green">
+              <BookOpen className="devotion-icon" />
               <div className="text-left">
                   <span className="text-sm font-bold">Tempo comum</span>
               </div>
