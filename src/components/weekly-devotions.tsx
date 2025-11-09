@@ -8,7 +8,7 @@ import { cn } from '@/lib/utils';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import React from 'react';
 import { Skeleton } from './ui/skeleton';
-import { BookOpen, Calendar, Flag } from 'lucide-react';
+import { BookOpen, Calendar } from 'lucide-react';
 import Image from 'next/image';
 
 
@@ -93,6 +93,14 @@ const WeeklyDevotions = () => {
     'rose': 'devotion-item--rose',
   };
 
+  const liturgicalColorEmojis: Record<string, string> = {
+    'green': '🟢',
+    'purple': '🟣',
+    'red': '🔴',
+    'white': '⚪️',
+    'rose': '🩷',
+  };
+
   const dailyColorClasses: { [key: number]: string } = {
     0: 'devotion-item--sunday',
     1: 'devotion-item--monday',
@@ -111,8 +119,8 @@ const WeeklyDevotions = () => {
           <div className={cn('devotion-item', liturgicalColorClasses[liturgicalInfo.color])}>
             <BookOpen className="devotion-icon" />
             <div className="text-left">
-              <span className="text-sm font-bold">{liturgicalInfo.season}</span>
-              <p className="text-xs">{liturgicalInfo.verse}</p>
+              <span className="text-sm font-bold">{liturgicalColorEmojis[liturgicalInfo.color]} {liturgicalInfo.season}</span>
+              <p className="text-xs">{liturgicalInfo.verse} (Ano {liturgicalInfo.cycle})</p>
             </div>
           </div>
           
