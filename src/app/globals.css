@@ -308,13 +308,13 @@
     @apply relative flex flex-col items-center cursor-pointer;
   }
   .devotion-item {
-    @apply flex items-center justify-center gap-2 w-auto h-auto px-2 py-1.5 rounded-full border-2 border-gray-300/50 bg-gray-100/70 backdrop-blur-sm transition-all duration-300;
+    @apply flex items-center justify-center gap-2 w-auto h-auto px-2 py-1.5 rounded-full border-2 bg-white backdrop-blur-sm transition-all duration-300;
   }
   .devotion-item:hover {
     @apply opacity-80 scale-105;
   }
   .devotion-item .devotion-icon {
-    @apply w-4 h-4 text-gray-600 transition-transform duration-300 ease-in-out;
+    @apply w-4 h-4 transition-transform duration-300 ease-in-out;
   }
   .devotion-item:hover .devotion-icon {
     transform: scale(1.1);
@@ -329,82 +329,77 @@
   }
 
   /* Liturgical Colors */
-  .devotion-item--green { @apply bg-green-600/80 text-white border-green-400/50; }
-  .devotion-item--green .devotion-icon { @apply text-white; }
-  .devotion-item--green .text-sm { @apply text-white; }
-  .devotion-item--green .text-xs { @apply text-green-200; }
-  
-  .devotion-item--purple { @apply bg-purple-600/80 text-white border-purple-400/50; }
-  .devotion-item--purple .devotion-icon { @apply text-white; }
-  .devotion-item--purple .text-sm { @apply text-white; }
-  .devotion-item--purple .text-xs { @apply text-purple-200; }
+  .devotion-item--green { @apply border-green-600 text-green-700; }
+  .devotion-item--green .devotion-icon { @apply text-green-600; }
+  .devotion-item--green .text-sm { @apply text-green-800; }
+  .devotion-item--green .text-xs { @apply text-green-600; }
 
-  .devotion-item--red { @apply bg-red-700/80 text-white border-red-500/50; }
-  .devotion-item--red .devotion-icon { @apply text-white; }
-  .devotion-item--red .text-sm { @apply text-white; }
-  .devotion-item--red .text-xs { @apply text-red-200; }
-  
-  .devotion-item--white { @apply bg-white/90 text-gray-800 border-gray-300/50; }
+  .devotion-item--purple { @apply border-purple-600 text-purple-700; }
+  .devotion-item--purple .devotion-icon { @apply text-purple-600; }
+  .devotion-item--purple .text-sm { @apply text-purple-800; }
+  .devotion-item--purple .text-xs { @apply text-purple-600; }
+
+  .devotion-item--red { @apply border-red-700 text-red-800; }
+  .devotion-item--red .devotion-icon { @apply text-red-700; }
+  .devotion-item--red .text-sm { @apply text-red-800; }
+  .devotion-item--red .text-xs { @apply text-red-600; }
+
+  .devotion-item--white { @apply border-gray-300 text-gray-700; }
   .devotion-item--white .devotion-icon { @apply text-primary; }
   .devotion-item--white .text-sm { @apply text-gray-800; }
   .devotion-item--white .text-xs { @apply text-gray-600; }
+
+  .devotion-item--rose { @apply border-rose-400 text-rose-700; }
+  .devotion-item--rose .devotion-icon { @apply text-rose-500; }
+  .devotion-item--rose .text-sm { @apply text-rose-800; }
+  .devotion-item--rose .text-xs { @apply text-rose-600; }
   
-  .devotion-item--rose { @apply bg-rose-400/80 text-white border-rose-300/50; }
-  .devotion-item--rose .devotion-icon { @apply text-white; }
-  .devotion-item--rose .text-sm { @apply text-white; }
-  .devotion-item--rose .text-xs { @apply text-rose-100; }
-  
-  .devotion-item--blue { @apply bg-sky-600/80 text-white border-sky-400/50; }
-  .devotion-item--blue .devotion-icon { @apply text-white; }
-  .devotion-item--blue .text-sm { @apply text-white; }
-  .devotion-item--blue .text-xs { @apply text-sky-100; }
-  
-  .devotion-item--dark-blue { @apply bg-blue-900/80 text-white border-blue-700/50; }
-  .devotion-item--dark-blue .devotion-icon { @apply text-white; }
-  .devotion-item--dark-blue .text-sm { @apply text-white; }
-  .devotion-item--dark-blue .text-xs { @apply text-blue-200; }
+  /* Default Devotion Item for non-liturgical items */
+  .devotion-item.devotion-item--default { @apply border-gray-400 text-gray-700; }
+  .devotion-item.devotion-item--default .devotion-icon { @apply text-gray-500; }
+  .devotion-item.devotion-item--default .text-sm { @apply text-gray-800; }
+  .devotion-item.devotion-item--default .text-xs { @apply text-gray-600; }
 
 
   /* Daily Devotion Colors */
-  .devotion-item--sunday { @apply bg-red-600/80 text-white border-red-400/50; }
-  .devotion-item--sunday .devotion-icon { @apply text-white; }
-  .devotion-item--sunday .text-sm { @apply text-white; }
-  .devotion-item--sunday .text-xs { @apply text-red-200; }
+  .devotion-item--sunday { @apply border-red-600 text-red-700; }
+  .devotion-item--sunday .devotion-icon { @apply text-red-600; }
+  .devotion-item--sunday .text-sm { @apply text-red-800; }
+  .devotion-item--sunday .text-xs { @apply text-red-500; }
   
-  .devotion-item--monday { @apply bg-gray-500/80 text-white border-gray-400/50; }
-  .devotion-item--monday .devotion-icon { @apply text-white; }
-  .devotion-item--monday .text-sm { @apply text-white; }
-  .devotion-item--monday .text-xs { @apply text-gray-200; }
+  .devotion-item--monday { @apply border-gray-500 text-gray-600; }
+  .devotion-item--monday .devotion-icon { @apply text-gray-500; }
+  .devotion-item--monday .text-sm { @apply text-gray-700; }
+  .devotion-item--monday .text-xs { @apply text-gray-500; }
 
-  .devotion-item--tuesday { @apply bg-yellow-600/80 text-white border-yellow-400/50; }
-  .devotion-item--tuesday .devotion-icon { @apply text-white; }
-  .devotion-item--tuesday .text-sm { @apply text-white; }
-  .devotion-item--tuesday .text-xs { @apply text-yellow-200; }
+  .devotion-item--tuesday { @apply border-yellow-600 text-yellow-700; }
+  .devotion-item--tuesday .devotion-icon { @apply text-yellow-600; }
+  .devotion-item--tuesday .text-sm { @apply text-yellow-800; }
+  .devotion-item--tuesday .text-xs { @apply text-yellow-600; }
 
-  .devotion-item--wednesday { @apply bg-green-800/80 text-white border-green-600/50; }
-  .devotion-item--wednesday .devotion-icon { @apply text-white; }
-  .devotion-item--wednesday .text-sm { @apply text-white; }
-  .devotion-item--wednesday .text-xs { @apply text-green-200; }
+  .devotion-item--wednesday { @apply border-green-800 text-green-800; }
+  .devotion-item--wednesday .devotion-icon { @apply text-green-800; }
+  .devotion-item--wednesday .text-sm { @apply text-green-900; }
+  .devotion-item--wednesday .text-xs { @apply text-green-700; }
 
-  .devotion-item--thursday { @apply bg-purple-600/80 text-white border-purple-400/50; }
-  .devotion-item--thursday .devotion-icon { @apply text-white; }
-  .devotion-item--thursday .text-sm { @apply text-white; }
-  .devotion-item--thursday .text-xs { @apply text-purple-200; }
+  .devotion-item--thursday { @apply border-purple-600 text-purple-700; }
+  .devotion-item--thursday .devotion-icon { @apply text-purple-600; }
+  .devotion-item--thursday .text-sm { @apply text-purple-800; }
+  .devotion-item--thursday .text-xs { @apply text-purple-500; }
 
-  .devotion-item--friday { @apply bg-red-700/80 text-white border-red-500/50; }
-  .devotion-item--friday .devotion-icon { @apply text-white; }
-  .devotion-item--friday .text-sm { @apply text-white; }
-  .devotion-item--friday .text-xs { @apply text-red-200; }
+  .devotion-item--friday { @apply border-red-700 text-red-800; }
+  .devotion-item--friday .devotion-icon { @apply text-red-700; }
+  .devotion-item--friday .text-sm { @apply text-red-800; }
+  .devotion-item--friday .text-xs { @apply text-red-600; }
   .devotion-item-wrapper .devotion-item--friday + .abstinence-pill {
-    background-color: hsl(0 72.2% 50.6% / 0.8);
-    border-color: hsl(0 72.2% 50.6% / 0.5);
+    @apply bg-red-700 text-white border-red-700;
   }
   
-  .devotion-item--saturday { @apply bg-sky-400/80 text-white border-sky-300/50; }
-  .devotion-item--saturday .devotion-icon { @apply text-white; }
-  .devotion-item--saturday .text-sm { @apply text-white; }
-  .devotion-item--saturday .text-xs { @apply text-sky-100; }
-
+  .devotion-item--saturday { @apply border-sky-400 text-sky-600; }
+  .devotion-item--saturday .devotion-icon { @apply text-sky-500; }
+  .devotion-item--saturday .text-sm { @apply text-sky-700; }
+  .devotion-item--saturday .text-xs { @apply text-sky-500; }
+  
 
 }
 

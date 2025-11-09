@@ -120,7 +120,7 @@ const WeeklyDevotions = () => {
                 </div>
               </div>
             </TooltipTrigger>
-            <TooltipContent className={cn('text-primary-foreground border-primary-foreground/20', liturgicalColorClasses[liturgicalInfo.color])}>
+            <TooltipContent className={cn('text-white border-primary-foreground/20', liturgicalColorClasses[liturgicalInfo.color].replace('border-', 'bg-').replace('text-','bg-'))}>
               <p className="font-bold text-center">Cor Litúrgica: {liturgicalInfo.color.charAt(0).toUpperCase() + liturgicalInfo.color.slice(1)}</p>
             </TooltipContent>
           </Tooltip>
@@ -128,11 +128,11 @@ const WeeklyDevotions = () => {
           {/* Monthly Devotion */}
           <Tooltip>
             <TooltipTrigger asChild>
-              <div className='devotion-item group'>
+              <div className='devotion-item group devotion-item--default'>
                 <Calendar className="devotion-icon" />
                 <div className="text-left">
-                    <span className="text-sm font-bold text-gray-700">{monthlyDevotion.name}</span>
-                    <p className="text-xs text-gray-600">{monthlyDevotion.devotion}</p>
+                    <span className="text-sm font-bold">{monthlyDevotion.name}</span>
+                    <p className="text-xs">{monthlyDevotion.devotion}</p>
                 </div>
               </div>
             </TooltipTrigger>
@@ -168,7 +168,7 @@ const WeeklyDevotions = () => {
                     )}
                 </div>
             </TooltipTrigger>
-            <TooltipContent className="bg-primary text-primary-foreground border-primary-foreground/20">
+            <TooltipContent className={cn('text-white border-primary-foreground/20', dailyColorClasses[dayOfWeek].replace('border-', 'bg-').replace('text-','bg-'))}>
               <p className="font-bold">{weeklyDevotion.title}</p>
               {weeklyDevotion.alert && dayOfWeek === 5 && <p className="mt-1 text-red-300 font-semibold">{weeklyDevotion.alert}</p>}
             </TooltipContent>
