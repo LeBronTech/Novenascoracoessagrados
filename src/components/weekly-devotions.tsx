@@ -107,28 +107,10 @@ const WeeklyDevotions = () => {
     <div className="flex flex-col items-center justify-center gap-2 md:gap-4 my-6">
       <div className="flex justify-center items-start flex-wrap gap-2 md:gap-3">
         <TooltipProvider>
-          {/* Liturgical Info */}
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <div className={cn('devotion-item group', liturgicalColorClasses[liturgicalInfo.color])}>
-                <div className="relative">
-                  <Flag className="devotion-icon" />
-                </div>
-                <div className="text-left">
-                    <span className="text-sm font-bold">{liturgicalInfo.season}</span>
-                    <p className="text-xs italic">{liturgicalInfo.verse}</p>
-                </div>
-              </div>
-            </TooltipTrigger>
-            <TooltipContent className={cn('text-white border-primary-foreground/20', liturgicalColorClasses[liturgicalInfo.color].replace('devotion-item--', 'bg-'))}>
-              <p className="font-bold text-center">Cor Litúrgica: {liturgicalInfo.color.charAt(0).toUpperCase() + liturgicalInfo.color.slice(1)}</p>
-            </TooltipContent>
-          </Tooltip>
-
-           {/* Test Pill */}
+          {/* Test Pill */}
           <div className="devotion-item devotion-item--green">
               <div className="text-left">
-                  <span className="text-sm font-bold">Teste</span>
+                  <span className="text-sm font-bold">Tempo comum</span>
               </div>
           </div>
           
