@@ -329,7 +329,7 @@
   }
 
   /* Liturgical Colors */
-  .devotion-item--green { @apply border-green-700 bg-white text-green-800; }
+  .devotion-item--green { @apply border-green-800 bg-white text-green-800; }
   .devotion-item--green .devotion-icon { @apply text-green-700; }
   .devotion-item--green .text-sm { @apply text-green-800; }
   .devotion-item--green .text-xs { @apply text-green-700; }
@@ -355,10 +355,16 @@
   .devotion-item--rose .text-xs { @apply text-rose-600; }
   
   /* Default Devotion Item for non-liturgical items */
-  .devotion-item { @apply border-gray-400 text-gray-700 bg-white; }
-  .devotion-item .devotion-icon { @apply text-gray-500; }
-  .devotion-item .text-sm { @apply text-gray-800; }
-  .devotion-item .text-xs { @apply text-gray-600; }
+  .devotion-item--default { @apply border-gray-400 text-gray-700 bg-white; }
+  .devotion-item--default .devotion-icon { @apply text-gray-500; }
+  .devotion-item--default .text-sm { @apply text-gray-800; }
+  .devotion-item--default .text-xs { @apply text-gray-600; }
+  
+  /* Espaço Mariano Blue */
+  .devotion-item--dark-blue { @apply border-blue-800 bg-white text-blue-900; }
+  .devotion-item--dark-blue .devotion-icon { @apply text-blue-700; }
+  .devotion-item--dark-blue .text-sm { @apply text-blue-900; }
+  .devotion-item--dark-blue .text-xs { @apply text-blue-700; }
 
 
   /* Daily Devotion Colors */
@@ -377,7 +383,7 @@
   .devotion-item--tuesday .text-sm { @apply text-yellow-800; }
   .devotion-item--tuesday .text-xs { @apply text-yellow-600; }
 
-  .devotion-item--wednesday { @apply border-green-800 bg-white text-green-800; }
+  .devotion-item--wednesday { @apply border-green-800 bg-white text-green-900; }
   .devotion-item--wednesday .devotion-icon { @apply text-green-800; }
   .devotion-item--wednesday .text-sm { @apply text-green-900; }
   .devotion-item--wednesday .text-xs { @apply text-green-700; }
