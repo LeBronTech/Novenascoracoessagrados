@@ -36,30 +36,30 @@ export const LilyIcon = ({ className }: { className?: string }) => (
 const Icon = ({ name, className }: { name: string, className?: string }) => {
   const icons: { [key: string]: React.ReactNode } = {
     'sunday': (
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={cn("h-6 w-6", className)}>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={cn("h-8 w-8", className)}>
         <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
       </svg>
     ),
     'monday': (
-       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={cn("h-6 w-6", className)}>
+       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={cn("h-8 w-8", className)}>
         <path d="M12 5v14"/>
         <path d="M5 12h14"/>
       </svg>
     ),
     'tuesday': (
-      <Image src="https://i.postimg.cc/qvncr0jQ/6.png" alt="Ícone dos Santos Anjos" width={24} height={24} className={cn("h-6 w-6 object-contain", className)} />
+      <Image src="https://freeimage.host/i/KbAVB5X" alt="Ícone dos Santos Anjos" width={32} height={32} className={cn("h-8 w-8 object-contain", className)} />
     ),
     'wednesday': (
-      <Image src="https://i.postimg.cc/Qd5gDs00/7.png" alt="Ícone de São José" width={24} height={24} className={cn("h-6 w-6 object-contain", className)} />
+      <Image src="https://i.postimg.cc/Qd5gDs00/7.png" alt="Ícone de São José" width={32} height={32} className={cn("h-8 w-8 object-contain", className)} />
     ),
     'thursday': (
-        <Image src="https://i.postimg.cc/VkM9w1DB/8.png" alt="Ícone do Santíssimo Sacramento" width={24} height={24} className={cn("h-6 w-6 object-contain", className)} />
+        <Image src="https://i.postimg.cc/VkM9w1DB/8.png" alt="Ícone do Santíssimo Sacramento" width={32} height={32} className={cn("h-8 w-8 object-contain", className)} />
     ),
     'friday': (
-      <Image src="https://i.postimg.cc/cLY7WZXF/9.png" alt="Ícone da Paixão de Cristo" width={24} height={24} className={cn("h-6 w-6 object-contain", className)} />
+      <Image src="https://i.postimg.cc/cLY7WZXF/9.png" alt="Ícone da Paixão de Cristo" width={32} height={32} className={cn("h-8 w-8 object-contain", className)} />
     ),
     'saturday': (
-      <Image src="https://i.postimg.cc/VkM9w1Dg/10.png" alt="Ícone de Nossa Senhora" width={24} height={24} className={cn("h-6 w-6 object-contain", className)} />
+      <Image src="https://i.postimg.cc/VkM9w1Dg/10.png" alt="Ícone de Nossa Senhora" width={32} height={32} className={cn("h-8 w-8 object-contain", className)} />
     ),
   };
   return icons[name] || null;
