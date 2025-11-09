@@ -8,7 +8,7 @@ import { cn } from '@/lib/utils';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import React from 'react';
 import { Skeleton } from './ui/skeleton';
-import { BookOpen, Calendar } from 'lucide-react';
+import { BookOpen, Calendar, Flag } from 'lucide-react';
 import Image from 'next/image';
 
 
@@ -112,7 +112,7 @@ const WeeklyDevotions = () => {
             <TooltipTrigger asChild>
               <div className={cn('devotion-item group', liturgicalColorClasses[liturgicalInfo.color])}>
                 <div className="relative">
-                  <BookOpen className="devotion-icon" />
+                  <Flag className="devotion-icon" />
                 </div>
                 <div className="text-left">
                     <span className="text-sm font-bold">{liturgicalInfo.season}</span>
@@ -124,11 +124,18 @@ const WeeklyDevotions = () => {
               <p className="font-bold text-center">Cor Litúrgica: {liturgicalInfo.color.charAt(0).toUpperCase() + liturgicalInfo.color.slice(1)}</p>
             </TooltipContent>
           </Tooltip>
+
+           {/* Test Pill */}
+          <div className="devotion-item devotion-item--green">
+              <div className="text-left">
+                  <span className="text-sm font-bold">Teste</span>
+              </div>
+          </div>
           
           {/* Monthly Devotion */}
           <Tooltip>
             <TooltipTrigger asChild>
-              <div className='devotion-item group devotion-item--default'>
+              <div className={cn('devotion-item group', 'devotion-item--default')}>
                 <Calendar className="devotion-icon" />
                 <div className="text-left">
                     <span className="text-sm font-bold">{monthlyDevotion.name}</span>
