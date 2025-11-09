@@ -195,19 +195,77 @@ const getFirstSundayOfAdvent = (year: number): Date => {
 };
 
 const getLiturgicalYearCycle = (date: Date): { year: number; cycle: 'A' | 'B' | 'C' } => {
-    let year = date.getUTCFullYear();
+    const year = date.getUTCFullYear();
     const firstSundayOfAdventCurrentYear = getFirstSundayOfAdvent(year);
     
     let liturgicalYearStartYear;
-    if (date < firstSundayOfAdventCurrentYear) {
-      liturgicalYearStartYear = year - 1;
-    } else {
+    if (date >= firstSundayOfAdventCurrentYear) {
       liturgicalYearStartYear = year;
+    } else {
+      liturgicalYearStartYear = year - 1;
     }
     
     const cycleIndex = liturgicalYearStartYear % 3;
-    const cycle = cycleIndex === 1 ? 'A' : cycleIndex === 2 ? 'B' : 'C';
+    // Year A starts in liturgical years beginning in years like 2019, 2022, 2025...
+    // These years have a remainder of 1 when divided by 3 (after 2019). Let's adjust the base.
+    // 2024 -> B, 2025 -> C
+    // 2024 % 3 = 1 -> A
+    // 2025 % 3 = 2 -> B
+    // 2026 % 3 = 0 -> C
+    // The cycle is A for years where (year_start_advent + 1) % 3 == 0.
+    // Year C starts in Advent 2024, for the year 2025. liturgicalYearStartYear is 2024.
+    // 2024+1 = 2025. 2025 % 3 = 0. -> A. Wrong.
+    // Let's use a known base. Advent 2023 started Year B. Liturgical year start year = 2023.
+    // 2023 % 3 = 2.
+    // Advent 2024 started Year C. Liturgical year start year = 2024.
+    // 2024 % 3 = 1.
+    // Advent 2025 will start Year A. Liturgical year start year = 2025.
+    // 2025 % 3 = 2.
+    // The pattern is: remainder 2 -> B, remainder 1 -> C, remainder 0 -> A.
+    
+    let cycle: 'A' | 'B' | 'C';
+    switch (liturgicalYearStartYear % 3) {
+        case 0: // e.g., 2022, 2025
+            cycle = 'A';
+            break;
+        case 1: // e.g., 2023, 2026
+            cycle = 'B';
+            break;
+        case 2: // e.g., 2021, 2024
+            cycle = 'C';
+            break;
+        default: // Should not happen
+            cycle = 'A';
+            break;
+    }
 
+    // Let's re-verify with the user's data.
+    // For 2025, most of the year is C. Liturgical year started in Advent 2024.
+    // liturgicalYearStartYear = 2024.
+    // 2024 % 3 = 1. My old logic was `cycleIndex === 1 ? 'A' : cycleIndex === 2 ? 'B' : 'C';` -> A. Wrong.
+    // My new logic `case 1: cycle = 'B';`. Wrong.
+
+    // Let's use a simpler mapping.
+    // Year C starts in Nov/Dec 2024. This is for the liturgical year 2025.
+    // The civil year 2025 belongs to liturgical year C.
+    // The rule is: Cycle A for years divisible by 3, B for year+1, C for year+2. This refers to the Liturgical Year number.
+    // Liturgical year 2025: 2025 is not divisible by 3. 2025 = 3*675. Oh, it is. So it should be A? No.
+    // Let's use a known anchor point.
+    // Liturgical Year 2023-2024 (starts Advent 2023) is Year B.
+    // Liturgical Year 2024-2025 (starts Advent 2024) is Year C.
+    // Liturgical Year 2025-2026 (starts Advent 2025) is Year A.
+
+    const yearForCycle = liturgicalYearStartYear + 1;
+    const remainder = yearForCycle % 3;
+
+    if (remainder === 1) { // 2025 -> A, 2028 -> A
+        cycle = 'A';
+    } else if (remainder === 2) { // 2023 -> B, 2026 -> B
+        cycle = 'B';
+    } else { // 0, e.g., 2024 -> C, 2027 -> C
+        cycle = 'C';
+    }
+    
     return { year: liturgicalYearStartYear, cycle };
 }
 
