@@ -329,30 +329,70 @@
   }
 
   /* Liturgical Colors */
-  .devotion-item.devotion-item--green { background-color: white; border-color: #166534; }
-  .devotion-item.devotion-item--green .devotion-icon { color: #14532d; }
-  .devotion-item.devotion-item--green .text-sm { color: #14532d; }
-  .devotion-item.devotion-item--green .text-xs { color: #166534; }
+  .devotion-item.devotion-item--green {
+    border-color: #166534;
+  }
+  .devotion-item.devotion-item--green .devotion-icon {
+    color: #15803d;
+  }
+  .devotion-item.devotion-item--green .text-sm {
+    color: #14532d;
+  }
+  .devotion-item.devotion-item--green .text-xs {
+    color: #166534;
+  }
 
-  .devotion-item.devotion-item--purple { background-color: white; border-color: #7e22ce; }
-  .devotion-item.devotion-item--purple .devotion-icon { color: #9333ea; }
-  .devotion-item.devotion-item--purple .text-sm { color: #6b21a8; }
-  .devotion-item.devotion-item--purple .text-xs { color: #7e22ce; }
+  .devotion-item.devotion-item--purple {
+    border-color: #7e22ce;
+  }
+  .devotion-item.devotion-item--purple .devotion-icon {
+    color: #9333ea;
+  }
+  .devotion-item.devotion-item--purple .text-sm {
+    color: #6b21a8;
+  }
+  .devotion-item.devotion-item--purple .text-xs {
+    color: #7e22ce;
+  }
 
-  .devotion-item.devotion-item--red { background-color: white; border-color: #b91c1c; }
-  .devotion-item.devotion-item--red .devotion-icon { color: #dc2626; }
-  .devotion-item.devotion-item--red .text-sm { color: #991b1b; }
-  .devotion-item.devotion-item--red .text-xs { color: #b91c1c; }
+  .devotion-item.devotion-item--red {
+    border-color: #b91c1c;
+  }
+  .devotion-item.devotion-item--red .devotion-icon {
+    color: #dc2626;
+  }
+  .devotion-item.devotion-item--red .text-sm {
+    color: #991b1b;
+  }
+  .devotion-item.devotion-item--red .text-xs {
+    color: #b91c1c;
+  }
 
-  .devotion-item.devotion-item--white { background-color: white; border-color: #d1d5db; }
-  .devotion-item.devotion-item--white .devotion-icon { color: hsl(var(--primary)); }
-  .devotion-item.devotion-item--white .text-sm { color: #374151; }
-  .devotion-item.devotion-item--white .text-xs { color: #6b7280; }
+  .devotion-item.devotion-item--white {
+    border-color: #d1d5db;
+  }
+  .devotion-item.devotion-item--white .devotion-icon {
+    color: hsl(var(--primary));
+  }
+  .devotion-item.devotion-item--white .text-sm {
+    color: #374151;
+  }
+  .devotion-item.devotion-item--white .text-xs {
+    color: #6b7280;
+  }
 
-  .devotion-item.devotion-item--rose { background-color: white; border-color: #fb7185; }
-  .devotion-item.devotion-item--rose .devotion-icon { color: #f43f5e; }
-  .devotion-item.devotion-item--rose .text-sm { color: #be123c; }
-  .devotion-item.devotion-item--rose .text-xs { color: #e11d48; }
+  .devotion-item.devotion-item--rose {
+    border-color: #fb7185;
+  }
+  .devotion-item.devotion-item--rose .devotion-icon {
+    color: #f43f5e;
+  }
+  .devotion-item.devotion-item--rose .text-sm {
+    color: #be123c;
+  }
+  .devotion-item.devotion-item--rose .text-xs {
+    color: #e11d48;
+  }
   
   /* Default Devotion Item for non-liturgical items */
   .devotion-item.devotion-item--default { background-color: white; border-color: #9ca3af; }

@@ -3,7 +3,7 @@
 
 import { useState, useEffect } from 'react';
 import { weeklyDevotions, monthlyDevotions, getLiturgicalInfo } from '@/lib/devotions';
-import type { Devotion } from '@/lib/devotions';
+import type { Devotion, LiturgicalInfo } from '@/lib/devotions';
 import { cn } from '@/lib/utils';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import React from 'react';
@@ -107,18 +107,19 @@ const WeeklyDevotions = () => {
     <div className="flex flex-col items-center justify-center gap-2 md:gap-4 my-6">
       <div className="flex justify-center items-start flex-wrap gap-2 md:gap-3">
         <TooltipProvider>
-          {/* Test Pill */}
-          <div className="devotion-item devotion-item--green">
-              <BookOpen className="devotion-icon" />
-              <div className="text-left">
-                  <span className="text-sm font-bold">Tempo comum</span>
-              </div>
+           {/* Liturgical Info Pill */}
+          <div className={cn('devotion-item', liturgicalColorClasses[liturgicalInfo.color])}>
+            <BookOpen className="devotion-icon" />
+            <div className="text-left">
+              <span className="text-sm font-bold">{liturgicalInfo.season}</span>
+              <p className="text-xs">{liturgicalInfo.verse}</p>
+            </div>
           </div>
           
           {/* Monthly Devotion */}
           <Tooltip>
             <TooltipTrigger asChild>
-              <div className={cn('devotion-item group', 'devotion-item--default')}>
+              <div className="devotion-item devotion-item--default">
                 <Calendar className="devotion-icon" />
                 <div className="text-left">
                     <span className="text-sm font-bold">{monthlyDevotion.name}</span>
