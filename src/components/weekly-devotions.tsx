@@ -47,7 +47,7 @@ const Icon = ({ name, className }: { name: string, className?: string }) => {
       </svg>
     ),
     'tuesday': (
-      <Image src="https://i.postimg.cc/mgyMHh5f/Capa-para-facebook-arquitetura-moderno-vermelho-Logotipo-20251104-131118-0000.png" alt="Ícone dos Santos Anjos" width={24} height={24} className={cn("h-6 w-6 object-contain", className)} />
+      <Image src="https://i.postimg.cc/qvncr0jQ/6.png" alt="Ícone dos Santos Anjos" width={24} height={24} className={cn("h-6 w-6 object-contain", className)} />
     ),
     'wednesday': (
       <Image src="https://i.postimg.cc/Qd5gDs00/7.png" alt="Ícone de São José" width={24} height={24} className={cn("h-6 w-6 object-contain", className)} />
@@ -120,7 +120,7 @@ const WeeklyDevotions = () => {
                 </div>
               </div>
             </TooltipTrigger>
-            <TooltipContent className={cn('text-white border-primary-foreground/20', liturgicalColorClasses[liturgicalInfo.color].replace('border-', 'bg-').replace('text-','bg-'))}>
+            <TooltipContent className={cn('text-white border-primary-foreground/20', liturgicalColorClasses[liturgicalInfo.color].replace('devotion-item--', 'bg-'))}>
               <p className="font-bold text-center">Cor Litúrgica: {liturgicalInfo.color.charAt(0).toUpperCase() + liturgicalInfo.color.slice(1)}</p>
             </TooltipContent>
           </Tooltip>
@@ -168,7 +168,7 @@ const WeeklyDevotions = () => {
                     )}
                 </div>
             </TooltipTrigger>
-            <TooltipContent className={cn('text-white border-primary-foreground/20', dailyColorClasses[dayOfWeek].replace('border-', 'bg-').replace('text-','bg-'))}>
+            <TooltipContent className={cn('text-white border-primary-foreground/20', dailyColorClasses[dayOfWeek].replace('devotion-item--', 'bg-'))}>
               <p className="font-bold">{weeklyDevotion.title}</p>
               {weeklyDevotion.alert && dayOfWeek === 5 && <p className="mt-1 text-red-300 font-semibold">{weeklyDevotion.alert}</p>}
             </TooltipContent>
