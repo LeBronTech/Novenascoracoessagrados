@@ -128,7 +128,7 @@ const WeeklyDevotions = () => {
           {/* Monthly Devotion */}
           <Tooltip>
             <TooltipTrigger asChild>
-              <div className='devotion-item group'>
+              <div className='devotion-item group devotion-item--default'>
                 <Calendar className="devotion-icon" />
                 <div className="text-left">
                     <span className="text-sm font-bold">{monthlyDevotion.name}</span>
