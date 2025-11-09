@@ -401,10 +401,10 @@
   .devotion-item.devotion-item--default .text-xs { color: #6b7280; }
   
   /* Espaço Mariano Blue */
-  .devotion-item.devotion-item--dark-blue { background-color: white; border-color: #1e3a8a; }
-  .devotion-item.devotion-item--dark-blue .devotion-icon { color: #1d4ed8; }
-  .devotion-item.devotion-item--dark-blue .text-sm { color: #1e3a8a; }
-  .devotion-item.devotion-item--dark-blue .text-xs { color: #1d4ed8; }
+  .devotion-item.devotion-item--dark-blue { @apply bg-blue-900 border-blue-700 text-white; }
+  .devotion-item.devotion-item--dark-blue .devotion-icon,
+  .devotion-item.devotion-item--dark-blue .text-sm,
+  .devotion-item.devotion-item--dark-blue .text-xs { @apply text-white; }
 
 
   /* Daily Devotion Colors */
@@ -423,10 +423,10 @@
   .devotion-item.devotion-item--tuesday .text-sm { @apply text-yellow-800; }
   .devotion-item.devotion-item--tuesday .text-xs { @apply text-yellow-600; }
 
-  .devotion-item.devotion-item--wednesday { @apply border-green-800 bg-white; }
-  .devotion-item.devotion-item--wednesday .devotion-icon { @apply text-green-800; }
-  .devotion-item.devotion-item--wednesday .text-sm { @apply text-green-900; }
-  .devotion-item.devotion-item--wednesday .text-xs { @apply text-green-700; }
+  .devotion-item.devotion-item--wednesday { @apply bg-green-800 border-green-600 text-white; }
+  .devotion-item.devotion-item--wednesday .devotion-icon,
+  .devotion-item.devotion-item--wednesday .text-sm,
+  .devotion-item.devotion-item--wednesday .text-xs { @apply text-white; }
 
   .devotion-item.devotion-item--thursday { @apply border-purple-600 bg-white; }
   .devotion-item.devotion-item--thursday .devotion-icon { @apply text-purple-600; }
