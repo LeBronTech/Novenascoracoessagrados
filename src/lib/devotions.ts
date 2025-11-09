@@ -190,80 +190,44 @@ const getEaster = (year: number): Date => {
 const getFirstSundayOfAdvent = (year: number): Date => {
     const christmas = new Date(Date.UTC(year, 11, 25));
     const dayOfWeek = christmas.getUTCDay(); // 0=Sunday, 1=Monday...
-    const sundayBeforeChristmas = addDays(christmas, -dayOfWeek);
-    return addDays(sundayBeforeChristmas, -21);
+    return addDays(christmas, -(dayOfWeek + 21));
 };
 
 const getLiturgicalYearCycle = (date: Date): { year: number; cycle: 'A' | 'B' | 'C' } => {
     const year = date.getUTCFullYear();
     const firstSundayOfAdventCurrentYear = getFirstSundayOfAdvent(year);
     
-    let liturgicalYearStartYear;
-    if (date >= firstSundayOfAdventCurrentYear) {
-      liturgicalYearStartYear = year;
-    } else {
-      liturgicalYearStartYear = year - 1;
-    }
+    const liturgicalYearStartYear = date >= firstSundayOfAdventCurrentYear ? year : year - 1;
+
+    // The cycle repeats every 3 years. We can find an anchor point.
+    // Advent 2022 began liturgical year 2023, which was Year A.
+    // So, if (liturgicalYearStartYear + 1) % 3 === 1, it's Year A.
+    // (2022 + 1) % 3 = 2023 % 3 = 2. Nope.
+    // Let's adjust the anchor. The cycle for Year A started with Advent 2019. 2019+1 = 2020. 2020 % 3 = 2
+    // Let's try another anchor. Year A began on Advent 2022. liturgicalYearStartYear = 2022.
+    // Year B began on Advent 2023. liturgicalYearStartYear = 2023.
+    // Year C began on Advent 2024. liturgicalYearStartYear = 2024.
+    // Year A will begin on Advent 2025. liturgicalYearStartYear = 2025.
     
-    const cycleIndex = liturgicalYearStartYear % 3;
-    // Year A starts in liturgical years beginning in years like 2019, 2022, 2025...
-    // These years have a remainder of 1 when divided by 3 (after 2019). Let's adjust the base.
-    // 2024 -> B, 2025 -> C
-    // 2024 % 3 = 1 -> A
-    // 2025 % 3 = 2 -> B
-    // 2026 % 3 = 0 -> C
-    // The cycle is A for years where (year_start_advent + 1) % 3 == 0.
-    // Year C starts in Advent 2024, for the year 2025. liturgicalYearStartYear is 2024.
-    // 2024+1 = 2025. 2025 % 3 = 0. -> A. Wrong.
-    // Let's use a known base. Advent 2023 started Year B. Liturgical year start year = 2023.
-    // 2023 % 3 = 2.
-    // Advent 2024 started Year C. Liturgical year start year = 2024.
-    // 2024 % 3 = 1.
-    // Advent 2025 will start Year A. Liturgical year start year = 2025.
-    // 2025 % 3 = 2.
-    // The pattern is: remainder 2 -> B, remainder 1 -> C, remainder 0 -> A.
-    
+    // So:
+    // 2022 % 3 = 1 -> A
+    // 2023 % 3 = 2 -> B
+    // 2024 % 3 = 0 -> C
+    // 2025 % 3 = 1 -> A
     let cycle: 'A' | 'B' | 'C';
-    switch (liturgicalYearStartYear % 3) {
-        case 0: // e.g., 2022, 2025
+    switch ((liturgicalYearStartYear) % 3) {
+        case 0: // 2024 -> C
+            cycle = 'C';
+            break;
+        case 1: // 2022, 2025 -> A
             cycle = 'A';
             break;
-        case 1: // e.g., 2023, 2026
+        case 2: // 2023 -> B
             cycle = 'B';
-            break;
-        case 2: // e.g., 2021, 2024
-            cycle = 'C';
             break;
         default: // Should not happen
             cycle = 'A';
             break;
-    }
-
-    // Let's re-verify with the user's data.
-    // For 2025, most of the year is C. Liturgical year started in Advent 2024.
-    // liturgicalYearStartYear = 2024.
-    // 2024 % 3 = 1. My old logic was `cycleIndex === 1 ? 'A' : cycleIndex === 2 ? 'B' : 'C';` -> A. Wrong.
-    // My new logic `case 1: cycle = 'B';`. Wrong.
-
-    // Let's use a simpler mapping.
-    // Year C starts in Nov/Dec 2024. This is for the liturgical year 2025.
-    // The civil year 2025 belongs to liturgical year C.
-    // The rule is: Cycle A for years divisible by 3, B for year+1, C for year+2. This refers to the Liturgical Year number.
-    // Liturgical year 2025: 2025 is not divisible by 3. 2025 = 3*675. Oh, it is. So it should be A? No.
-    // Let's use a known anchor point.
-    // Liturgical Year 2023-2024 (starts Advent 2023) is Year B.
-    // Liturgical Year 2024-2025 (starts Advent 2024) is Year C.
-    // Liturgical Year 2025-2026 (starts Advent 2025) is Year A.
-
-    const yearForCycle = liturgicalYearStartYear + 1;
-    const remainder = yearForCycle % 3;
-
-    if (remainder === 1) { // 2025 -> A, 2028 -> A
-        cycle = 'A';
-    } else if (remainder === 2) { // 2023 -> B, 2026 -> B
-        cycle = 'B';
-    } else { // 0, e.g., 2024 -> C, 2027 -> C
-        cycle = 'C';
     }
     
     return { year: liturgicalYearStartYear, cycle };
@@ -287,95 +251,116 @@ export function getLiturgicalInfo(date: Date): LiturgicalInfo {
     const pentecost = addDays(easter, 49);
     
     const firstSundayOfAdvent = getFirstSundayOfAdvent(year);
-    
     const christmas = new Date(Date.UTC(year, 11, 25));
-    
+    const baptismOfTheLord = addDays(new Date(Date.UTC(year, 0, 6)), (7-new Date(Date.UTC(year, 0, 6)).getUTCDay()) % 7);
+
+    // 1. Determine the Liturgical Season and its base color
     let color: LiturgicalInfo['color'] = 'green';
     let season = 'Tempo Comum';
         
-    if (today >= firstSundayOfAdvent) {
+    if (today >= firstSundayOfAdvent && today < new Date(Date.UTC(year, 11, 24))) {
         season = 'Advento';
         color = 'purple';
-    } else if (today >= pentecost && today < firstSundayOfAdvent) {
-        season = 'Tempo Comum';
-        color = 'green';
-    } else if (today >= easter) {
-        season = 'Tempo Pascal';
-        color = 'white';
-    } else if (today >= ashWednesday) {
-        season = 'Quaresma';
-        color = 'purple';
-    } else if (today >= christmas && today < ashWednesday) {
+    } else if (today >= christmas || today <= baptismOfTheLord) {
         season = 'Natal';
         color = 'white';
-    } else {
-         const firstSundayOfAdventLastYear = getFirstSundayOfAdvent(year - 1);
-         if (today >= firstSundayOfAdventLastYear && today < christmas) {
-             season = 'Advento';
-             color = 'purple';
-         } else {
-             season = 'Tempo Comum';
-             color = 'green';
-         }
+    } else if (today >= ashWednesday && today < easter) {
+        season = 'Quaresma';
+        color = 'purple';
+    } else if (today >= easter && today <= pentecost) {
+        season = 'Páscoa';
+        color = 'white';
     }
 
-    // Determine Color based on Feasts (overrides seasonal color)
+    // 2. Override with Feast/Solemnity colors
     const month = today.getUTCMonth() + 1;
     const dayOfMonth = today.getUTCDate();
     const dayKey = `${month}-${dayOfMonth}`;
 
-    // Special Sundays (Rose)
-    const thirdSundayAdvent = addDays(firstSundayOfAdvent, 14);
-    const fourthSundayLent = addDays(ashWednesday, 25);
-    
-    if (isSameDay(today, addDays(thirdSundayAdvent, -thirdSundayAdvent.getUTCDay()))) color = 'rose';
-    if (isSameDay(today, addDays(fourthSundayLent, 4 - fourthSundayLent.getUTCDay()))) color = 'rose';
-
-
-    // Red Feasts
-    const palmSunday = addDays(easter, -7);
-    const goodFriday = addDays(easter, -2);
-    if (isSameDay(today, palmSunday) || isSameDay(today, goodFriday) || isSameDay(today, pentecost)) color = 'red';
-    const martyrFeasts = ['1-25', '2-22', '4-25', '5-3', '5-14', '6-29', '7-3', '7-25', '8-10', '8-24', '8-29', '9-21', '10-18', '10-28', '11-22', '11-24', '11-30', '12-26', '12-27'];
-    if (martyrFeasts.includes(dayKey)) color = 'red';
-    
-    // White Feasts
+    // WHITE FEASTS (override green/purple)
+    const whiteFeasts = [
+        '1-1', // Mary, Mother of God
+        '2-2', // Presentation of the Lord
+        '3-19', // St. Joseph
+        '3-25', // Annunciation
+        '6-24', // Nativity of St. John the Baptist
+        '8-6', // Transfiguration
+        '8-15', // Assumption
+        '10-1', // St. Therese (Doctor)
+        '10-4', // St. Francis of Assisi
+        '10-7', // Our Lady of the Rosary
+        '11-1', // All Saints
+        '11-9', // Dedication of Lateran Basilica
+        '11-10', // St. Leo the Great
+        '11-17', // St. Elizabeth of Hungary
+        '11-21', // Presentation of Mary
+        '11-27', // Our Lady of the Miraculous Medal
+        '12-8', // Immaculate Conception
+        '12-27' // St. John the Apostle
+    ];
+    if (whiteFeasts.includes(dayKey)) {
+        color = 'white';
+    }
     const christTheKing = addDays(firstSundayOfAdvent, -7);
     const trinitySunday = addDays(pentecost, 7);
     const corpusChristi = addDays(pentecost, 11);
-    const baptismOfTheLord = addDays(new Date(Date.UTC(year, 0, 6)), (7-new Date(Date.UTC(year, 0, 6)).getUTCDay()) % 7);
-    const holyFamilySunday = addDays(christmas, (7 - christmas.getUTCDay()) % 7);
-
-    if (isSameDay(today, trinitySunday) || isSameDay(today, corpusChristi) || isSameDay(today, christTheKing) || isSameDay(today, baptismOfTheLord) || isSameDay(today, holyFamilySunday)) color = 'white';
-    
-    const whiteFeasts = ['1-1', '3-19', '3-25', '6-24', '8-6', '8-15', '11-1', '11-9', '11-21', '12-8', '12-25'];
-    if (whiteFeasts.includes(dayKey)) color = 'white';
-    
-    // Purple for All Souls
-    if (month === 11 && dayOfMonth === 2) { color = 'purple'; season = 'Fiéis Defuntos'; }
-    
-    if (season === 'Natal' && today > new Date(Date.UTC(year, 0, 1))) {
-        const epiphany = new Date(Date.UTC(year, 0, 6));
-        if (today > epiphany) { 
-            season = 'Tempo Comum';
-            color = 'green';
-        }
+    if (isSameDay(today, trinitySunday) || isSameDay(today, corpusChristi) || isSameDay(today, christTheKing)) {
+        color = 'white';
     }
 
+    // RED FEASTS (override green/purple/white)
+    const redFeasts = [
+        '2-22', // Chair of St. Peter
+        '4-25', // St. Mark
+        '5-3', // Sts. Philip and James
+        '5-14', // St. Matthias
+        '6-29', // Sts. Peter and Paul
+        '7-3', // St. Thomas
+        '7-25', // St. James
+        '8-24', // St. Bartholomew
+        '8-29', // Passion of St. John the Baptist
+        '9-21', // St. Matthew
+        '10-18', // St. Luke
+        '10-28', // Sts. Simon and Jude
+        '11-22', // St. Cecilia
+        '11-24', // Vietnamese Martyrs
+        '11-30', // St. Andrew
+        '12-26' // St. Stephen
+    ];
+    const palmSunday = addDays(easter, -7);
+    const goodFriday = addDays(easter, -2);
+    if (redFeasts.includes(dayKey) || isSameDay(today, palmSunday) || isSameDay(today, goodFriday) || isSameDay(today, pentecost)) {
+        color = 'red';
+    }
+    
+    // ROSE SUNDAYS (override purple)
+    const thirdSundayAdvent = addDays(firstSundayOfAdvent, 14);
+    const fourthSundayLent = addDays(ashWednesday, 25);
+    if (isSameDay(today, thirdSundayAdvent) || isSameDay(today, fourthSundayLent)) {
+        color = 'rose';
+    }
+
+    // PURPLE for All Souls (overrides green)
+    if (month === 11 && dayOfMonth === 2) { 
+        color = 'purple'; 
+        season = 'Fiéis Defuntos'; 
+    }
 
     let verseKey = `${month}-${dayOfMonth}`;
     if (month === 12 && dayOfMonth === 24 && date.getUTCHours() >= 18) {
       verseKey = '12-24-night';
     }
     
-    let verse = dailyGospels[verseKey] || `Ev. ${cycle === 'A' ? 'Mateus' : cycle === 'B' ? 'Marcos' : 'Lucas'}`;
+    let verse = dailyGospels[verseKey] || `Ev. do Dia`;
 
+    // Adjust season name for specific feasts
     let finalSeasonText = season;
-    if(dayOfMonth === 2 && month === 11) {
-        finalSeasonText = 'Fiéis Defuntos';
-    }
+    if (dayKey === '11-1') finalSeasonText = 'Todos os Santos';
+    if (dayKey === '11-9') finalSeasonText = 'Ded. Bas. de Latrão';
+    if (dayKey === '11-21') finalSeasonText = 'Apres. de N. Senhora';
+    if (isSameDay(today, christTheKing)) finalSeasonText = 'Cristo Rei';
+    if (dayKey === '12-8') finalSeasonText = 'Imaculada Conceição';
+
 
     return { color, season: finalSeasonText, verse, cycle };
 }
-
-    
