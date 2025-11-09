@@ -8,7 +8,7 @@ import { cn } from '@/lib/utils';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import React from 'react';
 import { Skeleton } from './ui/skeleton';
-import { BookOpen, Calendar, Flag } from 'lucide-react';
+import { BookOpen, Calendar } from 'lucide-react';
 import Image from 'next/image';
 
 
@@ -26,7 +26,7 @@ export const LilyIcon = ({ className }: { className?: string }) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={cn("w-full h-full", className)}>
         <path d="M12 22a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2h0a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2z"/>
         <path d="M8 18c-1.5-1.5-2-4-2-6V7a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v5"/>
-        <path d="M16 18c1.5-1.5 2-4 2-6V7a2 2 0 0 0-2-2h0a2 2 0 0 0-2 2v5"/>
+        <path d="M16 18c1.5-1.5 2-4 2-6V7a2 2 0_0 0-2-2h0a2 2 0_0 0-2 2v5"/>
         <path d="M12 2v2"/>
         <path d="M12 7h.01"/>
     </svg>
@@ -117,7 +117,7 @@ const WeeklyDevotions = () => {
         <TooltipProvider>
            {/* Liturgical Info Pill */}
           <div className={cn('devotion-item', liturgicalColorClasses[liturgicalInfo.color])}>
-            <Flag className="devotion-icon" />
+            <BookOpen className="devotion-icon" />
             <div className="text-left">
               <span className="text-sm font-bold">{liturgicalColorEmojis[liturgicalInfo.color]} {liturgicalInfo.season}</span>
               <p className="text-xs">{liturgicalInfo.verse} (Ano {liturgicalInfo.cycle})</p>

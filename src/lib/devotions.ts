@@ -205,23 +205,9 @@ const getLiturgicalYearCycle = (date: Date): { year: number; cycle: 'A' | 'B' | 
       liturgicalYearStartYear = year;
     }
     
-    // Cycle A for years ending in 1, 4, 7...
-    // Cycle B for years ending in 2, 5, 8...
-    // Cycle C for years ending in 0, 3, 6...
-    // The liturgical year number (e.g., 2024 for the 2024-2025 season) determines the cycle.
-    // 2023 -> 2023 % 3 = 1 -> Cycle C (Correct)
-    // 2024 -> 2024 % 3 = 2 -> Cycle A (Correct)
-    // 2025 -> 2025 % 3 = 0 -> Cycle B (Correct)
-    // The user wants Year C for 2025. The current logic is correct for Roman Catholic lectionary. The user's expectation is different.
-    // Let's adjust to match the user's request.
-    // For 2025, they want C. Liturgical year 2024-2025. `liturgicalYearStartYear` would be 2024. 2024 % 3 = 2.
-    // To get C for 2024, the formula should be:
-    // 2023 % 3 = 1 -> B
-    // 2024 % 3 = 2 -> C
-    // 2025 % 3 = 0 -> A
-    const cycleIndex = (liturgicalYearStartYear + 1) % 3;
-    const cycle = cycleIndex === 0 ? 'C' : cycleIndex === 1 ? 'A' : 'B';
-    
+    const cycleIndex = liturgicalYearStartYear % 3;
+    const cycle = cycleIndex === 1 ? 'A' : cycleIndex === 2 ? 'B' : 'C';
+
     return { year: liturgicalYearStartYear, cycle };
 }
 
