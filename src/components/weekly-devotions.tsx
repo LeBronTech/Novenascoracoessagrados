@@ -8,7 +8,7 @@ import { cn } from '@/lib/utils';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import React from 'react';
 import { Skeleton } from './ui/skeleton';
-import { BookOpen, Calendar } from 'lucide-react';
+import { BookOpen, Calendar, Flag } from 'lucide-react';
 import Image from 'next/image';
 
 
@@ -117,7 +117,7 @@ const WeeklyDevotions = () => {
         <TooltipProvider>
            {/* Liturgical Info Pill */}
           <div className={cn('devotion-item', liturgicalColorClasses[liturgicalInfo.color])}>
-            <BookOpen className="devotion-icon" />
+            <Flag className="devotion-icon" />
             <div className="text-left">
               <span className="text-sm font-bold">{liturgicalColorEmojis[liturgicalInfo.color]} {liturgicalInfo.season}</span>
               <p className="text-xs">{liturgicalInfo.verse} (Ano {liturgicalInfo.cycle})</p>
