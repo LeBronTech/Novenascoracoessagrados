@@ -237,7 +237,10 @@ export default function Home() {
           <div className="mt-16 w-full flex flex-row items-center justify-center gap-4">
             <Dialog open={isJoseDialogOpen} onOpenChange={setIsJoseDialogOpen}>
                 <DialogTrigger asChild>
-                    <div className="devotion-item devotion-item--wednesday font-bold text-sm cursor-pointer">Espaço São José</div>
+                    <div className="flex flex-col items-center justify-center w-28 h-28 bg-green-800/90 text-white rounded-lg shadow-md cursor-pointer transition-all hover:scale-105 hover:shadow-xl">
+                      <Image src="https://iili.io/KpYhc8u.png" alt="São José" width={40} height={40} className="w-10 h-10 object-contain mb-1" />
+                      <span className="font-brand text-sm text-center">Espaço São José</span>
+                    </div>
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-[625px] bg-green-800/95 text-white border-green-600/50">
                     <DialogHeader>
@@ -273,7 +276,10 @@ export default function Home() {
 
             <Dialog>
                 <DialogTrigger asChild>
-                    <div className="devotion-item devotion-item--dark-blue font-bold text-sm cursor-pointer">Espaço Mariano</div>
+                    <div className="flex flex-col items-center justify-center w-28 h-28 bg-blue-900/90 text-white rounded-lg shadow-md cursor-pointer transition-all hover:scale-105 hover:shadow-xl">
+                      <Image src="https://iili.io/KpYhaae.png" alt="Nossa Senhora" width={40} height={40} className="w-10 h-10 object-contain mb-1" />
+                      <span className="font-brand text-sm text-center">Espaço Mariano</span>
+                    </div>
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-[625px] bg-blue-900/95 text-white border-blue-700/50">
                     <DialogHeader>
