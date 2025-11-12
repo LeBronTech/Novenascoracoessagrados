@@ -115,13 +115,7 @@ export default {
       typography: ({ theme }: { theme: any }) => ({
         DEFAULT: {
           css: {
-            '--tw-prose-headings': theme('colors.primary'),
-             h3: {
-              color: 'var(--tw-prose-headings)',
-            },
-             h4: {
-              color: 'var(--tw-prose-headings)',
-            },
+            '--tw-prose-headings': theme('colors.primary.DEFAULT'),
              blockquote: {
               'p': {
                   color: theme('colors.stone.200'),
