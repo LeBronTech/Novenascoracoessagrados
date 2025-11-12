@@ -717,8 +717,8 @@ export const saints: Saint[] = [
   { id: 'cristo_rei', name: 'Cristo Rei', imageUrl: 'https://i.postimg.cc/zBJ51hCg/image.png', month: 'Novembro', startDate: '14/11', endDate: '22/11', feastDay: '23/Nov' },
   { id: 'catarina_alexandria', name: 'S. Catarina de Alexandria', imageUrl: 'https://i.postimg.cc/s2FFt7gs/image.png', month: 'Novembro', startDate: '16/11', endDate: '24/11', feastDay: '25/Nov', isMartyr: true },
   { id: 'gracas', name: 'N.S. das Graças', imageUrl: 'https://i.postimg.cc/SsBDK7HJ/Design-sem-nome-2.png', month: 'Novembro', startDate: '18/11', endDate: '26/11', feastDay: '27/Nov' },
-  { id: 'santo_andre', name: 'S. André Apóstolo', imageUrl: 'https://i.postimg.cc/k4Wn49m8/image.png', month: 'Novembro', startDate: '21/11', endDate: '29/11', feastDay: '30/Nov', isMartyr: true },
-  { id: 'imaculada_conceicao', name: 'Imaculada Conceição', imageUrl: 'https://i.postimg.cc/L5K3PqK8/imaculada-conceic-a-7-o.jpg', month: 'Novembro', startDate: '29/11', endDate: '07/12', feastDay: '08/Dez' }
+  { id: 'santo_andre', name: 'S. André Apóstolo', imageUrl: 'https://iili.io/KpAtISf.png', month: 'Novembro', startDate: '21/11', endDate: '29/11', feastDay: '30/Nov', isMartyr: true },
+  { id: 'imaculada_conceicao', name: 'Imaculada Conceição', imageUrl: 'https://iili.io/KpAtzcG.jpg', month: 'Novembro', startDate: '29/11', endDate: '07/12', feastDay: '08/Dez' }
 ];
 
 export const months: string[] = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
@@ -1356,7 +1356,7 @@ export const saintsOfTheDay: SaintOfTheDayData[] = [
       month: 'Novembro',
       saints: [{
           name: 'Santo André, Apóstolo',
-          imageUrl: 'https://i.postimg.cc/k4Wn49m8/image.png',
+          imageUrl: 'https://iili.io/KpAtISf.png',
           story: '<p>Santo André, irmão de Simão Pedro, foi o primeiro dos Apóstolos a ser chamado por Jesus. Era discípulo de João Batista e, when este apontou para Jesus dizendo "Eis o Cordeiro de Deus", André seguiu imediatamente o Mestre. A sua primeira ação como discípulo foi levar o seu próprio irmão a Jesus, dizendo: "Encontrámos o Messias". Por isso, é chamado de "Protocleto" (o primeiro chamado). Após o Pentecostes, a tradição diz que ele pregou o Evangelho em várias regiões, incluindo a Grécia, onde foi martirizado em Patras, crucificado numa cruz em forma de X, que hoje leva o seu nome. É um modelo de prontidão em seguir Jesus e de zelo em levar os outros a Ele.</p>',
           isMartyr: true
       }]

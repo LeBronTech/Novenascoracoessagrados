@@ -190,7 +190,6 @@ const getEaster = (year: number): Date => {
 const getFirstSundayOfAdvent = (year: number): Date => {
     const christmas = new Date(Date.UTC(year, 11, 25));
     const dayOfWeek = christmas.getUTCDay(); // 0=Sunday, 1=Monday...
-    const daysToChristmasSunday = (7 - dayOfWeek) % 7;
     const sundayBeforeChristmas = addDays(christmas, -dayOfWeek);
     return addDays(sundayBeforeChristmas, -21);
 };
@@ -200,29 +199,40 @@ const getLiturgicalYearCycle = (date: Date): { year: number; cycle: 'A' | 'B' | 
     const year = date.getUTCFullYear();
     const firstSundayOfAdventCurrentYear = getFirstSundayOfAdvent(year);
     
-    const liturgicalYearStartYear = date >= firstSundayOfAdventCurrentYear ? year : year - 1;
+    const liturgicalYear = date >= firstSundayOfAdventCurrentYear ? year : year - 1;
 
-    // Anchor: Advent 2022 began Year A (2022-2023). Liturgical year 2023.
-    // 2023 % 3 = 2 -> A
-    // 2024 % 3 = 0 -> B
-    // 2025 % 3 = 1 -> C
-    const yearForCycle = liturgicalYearStartYear + 1;
+    // The cycle repeats every 3 years. We can find an anchor year.
+    // Year A started on Advent 2022. So the liturgical year 2022-2023 is Year A.
+    // The liturgical year number for cycle calculation is the one where Advent starts.
+    // For 2022, (2022 - 2022) % 3 = 0 -> 'A'
+    // For 2023, (2023 - 2022) % 3 = 1 -> 'B'
+    // For 2024, (2024 - 2022) % 3 = 2 -> 'C'
+    // For 2025, (2025 - 2022) % 3 = 0 -> 'A' - this is wrong according to the user. Let's fix.
+
+    // Let's re-anchor. Year C should be 2024-2025. This means Advent of 2024 starts Year C.
+    // Let's use a known Year A. Advent 2022 started Year A.
+    // Liturgical Year 2023 (starts Nov 2022) is A.
+    // Liturgical Year 2024 (starts Nov 2023) is B.
+    // Liturgical Year 2025 (starts Nov 2024) is C.
+    // The civil year of the Sunday Gospels is the liturgical year number.
+    const yearNumber = date >= firstSundayOfAdventCurrentYear ? year + 1 : year;
+    
     let cycle: 'A' | 'B' | 'C';
-    switch (yearForCycle % 3) {
+    switch (yearNumber % 3) {
+        case 1:
+            cycle = 'A'; // e.g., 2023
+            break;
         case 2:
-            cycle = 'A';
+            cycle = 'B'; // e.g., 2024
             break;
         case 0:
-            cycle = 'B';
-            break;
-        case 1:
-            cycle = 'C';
+            cycle = 'C'; // e.g., 2025
             break;
         default:
-            cycle = 'A'; // Should not happen
+            cycle = 'A'; // fallback
     }
-    
-    return { year: liturgicalYearStartYear, cycle };
+
+    return { year: liturgicalYear, cycle };
 }
 
 function isSameDay(d1: Date, d2: Date) {
@@ -236,33 +246,40 @@ export function getLiturgicalInfo(date: Date): LiturgicalInfo {
     const year = date.getUTCFullYear();
     const today = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
 
-    const { cycle } = getLiturgicalYearCycle(today);
+    const { cycle, year: liturgicalYear } = getLiturgicalYearCycle(today);
     
     const easter = getEaster(year);
     const ashWednesday = addDays(easter, -46);
     const pentecost = addDays(easter, 49);
     
     const firstSundayOfAdvent = getFirstSundayOfAdvent(year);
-    const firstSundayOfAdventPrevYear = getFirstSundayOfAdvent(year - 1);
     
     const christmas = new Date(Date.UTC(year, 11, 25));
-    const baptismOfTheLordDate = new Date(Date.UTC(year, 0, 7)); // Approx Jan 7
-    const baptismOfTheLord = addDays(baptismOfTheLordDate, (7 - baptismOfTheLordDate.getUTCDay()) % 7);
+    const epiphany = new Date(Date.UTC(year, 0, 6));
+    let baptismOfTheLord = addDays(epiphany, (7 - epiphany.getUTCDay()) % 7); // Sunday after Epiphany
+    if (epiphany.getUTCDay() === 0) { // If Epiphany is a Sunday
+        baptismOfTheLord = addDays(epiphany, 1); // It's the next day, Monday
+    }
+    if (epiphany > new Date(Date.UTC(year, 0, 6))) { // For countries that move Epiphany to a Sunday
+        const epiphanySunday = addDays(new Date(Date.UTC(year, 0, 1)), (7 - new Date(Date.UTC(year, 0, 1)).getUTCDay()) % 7 + 1);
+        if (epiphanySunday > new Date(Date.UTC(year, 0, 8))) {
+            baptismOfTheLord = addDays(new Date(Date.UTC(year, 0, 8)), (7 - new Date(Date.UTC(year, 0, 8)).getUTCDay())%7);
+        } else {
+            baptismOfTheLord = addDays(epiphanySunday, 7);
+        }
+    }
+
 
     // 1. Determine the Liturgical Season and its base color
     let color: LiturgicalInfo['color'] = 'green';
     let season = 'Tempo Comum';
         
-    if (today >= firstSundayOfAdvent || today < firstSundayOfAdventPrevYear) {
-        const adventStart = date >= firstSundayOfAdventCurrentYear ? firstSundayOfAdventCurrentYear : firstSundayOfAdventPrevYear;
-        const christmasStart = date >= firstSundayOfAdventCurrentYear ? new Date(Date.UTC(year, 11, 25)) : new Date(Date.UTC(year - 1, 11, 25));
-        if(today >= adventStart && today < christmasStart) {
-            season = 'Advento';
-            color = 'purple';
-        }
+    if (today >= firstSundayOfAdvent && today < christmas) {
+        season = 'Advento';
+        color = 'purple';
     } 
     
-    if ((today >= new Date(Date.UTC(year, 11, 25))) || (today < baptismOfTheLord)) {
+    if ((today >= christmas) || (today < ashWednesday && today < baptismOfTheLord)) {
         season = 'Natal';
         color = 'white';
     }
