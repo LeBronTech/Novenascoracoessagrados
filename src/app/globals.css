@@ -116,12 +116,14 @@
     opacity: 1;
   }
   
-  .prose .section-title {
-    color: hsl(var(--primary));
+  .main-card.theme-light-gray .prose .section-title,
+  .main-card.theme-default .prose .section-title {
+      color: hsl(var(--primary));
   }
 
-  .main-card .prose .section-title {
-      color: #374151; /* gray-700 */
+  .main-card.theme-dark-gray .prose .section-title,
+  .main-card.theme-red .prose .section-title {
+      color: hsl(var(--primary-foreground));
   }
 
   /* Month Carousel Styles */
