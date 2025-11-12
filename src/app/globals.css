@@ -120,6 +120,10 @@
     color: hsl(var(--primary));
   }
 
+  .main-card .prose .section-title {
+      color: #374151; /* gray-700 */
+  }
+
   /* Month Carousel Styles */
   .month-carousel .embla__slide {
     transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
