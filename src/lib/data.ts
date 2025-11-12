@@ -710,7 +710,7 @@ export const saints: Saint[] = [
   //Novembro
   { id: 'almas', name: 'Almas', imageUrl: 'https://i.postimg.cc/G2DDG2TC/dfed164f02d4d4d2bccaa939385df13b.jpg', month: 'Novembro', startDate: '24/10', endDate: '01/11', feastDay: '02/Nov' },
   { id: 'martinho_porres', name: 'S. M. de Porres', imageUrl: 'https://i.postimg.cc/Y0tMTg84/image.png', month: 'Novembro', startDate: '25/10', endDate: '02/11', feastDay: '03/Nov' },
-  { id: 'isabel_hungria', name: 'S. Isabel da Hungria', imageUrl: 'https://i.postimg.cc/pdDpq2dk/image.png', month: 'Novembro', startDate: '08/11', endDate: '16/11', feastDay: '17/Nov' },
+  { id: 'isabel_hungria', name: 'S. Isabel da Hungria', imageUrl: 'https://iili.io/KpAYfLl.jpg', month: 'Novembro', startDate: '08/11', endDate: '16/11', feastDay: '17/Nov' },
   { id: 'apresentacao_ns', name: 'Apresentação de N.S.', imageUrl: 'https://i.postimg.cc/3Js86PzK/image.png', month: 'Novembro', startDate: '12/11', endDate: '20/11', feastDay: '21/Nov' },
   { id: 'ns_saude', name: 'N.S. da Saúde', imageUrl: 'https://i.postimg.cc/RCdhqSqh/image.png', month: 'Novembro', startDate: '12/11', endDate: '20/11', feastDay: '21/Nov' },
   { id: 'santa_cecilia', name: 'S. Cecília', imageUrl: 'https://i.postimg.cc/4xDNjn2c/image.png', month: 'Novembro', startDate: '13/11', endDate: '21/11', feastDay: '22/Nov', isMartyr: true },
@@ -1157,13 +1157,13 @@ export const saintsOfTheDay: SaintOfTheDayData[] = [
       saints: [
         {
           name: 'Santos Estêvão T. Cuénot e Mártires',
-          imageUrl: 'https://i.postimg.cc/Rh4vL2sV/image.png',
+          imageUrl: 'https://iili.io/KpAYnr7.png',
           story: '<p>A Igreja celebra hoje a memória de um grupo de mártires do Vietnã, liderados pelo bispo Santo Estêvão Teodoro Cuénot. Missionário francês das Missões Estrangeiras de Paris, dedicou 30 anos de sua vida à evangelização do Vietnã, em meio a perseguições ferozes. Preso e condenado à morte, morreu na prisão antes da execução, consumindo seu martírio no sofrimento. Com ele, celebramos a multidão de cristãos vietnamitas que deram a vida por Cristo.</p>',
           isMartyr: true
         },
         {
           name: 'Santo Estanislau Kostka',
-          imageUrl: 'https://i.postimg.cc/X7fLzQ3H/image.png',
+          imageUrl: 'https://iili.io/KpAYC1S.jpg',
           story: '<p>Santo Estanislau Kostka, jovem nobre polonês do século XVI, é um modelo para a juventude. Sentindo um forte chamado para a vida religiosa jesuíta, enfrentou a oposição ferrenha de sua família. Para realizar sua vocação, fugiu de casa e caminhou mais de 500 quilômetros a pé até Roma, para ser admitido na Companhia de Jesus. Sua vida no noviciado foi curta, mas intensa em amor a Deus e a Maria. Morreu aos 18 anos, deixando um exemplo de determinação e pureza de coração.</p>'
         }
       ]
@@ -1173,7 +1173,7 @@ export const saintsOfTheDay: SaintOfTheDayData[] = [
       month: 'Novembro',
       saints: [{
           name: 'Santo Alberto Magno',
-          imageUrl: 'https://i.postimg.cc/3Nc84H8Q/image.png',
+          imageUrl: 'https://iili.io/KpAYBB2.jpg',
           story: '<p>Santo Alberto Magno, dominicano alemão do século XIII, foi um dos maiores intelectuais da Idade Média. Conhecido como o "Doutor Universal", seu conhecimento abrangia teologia, filosofia, ciências naturais, astronomia, química e muito mais. Foi um pioneiro no diálogo entre a fé e a razão, mostrando que a ciência e a religião não se opõem, mas se complementam. Foi mestre de São Tomás de Aquino, a quem defendeu e cujo génio reconheceu. Sua vida nos ensina a buscar a verdade em todas as áreas do conhecimento, sempre com o olhar voltado para Deus, a fonte de toda a verdade.</p>'
       }]
   },
@@ -1182,7 +1182,7 @@ export const saintsOfTheDay: SaintOfTheDayData[] = [
       month: 'Novembro',
       saints: [{
           name: 'Santa Margarida da Escócia',
-          imageUrl: 'https://i.postimg.cc/ydx2JgB7/image.png',
+          imageUrl: 'https://iili.io/KpAYfLl.jpg',
           story: '<p>Santa Margarida, rainha da Escócia no século XI, foi um exemplo luminoso de como a santidade pode florescer na vida familiar e no exercício do poder. Neta do rei da Inglaterra, casou-se com o rei Malcolm III da Escócia. Como rainha, usou sua influência para reformar a Igreja na Escócia, promovendo a disciplina eclesiástica, fundando mosteiros e igrejas, e incentivando a prática dos sacramentos. Ao mesmo tempo, foi uma esposa e mãe exemplar, educando seus oito filhos na fé cristã. Sua vida foi marcada por uma intensa caridade para com os pobres e órfãos, a quem servia pessoalmente todos os dias.</p>'
       }]
   },
@@ -1389,5 +1389,8 @@ export const saintsOfTheDay: SaintOfTheDayData[] = [
 
 
     
+
+    
+
 
     
