@@ -254,12 +254,12 @@ export default function Home() {
             </div>
           </div>
           
-          <div className="mt-16 w-full flex flex-row items-center justify-center gap-4">
+          <div className="mt-16 w-full flex flex-col sm:flex-row items-center justify-center gap-4">
             <Dialog open={isJoseDialogOpen} onOpenChange={setIsJoseDialogOpen}>
                 <DialogTrigger asChild>
-                    <div className="flex flex-col items-center justify-center w-28 h-28 bg-green-800/90 text-white rounded-lg shadow-md cursor-pointer transition-all hover:scale-105 hover:shadow-xl">
-                      <Image src="https://iili.io/KpYhc8u.png" alt="São José" width={40} height={40} className="w-10 h-10 object-contain mb-1" />
-                      <span className="font-brand text-sm text-center">Espaço São José</span>
+                    <div className="flex flex-row items-center justify-center gap-3 px-4 py-3 bg-green-800/90 text-white rounded-lg shadow-md cursor-pointer transition-all hover:scale-105 hover:shadow-xl w-auto">
+                      <Image src="https://iili.io/KpYhc8u.png" alt="São José" width={24} height={24} className="w-6 h-6 object-contain" />
+                      <span className="font-brand text-sm text-center font-semibold">Espaço São José</span>
                     </div>
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-[625px] bg-green-800/95 text-white border-green-600/50">
@@ -296,9 +296,9 @@ export default function Home() {
 
             <Dialog>
                 <DialogTrigger asChild>
-                    <div className="flex flex-col items-center justify-center w-28 h-28 bg-blue-900/90 text-white rounded-lg shadow-md cursor-pointer transition-all hover:scale-105 hover:shadow-xl">
-                      <Image src="https://iili.io/KpYhaae.png" alt="Nossa Senhora" width={40} height={40} className="w-10 h-10 object-contain mb-1" />
-                      <span className="font-brand text-sm text-center">Espaço Mariano</span>
+                    <div className="flex flex-row items-center justify-center gap-3 px-4 py-3 bg-blue-900/90 text-white rounded-lg shadow-md cursor-pointer transition-all hover:scale-105 hover:shadow-xl w-auto">
+                      <Image src="https://iili.io/KpYhaae.png" alt="Nossa Senhora" width={24} height={24} className="w-6 h-6 object-contain" />
+                      <span className="font-brand text-sm text-center font-semibold">Espaço Mariano</span>
                     </div>
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-[425px] bg-blue-900/95 text-white border-blue-700/50">
