@@ -140,14 +140,13 @@ export default function NovenaDisplay({ saint, novena, theme, setTheme }: Novena
   const proseClasses = cn(
     "prose max-w-none prose-blockquote:text-inherit",
     isLightTheme ? "text-stone-800" : "text-white",
-    isLightTheme ? "prose-headings:text-primary" : "prose-headings:text-white",
+    isLightTheme ? "prose-h3:text-primary prose-h4:text-primary" : "prose-h3:text-white prose-h4:text-white",
     isLightTheme ? "prose-blockquote:text-primary/90" : "prose-blockquote:text-white/90",
     isLightTheme ? "[&_.day-specific-content>p:first-child::first-letter]:text-primary" : "[&_.day-specific-content>p:first-child::first-letter]:text-white",
     isLightTheme ? "[&_.prayer-request>p:first-child::first-letter]:text-primary" : "[&_.prayer-request>p:first-child::first-letter]:text-white",
     isLightTheme ? "[&_.prayer-block>p:first-child::first-letter]:text-primary" : "[&_.prayer-block>p:first-child::first-letter]:text-white",
     isLightTheme ? "[&_.litany-response]:text-primary/90" : "[&_.litany-response]:text-white/80",
     isLightTheme ? "[&_.special-title]:text-primary" : "[&_.special-title]:text-white",
-    isLightTheme ? 'prose-h3:text-primary prose-h4:text-primary' : 'prose-h3:text-white prose-h4:text-white'
   );
 
 
