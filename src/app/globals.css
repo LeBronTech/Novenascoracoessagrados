@@ -86,13 +86,14 @@
     @apply border-primary text-primary;
   }
   
-  .day-specific-content > p:first-child::first-letter,
-  .prayer-request > p:first-child::first-letter,
-  .prayer-block > p:first-child::first-letter,
-  .initial-prayer-text > .prayer-block:first-of-type p:first-child::first-letter,
-  .final-prayer-text > .prayer-block:first-of-type p:first-child::first-letter,
+  .day-specific-content > p:first-of-type::first-letter,
+  .prayer-request > p:first-of-type::first-letter,
+  .prayer-block > p:first-of-type::first-letter,
+  .initial-prayer-text > .prayer-block:first-of-type p:first-of-type::first-letter,
+  .final-prayer-text > .prayer-block:first-of-type p:first-of-type::first-letter,
   .prose > h4 + p::first-letter,
-  .prose > blockquote:first-of-type + p::first-letter {
+  .prose > blockquote:first-of-type + p::first-letter,
+  .saint-day-content .prose > p:first-of-type::first-letter {
     font-family: 'Cinzel Decorative', serif;
     font-size: 4.5em; 
     font-weight: bold; 
@@ -103,27 +104,35 @@
     transition: color 0.4s ease;
   }
 
-  .main-card.theme-light-gray .day-specific-content > p:first-child::first-letter,
-  .main-card.theme-default .day-specific-content > p:first-child::first-letter,
-  .main-card.theme-light-gray .prayer-request > p:first-child::first-letter,
-  .main-card.theme-default .prayer-request > p:first-child::first-letter,
-  .main-card.theme-light-gray .prayer-block > p:first-child::first-letter,
-  .main-card.theme-default .prayer-block > p:first-child::first-letter,
+  .main-card.theme-light-gray .day-specific-content > p:first-of-type::first-letter,
+  .main-card.theme-default .day-specific-content > p:first-of-type::first-letter,
+  .main-card.theme-light-gray .prayer-request > p:first-of-type::first-letter,
+  .main-card.theme-default .prayer-request > p:first-of-type::first-letter,
+  .main-card.theme-light-gray .prayer-block > p:first-of-type::first-letter,
+  .main-card.theme-default .prayer-block > p:first-of-type::first-letter,
   .main-card.theme-light-gray .prose > h4 + p::first-letter,
   .main-card.theme-default .prose > h4 + p::first-letter {
     color: hsl(var(--primary));
   }
 
-  .main-card.theme-dark-gray .day-specific-content > p:first-child::first-letter,
-  .main-card.theme-red .day-specific-content > p:first-child::first-letter,
-  .main-card.theme-dark-gray .prayer-request > p:first-child::first-letter,
-  .main-card.theme-red .prayer-request > p:first-child::first-letter,
-  .main-card.theme-dark-gray .prayer-block > p:first-child::first-letter,
-  .main-card.theme-red .prayer-block > p:first-child::first-letter,
+  .main-card.theme-dark-gray .day-specific-content > p:first-of-type::first-letter,
+  .main-card.theme-red .day-specific-content > p:first-of-type::first-letter,
+  .main-card.theme-dark-gray .prayer-request > p:first-of-type::first-letter,
+  .main-card.theme-red .prayer-request > p:first-of-type::first-letter,
+  .main-card.theme-dark-gray .prayer-block > p:first-of-type::first-letter,
+  .main-card.theme-red .prayer-block > p:first-of-type::first-letter,
   .main-card.theme-dark-gray .prose > h4 + p::first-letter,
   .main-card.theme-red .prose > h4 + p::first-letter {
     color: hsl(var(--primary-foreground));
   }
+  
+  .saint-day-content.theme-light .prose > p:first-of-type::first-letter {
+    color: hsl(var(--primary));
+  }
+  .saint-day-content.theme-dark .prose > p:first-of-type::first-letter {
+    color: hsl(var(--accent));
+  }
+
 
   .prose blockquote p {
     color: inherit !important;
@@ -140,24 +149,16 @@
     opacity: 1;
   }
   
-  .main-card.theme-light-gray .prose .section-title,
-  .main-card.theme-default .prose .section-title {
-      color: hsl(var(--primary));
-  }
-
+  .main-card.theme-default .prose .section-title,
   .main-card.theme-default .prose h4 {
       color: hsl(var(--primary));
   }
-
+  
   .main-card.theme-dark-gray .prose .section-title,
   .main-card.theme-red .prose .section-title,
   .main-card.theme-dark-gray .prose h4,
   .main-card.theme-red .prose h4 {
       color: hsl(var(--primary-foreground));
-  }
-  
-  .main-card.theme-default .prose .section-title, .main-card.theme-default .prose h4 {
-    color: hsl(var(--primary));
   }
 
 
