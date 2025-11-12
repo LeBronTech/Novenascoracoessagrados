@@ -129,11 +129,6 @@ export default {
             },
           },
         },
-        dark: {
-          css: {
-            '--tw-prose-headings': theme('colors.white'),
-          }
-        }
       }),
     },
   },
