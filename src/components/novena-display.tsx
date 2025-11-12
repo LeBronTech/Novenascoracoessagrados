@@ -163,8 +163,8 @@ export default function NovenaDisplay({ saint, novena, theme, setTheme }: Novena
        <header id="novena-header" className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-6 mb-8 text-center sm:text-left">
           <img src={saint.imageUrl} alt={saint.name} className="w-28 h-28 md:w-32 md:h-32 rounded-full object-cover border-2 border-stone-400/50 shadow-lg flex-shrink-0" />
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold font-brand text-gray-800">{novenaTitle}</h2>
-            <p className={cn("italic mt-1 text-gray-800",
+            <h2 className="text-3xl md:text-4xl font-bold font-brand">{novenaTitle}</h2>
+            <p className={cn("italic mt-1",
                isLightTheme ? 'text-stone-600' : 'text-white/90'
             )}>
               {description || ''}
@@ -243,8 +243,8 @@ export default function NovenaDisplay({ saint, novena, theme, setTheme }: Novena
                 </div>
 
                 <div className={proseClasses}>
-                  {day.day && !isSpecialNovena && <h3 className={cn("section-title text-2xl font-bold font-brand mb-2 text-gray-800")}>{day.day}</h3>}
-                  {day.title && <h4 className={cn("text-xl italic mb-4 text-gray-800")}>{day.title}</h4>}
+                  {day.day && !isSpecialNovena && <h3 className={cn("section-title text-2xl font-bold font-brand mb-2")}>{day.day}</h3>}
+                  {day.title && <h4 className={cn("text-xl italic mb-4")}>{day.title}</h4>}
                   
                   <div className="day-specific-content">
                     <NovenaContent htmlContent={day.content} />

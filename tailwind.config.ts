@@ -115,7 +115,7 @@ export default {
       typography: ({ theme }: { theme: any }) => ({
         DEFAULT: {
           css: {
-            '--tw-prose-headings': theme('colors.primary.DEFAULT'),
+            '--tw-prose-headings': 'inherit',
              blockquote: {
               'p': {
                   color: theme('colors.stone.200'),
