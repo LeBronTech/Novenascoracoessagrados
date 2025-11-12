@@ -131,6 +131,11 @@
   .main-card.theme-red .prose h4 {
       color: hsl(var(--primary-foreground));
   }
+  
+  .main-card.theme-default .prose .section-title, .main-card.theme-default .prose h4 {
+    color: hsl(var(--primary));
+  }
+
 
   /* Month Carousel Styles */
   .month-carousel .embla__slide {
