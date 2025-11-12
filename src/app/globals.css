@@ -89,6 +89,8 @@
   .day-specific-content > p:first-child::first-letter,
   .prayer-request > p:first-child::first-letter,
   .prayer-block > p:first-child::first-letter,
+  .initial-prayer-text > .prayer-block:first-of-type p:first-child::first-letter,
+  .final-prayer-text > .prayer-block:first-of-type p:first-child::first-letter,
   .prose > h4 + p::first-letter,
   .prose > blockquote:first-of-type + p::first-letter {
     font-family: 'Cinzel Decorative', serif;
@@ -99,6 +101,28 @@
     padding-top: 0.1em; 
     margin-right: 0.1em;
     transition: color 0.4s ease;
+  }
+
+  .main-card.theme-light-gray .day-specific-content > p:first-child::first-letter,
+  .main-card.theme-default .day-specific-content > p:first-child::first-letter,
+  .main-card.theme-light-gray .prayer-request > p:first-child::first-letter,
+  .main-card.theme-default .prayer-request > p:first-child::first-letter,
+  .main-card.theme-light-gray .prayer-block > p:first-child::first-letter,
+  .main-card.theme-default .prayer-block > p:first-child::first-letter,
+  .main-card.theme-light-gray .prose > h4 + p::first-letter,
+  .main-card.theme-default .prose > h4 + p::first-letter {
+    color: hsl(var(--primary));
+  }
+
+  .main-card.theme-dark-gray .day-specific-content > p:first-child::first-letter,
+  .main-card.theme-red .day-specific-content > p:first-child::first-letter,
+  .main-card.theme-dark-gray .prayer-request > p:first-child::first-letter,
+  .main-card.theme-red .prayer-request > p:first-child::first-letter,
+  .main-card.theme-dark-gray .prayer-block > p:first-child::first-letter,
+  .main-card.theme-red .prayer-block > p:first-child::first-letter,
+  .main-card.theme-dark-gray .prose > h4 + p::first-letter,
+  .main-card.theme-red .prose > h4 + p::first-letter {
+    color: hsl(var(--primary-foreground));
   }
 
   .prose blockquote p {

@@ -141,9 +141,6 @@ export default function NovenaDisplay({ saint, novena, theme, setTheme }: Novena
     "prose max-w-none prose-blockquote:text-inherit",
     isLightTheme ? "text-stone-800" : "text-white",
     isLightTheme ? "prose-blockquote:text-primary/90" : "prose-blockquote:text-white/90",
-    isLightTheme ? "[&_.day-specific-content>p:first-child::first-letter]:text-primary" : "[&_.day-specific-content>p:first-child::first-letter]:text-white",
-    isLightTheme ? "[&_.prayer-request>p:first-child::first-letter]:text-primary" : "[&_.prayer-request>p:first-child::first-letter]:text-white",
-    isLightTheme ? "[&_.prayer-block>p:first-child::first-letter]:text-primary" : "[&_.prayer-block>p:first-child::first-letter]:text-white",
     isLightTheme ? "[&_.litany-response]:text-primary/90" : "[&_.litany-response]:text-white/80"
   );
 
@@ -154,6 +151,7 @@ export default function NovenaDisplay({ saint, novena, theme, setTheme }: Novena
       className={cn(
         'main-card glass-card rounded-2xl p-6 md:p-10 relative shadow-2xl shadow-black/20', 
         themeClasses[theme],
+        theme,
         getAnimationClass()
         )}
     >
@@ -241,7 +239,7 @@ export default function NovenaDisplay({ saint, novena, theme, setTheme }: Novena
                 </div>
 
                 <div className={proseClasses}>
-                  {day.day && !isSpecialNovena && <h3 className={cn("section-title text-2xl font-bold font-brand mb-2", isLightTheme ? 'text-primary' : 'text-white')}>{day.day}</h3>}
+                  {day.day && !isSpecialNovena && <h3 className={cn("section-title text-2xl font-bold font-brand mb-2")}>{day.day}</h3>}
                   {day.title && <h4 className={cn("text-xl italic mb-4", isLightTheme ? 'text-stone-500' : 'text-stone-300')}>{day.title}</h4>}
                   
                   <div className="day-specific-content">
