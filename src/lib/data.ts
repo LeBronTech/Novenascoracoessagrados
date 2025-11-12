@@ -70,7 +70,7 @@ export const novenaData: Record<string, Novena> = {
         { 
             day: 'Quinto Dia', 
             title: 'São José, Espelho de Paciência',
-            content: `<div class="day-specific-content"><p>Bondoso São José, que suportastes com heróica paciência as provações e adversidades na viagem a Belém, na fuga para o Egito e durante a vida oculta em Nazaré e me destes o exemplo de admirável conformidade com a vontade de Deus, obtende-me a virtude da paciência nas dificuldades de cada dia. Alcançai também invencível paciência a todos os que suportam pesadas cruzes, a fim de que se unam sempre mais a Jesus, divino modelo de mansidão e paciência. Amém.</p><p class="mt-4">V/. Rogai por nós, São José, espelho de paciência.<br/>R/. Para que sejamos dignos das promessas de Cristo.</p><p class="mt-4 font-semibold">Oremos. Ó Deus, que por uma inefável Providência Vos dignastes escolher o bem-aventurado São José para Esposo de vossa Mãe Santíssima, concedei-nos que aquele mesmo que na terra veneramos como protetor, mereçamos tê-lo no céu por nosso intercessor. Vós que viveis e reinais por todos os séculos dos séculos. Amém.</p></div>`
+            content: `<div class="day-specific-content"><p>Bondoso São José, que suportastes com heróica paciência as provações e adversidades na viagem a Belém, na fuga para o Egito e durante a vida oculta em Nazaré e me destes o exemplo de admirável conformidade com a vontade de Deus, obtende-me a virtude da paciência nas dificuldades de cada dia. Alcançai também invencível paciência a todos os que suportam pesadas cruzes, a fim de que se unam sempre mais a Jesus, divino modelo de mansidão e paciência. Amém.</p><p class="mt_4">V/. Rogai por nós, São José, espelho de paciência.<br/>R/. Para que sejamos dignos das promessas de Cristo.</p><p class="mt-4 font-semibold">Oremos. Ó Deus, que por uma inefável Providência Vos dignastes escolher o bem-aventurado São José para Esposo de vossa Mãe Santíssima, concedei-nos que aquele mesmo que na terra veneramos como protetor, mereçamos tê-lo no céu por nosso intercessor. Vós que viveis e reinais por todos os séculos dos séculos. Amém.</p></div>`
         },
         { 
             day: 'Sexto Dia', 
@@ -144,7 +144,7 @@ export const novenaData: Record<string, Novena> = {
         { 
             day: 'Nono Dia', 
             title: 'São José, Padroeiro dos Moribundos',
-            content: `<div class="day-specific-content"><p>Ditoso São José, que morrendo nos braços de Jesus e Maria, partistes deste mundo ornado de virtudes e enriquecido de méritos, assisti-me na hora suprema e decisiva da minha vida contra os ataques do poder infernal. Obtende-me a graça de morrer confortado com os santos Sacramentos, necessários para a minha salvação. Tende compaixão de todos os agonizantes, alcançando-lhes a graça da salvação por intermédio de Maria, vossa Santíssima Esposa. Amém.</p><p class="mt-4">V/. Rogai por nós, São José, padroeiro dos moribundos.<br/>R/. Para que sejamos dignos das promessas de Cristo.</p><p class="mt-4 font-semibold">Oremos. Ó Deus, que por uma inefável Providência Vos dignastes escolher o bem-aventurado São José para Esposo de vossa Mãe Santíssima, concedei-nos que aquele mesmo que na terra veneramos como protetor, mereçamos tê-lo no céu por nosso intercessor. Vós que viveis e reinais por todos os séculos dos séculos. Amém.</p></div>`
+            content: `<div class="day-specific-content"><p>Ditoso São José, que morrendo nos braços de Jesus e Maria, partistes deste mundo ornado de virtudes e enriquecido de méritos, assisti-me na hora suprema e decisiva da minha vida contra os ataques do poder infernal. Obtende-me a graça de morrer confortado com os santos Sacramentos, necessários para a minha salvação. Tende compaixão de todos os agonizantes, alcançando-lhes a graça da salvação por intermédio de Maria, vossa Santíssima Esposa. Amém.</p><p class="mt_4">V/. Rogai por nós, São José, padroeiro dos moribundos.<br/>R/. Para que sejamos dignos das promessas de Cristo.</p><p class="mt-4 font-semibold">Oremos. Ó Deus, que por uma inefável Providência Vos dignastes escolher o bem-aventurado São José para Esposo de vossa Mãe Santíssima, concedei-nos que aquele mesmo que na terra veneramos como protetor, mereçamos tê-lo no céu por nosso intercessor. Vós que viveis e reinais por todos os séculos dos séculos. Amém.</p></div>`
         }
     ]
   },
@@ -717,8 +717,8 @@ export const saints: Saint[] = [
   { id: 'cristo_rei', name: 'Cristo Rei', imageUrl: 'https://i.postimg.cc/zBJ51hCg/image.png', month: 'Novembro', startDate: '14/11', endDate: '22/11', feastDay: '23/Nov' },
   { id: 'catarina_alexandria', name: 'S. Catarina de Alexandria', imageUrl: 'https://i.postimg.cc/s2FFt7gs/image.png', month: 'Novembro', startDate: '16/11', endDate: '24/11', feastDay: '25/Nov', isMartyr: true },
   { id: 'gracas', name: 'N.S. das Graças', imageUrl: 'https://i.postimg.cc/SsBDK7HJ/Design-sem-nome-2.png', month: 'Novembro', startDate: '18/11', endDate: '26/11', feastDay: '27/Nov' },
-  { id: 'santo_andre', name: 'S. André Apóstolo', imageUrl: 'https://iili.io/KpAtISf.png', month: 'Novembro', startDate: '21/11', endDate: '29/11', feastDay: '30/Nov', isMartyr: true },
-  { id: 'imaculada_conceicao', name: 'Imaculada Conceição', imageUrl: 'https://iili.io/KpAtzcG.jpg', month: 'Novembro', startDate: '29/11', endDate: '07/12', feastDay: '08/Dez' }
+  { id: 'santo_andre', name: 'S. André Apóstolo', imageUrl: 'https://iili.io/KpAtzcG.jpg', month: 'Novembro', startDate: '21/11', endDate: '29/11', feastDay: '30/Nov', isMartyr: true },
+  { id: 'imaculada_conceicao', name: 'Imaculada Conceição', imageUrl: 'https://iili.io/KpAtISf.png', month: 'Novembro', startDate: '29/11', endDate: '07/12', feastDay: '08/Dez' }
 ];
 
 export const months: string[] = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
@@ -1356,7 +1356,7 @@ export const saintsOfTheDay: SaintOfTheDayData[] = [
       month: 'Novembro',
       saints: [{
           name: 'Santo André, Apóstolo',
-          imageUrl: 'https://iili.io/KpAtISf.png',
+          imageUrl: 'https://iili.io/KpAtzcG.jpg',
           story: '<p>Santo André, irmão de Simão Pedro, foi o primeiro dos Apóstolos a ser chamado por Jesus. Era discípulo de João Batista e, when este apontou para Jesus dizendo "Eis o Cordeiro de Deus", André seguiu imediatamente o Mestre. A sua primeira ação como discípulo foi levar o seu próprio irmão a Jesus, dizendo: "Encontrámos o Messias". Por isso, é chamado de "Protocleto" (o primeiro chamado). Após o Pentecostes, a tradição diz que ele pregou o Evangelho em várias regiões, incluindo a Grécia, onde foi martirizado em Patras, crucificado numa cruz em forma de X, que hoje leva o seu nome. É um modelo de prontidão em seguir Jesus e de zelo em levar os outros a Ele.</p>',
           isMartyr: true
       }]
