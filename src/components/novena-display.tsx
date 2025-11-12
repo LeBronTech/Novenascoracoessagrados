@@ -122,8 +122,6 @@ export default function NovenaDisplay({ saint, novena, theme, setTheme }: Novena
   const { novenaTitle, description, days, initialPrayer, finalPrayer } = novena;
   
   const isLightTheme = theme === 'theme-light-gray';
-  const isRedTheme = theme === 'theme-red';
-  const isDarkGrayTheme = theme === 'theme-dark-gray';
   
   const getAnimationClass = () => {
     switch(animationState) {
@@ -139,6 +137,19 @@ export default function NovenaDisplay({ saint, novena, theme, setTheme }: Novena
 
   const isSpecialNovena = days.length === 2 && (days[0].title === 'Oração da Novena' || days[1].title === 'Breve história da Apresentação');
 
+  const proseClasses = cn(
+    "prose max-w-none prose-blockquote:text-inherit",
+    isLightTheme ? "text-stone-800" : "text-white",
+    isLightTheme ? "prose-h3:text-primary prose-h4:text-primary" : "prose-h3:text-white prose-h4:text-white",
+    isLightTheme ? "prose-blockquote:text-primary/90" : "prose-blockquote:text-white/90",
+    isLightTheme ? "[&_.day-specific-content>p:first-child::first-letter]:text-primary" : "[&_.day-specific-content>p:first-child::first-letter]:text-white",
+    isLightTheme ? "[&_.prayer-request>p:first-child::first-letter]:text-primary" : "[&_.prayer-request>p:first-child::first-letter]:text-white",
+    isLightTheme ? "[&_.prayer-block>p:first-child::first-letter]:text-primary" : "[&_.prayer-block>p:first-child::first-letter]:text-white",
+    isLightTheme ? "[&_.litany-response]:text-primary/90" : "[&_.litany-response]:text-white/80",
+    isLightTheme ? "[&_.special-title]:text-primary" : "[&_.special-title]:text-white",
+  );
+
+
   return (
     <main 
       id="main-card" 
@@ -153,10 +164,10 @@ export default function NovenaDisplay({ saint, novena, theme, setTheme }: Novena
           <img src={saint.imageUrl} alt={saint.name} className="w-28 h-28 md:w-32 md:h-32 rounded-full object-cover border-2 border-stone-400/50 shadow-lg flex-shrink-0" />
           <div>
             <h2 className={cn("text-3xl md:text-4xl font-bold font-brand", 
-              isRedTheme || isDarkGrayTheme ? 'text-white' : 'text-primary'
+              isLightTheme ? 'text-primary' : 'text-white'
             )}>{novenaTitle}</h2>
             <p className={cn("italic mt-1",
-               isRedTheme || isDarkGrayTheme ? 'text-white/90' : isLightTheme ? 'text-stone-600' : 'text-white/90'
+               isLightTheme ? 'text-stone-600' : 'text-white/90'
             )}>
               {description || ''}
             </p>
@@ -164,7 +175,7 @@ export default function NovenaDisplay({ saint, novena, theme, setTheme }: Novena
               <div className="mt-3 flex items-center justify-center sm:justify-start gap-2">
                 <span className={cn(
                   "inline-block text-xs font-bold px-4 py-1 rounded-full",
-                   isRedTheme ? "bg-white text-primary" : "bg-primary text-white"
+                   isLightTheme ? "bg-primary text-white" : "bg-primary text-white"
                 )}>
                   Novena: {saint.startDate} a {saint.endDate}
                 </span>
@@ -216,16 +227,8 @@ export default function NovenaDisplay({ saint, novena, theme, setTheme }: Novena
             <CarouselItem key={`content-${index}`}>
               <div className="animate-fade-in">
                 {initialPrayer && (
-                  <div className={cn(
-                      'prose max-w-none prose-blockquote:text-inherit',
-                      isLightTheme ? "text-stone-800" : "text-white",
-                      isRedTheme || isDarkGrayTheme ? "[&_h3.section-title]:text-white [&_h4.section-title]:text-white" : "[&_h3.section-title]:text-primary [&_h4.section-title]:text-primary",
-                      isLightTheme ? "[&_blockquote_p]:text-primary/90" : "prose-blockquote:text-white/90",
-                      isRedTheme || isDarkGrayTheme ? "[&_.prayer-block>p:first-child::first-letter]:text-white" : "[&_.prayer-block>p:first-child::first-letter]:text-primary",
-                      isLightTheme ? "[&_.prayer-block>p:first-child::first-letter]:text-primary" : "",
-                      isLightTheme ? "[&_.litany-response]:text-primary/90" : "[&_.litany-response]:text-white/80"
-                  )}>
-                    <div className={cn('initial-prayer-text')}>
+                  <div className={proseClasses}>
+                    <div className='initial-prayer-text'>
                       <NovenaContent htmlContent={initialPrayer} />
                     </div>
                   </div>
@@ -241,22 +244,8 @@ export default function NovenaDisplay({ saint, novena, theme, setTheme }: Novena
                     <CarouselNext className={cn("relative -right-0 top-0 translate-y-0", arrowClasses)} />
                 </div>
 
-                <div className={cn(
-                  "prose max-w-none prose-blockquote:text-inherit",
-                  isLightTheme ? "text-stone-800" : "text-white",
-                  isRedTheme || isDarkGrayTheme ? "[&_h3.section-title]:text-white [&_h4.section-title]:text-white" : "[&_h3.section-title]:text-primary [&_h4.section-title]:text-primary",
-                  isLightTheme ? "[&_blockquote_p]:text-primary/90" : "prose-blockquote:text-white/90",
-                  isRedTheme || isDarkGrayTheme ? "[&_.day-specific-content>p:first-child::first-letter]:text-white" : "[&_.day-specific-content>p:first-child::first-letter]:text-primary",
-                  isRedTheme || isDarkGrayTheme ? "[&_.prayer-request>p:first-child::first-letter]:text-white" : "[&_.prayer-request>p:first-child::first-letter]:text-primary",
-                  isRedTheme || isDarkGrayTheme ? "[&_.prayer-block>p:first-child::first-letter]:text-white" : "[&_.prayer-block>p:first-child::first-letter]:text-primary",
-                  isLightTheme ? "[&_.day-specific-content>p:first-child::first-letter]:text-primary" : "",
-                  isLightTheme ? "[&_.prayer-request>p:first-child::first-letter]:text-primary" : "",
-                  isLightTheme ? "[&_.prayer-block>p:first-child::first-letter]:text-primary" : "",
-                  isLightTheme ? "[&_.litany-response]:text-primary/90" : "[&_.litany-response]:text-white/80"
-                )}>
-                  {day.day && !isSpecialNovena && <h3 className={cn("section-title text-2xl font-bold font-brand mb-2",
-                    isRedTheme || isDarkGrayTheme ? 'text-white' : 'text-primary'
-                  )}>{day.day}</h3>}
+                <div className={proseClasses}>
+                  {day.day && !isSpecialNovena && <h3 className={cn("section-title text-2xl font-bold font-brand mb-2")}>{day.day}</h3>}
                   {day.title && <p className={cn("text-xl italic mb-4", isLightTheme ? "text-stone-500" : "text-white/80")}>{day.title}</p>}
                   
                   <div className="day-specific-content">
@@ -265,16 +254,8 @@ export default function NovenaDisplay({ saint, novena, theme, setTheme }: Novena
                 </div>
                   
                 {finalPrayer && (
-                   <div className={cn(
-                      'prose max-w-none prose-blockquote:text-inherit',
-                      isLightTheme ? "text-stone-800" : "text-white",
-                      isRedTheme || isDarkGrayTheme ? "[&_h3.section-title]:text-white [&_h4.section-title]:text-white" : "[&_h3.section-title]:text-primary [&_h4.section-title]:text-primary",
-                      isLightTheme ? "[&_blockquote_p]:text-primary/90" : "prose-blockquote:text-white/90",
-                      isRedTheme || isDarkGrayTheme ? "[&_.prayer-block>p:first-child::first-letter]:text-white" : "[&_.prayer-block>p:first-child::first-letter]:text-primary",
-                      isLightTheme ? "[&_.prayer-block>p:first-child::first-letter]:text-primary" : "",
-                      isLightTheme ? "[&_.litany-response]:text-primary/90" : "[&_.litany-response]:text-white/80"
-                  )}>
-                    <div className={cn('final-prayer-text')}>
+                   <div className={proseClasses}>
+                    <div className='final-prayer-text'>
                       <NovenaContent htmlContent={finalPrayer} />
                     </div>
                   </div>
