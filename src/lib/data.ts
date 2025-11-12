@@ -179,18 +179,18 @@ export const novenaData: Record<string, Novena> = {
     ]
   },
   apresentacao_ns: {
-    saintName: "Apresentação de N.S.",
+    saintName: "N.S. da Apresentação",
     novenaTitle: "Novena da Apresentação de Nossa Senhora",
     description: "Celebre a entrega de Maria a Deus ainda criança no Templo e peça a graça de se consagrar totalmente à vontade do Pai.",
     days: [
         {
-            day: '',
+            day: 'Oração da Novena',
             title: 'Oração da Novena',
             content: `<div class="day-specific-content">
-                <h4>Como rezar esta Novena?</h4>
+                <h4 class="text-white text-lg font-bold mb-2">Como rezar esta Novena?</h4>
                 <p>Inicia-se com o Sinal da Cruz. Reza-se todos os dias as mesmas orações seguidas das 3 Ave-Marias. Finaliza-se com o Sinal da Cruz.</p>
                 <div class="w-16 h-px bg-primary/20 my-6 mx-auto"></div>
-                <h4>Orações para todos os dias</h4>
+                <h4 class="text-white text-lg font-bold mb-2">Orações para todos os dias</h4>
                 <p>Seja bendita, ó Maria, a prontidão de ânimo com que tão infantinha vos apresentastes no templo. Suplico-vos, Virgem Santíssima, me alcanceis de vosso Filho a graça de servi-lo sempre até à morte. (Reza-se uma Ave-Maria)</p>
                 <p>Seja bendito, ó Maria, o fervor de espírito com que soubestes servir e dar gosto a Deus. Suplico-vos, Virgem Santíssima, me alcanceis de vosso Filho a graça de me dar com toda a alma ao seu serviço. (Reza-se uma Ave-Maria)</p>
                 <p>Seja bendita, ó Maria, a plenitude da perfeição com que tão cedo vos fizestes modelo completo de santidade. Suplico-vos, Virgem Santíssima, me alcanceis de vosso Filho a graça de aborrecer sempre a culpa e amar de todo o coração a virtude. (Reza-se uma Ave-Maria)</p>
@@ -200,7 +200,7 @@ export const novenaData: Record<string, Novena> = {
             </div>`
         },
         {
-            day: '',
+            day: 'História da Apresentação',
             title: 'Breve história da Apresentação',
             content: `<div class="day-specific-content">
                 <h4>Por Padre João Baptista Lehmann</h4>
@@ -228,7 +228,7 @@ export const novenaData: Record<string, Novena> = {
         <p>Vinde, Espírito Santo, enchei os corações dos Vossos fiéis e acendei neles o fogo do Vosso amor. Enviai, Senhor, o Vosso Espírito e tudo será criado e renovareis a face da terra. Oremos: Ó Deus que instruístes os corações dos vossos fiéis com a luz do Espírito Santo, fazei que apreciemos retamente todas as coisas segundo o mesmo Espírito e gozemos sempre da Sua consolação por Cristo Senhor Nosso. Amém.</p>
         <div class="w-16 h-px bg-white/20 my-6 mx-auto"></div>
         <h4 class="section-title text-xl font-bold mt-6 mb-2">Oração Preparatória</h4>
-        <p>Ó, Senhora da Saúde, Mãe, Advogada dos doentes e dos aflitos, vinde nos atender em nossas necessidades, vinde nos socorrer em nossas enfermidades, vinde nos consolar! Volvei vosso olhar magnânimo e piedosíssimo, protegendo-nos nas horas de nossos apuros. Ouvi nossos rogos que com a maior confiança lançamos aos vossos pés, imploramos o auxílio e o perdão. Visitai os nossos lares, quando a dor os rondar insistentemente e perniciosamente. Aliviai-nos e pressurosa nos atendei, ó Senhora da Saúde, quando bater à nossa porta a doença ou a infelicidade. Não fiamos em nossos merecimentos nem em nossas obras, mas sim nos méritos infinitos de Jesus e no vosso maternal amor, porque sois a toda poderosa, quando suplicais. Amém.</p>
+        <p>Ó, Senhora da Saúde, Mãe, Advogada dos doentes e dos aflitos, vinde nos atender em nossas necessidades, vinde nos socorrer em nossas enfermidades, vinde nos consolar! Volvei vosso olhar magnânimo e piedosíssimo, protegendo-nos nas horas de nossos apuros. Ouvi nossos rogos que com a maior confiança lançamos aos vossos pés, imploramos o auxílio e o perdão. Visitai os nossos lares, quando a dor os rondar insistentemente e perniciosamente. Aliviai-nos e pressurosa nos atendei, ó Senhora da Saúde, quando bater à nossa porta a doença ou a infelicidade. Não fiamos em nossos merecimentos nem em nossas obras, mas sim nos méritos infinitos de Jesus e no vosso maternal amor, because sois a toda poderosa, quando suplicais. Amém.</p>
     </div>`,
     finalPrayer: `<div class="prayer-block">
         <h4 class="section-title text-xl font-bold mt-6 mb-2">Jaculatória</h4>
@@ -271,17 +271,17 @@ export const novenaData: Record<string, Novena> = {
             day: '4º Dia',
             title: 'Seus desposórios',
             content: `<div class="day-specific-content">
-                <p>Maria contava catorze anos de idade e seis meses de seus desposórios com São José, quando chega o tempo de cumprirem as determinações dos Divinos Oráculos e de se conhecer a grande fineza que por nós obrou no Deus Eterno em se fazer homem. Manda o anjo Gabriel a uma cidadezinha de Nazaré para anunciar à donzela que dela nasceria o Filho de Deus feito homem, para remédio e salvação dos homens, ficando ela virgem, como antes. Entra o anjo no oratório, onde se achava de joelhos a divina senhora em êxtase naquela tardinha tão amena da Palestina. “Ave, cheia de graça, o Senhor é contigo”, disse o anjo. O anjo animou-a, tornando-se a dizer “não temais, Maria, porque achaste graça diante do Senhor, digo-vos pois que concederás e darás à luz a um Filho que se chamará Jesus; Este será grande e portentoso em obras e reinará eternamente na casa de Jacob e Seu reino não terá fim. Disse-lhe então Maria “de que modo se fará isto, pois não conheço homem algum?. O anjo respondeu: “O Espírito Santo virá sobre ti e a força do Altíssimo te cobrirá com a Sua sombra, motivo por onde o Fruto que nascer do vosso ventre, será chamado Filho de Deus”. Ante tal locução, Maria Santíssima falou: “Ofereço-me como humilde escrava do Senhor, para que se cumpra em mim o que vós dizeis”. Neste momento, do sangue mais puro de Maria se formaria ao seu ventre o Corpo Santíssimo de Cristo, unindo-se a Ele a um tempo a Alma e a Divindade, numa união hipostática, verdadeiro Deus e verdadeiro Homem. Eis a firmeza que Deus por nós realizou, a fim de que nos abrisse a porta da Glória e nos desse a Sua Mãe por nossa Mãe. Amém.</p>
+                <p>Maria contava catorze anos de idade e seis meses de seus desposórios com São José, when chega o tempo de cumprirem as determinações dos Divinos Oráculos e de se conhecer a grande fineza que por nós obrou no Deus Eterno em se fazer homem. Manda o anjo Gabriel a uma cidadezinha de Nazaré para anunciar à donzela que dela nasceria o Filho de Deus feito homem, para remédio e salvação dos homens, ficando ela virgem, como antes. Entra o anjo no oratório, onde se achava de joelhos a divina senhora em êxtase naquela tardinha tão amena da Palestina. “Ave, cheia de graça, o Senhor é contigo”, disse o anjo. O anjo animou-a, tornando-se a dizer “não temais, Maria, because achaste graça diante do Senhor, digo-vos pois que concederás e darás à luz a um Filho que se chamará Jesus; Este será grande e portentoso em obras e reinará eternamente na casa de Jacob e Seu reino não terá fim. Disse-lhe então Maria “de que modo se fará isto, pois não conheço homem algum?. O anjo respondeu: “O Espírito Santo virá sobre ti e a força do Altíssimo te cobrirá com a Sua sombra, motivo por onde o Fruto que nascer do vosso ventre, será chamado Filho de Deus”. Ante tal locução, Maria Santíssima falou: “Ofereço-me como humilde escrava do Senhor, para que se cumpra em mim o que vós dizeis”. Neste momento, do sangue mais puro de Maria se formaria ao seu ventre o Corpo Santíssimo de Cristo, unindo-se a Ele a um tempo a Alma e a Divindade, numa união hipostática, verdadeiro Deus e verdadeiro Homem. Eis a firmeza que Deus por nós realizou, a fim de que nos abrisse a porta da Glória e nos desse a Sua Mãe por nossa Mãe. Amém.</p>
                 <div class="w-16 h-px bg-white/20 my-6 mx-auto"></div>
                 <h4 class="section-title text-xl font-bold mt-6 mb-2">Oração Final</h4>
-                <p>Ó, esclarecida Mães de Deus, Senhora da Saúde, Virgem antes o parto, no parto e depois do parto, pela grande alegria que tivestes, quando fostes escolhida para Mãe do Divino Verbo, alcanceis de vosso Filho o verdadeiro caminho. Amém.</p>
+                <p>Ó, esclarecida Mães de Deus, Senhora da Saúde, Virgem antes o parto, no parto e depois do parto, pela grande alegria que tivestes, when fostes escolhida para Mãe do Divino Verbo, alcanceis de vosso Filho o verdadeiro caminho. Amém.</p>
             </div>`
         },
         {
             day: '5º Dia',
             title: 'Maternidade de Maria',
             content: `<div class="day-specific-content">
-                <p>Dois são os grandes motivos que temos para merecermos o título de filhos da Mãe de Deus. Primeiro, por ser a Virgem Maria, Mãe de Deus e Homem verdadeiro; segundo, porque assim falou Cristo pregado na Cruz: “Mulher, eis aí teu Filho”, entregando-lhe João por filho, que nos representa e, olhando para João, disse: “Eis aí, filho, a tua Mãe”. Somos filhos de tão doce Mãe. Procuremos com constância sermos fiéis devotos. Conheçamos nossa gratidão e, com as mais enternecidas lágrimas, abracemos seus sagrados pés, prometendo ser, doravante, seus filhos diletos. Amém.</p>
+                <p>Dois são os grandes motivos que temos para merecermos o título de filhos da Mãe de Deus. Primeiro, por ser a Virgem Maria, Mãe de Deus e Homem verdadeiro; segundo, because assim falou Cristo pregado na Cruz: “Mulher, eis aí teu Filho”, entregando-lhe João por filho, que nos representa e, olhando para João, disse: “Eis aí, filho, a tua Mãe”. Somos filhos de tão doce Mãe. Procuremos com constância sermos fiéis devotos. Conheçamos nossa gratidão e, com as mais enternecidas lágrimas, abracemos seus sagrados pés, prometendo ser, doravante, seus filhos diletos. Amém.</p>
                 <div class="w-16 h-px bg-white/20 my-6 mx-auto"></div>
                 <h4 class="section-title text-xl font-bold mt-6 mb-2">Oração Final</h4>
                 <p>Ó dulcíssima Virgem Maria, Senhora da Saúde, terníssima Mãe dos desagradados filhos de Eva, reverentes, aos vossos pés, oferecemos nossos votos que, como humildes filhos, fazemos atender piedosíssima Mãe, quão pouco valemos sem a vossa proteção e alcançai-vos de vosso Santíssimo Filho a graça para que saibamos agradecer a grande fineza que nos fez em nos dar a vós por nossa Mãe e Senhora. Amém.</p>
@@ -832,14 +832,14 @@ export const saints: Saint[] = [
   { id: 'almas', name: 'Almas', imageUrl: 'https://i.postimg.cc/G2DDG2TC/dfed164f02d4d4d2bccaa939385df13b.jpg', month: 'Novembro', startDate: '24/10', endDate: '01/11', feastDay: '02/Nov' },
   { id: 'martinho_porres', name: 'S. M. de Porres', imageUrl: 'https://i.postimg.cc/Y0tMTg84/image.png', month: 'Novembro', startDate: '25/10', endDate: '02/11', feastDay: '03/Nov' },
   { id: 'isabel_hungria', name: 'S. Isabel da Hungria', imageUrl: 'https://iili.io/KpAYfLl.jpg', month: 'Novembro', startDate: '08/11', endDate: '16/11', feastDay: '17/Nov' },
-  { id: 'apresentacao_ns', name: 'Apresentação de N.S.', imageUrl: 'https://i.postimg.cc/3Js86PzK/image.png', month: 'Novembro', startDate: '12/11', endDate: '20/11', feastDay: '21/Nov' },
+  { id: 'apresentacao_ns', name: 'N.S. da Apresentação', imageUrl: 'https://i.postimg.cc/3Js86PzK/image.png', month: 'Novembro', startDate: '12/11', endDate: '20/11', feastDay: '21/Nov' },
   { id: 'ns_saude', name: 'N.S. da Saúde', imageUrl: 'https://i.postimg.cc/RCdhqSqh/image.png', month: 'Novembro', startDate: '12/11', endDate: '20/11', feastDay: '21/Nov' },
   { id: 'santa_cecilia', name: 'S. Cecília', imageUrl: 'https://i.postimg.cc/4xDNjn2c/image.png', month: 'Novembro', startDate: '13/11', endDate: '21/11', feastDay: '22/Nov', isMartyr: true },
   { id: 'cristo_rei', name: 'Cristo Rei', imageUrl: 'https://i.postimg.cc/zBJ51hCg/image.png', month: 'Novembro', startDate: '14/11', endDate: '22/11', feastDay: '23/Nov' },
   { id: 'catarina_alexandria', name: 'S. Catarina de Alexandria', imageUrl: 'https://i.postimg.cc/s2FFt7gs/image.png', month: 'Novembro', startDate: '16/11', endDate: '24/11', feastDay: '25/Nov', isMartyr: true },
   { id: 'gracas', name: 'N.S. das Graças', imageUrl: 'https://i.postimg.cc/SsBDK7HJ/Design-sem-nome-2.png', month: 'Novembro', startDate: '18/11', endDate: '26/11', feastDay: '27/Nov' },
-  { id: 'imaculada_conceicao', name: 'Imaculada Conceição', imageUrl: 'https://iili.io/KpAtISf.png', month: 'Novembro', startDate: '29/11', endDate: '07/12', feastDay: '08/Dez' },
-  { id: 'santo_andre', name: 'S. André Apóstolo', imageUrl: 'https://iili.io/KpAtzcG.jpg', month: 'Novembro', startDate: '21/11', endDate: '29/11', feastDay: '30/Nov', isMartyr: true },
+  { id: 'imaculada_conceicao', name: 'Imaculada Conceição', imageUrl: 'https://iili.io/KpAtzcG.jpg', month: 'Novembro', startDate: '29/11', endDate: '07/12', feastDay: '08/Dez' },
+  { id: 'santo_andre', name: 'S. André Apóstolo', imageUrl: 'https://iili.io/KpAtISf.png', month: 'Novembro', startDate: '21/11', endDate: '29/11', feastDay: '30/Nov', isMartyr: true },
 ];
 
 export const months: string[] = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
@@ -1477,7 +1477,7 @@ export const saintsOfTheDay: SaintOfTheDayData[] = [
       month: 'Novembro',
       saints: [{
           name: 'Santo André, Apóstolo',
-          imageUrl: 'https://iili.io/KpAtzcG.jpg',
+          imageUrl: 'https://iili.io/KpAtISf.png',
           story: '<p>Santo André, irmão de Simão Pedro, foi o primeiro dos Apóstolos a ser chamado por Jesus. Era discípulo de João Batista e, when este apontou para Jesus dizendo "Eis o Cordeiro de Deus", André seguiu imediatamente o Mestre. A sua primeira ação como discípulo foi levar o seu próprio irmão a Jesus, dizendo: "Encontrámos o Messias". Por isso, é chamado de "Protocleto" (o primeiro chamado). Após o Pentecostes, a tradição diz que ele pregou o Evangelho em várias regiões, incluindo a Grécia, onde foi martirizado em Patras, crucificado numa cruz em forma de X, que hoje leva o seu nome. É um modelo de prontidão em seguir Jesus e de zelo em levar os outros a Ele.</p>',
           isMartyr: true
       }]
@@ -1515,3 +1515,4 @@ export const saintsOfTheDay: SaintOfTheDayData[] = [
 
 
     
+

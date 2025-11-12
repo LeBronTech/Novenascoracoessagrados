@@ -137,6 +137,8 @@ export default function NovenaDisplay({ saint, novena, theme, setTheme }: Novena
     ? "text-primary border-primary/50 hover:bg-primary hover:text-white" 
     : "text-primary border-primary/50 hover:bg-primary hover:text-white";
 
+  const isSpecialNovena = days.length === 2 && (days[0].title === 'Oração da Novena' || days[1].title === 'Breve história da Apresentação');
+
   return (
     <main 
       id="main-card" 
@@ -189,7 +191,7 @@ export default function NovenaDisplay({ saint, novena, theme, setTheme }: Novena
                             : (isLightTheme ? 'bg-black/10 text-stone-600 hover:bg-black/20' : 'bg-white/10 text-white hover:bg-white/20')
                     )}
                 >
-                    {days.length === 2 ? (index === 0 ? 'Oração' : 'História') : `Dia ${index + 1}`}
+                    {isSpecialNovena ? (index === 0 ? 'Oração' : 'História') : `Dia ${index + 1}`}
                 </button>
             ))}
         </div>
@@ -234,7 +236,7 @@ export default function NovenaDisplay({ saint, novena, theme, setTheme }: Novena
                 <div className="flex items-center justify-center gap-4 mb-8">
                     <CarouselPrevious className={cn("relative -left-0 top-0 translate-y-0", arrowClasses)} />
                     <p className="text-sm font-bold">
-                        {days.length === 2 ? (current === 0 ? 'Oração' : 'História') : `Dia ${current + 1} de ${count}`}
+                        {isSpecialNovena ? (current === 0 ? 'Oração' : 'História') : `Dia ${current + 1} de ${count}`}
                     </p>
                     <CarouselNext className={cn("relative -right-0 top-0 translate-y-0", arrowClasses)} />
                 </div>
@@ -252,7 +254,7 @@ export default function NovenaDisplay({ saint, novena, theme, setTheme }: Novena
                   isLightTheme ? "[&_.prayer-block>p:first-child::first-letter]:text-primary" : "",
                   isLightTheme ? "[&_.litany-response]:text-primary/90" : "[&_.litany-response]:text-white/80"
                 )}>
-                  {day.day && <h3 className={cn("section-title text-2xl font-bold font-brand mb-2",
+                  {day.day && !isSpecialNovena && <h3 className={cn("section-title text-2xl font-bold font-brand mb-2",
                     isRedTheme || isDarkGrayTheme ? 'text-white' : 'text-primary'
                   )}>{day.day}</h3>}
                   {day.title && <p className={cn("text-xl italic mb-4", isLightTheme ? "text-stone-500" : "text-white/80")}>{day.title}</p>}
@@ -284,7 +286,7 @@ export default function NovenaDisplay({ saint, novena, theme, setTheme }: Novena
         <div className="flex items-center justify-center gap-4 mt-8">
             <CarouselPrevious className={cn("relative -left-0 top-0 translate-y-0", arrowClasses)} />
              <p className="text-sm font-bold">
-                {days.length === 2 ? (current === 0 ? 'Oração' : 'História') : `Dia ${current + 1} de ${count}`}
+                {isSpecialNovena ? (current === 0 ? 'Oração' : 'História') : `Dia ${current + 1} de ${count}`}
             </p>
             <CarouselNext className={cn("relative -right-0 top-0 translate-y-0", arrowClasses)} />
         </div>
