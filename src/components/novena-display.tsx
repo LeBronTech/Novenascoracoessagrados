@@ -121,7 +121,7 @@ export default function NovenaDisplay({ saint, novena, theme, setTheme }: Novena
 
   const { novenaTitle, description, days, initialPrayer, finalPrayer } = novena;
   
-  const isLightTheme = theme === 'theme-light-gray';
+  const isLightTheme = theme === 'theme-light-gray' || theme === 'theme-default';
   
   const getAnimationClass = () => {
     switch(animationState) {
@@ -144,8 +144,7 @@ export default function NovenaDisplay({ saint, novena, theme, setTheme }: Novena
     isLightTheme ? "[&_.day-specific-content>p:first-child::first-letter]:text-primary" : "[&_.day-specific-content>p:first-child::first-letter]:text-white",
     isLightTheme ? "[&_.prayer-request>p:first-child::first-letter]:text-primary" : "[&_.prayer-request>p:first-child::first-letter]:text-white",
     isLightTheme ? "[&_.prayer-block>p:first-child::first-letter]:text-primary" : "[&_.prayer-block>p:first-child::first-letter]:text-white",
-    isLightTheme ? "[&_.litany-response]:text-primary/90" : "[&_.litany-response]:text-white/80",
-    isLightTheme ? "prose-h3:text-gray-800 prose-h4:text-gray-800" : "prose-h3:text-white prose-h4:text-white"
+    isLightTheme ? "[&_.litany-response]:text-primary/90" : "[&_.litany-response]:text-white/80"
   );
 
 
@@ -195,8 +194,8 @@ export default function NovenaDisplay({ saint, novena, theme, setTheme }: Novena
                     className={cn(
                         'px-3 py-1 text-sm font-semibold rounded-full transition-all duration-200',
                         current === index
-                            ? (isLightTheme ? 'bg-primary text-white' : 'bg-white text-primary')
-                            : (isLightTheme ? 'bg-black/10 text-stone-600 hover:bg-black/20' : 'bg-white/10 text-white hover:bg-white/20')
+                            ? (theme === 'theme-light-gray' ? 'bg-primary text-white' : 'bg-white text-primary')
+                            : (theme === 'theme-light-gray' ? 'bg-black/10 text-stone-600 hover:bg-black/20' : 'bg-white/10 text-white hover:bg-white/20')
                     )}
                 >
                     {isSpecialNovena ? (index === 0 ? 'Oração' : 'História') : `Dia ${index + 1}`}
@@ -211,7 +210,7 @@ export default function NovenaDisplay({ saint, novena, theme, setTheme }: Novena
             rel="noopener noreferrer"
             className={cn(
                 'inline-flex items-center gap-2 rounded-lg px-4 py-2 transition-all duration-200',
-                isLightTheme ? 'bg-black/10 hover:bg-black/20 text-stone-800' : 'bg-white/10 hover:bg-white/20 text-white'
+                theme === 'theme-light-gray' ? 'bg-black/10 hover:bg-black/20 text-stone-800' : 'bg-white/10 hover:bg-white/20 text-white'
             )}
             >
             <Image src="https://i.postimg.cc/g24cJdKG/whatsapp-icone-5.png" alt="WhatsApp" width={20} height={20} className="w-5 h-5" />
@@ -243,7 +242,7 @@ export default function NovenaDisplay({ saint, novena, theme, setTheme }: Novena
 
                 <div className={proseClasses}>
                   {day.day && !isSpecialNovena && <h3 className={cn("section-title text-2xl font-bold font-brand mb-2", isLightTheme ? 'text-primary' : 'text-white')}>{day.day}</h3>}
-                  {day.title && <h4 className={cn("text-xl italic mb-4", isLightTheme ? 'text-primary' : 'text-white')}>{day.title}</h4>}
+                  {day.title && <h4 className={cn("text-xl italic mb-4", isLightTheme ? 'text-stone-500' : 'text-stone-300')}>{day.title}</h4>}
                   
                   <div className="day-specific-content">
                     <NovenaContent htmlContent={day.content} />
