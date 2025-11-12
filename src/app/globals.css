@@ -121,8 +121,14 @@
       color: hsl(var(--primary));
   }
 
+  .main-card.theme-default .prose h4 {
+      color: hsl(var(--primary));
+  }
+
   .main-card.theme-dark-gray .prose .section-title,
-  .main-card.theme-red .prose .section-title {
+  .main-card.theme-red .prose .section-title,
+  .main-card.theme-dark-gray .prose h4,
+  .main-card.theme-red .prose h4 {
       color: hsl(var(--primary-foreground));
   }
 
