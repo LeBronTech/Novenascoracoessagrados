@@ -1,3 +1,4 @@
+
 import type {Config} from 'tailwindcss';
 
 export default {
@@ -114,17 +115,27 @@ export default {
       typography: ({ theme }: { theme: any }) => ({
         DEFAULT: {
           css: {
-            blockquote: {
+            '--tw-prose-headings': theme('colors.primary'),
+             h3: {
+              color: 'var(--tw-prose-headings)',
+            },
+             h4: {
+              color: 'var(--tw-prose-headings)',
+            },
+             blockquote: {
               'p': {
                   color: theme('colors.stone.200'),
               },
             },
           },
         },
+        dark: {
+          css: {
+            '--tw-prose-headings': theme('colors.white'),
+          }
+        }
       }),
     },
   },
   plugins: [require('tailwindcss-animate'), require('@tailwindcss/typography')],
 } satisfies Config;
-
-    
