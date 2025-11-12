@@ -146,7 +146,7 @@ export default function NovenaDisplay({ saint, novena, theme, setTheme }: Novena
     isLightTheme ? "[&_.prayer-request>p:first-child::first-letter]:text-primary" : "[&_.prayer-request>p:first-child::first-letter]:text-white",
     isLightTheme ? "[&_.prayer-block>p:first-child::first-letter]:text-primary" : "[&_.prayer-block>p:first-child::first-letter]:text-white",
     isLightTheme ? "[&_.litany-response]:text-primary/90" : "[&_.litany-response]:text-white/80",
-    isLightTheme ? "[&_.special-title]:text-primary" : "[&_.special-title]:text-white",
+    isLightTheme ? "[&_.special-title]:text-primary" : "[&_.special-title]:text-white"
   );
 
 
