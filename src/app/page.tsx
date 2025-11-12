@@ -14,7 +14,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetTr
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { Menu } from 'lucide-react';
+import { Menu, ChevronLeft, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { parse, differenceInDays, getYear } from 'date-fns';
 import Image from 'next/image';
@@ -22,6 +22,7 @@ import { useToast } from '@/hooks/use-toast';
 import { AlertCircle } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { LilyIcon } from '@/components/weekly-devotions';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, type CarouselApi } from '@/components/ui/carousel';
 
 export type Theme = 'theme-default' | 'theme-dark-gray' | 'theme-light-gray' | 'theme-red';
 
@@ -46,6 +47,15 @@ const LoadingScreen = ({ isLoading }: { isLoading: boolean }) => (
     </div>
 );
 
+const marianDevotions = [
+    { name: 'N. S. do Rosário', imageUrl: 'https://i.postimg.cc/2669v1gr/nsr.jpg', feastDay: '07 de Outubro' },
+    { name: 'N. S. Aparecida', imageUrl: 'https://i.postimg.cc/Lsyj4XMh/4011bde1376c5422265a41f3a652c540.jpg', feastDay: '12 de Outubro' },
+    { name: 'Apresentação de N.S.', imageUrl: 'https://i.postimg.cc/3Js86PzK/image.png', feastDay: '21 de Novembro' },
+    { name: 'N.S. da Saúde', imageUrl: 'https://i.postimg.cc/RCdhqSqh/image.png', feastDay: '21 de Novembro' },
+    { name: 'N.S. das Graças', imageUrl: 'https://i.postimg.cc/SsBDK7HJ/Design-sem-nome-2.png', feastDay: '27 de Novembro' },
+    { name: 'Imaculada Conceição', imageUrl: 'https://iili.io/KpAtzcG.jpg', feastDay: '08 de Dezembro' },
+]
+
 
 export default function Home() {
   const [selectedMonth, setSelectedMonth] = useState<string>(months[new Date().getMonth()]);
@@ -58,6 +68,16 @@ export default function Home() {
   const [isSaintOfTheDayOpen, setIsSaintOfTheDayOpen] = useState(false);
   const [showJoseNovenaDialog, setShowJoseNovenaDialog] = useState(false);
   const [isJoseDialogOpen, setIsJoseDialogOpen] = useState(false);
+  const [marianCarouselApi, setMarianCarouselApi] = useState<CarouselApi>()
+  const [marianCarouselCurrent, setMarianCarouselCurrent] = useState(0)
+
+  useEffect(() => {
+    if (!marianCarouselApi) return
+    setMarianCarouselCurrent(marianCarouselApi.selectedScrollSnap())
+    marianCarouselApi.on("select", () => {
+      setMarianCarouselCurrent(marianCarouselApi.selectedScrollSnap())
+    })
+  }, [marianCarouselApi])
 
 
   const { toast } = useToast();
@@ -281,13 +301,35 @@ export default function Home() {
                       <span className="font-brand text-sm text-center">Espaço Mariano</span>
                     </div>
                 </DialogTrigger>
-                <DialogContent className="sm:max-w-[625px] bg-blue-900/95 text-white border-blue-700/50">
+                <DialogContent className="sm:max-w-[425px] bg-blue-900/95 text-white border-blue-700/50">
                     <DialogHeader>
-                       <DialogTitle className="font-brand text-xl text-white">Espaço Mariano</DialogTitle>
+                       <DialogTitle className="font-brand text-xl text-center text-white">Espaço Mariano</DialogTitle>
                     </DialogHeader>
-                    <div className="p-4 pt-2 text-center prose prose-sm text-sky-100 max-w-none">
-                        <h4 className='text-white'>Devoção a Nossa Senhora</h4>
-                        <p>Conteúdo sobre histórias e orações a Nossa Senhora em breve...</p>
+                    <Carousel setApi={setMarianCarouselApi} className="w-full max-w-xs mx-auto">
+                        <CarouselContent>
+                            {marianDevotions.map((devotion, index) => (
+                            <CarouselItem key={index}>
+                                <div className="p-1">
+                                    <div className="flex flex-col items-center justify-center p-6 bg-blue-900/50 rounded-lg">
+                                        <Image 
+                                            src={devotion.imageUrl}
+                                            alt={devotion.name}
+                                            width={200}
+                                            height={200}
+                                            className="w-48 h-48 rounded-full object-cover border-4 border-blue-400/50 shadow-lg"
+                                        />
+                                        <h3 className="mt-4 text-xl font-brand text-white">{devotion.name}</h3>
+                                        <p className="text-sm text-blue-200">Festa: {devotion.feastDay}</p>
+                                    </div>
+                                </div>
+                            </CarouselItem>
+                            ))}
+                        </CarouselContent>
+                         <CarouselPrevious className="text-white hover:bg-blue-800 hover:text-white -left-8" />
+                         <CarouselNext className="text-white hover:bg-blue-800 hover:text-white -right-8" />
+                    </Carousel>
+                     <div className="py-2 text-center text-sm text-blue-200">
+                        {marianCarouselApi && `${marianCarouselCurrent + 1} de ${marianCarouselApi.scrollSnapList().length}`}
                     </div>
                 </DialogContent>
             </Dialog>
