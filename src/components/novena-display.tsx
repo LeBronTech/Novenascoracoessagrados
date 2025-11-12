@@ -139,7 +139,8 @@ export default function NovenaDisplay({ saint, novena, theme, setTheme }: Novena
 
   const proseClasses = cn(
     "prose max-w-none prose-blockquote:text-inherit",
-    isLightTheme ? "text-stone-800 prose-headings:text-primary" : "text-white prose-headings:text-white",
+    "prose-h3:text-gray-800 prose-h4:text-gray-800", // TEST: force dark gray
+    isLightTheme ? "text-stone-800" : "text-white",
     isLightTheme ? "prose-blockquote:text-primary/90" : "prose-blockquote:text-white/90",
     isLightTheme ? "[&_.day-specific-content>p:first-child::first-letter]:text-primary" : "[&_.day-specific-content>p:first-child::first-letter]:text-white",
     isLightTheme ? "[&_.prayer-request>p:first-child::first-letter]:text-primary" : "[&_.prayer-request>p:first-child::first-letter]:text-white",
@@ -274,3 +275,5 @@ export default function NovenaDisplay({ saint, novena, theme, setTheme }: Novena
     </main>
   );
 }
+
+    
