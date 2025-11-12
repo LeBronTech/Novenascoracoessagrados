@@ -139,7 +139,7 @@ export default function NovenaDisplay({ saint, novena, theme, setTheme }: Novena
 
   const proseClasses = cn(
     "prose max-w-none prose-blockquote:text-inherit",
-    "prose-h3:text-gray-800 prose-h4:text-gray-800", // TEST: force dark gray
+    "prose-h3:text-gray-800 prose-h4:text-gray-800",
     isLightTheme ? "text-stone-800" : "text-white",
     isLightTheme ? "prose-blockquote:text-primary/90" : "prose-blockquote:text-white/90",
     isLightTheme ? "[&_.day-specific-content>p:first-child::first-letter]:text-primary" : "[&_.day-specific-content>p:first-child::first-letter]:text-white",
@@ -163,10 +163,8 @@ export default function NovenaDisplay({ saint, novena, theme, setTheme }: Novena
        <header id="novena-header" className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-6 mb-8 text-center sm:text-left">
           <img src={saint.imageUrl} alt={saint.name} className="w-28 h-28 md:w-32 md:h-32 rounded-full object-cover border-2 border-stone-400/50 shadow-lg flex-shrink-0" />
           <div>
-            <h2 className={cn("text-3xl md:text-4xl font-bold font-brand", 
-              isLightTheme ? 'text-primary' : 'text-white'
-            )}>{novenaTitle}</h2>
-            <p className={cn("italic mt-1",
+            <h2 className="text-3xl md:text-4xl font-bold font-brand text-gray-800">{novenaTitle}</h2>
+            <p className={cn("italic mt-1 text-gray-800",
                isLightTheme ? 'text-stone-600' : 'text-white/90'
             )}>
               {description || ''}
@@ -245,8 +243,8 @@ export default function NovenaDisplay({ saint, novena, theme, setTheme }: Novena
                 </div>
 
                 <div className={proseClasses}>
-                  {day.day && !isSpecialNovena && <h3 className={cn("section-title text-2xl font-bold font-brand mb-2")}>{day.day}</h3>}
-                  {day.title && <h4 className={cn("text-xl italic mb-4")}>{day.title}</h4>}
+                  {day.day && !isSpecialNovena && <h3 className={cn("section-title text-2xl font-bold font-brand mb-2 text-gray-800")}>{day.day}</h3>}
+                  {day.title && <h4 className={cn("text-xl italic mb-4 text-gray-800")}>{day.title}</h4>}
                   
                   <div className="day-specific-content">
                     <NovenaContent htmlContent={day.content} />
