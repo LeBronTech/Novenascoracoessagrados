@@ -48,14 +48,14 @@ const dailyGospels: Record<string, string> = {
     '11-20': 'Lc 19, 41-44', 
     '11-21': 'Lc 19, 45-48',
     '11-22': 'Lc 20, 27-40',
-    '11-23': 'Lc 23, 35-43',
+    '11-23': 'Lc 23, 35-43', // Em 2024 é dia 24/11 - Cristo Rei
     '11-24': 'Lc 21, 1-4',  
     '11-25': 'Lc 21, 5-11',
     '11-26': 'Lc 21, 12-19',
     '11-27': 'Lc 21, 20-28',
     '11-28': 'Lc 21, 29-33',
     '11-29': 'Lc 21, 34-36',
-    '11-30': 'Mt 24, 37-44',
+    '11-30': 'Mt 24, 37-44', // Em 2024 é 1º Dom Advento
     '12-1': 'Mt 8, 5-11',
     '12-2': 'Lc 10, 21-24',
     '12-3': 'Mt 15, 29-37',
@@ -224,9 +224,9 @@ function isSameDay(d1: Date, d2: Date) {
 }
 
 export function getLiturgicalInfo(date: Date): LiturgicalInfo {
-    const year = date.getFullYear();
-    const month = date.getMonth();
-    const dayOfMonth = date.getDate();
+    const year = date.getUTCFullYear();
+    const month = date.getUTCMonth();
+    const dayOfMonth = date.getUTCDate();
     
     const today = new Date(Date.UTC(year, month, dayOfMonth));
 
@@ -242,6 +242,7 @@ export function getLiturgicalInfo(date: Date): LiturgicalInfo {
     let color: LiturgicalInfo['color'] = 'green';
     let season = 'Tempo Comum';
     
+    // Advent
     if (today >= firstSundayOfAdvent && today < christmas) {
         season = 'Advento';
         color = 'purple';
@@ -249,76 +250,92 @@ export function getLiturgicalInfo(date: Date): LiturgicalInfo {
         if (isSameDay(today, thirdSundayOfAdvent)) {
             color = 'rose';
         }
-    } else if ((today.getUTCMonth() === 11 && today.getUTCDate() >= 25) || (today.getUTCMonth() === 0 && today < new Date(Date.UTC(year, 0, 6)))) {
+    } 
+    // Christmas Time
+    else if ((today.getUTCMonth() === 11 && today.getUTCDate() >= 25) || (today.getUTCMonth() === 0)) {
         const baptismDate = addDays(new Date(Date.UTC(year, 0, 6)), (7 - new Date(Date.UTC(year, 0, 6)).getUTCDay()) % 7);
         if (today < baptismDate) {
             season = 'Natal';
             color = 'white';
         }
-    } else if (today >= ashWednesday && today < easter) {
+    }
+    // Lent
+    else if (today >= ashWednesday && today < easter) {
         season = 'Quaresma';
         color = 'purple';
         const fourthSundayOfLent = addDays(ashWednesday, 25);
         if (isSameDay(today, fourthSundayOfLent)) {
             color = 'rose';
         }
-    } else if (today >= easter && today <= pentecost) {
+    }
+    // Easter Time
+    else if (today >= easter && today <= pentecost) {
         season = 'Páscoa';
         color = 'white';
     }
 
-    const dayKey = `${month + 1}-${dayOfMonth}`;
-
+    // Specific feast days for 2024
     if (year === 2024) {
-        if (dayKey === '11-12') color = 'red'; // S. Josafá
-        if (dayKey === '11-17') color = 'green'; // 33rd Sunday
-        if (dayKey === '11-21') color = 'white'; // Apresentação de N. Sra.
-        if (dayKey === '11-22') color = 'red'; // Santa Cecília
-        if (dayKey === '11-24') { 
-            const christTheKing = addDays(getFirstSundayOfAdvent(2024), -7);
-            if(isSameDay(today, christTheKing)){
+        const dayKey = `${month + 1}-${dayOfMonth}`;
+        const specialDays: Record<string, { color: LiturgicalInfo['color'], season: string }> = {
+            '11-1': { color: 'white', season: 'Todos os Santos' },
+            '11-2': { color: 'purple', season: 'Fiéis Defuntos' },
+            '11-9': { color: 'white', season: 'Ded. Bas. de Latrão' },
+            '11-12': { color: 'red', season: 'S. Josafá' },
+            '11-16': { color: 'green', season: '33º Domingo Comum' },
+            '11-21': { color: 'white', season: 'Apres. de N. Sra.' },
+            '11-22': { color: 'red', season: 'Sta. Cecília' },
+            '11-24': { color: 'white', season: 'Cristo Rei' }, // Solemnity of Christ the King 2024
+            '11-30': { color: 'red', season: 'S. André' },
+            '12-1': { color: 'purple', season: '1º Dom. do Advento' },
+            '12-3': { color: 'white', season: 'S. Francisco Xavier' }, // It's purple in Advent, but white for memorial
+            '12-8': { color: 'white', season: 'Imaculada Conceição' },
+            '12-12': { color: 'white', season: 'N.S. Guadalupe' },
+            '12-13': { color: 'red', season: 'Sta. Luzia' },
+            '12-14': { color: 'rose', season: '3º Dom. do Advento' }, // Gaudete Sunday
+            '12-25': { color: 'white', season: 'Natal do Senhor' },
+            '12-26': { color: 'red', season: 'S. Estêvão' },
+            '12-27': { color: 'white', season: 'S. João, Apóstolo' },
+            '12-28': { color: 'white', season: 'Sagrada Família' },
+        };
+        
+        if (specialDays[dayKey]) {
+            // S. Francisco Xavier can be red if it falls on a Sunday of Advent, but it's a memorial
+            // In 2024, Dec 3 is a Tuesday, so white is fine.
+             if (dayKey === '12-3') {
                 color = 'white';
-                season = 'Cristo Rei';
+            } else {
+                 color = specialDays[dayKey].color;
             }
+            season = specialDays[dayKey].season;
         }
-        if (dayKey === '11-30') color = 'red'; // Santo André
-        if (dayKey === '12-3') color = 'white'; // S. Francisco Xavier
-        if (dayKey === '12-8') color = 'white';
-        if (dayKey === '12-12') color = 'white';
-        if (dayKey === '12-13') color = 'red';
-        if (dayKey === '12-14') {
-             const thirdSundayOfAdvent = addDays(getFirstSundayOfAdvent(2024), 14);
-             if(isSameDay(today, thirdSundayOfAdvent)) color = 'rose';
-        }
-        if (dayKey === '12-26') color = 'red';
-        if (dayKey === '12-27') color = 'white';
-        if (dayKey === '12-28') color = 'white';
     }
 
 
     let verseKey = `${month + 1}-${dayOfMonth}`;
+    // Special case for Christmas Eve Night Mass
     if (month === 11 && dayOfMonth === 24 && date.getHours() >= 18) {
       verseKey = '12-24-night';
     }
     
     let verse = dailyGospels[verseKey] || `Ev. do Dia`;
-
-    let finalSeasonText = season;
-    if (dayKey === '11-1') finalSeasonText = 'Todos os Santos';
-    if (dayKey === '11-2') finalSeasonText = 'Fiéis Defuntos';
-    if (dayKey === '11-9') finalSeasonText = 'Ded. Bas. de Latrão';
-    if (dayKey === '11-21') finalSeasonText = 'Apres. de N. Senhora';
-    if (year === 2024 && dayKey === '11-24') {
-        const christTheKing = addDays(getFirstSundayOfAdvent(2024), -7);
-        if(isSameDay(today, christTheKing)){
-            finalSeasonText = 'Cristo Rei';
-        }
+    
+    // Override season text based on final color logic
+    if (year === 2024) {
+      const dayKey = `${month + 1}-${dayOfMonth}`;
+      if (dayKey === '11-1') season = 'Todos os Santos';
+      if (dayKey === '11-2') season = 'Fiéis Defuntos';
+      if (dayKey === '11-9') season = 'Ded. Bas. de Latrão';
+      if (dayKey === '11-21') season = 'Apres. de N. Senhora';
+      if (dayKey === '11-24') season = 'Cristo Rei';
+      if (dayKey === '12-1') season = '1º Dom. do Advento';
+      if (dayKey === '12-8') season = 'Imaculada Conceição';
+      if (dayKey === '12-12') season = 'N.S. Guadalupe';
+      if (dayKey === '12-14') season = 'Domingo Gaudete';
+      if (dayKey === '12-25') season = 'Natal do Senhor';
+      if (dayKey === '12-28') season = 'Sagrada Família';
     }
-    if (dayKey === '12-8') finalSeasonText = 'Imaculada Conceição';
-    if (dayKey === '12-12') finalSeasonText = 'N.S. Guadalupe';
-    if (dayKey === '12-25') finalSeasonText = 'Natal do Senhor';
-    if (dayKey === '12-28') finalSeasonText = 'Sagrada Família';
 
 
-    return { color, season: finalSeasonText, verse, cycle };
+    return { color, season, verse, cycle };
 }
