@@ -1,5 +1,4 @@
 
-
 export type Devotion = {
     dayOfWeek: number;
     day: string;
@@ -24,11 +23,12 @@ export type LiturgicalInfo = {
 };
 
 const dailyGospels: Record<string, string> = {
-    // October 2025
+    // October 2025 (keeping old entries as fallback)
     '10-29': 'Lucas 13, 22-30',
     '10-30': 'Lucas 13, 31-35',
     '10-31': 'Lucas 14, 1-6',
-    // November 2025
+
+    // November 2024
     '11-1': 'Mateus 5, 1-12a', // All Saints
     '11-2': 'João 6, 37-40', // All Souls
     '11-3': 'Lucas 14, 12-14',
@@ -40,58 +40,59 @@ const dailyGospels: Record<string, string> = {
     '11-9': 'João 2, 13-22', // Dedication of the Lateran Basilica
     '11-10': 'Lucas 17, 1-6',
     '11-11': 'Lucas 17, 7-10',
-    '11-12': 'Lucas 17, 11-19',
-    '11-13': 'Lucas 17, 20-25',
-    '11-14': 'Lucas 17, 26-37',
-    '11-15': 'Lucas 18, 1-8',
-    '11-16': 'Marcos 13, 24-32', // 33rd Sunday in Ordinary Time
-    '11-17': 'Lucas 18, 35-43',
-    '11-18': 'Lucas 19, 1-10',
-    '11-19': 'Lucas 19, 11-28',
-    '11-20': 'Lucas 19, 41-44',
-    '11-21': 'Mateus 12, 46-50', // Presentation of Mary
-    '11-22': 'Lucas 20, 27-40',
-    '11-23': 'João 18, 33b-37', // Christ the King
-    '11-24': 'Lucas 21, 1-4',
-    '11-25': 'Lucas 21, 5-11',
-    '11-26': 'Lucas 21, 12-19',
-    '11-27': 'Lucas 21, 20-28',
-    '11-28': 'Lucas 21, 29-33',
-    '11-29': 'Lucas 21, 34-36',
-    '11-30': 'Marcos 13, 33-37', // 1st Sunday of Advent
-    // December 2025
-    '12-1': 'Mateus 8, 5-11',
-    '12-2': 'Lucas 10, 21-24',
-    '12-3': 'Marcos 16, 15-20', // St. Francis Xavier
-    '12-4': 'Mateus 7, 21.24-27',
-    '12-5': 'Mateus 9, 27-31',
-    '12-6': 'Mateus 9, 35-10, 1.6-8',
-    '12-7': 'Marcos 1, 1-8', // 2nd Sunday of Advent
-    '12-8': 'Lucas 1, 26-38', // Immaculate Conception
-    '12-9': 'Mateus 18, 12-14',
-    '12-10': 'Mateus 11, 28-30',
-    '12-11': 'Mateus 11, 11-15',
-    '12-12': 'Lucas 1, 39-47', // Our Lady of Guadalupe
-    '12-13': 'Mateus 17, 10-13',
-    '12-14': 'João 1, 6-8.19-28', // 3rd Sunday of Advent (Gaudete)
-    '12-15': 'Mateus 21, 23-27',
-    '12-16': 'Mateus 21, 28-32',
-    '12-17': 'Mateus 1, 1-17',
-    '12-18': 'Mateus 1, 18-24',
-    '12-19': 'Lucas 1, 5-25',
-    '12-20': 'Lucas 1, 26-38',
-    '12-21': 'Lucas 1, 26-38',
-    '12-22': 'Lucas 1, 39-45',
-    '12-23': 'Lucas 1, 57-66',
-    '12-24': 'Lucas 1, 67-79', // Morning
-    '12-24-night': 'Lucas 2, 1-14',
-    '12-25': 'João 1, 1-18', // Christmas Day
-    '12-26': 'Mateus 10, 17-22', // St. Stephen
-    '12-27': 'João 20, 2-8', // St. John the Apostle
-    '12-28': 'Lucas 2, 22-40', // Holy Family
-    '12-29': 'Lucas 2, 22-35',
-    '12-30': 'Lucas 2, 36-40',
-    '12-31': 'João 1, 1-18',
+    '11-12': 'Lc 17, 11-19', // User provided
+    '11-13': 'Lc 17, 20-25', // User provided
+    '11-14': 'Lc 17, 26-37', // User provided
+    '11-15': 'Lc 18, 1-8',   // User provided
+    '11-16': 'Lc 21, 5-19',  // User provided
+    '11-17': 'Lc 18, 35-43', // User provided
+    '11-18': 'Lc 19, 1-10',  // User provided
+    '11-19': 'Lc 19, 11-28', // User provided
+    '11-20': 'Lc 19, 41-44', // User provided
+    '11-21': 'Lc 19, 45-48', // User provided, Presentation of Mary
+    '11-22': 'Lc 20, 27-40', // User provided, St. Cecilia
+    '11-23': 'Lc 23, 35-43', // User provided, Christ the King (This should be 24th, but following user data)
+    '11-24': 'Lc 21, 1-4',   // User provided
+    '11-25': 'Lc 21, 5-11',  // User provided
+    '11-26': 'Lc 21, 12-19', // User provided
+    '11-27': 'Lc 21, 20-28', // User provided
+    '11-28': 'Lc 21, 29-33', // User provided
+    '11-29': 'Lc 21, 34-36', // User provided
+    '11-30': 'Mt 24, 37-44', // User provided
+    
+    // December 2024
+    '12-1': 'Mt 8, 5-11',    // User provided
+    '12-2': 'Lc 10, 21-24',   // User provided
+    '12-3': 'Mt 15, 29-37',   // User provided
+    '12-4': 'Is 26, 1-6',     // User provided
+    '12-5': 'Mt 9, 27-31',    // User provided
+    '12-6': 'Mt 9, 35-10, 1.6-8',// User provided
+    '12-7': 'Mt 3, 1-12',     // User provided
+    '12-8': 'Lc 1, 26-38',    // User provided, Immaculate Conception
+    '12-9': 'Mt 18, 12-14',   // User provided
+    '12-10': 'Mt 11, 28-30',  // User provided
+    '12-11': 'Mt 11, 11-15',  // User provided
+    '12-12': 'Lc 1, 39-47',   // User provided, Our Lady of Guadalupe
+    '12-13': 'Mt 17, 9a.10-13',// User provided, St. Lucy
+    '12-14': 'Mt 11, 2-11',   // User provided
+    '12-15': 'Lc 7, 24-30',   // User provided
+    '12-16': 'Lc 7, 18b-23',  // User provided
+    '12-17': 'Lc 7, 19-25',   // User provided
+    '12-18': 'Lc 1, 5-25',    // User provided
+    '12-19': 'Lc 1, 26-38',   // User provided
+    '12-20': 'Lc 1, 39-45',   // User provided
+    '12-21': 'Mt 1, 18-24',   // User provided
+    '12-22': 'Lc 1, 46-56',   // User provided
+    '12-23': 'Mt 1, 18-25',   // User provided
+    '12-24': 'Lc 1, 67-79',   // User provided
+    '12-24-night': 'Lc 2, 1-14', // User provided
+    '12-25': 'Jo 1, 1-18',    // User provided, Christmas Day
+    '12-26': 'Mt 10, 17-22',  // User provided, St. Stephen
+    '12-27': 'Jo 20, 2-8',    // User provided, St. John the Apostle
+    '12-28': 'Mt 2, 13-15.19-23', // User provided, Holy Family
+    '12-29': 'Lc 2, 22-35',   // User provided
+    '12-30': 'Lc 2, 36-40',   // User provided
+    '12-31': 'Lc 2, 20-22',   // User provided
 };
 
 
@@ -201,37 +202,26 @@ const getLiturgicalYearCycle = (date: Date): { year: number; cycle: 'A' | 'B' | 
     
     const liturgicalYear = date >= firstSundayOfAdventCurrentYear ? year : year - 1;
 
-    // The cycle repeats every 3 years. We can find an anchor year.
-    // Year A started on Advent 2022. So the liturgical year 2022-2023 is Year A.
-    // The liturgical year number for cycle calculation is the one where Advent starts.
-    // For 2022, (2022 - 2022) % 3 = 0 -> 'A'
-    // For 2023, (2023 - 2022) % 3 = 1 -> 'B'
-    // For 2024, (2024 - 2022) % 3 = 2 -> 'C'
-    // For 2025, (2025 - 2022) % 3 = 0 -> 'A' - this is wrong according to the user. Let's fix.
-
-    // Let's re-anchor. Year C should be 2024-2025. This means Advent of 2024 starts Year C.
-    // Let's use a known Year A. Advent 2022 started Year A.
-    // Liturgical Year 2023 (starts Nov 2022) is A.
-    // Liturgical Year 2024 (starts Nov 2023) is B.
-    // Liturgical Year 2025 (starts Nov 2024) is C.
-    // The civil year of the Sunday Gospels is the liturgical year number.
-    const yearNumber = date >= firstSundayOfAdventCurrentYear ? year + 1 : year;
+    // The cycle repeats every 3 years.
+    // Year A started on Advent 2022. Liturgical year 2022-2023.
+    // Liturgical year for calculation is the one where Advent starts.
+    const cycleYear = date >= firstSundayOfAdventCurrentYear ? year : year - 1;
     
     let cycle: 'A' | 'B' | 'C';
-    switch (yearNumber % 3) {
+    switch ((cycleYear - 2022) % 3) {
+        case 0:
+            cycle = 'A';
+            break;
         case 1:
-            cycle = 'A'; // e.g., 2023
+            cycle = 'B';
             break;
         case 2:
-            cycle = 'B'; // e.g., 2024
-            break;
-        case 0:
-            cycle = 'C'; // e.g., 2025
+            cycle = 'C';
             break;
         default:
-            cycle = 'A'; // fallback
+            cycle = 'A'; // Fallback, should not happen
     }
-
+    
     return { year: liturgicalYear, cycle };
 }
 
@@ -253,124 +243,70 @@ export function getLiturgicalInfo(date: Date): LiturgicalInfo {
     const pentecost = addDays(easter, 49);
     
     const firstSundayOfAdvent = getFirstSundayOfAdvent(year);
-    
     const christmas = new Date(Date.UTC(year, 11, 25));
-    const epiphany = new Date(Date.UTC(year, 0, 6));
-    let baptismOfTheLord = addDays(epiphany, (7 - epiphany.getUTCDay()) % 7); // Sunday after Epiphany
-    if (epiphany.getUTCDay() === 0) { // If Epiphany is a Sunday
-        baptismOfTheLord = addDays(epiphany, 1); // It's the next day, Monday
-    }
-    if (epiphany > new Date(Date.UTC(year, 0, 6))) { // For countries that move Epiphany to a Sunday
-        const epiphanySunday = addDays(new Date(Date.UTC(year, 0, 1)), (7 - new Date(Date.UTC(year, 0, 1)).getUTCDay()) % 7 + 1);
-        if (epiphanySunday > new Date(Date.UTC(year, 0, 8))) {
-            baptismOfTheLord = addDays(new Date(Date.UTC(year, 0, 8)), (7 - new Date(Date.UTC(year, 0, 8)).getUTCDay())%7);
-        } else {
-            baptismOfTheLord = addDays(epiphanySunday, 7);
-        }
-    }
-
 
     // 1. Determine the Liturgical Season and its base color
     let color: LiturgicalInfo['color'] = 'green';
     let season = 'Tempo Comum';
-        
+    
+    // Advent starts on a Sunday between Nov 27 and Dec 3.
+    const firstSundayOfAdventNextYear = getFirstSundayOfAdvent(year + 1);
+
     if (today >= firstSundayOfAdvent && today < christmas) {
         season = 'Advento';
         color = 'purple';
-    } 
-    
-    if ((today >= christmas) || (today < ashWednesday && today < baptismOfTheLord)) {
-        season = 'Natal';
-        color = 'white';
-    }
-    
-    if (today >= ashWednesday && today < easter) {
+    } else if (today >= christmas || today < ashWednesday) {
+        const baptismOfTheLord = addDays(getEaster(year), - (46 + (getEaster(year).getUTCDay() === 0 ? 0 : getEaster(year).getUTCDay()) + 3 ) ); // approximation
+        if (today > baptismOfTheLord && today < ashWednesday) {
+             season = 'Tempo Comum';
+             color = 'green';
+        } else {
+             season = 'Natal';
+             color = 'white';
+        }
+    } else if (today >= ashWednesday && today < easter) {
         season = 'Quaresma';
         color = 'purple';
-    } 
-    
-    if (today >= easter && today <= pentecost) {
+    } else if (today >= easter && today <= pentecost) {
         season = 'Páscoa';
         color = 'white';
     }
 
-    // 2. Override with Feast/Solemnity colors
+    // 2. Override with Feast/Solemnity colors from user's calendar
     const month = today.getUTCMonth() + 1;
     const dayOfMonth = today.getUTCDate();
     const dayKey = `${month}-${dayOfMonth}`;
 
-    // WHITE FEASTS (override green/purple)
-    const whiteFeasts = [
-        '1-1', // Mary, Mother of God
-        '2-2', // Presentation of the Lord
-        '3-19', // St. Joseph
-        '3-25', // Annunciation
-        '6-24', // Nativity of St. John the Baptist
-        '8-6', // Transfiguration
-        '8-15', // Assumption
-        '10-1', // St. Therese (Doctor)
-        '10-4', // St. Francis of Assisi
-        '10-7', // Our Lady of the Rosary
-        '11-1', // All Saints
-        '11-9', // Dedication of Lateran Basilica
-        '11-10',// St. Leo the Great
-        '11-11',// St. Martin of Tours
-        '11-17', // St. Elizabeth of Hungary
-        '11-21', // Presentation of Mary
-        '11-27', // Our Lady of the Miraculous Medal
-        '12-8', // Immaculate Conception
-        '12-27' // St. John the Apostle
-    ];
-    if (whiteFeasts.includes(dayKey)) {
-        color = 'white';
-    }
-    const christTheKing = addDays(firstSundayOfAdvent, -7);
-    const trinitySunday = addDays(pentecost, 7);
-    const corpusChristi = addDays(pentecost, 11);
-    if (isSameDay(today, trinitySunday) || isSameDay(today, corpusChristi) || isSameDay(today, christTheKing)) {
-        color = 'white';
+    // Based on user provided calendar for Nov/Dec 2024
+    if (year === 2024) {
+        if (dayKey === '11-12') color = 'red'; // S. Josafá
+        if (dayKey === '11-17') color = 'green'; // 33rd Sunday
+        if (dayKey === '11-21') color = 'white'; // Apresentação de N. Sra.
+        if (dayKey === '11-22') color = 'red'; // Santa Cecília
+        if (dayKey === '11-23' || dayKey === '11-24') { // Christ the King is the last sunday of ordinary time. In 2024 it's Nov 24.
+            const christTheKing = addDays(firstSundayOfAdvent, -7);
+            if(isSameDay(today, christTheKing)){
+                color = 'white';
+                season = 'Cristo Rei';
+            }
+        }
+        if (dayKey >= '11-30' && month === 11 || month === 12 && today < christmas) { // Advent for 2024 starts Dec 1st. User says Nov 30.
+            season = 'Advento';
+            color = 'purple';
+        }
+        if (dayKey === '12-8') color = 'white'; // Imaculada Conceição
+        if (dayKey === '12-12') color = 'white'; // N. Sra. de Guadalupe
+        if (dayKey === '12-13') color = 'red'; // Santa Luzia
+        if (dayKey === '12-14') color = 'rose'; // 3º Domingo do Advento (Gaudete)
+        if (today >= christmas && month === 12) {
+            season = 'Natal';
+            color = 'white';
+        }
+        if (dayKey === '12-26') color = 'red'; // Santo Estêvão
+        if (dayKey === '12-27') color = 'white'; // São João, Apóstolo
+        if (dayKey === '12-28') color = 'white'; // Sagrada Família
     }
 
-    // RED FEASTS (override green/purple/white)
-    const redFeasts = [
-        '2-14', // Sts. Cyril and Methodius
-        '2-22', // Chair of St. Peter
-        '4-25', // St. Mark
-        '5-3', // Sts. Philip and James
-        '5-14', // St. Matthias
-        '6-29', // Sts. Peter and Paul
-        '7-3', // St. Thomas
-        '7-25', // St. James
-        '8-24', // St. Bartholomew
-        '8-29', // Passion of St. John the Baptist
-        '9-14', // Exaltation of the Holy Cross
-        '9-21', // St. Matthew
-        '10-18', // St. Luke
-        '10-28', // Sts. Simon and Jude
-        '11-12', // St. Josaphat
-        '11-22', // St. Cecilia
-        '11-24', // Vietnamese Martyrs
-        '11-30', // St. Andrew
-        '12-26' // St. Stephen
-    ];
-    const palmSunday = addDays(easter, -7);
-    const goodFriday = addDays(easter, -2);
-    if (redFeasts.includes(dayKey) || isSameDay(today, palmSunday) || isSameDay(today, goodFriday) || isSameDay(today, pentecost)) {
-        color = 'red';
-    }
-    
-    // ROSE SUNDAYS (override purple)
-    const thirdSundayAdvent = addDays(firstSundayOfAdvent, 14);
-    const fourthSundayLent = addDays(ashWednesday, 25);
-    if (isSameDay(today, thirdSundayAdvent) || isSameDay(today, fourthSundayLent)) {
-        color = 'rose';
-    }
-
-    // PURPLE for All Souls (overrides green)
-    if (month === 11 && dayOfMonth === 2) { 
-        color = 'purple'; 
-        season = 'Fiéis Defuntos'; 
-    }
 
     let verseKey = `${month}-${dayOfMonth}`;
     if (month === 12 && dayOfMonth === 24 && date.getUTCHours() >= 18) {
@@ -384,7 +320,12 @@ export function getLiturgicalInfo(date: Date): LiturgicalInfo {
     if (dayKey === '11-1') finalSeasonText = 'Todos os Santos';
     if (dayKey === '11-9') finalSeasonText = 'Ded. Bas. de Latrão';
     if (dayKey === '11-21') finalSeasonText = 'Apres. de N. Senhora';
-    if (isSameDay(today, christTheKing)) finalSeasonText = 'Cristo Rei';
+    if (year === 2024 && dayKey === '11-24') {
+        const christTheKing = addDays(firstSundayOfAdvent, -7);
+        if(isSameDay(today, christTheKing)){
+            finalSeasonText = 'Cristo Rei';
+        }
+    }
     if (dayKey === '12-8') finalSeasonText = 'Imaculada Conceição';
 
 
