@@ -23,6 +23,7 @@ import { AlertCircle } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { LilyIcon } from '@/components/weekly-devotions';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, type CarouselApi } from '@/components/ui/carousel';
+import { ScrollArea } from '@/components/ui/scroll-area';
 
 export type Theme = 'theme-default' | 'theme-dark-gray' | 'theme-light-gray' | 'theme-red';
 
@@ -48,12 +49,37 @@ const LoadingScreen = ({ isLoading }: { isLoading: boolean }) => (
 );
 
 const marianDevotions = [
-    { name: 'N. S. do Rosário', imageUrl: 'https://i.postimg.cc/2669v1gr/nsr.jpg', feastDay: '07 de Outubro' },
+    { 
+        name: 'N. S. do Rosário', 
+        imageUrl: 'https://i.postimg.cc/2669v1gr/nsr.jpg', 
+        feastDay: '07 de Outubro',
+        description: `
+            <h4 class="font-bold text-sm mb-2 text-blue-100">🌹 História de Nossa Senhora do Rosário de Pompeia</h4>
+            <div class="space-y-2">
+                <div>
+                    <h5 class="font-semibold text-blue-200">1. Origem da Devoção do Rosário</h5>
+                    <p>A devoção a Nossa Senhora do Rosário remonta ao século XIII, ligada tradicionalmente a <strong>São Domingos de Gusmão</strong>, que teria recebido o Rosário da própria Virgem Maria como uma arma espiritual. A festa de 7 de outubro comemora a <strong>Vitória de Lepanto</strong> (1571), atribuída à intercessão da Virgem através do Rosário.</p>
+                </div>
+                <div>
+                    <h5 class="font-semibold text-blue-200">2. O Contexto de Pompeia</h5>
+                    <p>No século XIX, o Vale de Pompeia, sobre as ruínas da antiga cidade romana, era um local de miséria social e abandono espiritual.</p>
+                </div>
+                <div>
+                    <h5 class="font-semibold text-blue-200">3. O Beato Bartolo Longo</h5>
+                    <p>Em 1872, o advogado <strong>Bartolo Longo</strong>, um recém-convertido, sentiu o chamado para evangelizar a região. Uma inspiração divina o guiou: <strong>"Salva esta gente, Bartolo! Propaga o Rosário."</strong> Ele dedicou-se a ensinar esta oração aos camponeses.</p>
+                </div>
+                <div>
+                    <h5 class="font-semibold text-blue-200">4. O Santuário de Pompeia</h5>
+                    <p>Em 1875, Bartolo Longo adquiriu um quadro deteriorado da Virgem do Rosário. Após ser restaurado, a devoção cresceu rapidamente devido a inúmeros milagres. Isso levou à construção do imponente <strong>Santuário de Nossa Senhora do Rosário de Pompeia</strong>, hoje um dos mais famosos do mundo. Bartolo Longo, o "Apóstolo do Rosário", também fundou importantes obras de caridade no local.</p>
+                </div>
+            </div>
+        `
+    },
     { name: 'N. S. Aparecida', imageUrl: 'https://i.postimg.cc/Lsyj4XMh/4011bde1376c5422265a41f3a652c540.jpg', feastDay: '12 de Outubro' },
     { name: 'Apresentação de N.S.', imageUrl: 'https://i.postimg.cc/3Js86PzK/image.png', feastDay: '21 de Novembro' },
     { name: 'N.S. da Saúde', imageUrl: 'https://i.postimg.cc/RCdhqSqh/image.png', feastDay: '21 de Novembro' },
     { name: 'N.S. das Graças', imageUrl: 'https://i.postimg.cc/SsBDK7HJ/Design-sem-nome-2.png', feastDay: '27 de Novembro' },
-    { name: 'Imaculada Conceição', imageUrl: 'https://iili.io/KpAtzcG.jpg', feastDay: '08 de Dezembro' },
+    { name: 'Imaculada Conceição', imageUrl: 'https://i.postimg.cc/k4xY3x3M/image.png', feastDay: '08 de Dezembro' },
 ]
 
 
@@ -257,10 +283,10 @@ export default function Home() {
           <div className="mt-16 w-full flex flex-col sm:flex-row items-center justify-center gap-4">
             <Dialog open={isJoseDialogOpen} onOpenChange={setIsJoseDialogOpen}>
                 <DialogTrigger asChild>
-                    <div className="flex flex-row items-center justify-center gap-3 px-4 py-3 bg-green-800/90 text-white rounded-lg shadow-md cursor-pointer transition-all hover:scale-105 hover:shadow-xl w-auto">
+                    <button className="flex flex-row items-center justify-center gap-3 px-4 py-3 bg-green-800/90 text-white rounded-lg shadow-md cursor-pointer transition-all hover:scale-105 hover:shadow-xl w-auto">
                       <Image src="https://iili.io/KpYhc8u.png" alt="São José" width={24} height={24} className="w-6 h-6 object-contain" />
                       <span className="font-brand text-sm text-center font-semibold">Espaço São José</span>
-                    </div>
+                    </button>
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-[625px] bg-green-800/95 text-white border-green-600/50">
                     <DialogHeader>
@@ -296,30 +322,38 @@ export default function Home() {
 
             <Dialog>
                 <DialogTrigger asChild>
-                    <div className="flex flex-row items-center justify-center gap-3 px-4 py-3 bg-blue-900/90 text-white rounded-lg shadow-md cursor-pointer transition-all hover:scale-105 hover:shadow-xl w-auto">
+                    <button className="flex flex-row items-center justify-center gap-3 px-4 py-3 bg-blue-900/90 text-white rounded-lg shadow-md cursor-pointer transition-all hover:scale-105 hover:shadow-xl w-auto">
                       <Image src="https://iili.io/KpYhaae.png" alt="Nossa Senhora" width={24} height={24} className="w-6 h-6 object-contain" />
                       <span className="font-brand text-sm text-center font-semibold">Espaço Mariano</span>
-                    </div>
+                    </button>
                 </DialogTrigger>
-                <DialogContent className="sm:max-w-[425px] bg-blue-900/95 text-white border-blue-700/50">
+                <DialogContent className="sm:max-w-md md:max-w-lg bg-blue-900/95 text-white border-blue-700/50">
                     <DialogHeader>
                        <DialogTitle className="font-brand text-xl text-center text-white">Espaço Mariano</DialogTitle>
                     </DialogHeader>
-                    <Carousel setApi={setMarianCarouselApi} className="w-full max-w-xs mx-auto">
+                    <Carousel setApi={setMarianCarouselApi} className="w-full max-w-sm mx-auto">
                         <CarouselContent>
                             {marianDevotions.map((devotion, index) => (
                             <CarouselItem key={index}>
                                 <div className="p-1">
-                                    <div className="flex flex-col items-center justify-center p-6 bg-blue-900/50 rounded-lg">
+                                    <div className="flex flex-col items-center justify-center p-4 bg-blue-900/50 rounded-lg">
                                         <Image 
                                             src={devotion.imageUrl}
                                             alt={devotion.name}
-                                            width={200}
-                                            height={200}
-                                            className="w-48 h-48 rounded-full object-cover border-4 border-blue-400/50 shadow-lg"
+                                            width={150}
+                                            height={150}
+                                            className="w-36 h-36 rounded-full object-cover border-4 border-blue-400/50 shadow-lg"
                                         />
                                         <h3 className="mt-4 text-xl font-brand text-white">{devotion.name}</h3>
                                         <p className="text-sm text-blue-200">Festa: {devotion.feastDay}</p>
+                                        {devotion.description && (
+                                            <ScrollArea className="h-40 w-full rounded-md border border-blue-800/50 bg-blue-950/30 p-3 mt-3">
+                                                <div
+                                                    className="text-xs text-blue-200/90 prose prose-sm max-w-none prose-p:my-1"
+                                                    dangerouslySetInnerHTML={{ __html: devotion.description }}
+                                                />
+                                            </ScrollArea>
+                                        )}
                                     </div>
                                 </div>
                             </CarouselItem>
@@ -329,7 +363,7 @@ export default function Home() {
                          <CarouselNext className="text-white hover:bg-blue-800 hover:text-white -right-8" />
                     </Carousel>
                      <div className="py-2 text-center text-sm text-blue-200">
-                        {marianCarouselApi && `${marianCarouselCurrent + 1} de ${marianCarouselApi.scrollSnapList().length}`}
+                        {marianCarouselApi && `Devoção ${marianCarouselCurrent + 1} de ${marianCarouselApi.scrollSnapList().length}`}
                     </div>
                 </DialogContent>
             </Dialog>
@@ -383,4 +417,5 @@ export default function Home() {
       </AlertDialog>
     </>
   );
-}
+
+    
