@@ -201,7 +201,7 @@ export default function NovenaDisplay({ saint, novena, theme, setTheme }: Novena
             ))}
         </div>
 
-        <div className="flex justify-center mb-4">
+        <div className="flex flex-col items-center justify-center gap-2 mb-4">
           <a
             href="https://chat.whatsapp.com/D08lyjhVqL8KyZfIovKYk5?mode=ems_copy_t"
             target="_blank"
@@ -213,6 +213,18 @@ export default function NovenaDisplay({ saint, novena, theme, setTheme }: Novena
             >
             <Image src="https://i.postimg.cc/g24cJdKG/whatsapp-icone-5.png" alt="WhatsApp" width={20} height={20} className="w-5 h-5" />
             <span className="text-sm font-semibold">Novena também disponível no nosso grupo do WhatsApp. (clique aqui)</span>
+          </a>
+          <a
+            href="https://www.instagram.com/coracoessagradosbsb"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={cn(
+                'inline-flex items-center gap-2 rounded-lg px-4 py-2 transition-all duration-200',
+                theme === 'theme-light-gray' ? 'bg-black/10 hover:bg-black/20 text-stone-800' : 'bg-white/10 hover:bg-white/20 text-white'
+            )}
+            >
+            <Image src="https://iili.io/Kpy9S3P.png" alt="Instagram" width={20} height={20} className="w-5 h-5" />
+            <span className="text-sm font-semibold">Segue a gente no Insta</span>
           </a>
         </div>
 
