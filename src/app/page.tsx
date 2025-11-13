@@ -214,7 +214,9 @@ export default function Home() {
     if(saint) {
         setSelectedMonth(saint.month);
         setSelectedSaintId(saint.id);
-        novenaSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        setTimeout(() => {
+          novenaSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100); // Small delay to allow state to update
     }
   }
 
@@ -434,3 +436,4 @@ export default function Home() {
   );
 
     
+
