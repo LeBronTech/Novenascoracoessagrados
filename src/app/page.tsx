@@ -14,7 +14,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetTr
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { Menu, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Menu, ChevronLeft, ChevronRight, BookOpen } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { parse, differenceInDays, getYear } from 'date-fns';
 import Image from 'next/image';
@@ -23,7 +23,7 @@ import { AlertCircle } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { LilyIcon } from '@/components/weekly-devotions';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, type CarouselApi } from '@/components/ui/carousel';
-import { ScrollArea } from '@/components/ui/scroll-area';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 
 export type Theme = 'theme-default' | 'theme-dark-gray' | 'theme-light-gray' | 'theme-red';
 
@@ -51,35 +51,28 @@ const LoadingScreen = ({ isLoading }: { isLoading: boolean }) => (
 const marianDevotions = [
     { 
         name: 'N. S. do Rosário', 
-        imageUrl: 'https://i.postimg.cc/2669v1gr/nsr.jpg', 
+        imageUrl: 'https://i.postimg.cc/2669v1gr/nsr.jpg',
+        novenaId: 'rosario',
         feastDay: '07 de Outubro',
         description: `
-            <h4 class="font-bold text-sm mb-2 text-blue-100">🌹 História de Nossa Senhora do Rosário de Pompeia</h4>
-            <div class="space-y-2">
-                <div>
-                    <h5 class="font-semibold text-blue-200">1. Origem da Devoção do Rosário</h5>
-                    <p>A devoção a Nossa Senhora do Rosário remonta ao século XIII, ligada tradicionalmente a <strong>São Domingos de Gusmão</strong>, que teria recebido o Rosário da própria Virgem Maria como uma arma espiritual. A festa de 7 de outubro comemora a <strong>Vitória de Lepanto</strong> (1571), atribuída à intercessão da Virgem através do Rosário.</p>
-                </div>
-                <div>
-                    <h5 class="font-semibold text-blue-200">2. O Contexto de Pompeia</h5>
-                    <p>No século XIX, o Vale de Pompeia, sobre as ruínas da antiga cidade romana, era um local de miséria social e abandono espiritual.</p>
-                </div>
-                <div>
-                    <h5 class="font-semibold text-blue-200">3. O Beato Bartolo Longo</h5>
-                    <p>Em 1872, o advogado <strong>Bartolo Longo</strong>, um recém-convertido, sentiu o chamado para evangelizar a região. Uma inspiração divina o guiou: <strong>"Salva esta gente, Bartolo! Propaga o Rosário."</strong> Ele dedicou-se a ensinar esta oração aos camponeses.</p>
-                </div>
-                <div>
-                    <h5 class="font-semibold text-blue-200">4. O Santuário de Pompeia</h5>
-                    <p>Em 1875, Bartolo Longo adquiriu um quadro deteriorado da Virgem do Rosário. Após ser restaurado, a devoção cresceu rapidamente devido a inúmeros milagres. Isso levou à construção do imponente <strong>Santuário de Nossa Senhora do Rosário de Pompeia</strong>, hoje um dos mais famosos do mundo. Bartolo Longo, o "Apóstolo do Rosário", também fundou importantes obras de caridade no local.</p>
-                </div>
-            </div>
+            <h4>1. Origem da Devoção do Rosário</h4>
+            <p>A devoção a Nossa Senhora do Rosário remonta ao século XIII, ligada tradicionalmente a <strong>São Domingos de Gusmão</strong>, que teria recebido o Rosário da própria Virgem Maria como uma arma espiritual para combater as heresias. A festa de 7 de outubro comemora a <strong>Vitória de Lepanto</strong> (1571), atribuída à intercessão da Virgem através do Rosário.</p>
+
+            <h4>2. Contexto de Pompeia</h4>
+            <p>No século XIX, o Vale de Pompeia, sobre as ruínas da antiga cidade romana, era um local de <strong>miséria social e abandono espiritual</strong>.</p>
+            
+            <h4>3. A Figura de Bartolo Longo e o Rosário</h4>
+            <p>Em 1872, o advogado <strong>Bartolo Longo</strong> (hoje Beato), recém-convertido, sentiu o chamado para evangelizar a região. Uma inspiração divina o guiou: <strong>"Salva esta gente, Bartolo! Propaga o Rosário."</strong> Ele dedicou-se a ensinar esta oração aos camponeses.</p>
+
+            <h4>4. O Santuário e a Devoção em Pompeia</h4>
+            <p>Em 1875, Bartolo Longo adquiriu um quadro deteriorado da Virgem do Rosário. Após ser restaurado, a devoção cresceu rapidamente devido a inúmeros milagres. Isso levou à construção do imponente <strong>Santuário de Nossa Senhora do Rosário de Pompeia</strong>. Bartolo Longo também fundou importantes obras de caridade, estabelecendo-se como o "Apóstolo do Rosário".</p>
         `
     },
-    { name: 'N. S. Aparecida', imageUrl: 'https://i.postimg.cc/Lsyj4XMh/4011bde1376c5422265a41f3a652c540.jpg', feastDay: '12 de Outubro' },
-    { name: 'Apresentação de N.S.', imageUrl: 'https://i.postimg.cc/3Js86PzK/image.png', feastDay: '21 de Novembro' },
-    { name: 'N.S. da Saúde', imageUrl: 'https://i.postimg.cc/RCdhqSqh/image.png', feastDay: '21 de Novembro' },
-    { name: 'N.S. das Graças', imageUrl: 'https://i.postimg.cc/SsBDK7HJ/Design-sem-nome-2.png', feastDay: '27 de Novembro' },
-    { name: 'Imaculada Conceição', imageUrl: 'https://i.postimg.cc/k4xY3x3M/image.png', feastDay: '08 de Dezembro' },
+    { name: 'N. S. Aparecida', imageUrl: 'https://i.postimg.cc/Lsyj4XMh/4011bde1376c5422265a41f3a652c540.jpg', novenaId: 'aparecida', feastDay: '12 de Outubro' },
+    { name: 'Apresentação de N.S.', imageUrl: 'https://i.postimg.cc/3Js86PzK/image.png', novenaId: 'apresentacao_ns', feastDay: '21 de Novembro' },
+    { name: 'N.S. da Saúde', imageUrl: 'https://i.postimg.cc/RCdhqSqh/image.png', novenaId: 'ns_saude', feastDay: '21 de Novembro' },
+    { name: 'N.S. das Graças', imageUrl: 'https://i.postimg.cc/SsBDK7HJ/Design-sem-nome-2.png', novenaId: 'gracas', feastDay: '27 de Novembro' },
+    { name: 'Imaculada Conceição', imageUrl: 'https://i.postimg.cc/k4xY3x3M/image.png', novenaId: 'imaculada_conceicao', feastDay: '08 de Dezembro' },
 ]
 
 
@@ -94,8 +87,10 @@ export default function Home() {
   const [isSaintOfTheDayOpen, setIsSaintOfTheDayOpen] = useState(false);
   const [showJoseNovenaDialog, setShowJoseNovenaDialog] = useState(false);
   const [isJoseDialogOpen, setIsJoseDialogOpen] = useState(false);
+  const [isMarianDialogOpen, setIsMarianDialogOpen] = useState(false);
   const [marianCarouselApi, setMarianCarouselApi] = useState<CarouselApi>()
   const [marianCarouselCurrent, setMarianCarouselCurrent] = useState(0)
+  const [isRosarioDescriptionOpen, setIsRosarioDescriptionOpen] = useState(false);
 
   useEffect(() => {
     if (!marianCarouselApi) return
@@ -214,6 +209,7 @@ export default function Home() {
   const handleNavigateToNovena = (saintId: string) => {
     setShowJoseNovenaDialog(false);
     setIsJoseDialogOpen(false);
+    setIsMarianDialogOpen(false);
     const saint = saints.find(s => s.id === saintId);
     if(saint) {
         setSelectedMonth(saint.month);
@@ -320,7 +316,7 @@ export default function Home() {
                 </DialogContent>
             </Dialog>
 
-            <Dialog>
+            <Dialog open={isMarianDialogOpen} onOpenChange={setIsMarianDialogOpen}>
                 <DialogTrigger asChild>
                     <button className="flex flex-row items-center justify-center gap-3 px-4 py-3 bg-blue-900/90 text-white rounded-lg shadow-md cursor-pointer transition-all hover:scale-105 hover:shadow-xl w-auto">
                       <Image src="https://iili.io/KpYhaae.png" alt="Nossa Senhora" width={24} height={24} className="w-6 h-6 object-contain" />
@@ -331,12 +327,13 @@ export default function Home() {
                     <DialogHeader>
                        <DialogTitle className="font-brand text-xl text-center text-white">Espaço Mariano</DialogTitle>
                     </DialogHeader>
-                    <Carousel setApi={setMarianCarouselApi} className="w-full max-w-sm mx-auto">
+                    <Carousel setApi={setMarianCarouselApi} className="w-full max-w-xs mx-auto">
                         <CarouselContent>
                             {marianDevotions.map((devotion, index) => (
                             <CarouselItem key={index}>
                                 <div className="p-1">
-                                    <div className="flex flex-col items-center justify-center p-4 bg-blue-900/50 rounded-lg">
+                                  <Collapsible open={devotion.novenaId === 'rosario' ? isRosarioDescriptionOpen : false} onOpenChange={devotion.novenaId === 'rosario' ? setIsRosarioDescriptionOpen : undefined}>
+                                    <div className="flex flex-col items-center justify-center p-4 bg-blue-900/50 rounded-lg relative">
                                         <Image 
                                             src={devotion.imageUrl}
                                             alt={devotion.name}
@@ -346,21 +343,39 @@ export default function Home() {
                                         />
                                         <h3 className="mt-4 text-xl font-brand text-white">{devotion.name}</h3>
                                         <p className="text-sm text-blue-200">Festa: {devotion.feastDay}</p>
+                                        
                                         {devotion.description && (
-                                            <ScrollArea className="h-40 w-full rounded-md border border-blue-800/50 bg-blue-950/30 p-3 mt-3">
-                                                <div
-                                                    className="text-xs text-blue-200/90 prose prose-sm max-w-none prose-p:my-1"
-                                                    dangerouslySetInnerHTML={{ __html: devotion.description }}
-                                                />
-                                            </ScrollArea>
+                                            <CollapsibleTrigger asChild>
+                                                <Button variant="outline" size="sm" className="mt-3 bg-blue-800/70 border-blue-600 text-white hover:bg-blue-700 hover:text-white">
+                                                    <BookOpen className="mr-2 h-4 w-4"/>
+                                                    Ver História
+                                                </Button>
+                                            </CollapsibleTrigger>
+                                        )}
+                                        
+                                        {devotion.novenaId && (
+                                          <div className={cn("w-full text-center", devotion.description ? 'pt-2' : 'pt-4')}>
+                                            <Button onClick={() => handleNavigateToNovena(devotion.novenaId)} size="sm" className="bg-blue-200 text-blue-900 hover:bg-white w-full sm:w-auto">
+                                                Rezar Novena
+                                            </Button>
+                                          </div>
                                         )}
                                     </div>
+                                     {devotion.description && (
+                                        <CollapsibleContent className="bg-blue-950/80 rounded-b-lg p-4 -mt-2">
+                                            <div
+                                                className="text-xs text-blue-200/90 prose prose-sm max-w-none prose-p:my-2 prose-h4:text-blue-100 prose-h4:font-bold prose-h4:mb-1 prose-strong:text-blue-100"
+                                                dangerouslySetInnerHTML={{ __html: devotion.description }}
+                                            />
+                                        </CollapsibleContent>
+                                    )}
+                                  </Collapsible>
                                 </div>
                             </CarouselItem>
                             ))}
                         </CarouselContent>
-                         <CarouselPrevious className="text-white hover:bg-blue-800 hover:text-white -left-8" />
-                         <CarouselNext className="text-white hover:bg-blue-800 hover:text-white -right-8" />
+                         <CarouselPrevious className={cn('text-white border-white/50 hover:bg-white hover:text-blue-800 -left-8', marianCarouselApi?.canScrollPrev() ? 'bg-white text-blue-800' : 'bg-transparent text-white')} />
+                         <CarouselNext className={cn('text-white border-white/50 hover:bg-white hover:text-blue-800 -right-8', marianCarouselApi?.canScrollNext() ? 'bg-white text-blue-800' : 'bg-transparent text-white')} />
                     </Carousel>
                      <div className="py-2 text-center text-sm text-blue-200">
                         {marianCarouselApi && `Devoção ${marianCarouselCurrent + 1} de ${marianCarouselApi.scrollSnapList().length}`}
