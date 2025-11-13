@@ -73,7 +73,7 @@ const marianDevotions = [
     { name: 'Apresentação de N.S.', imageUrl: 'https://i.postimg.cc/3Js86PzK/image.png', novenaId: 'apresentacao_ns', feastDay: '21 de Novembro' },
     { name: 'N.S. da Saúde', imageUrl: 'https://i.postimg.cc/RCdhqSqh/image.png', novenaId: 'ns_saude', feastDay: '21 de Novembro' },
     { name: 'N.S. das Graças', imageUrl: 'https://i.postimg.cc/SsBDK7HJ/Design-sem-nome-2.png', novenaId: 'gracas', feastDay: '27 de Novembro' },
-    { name: 'Imaculada Conceição', imageUrl: 'https://iili.io/KpAtISf.png', novenaId: 'imaculada_conceicao', feastDay: '08 de Dezembro' },
+    { name: 'Imaculada Conceição', imageUrl: 'https://i.postimg.cc/VL03f360/Design-sem-nome-3.png', novenaId: 'imaculada_conceicao', feastDay: '08 de Dezembro' },
 ]
 
 
@@ -105,68 +105,77 @@ export default function Home() {
   const { toast } = useToast();
   
   useEffect(() => {
+    const today = new Date();
+    // Use UTC methods to avoid timezone issues
+    const year = today.getUTCFullYear();
+    const month = today.getUTCMonth(); // 0-11
+    const day = today.getUTCDate();
+
+    // Create a UTC-based 'today' for consistent comparisons
+    const todayUTC = new Date(Date.UTC(year, month, day));
+
     let initialMonth: string | null = null;
     let initialNovenaId: string | null = null;
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
 
     const hash = window.location.hash.substring(1);
     const saintFromHash = saints.find(s => s.id === hash);
 
     if (saintFromHash) {
-      initialMonth = saintFromHash.month;
-      initialNovenaId = saintFromHash.id;
+        initialMonth = saintFromHash.month;
+        initialNovenaId = saintFromHash.id;
     } else {
-      const currentYear = getYear(today);
+        const currentYear = getYear(todayUTC);
+        const closestSaint = saints.reduce((closest, saint) => {
+            try {
+                const startDate = parse(`${saint.startDate}/${currentYear}`, 'dd/MM/yyyy', new Date());
+                const startDateUTC = new Date(Date.UTC(startDate.getFullYear(), startDate.getMonth(), startDate.getDate()));
 
-      const closestSaint = saints.reduce((closest, saint) => {
-        try {
-            const startDate = parse(`${saint.startDate}/${currentYear}`, 'dd/MM/yyyy', new Date());
-            if (isNaN(startDate.getTime())) return closest;
+                if (isNaN(startDateUTC.getTime())) return closest;
 
-            const diff = Math.abs(differenceInDays(startDate, today));
-            if (!closest || diff < closest.diff) {
-                return { saint, diff };
+                const diff = Math.abs(differenceInDays(startDateUTC, todayUTC));
+
+                if (!closest || diff < closest.diff) {
+                    return { saint, diff };
+                }
+            } catch (e) {
+                // Ignore invalid date formats
             }
-        } catch (e) {
-            // Ignore invalid date formats
-        }
-        return closest;
-      }, null as { saint: Saint; diff: number } | null);
+            return closest;
+        }, null as { saint: Saint; diff: number } | null);
 
-      if (closestSaint) {
-        initialNovenaId = closestSaint.saint.id;
-        initialMonth = closestSaint.saint.month;
-      } else {
-        // Fallback if no closest saint is found
-        const firstSaint = saints[0];
-        if (firstSaint) {
-          initialNovenaId = firstSaint.id;
-          initialMonth = firstSaint.month;
+        if (closestSaint) {
+            initialNovenaId = closestSaint.saint.id;
+            initialMonth = closestSaint.saint.month;
+        } else {
+            const firstSaint = saints[0];
+            if (firstSaint) {
+                initialNovenaId = firstSaint.id;
+                initialMonth = firstSaint.month;
+            }
         }
-      }
     }
 
     if (initialMonth && initialNovenaId) {
-      setSelectedMonth(initialMonth);
-      setSelectedSaintId(initialNovenaId);
+        setSelectedMonth(initialMonth);
+        setSelectedSaintId(initialNovenaId);
     }
 
-    if (today.getDay() === 5) {
-      toast({
-        description: (
-          <div className="flex items-center gap-2 font-semibold">
-            <AlertCircle className="text-primary h-5 w-5" />
-            Hoje é dia de abstinência de carne.
-          </div>
-        ),
-        className: 'top-4 right-4 absolute bg-background/80 backdrop-blur-sm',
-      });
+    if (todayUTC.getUTCDay() === 5) {
+        toast({
+            description: (
+                <div className="flex items-center gap-2 font-semibold">
+                    <AlertCircle className="text-primary h-5 w-5" />
+                    Hoje é dia de abstinência de carne.
+                </div>
+            ),
+            className: 'top-4 right-4 absolute bg-background/80 backdrop-blur-sm',
+        });
     }
-    
+
     // Delay hydration to allow loading animation to play
     setTimeout(() => setHydrated(true), 1500);
   }, [toast]);
+
 
   useEffect(() => {
     if (selectedSaintId && hydrated) {
@@ -379,8 +388,8 @@ export default function Home() {
                             </CarouselItem>
                             ))}
                         </CarouselContent>
-                         <CarouselPrevious className={cn('text-white border-white/50 hover:bg-white/90 hover:text-blue-800 -left-8', marianCarouselApi?.canScrollPrev() ? 'bg-white text-blue-800' : 'bg-transparent text-white')} />
-                         <CarouselNext className={cn('text-white border-white/50 hover:bg-white/90 hover:text-blue-800 -right-8', marianCarouselApi?.canScrollNext() ? 'bg-white text-blue-800' : 'bg-transparent text-white')} />
+                         <CarouselPrevious className={cn('text-white border-white/50 bg-transparent hover:bg-white/90 hover:text-blue-800 -left-8', !marianCarouselApi?.canScrollPrev() && 'opacity-50 cursor-default hover:bg-transparent hover:text-white')} />
+                         <CarouselNext className={cn('text-white border-white/50 bg-transparent hover:bg-white/90 hover:text-blue-800 -right-8', !marianCarouselApi?.canScrollNext() && 'opacity-50 cursor-default hover:bg-transparent hover:text-white')} />
                     </Carousel>
                      <div className="py-2 text-center text-sm text-blue-200">
                         {marianCarouselApi && `Devoção ${marianCarouselCurrent + 1} de ${marianCarouselApi.scrollSnapList().length}`}
@@ -437,5 +446,8 @@ export default function Home() {
       </AlertDialog>
     </>
   );
+
+    
+
 
     
