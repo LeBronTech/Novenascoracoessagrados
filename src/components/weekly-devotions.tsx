@@ -67,12 +67,15 @@ const Icon = ({ name, className }: { name: string, className?: string }) => {
 
 const WeeklyDevotions = () => {
   const [today, setToday] = useState<Date | null>(null);
+  const [liturgicalInfo, setLiturgicalInfo] = useState<LiturgicalInfo | null>(null);
 
   useEffect(() => {
-    setToday(new Date());
+    const now = new Date();
+    setToday(now);
+    setLiturgicalInfo(getLiturgicalInfo(now));
   }, []);
 
-  if (!today) {
+  if (!today || !liturgicalInfo) {
     return <DevotionSkeleton />;
   }
   
@@ -81,9 +84,8 @@ const WeeklyDevotions = () => {
 
   const weeklyDevotion = weeklyDevotions.find(d => d.dayOfWeek === dayOfWeek);
   const monthlyDevotion = monthlyDevotions.find(d => d.month === month);
-  const liturgicalInfo = getLiturgicalInfo(today);
-
-  if (!weeklyDevotion || !monthlyDevotion || !liturgicalInfo) return <DevotionSkeleton />;
+  
+  if (!weeklyDevotion || !monthlyDevotion) return <DevotionSkeleton />;
 
   const liturgicalColorClasses: Record<string, string> = {
     'green': 'devotion-item--green',
