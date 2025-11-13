@@ -48,14 +48,14 @@ const dailyGospels: Record<string, string> = {
     '11-20': 'Lc 19, 41-44', 
     '11-21': 'Lc 19, 45-48',
     '11-22': 'Lc 20, 27-40',
-    '11-23': 'Lc 23, 35-43', // Cristo Rei
+    '11-23': 'Lc 23, 35-43',
     '11-24': 'Lc 21, 1-4',  
     '11-25': 'Lc 21, 5-11',
     '11-26': 'Lc 21, 12-19',
     '11-27': 'Lc 21, 20-28',
     '11-28': 'Lc 21, 29-33',
     '11-29': 'Lc 21, 34-36',
-    '11-30': 'Mt 24, 37-44', // 1º Domingo Advento (em 2025)
+    '11-30': 'Mt 24, 37-44',
     '12-1': 'Mt 8, 5-11',
     '12-2': 'Lc 10, 21-24',
     '12-3': 'Mt 15, 29-37',
@@ -79,7 +79,7 @@ const dailyGospels: Record<string, string> = {
     '12-21': 'Mt 1, 18-24',
     '12-22': 'Lc 1, 46-56',
     '12-23': 'Mt 1, 18-25',
-    '12-24': 'Lc 1, 67-79',
+    '12-24-day': 'Lc 1, 67-79',
     '12-24-night': 'Lc 2, 1-14',
     '12-25': 'Jo 1, 1-18',
     '12-26': 'Mt 10, 17-22',
@@ -87,7 +87,7 @@ const dailyGospels: Record<string, string> = {
     '12-28': 'Mt 2, 13-15.19-23',
     '12-29': 'Lc 2, 22-35',
     '12-30': 'Lc 2, 36-40',
-    '12-31': 'Lc 2, 20-22',
+    '12-31': 'Jo 1, 1-18',
 };
 
 
@@ -197,24 +197,19 @@ const getLiturgicalYearCycle = (date: Date): { year: number; cycle: 'A' | 'B' | 
     const year = date.getUTCFullYear();
     const firstSundayOfAdventCurrentYear = getFirstSundayOfAdvent(year);
     
-    // The liturgical year starts on the first Sunday of Advent.
-    // If the current date is before the first Sunday of Advent of this calendar year,
-    // we are still in the previous liturgical year.
     const liturgicalYear = date >= firstSundayOfAdventCurrentYear ? year : year - 1;
     
-    // The cycle (A, B, C) is based on the start of the liturgical year.
     const cycleYear = date >= firstSundayOfAdventCurrentYear ? year : year - 1;
     
     let cycle: 'A' | 'B' | 'C';
-    // Use a known reference. Year starting in Advent 2022 was Year A.
     const diff = cycleYear - 2022;
-    const cycleIndex = ((diff % 3) + 3) % 3; // +3 and %3 to handle negative results
+    const cycleIndex = ((diff % 3) + 3) % 3;
 
     switch (cycleIndex) {
-        case 0: cycle = 'A'; break; // 2022, 2025, 2028...
-        case 1: cycle = 'B'; break; // 2023, 2026, 2029...
-        case 2: cycle = 'C'; break; // 2024, 2027, 2030...
-        default: cycle = 'A'; // Fallback
+        case 0: cycle = 'A'; break;
+        case 1: cycle = 'B'; break;
+        case 2: cycle = 'C'; break;
+        default: cycle = 'A';
     }
     
     return { year: liturgicalYear, cycle };
@@ -228,12 +223,14 @@ function isSameDay(d1: Date, d2: Date) {
 }
 
 export function getLiturgicalInfo(date: Date): LiturgicalInfo {
-    const year = date.getUTCFullYear();
-    const month = date.getUTCMonth(); // 0-11
-    const dayOfMonth = date.getUTCDate();
+    // Create a UTC date to avoid timezone issues.
+    const today = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
     
-    const today = new Date(Date.UTC(year, month, dayOfMonth));
-
+    const year = today.getUTCFullYear();
+    const month = today.getUTCMonth(); // 0-11
+    const dayOfMonth = today.getUTCDate();
+    const dayKey = `${month + 1}-${dayOfMonth}`;
+    
     const { cycle } = getLiturgicalYearCycle(today);
     
     const easter = getEaster(year);
@@ -245,9 +242,7 @@ export function getLiturgicalInfo(date: Date): LiturgicalInfo {
 
     let color: LiturgicalInfo['color'] = 'green';
     let season = 'Tempo Comum';
-
-    // This object defines specific day overrides. It has the highest priority.
-    // Key format is "M-D"
+    
     const specialDays: Record<string, { color: LiturgicalInfo['color'], season: string }> = {
         '11-1': { color: 'white', season: 'Todos os Santos' },
         '11-2': { color: 'purple', season: 'Fiéis Defuntos' },
@@ -255,6 +250,7 @@ export function getLiturgicalInfo(date: Date): LiturgicalInfo {
         '11-12': { color: 'red', season: 'S. Josafá, Mártir' },
         '11-21': { color: 'white', season: 'Apres. de N. Sra.' },
         '11-22': { color: 'red', season: 'Sta. Cecília, Mártir' },
+        '11-23': { color: 'white', season: 'Cristo Rei' }, // Updated for 2024
         '11-30': { color: 'red', season: 'S. André, Apóstolo' },
         '12-8': { color: 'white', season: 'Imaculada Conceição' },
         '12-12': { color: 'white', season: 'N.S. Guadalupe' },
@@ -263,34 +259,23 @@ export function getLiturgicalInfo(date: Date): LiturgicalInfo {
         '12-26': { color: 'red', season: 'S. Estêvão, Mártir' },
         '12-27': { color: 'white', season: 'S. João, Apóstolo' },
         '12-28': { color: 'white', season: 'Sagrada Família' },
-        '12-29': { color: 'white', season: 'Oitava de Natal' },
-        '12-30': { color: 'white', season: 'Oitava de Natal' },
-        '12-31': { color: 'white', season: 'Oitava de Natal' },
     };
-    
-    const dayKey = `${month + 1}-${dayOfMonth}`;
 
-    // Determine the liturgical season first
     if (today >= firstSundayOfAdventCurrent && today < christmas) {
         season = 'Advento';
         color = 'purple';
-        // Gaudete Sunday (3rd Sunday of Advent)
-        if (isSameDay(today, addDays(firstSundayOfAdventCurrent, 14))) {
+        if (isSameDay(today, addDays(firstSundayOfAdventCurrent, 14))) { // Gaudete Sunday
             color = 'rose';
             season = 'Domingo Gaudete';
         }
-    } else if ((today >= christmas) || (month === 0 && dayOfMonth < new Date(Date.UTC(year, 0, 13)).getUTCDate())) { // Christmas Time
+    } else if ((today >= christmas && today < new Date(Date.UTC(year + 1, 0, 6))) || (month === 0 && dayOfMonth < 6)) { // Christmas Time
         season = 'Natal';
         color = 'white';
-        // Special case for Sagrada Familia
-         if (isSameDay(today, addDays(christmas, christmas.getUTCDay() === 0 ? 0 : 7 - christmas.getUTCDay()))) {
-            season = 'Sagrada Família';
-        }
+        // Epiphany and Baptism of the Lord logic could be added here
     } else if (today >= ashWednesday && today < easter) {
         season = 'Quaresma';
         color = 'purple';
-        // Laetare Sunday (4th Sunday of Lent)
-        if (isSameDay(today, addDays(easter, -21))) {
+        if (isSameDay(today, addDays(easter, -21))) { // Laetare Sunday
             color = 'rose';
             season = 'Domingo Laetare';
         }
@@ -301,26 +286,26 @@ export function getLiturgicalInfo(date: Date): LiturgicalInfo {
        season = 'Tempo Comum';
        color = 'green';
     }
-
-    // Now, check for special days which override the seasonal color
-    // This logic needs to check against the current year's calendar.
-    // For 2024, Cristo Rei is on Nov 24.
-    const lastSundayOfOrdinaryTime = addDays(firstSundayOfAdventCurrent, -7);
-    if (isSameDay(today, lastSundayOfOrdinaryTime)) {
+    
+    // Solenidade de Cristo Rei - Last Sunday of Ordinary Time
+    const lastSundayOfOrdinaryTime = addDays(getFirstSundayOfAdvent(year), -7);
+    if(isSameDay(today, lastSundayOfOrdinaryTime)) {
         color = 'white';
         season = 'Cristo Rei';
     }
     
+    // Override with specific day colors if applicable
     if (specialDays[dayKey]) {
         color = specialDays[dayKey].color;
         season = specialDays[dayKey].season;
     }
 
-    let verseKey = `${month + 1}-${dayOfMonth}`;
-    if (month === 11 && dayOfMonth === 24 && date.getUTCHours() >= 18) {
-      verseKey = '12-24-night';
+    let verseKey = dayKey;
+    if (month === 11 && dayOfMonth === 24) { // Christmas Eve
+        const currentHour = date.getUTCHours(); // Use original date with time
+        verseKey = currentHour >= 18 ? '12-24-night' : '12-24-day';
     }
-    
+
     let verse = dailyGospels[verseKey] || `Ev. do Dia`;
 
     return { color, season, verse, cycle };

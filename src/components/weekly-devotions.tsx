@@ -70,6 +70,7 @@ const WeeklyDevotions = () => {
   const [liturgicalInfo, setLiturgicalInfo] = useState<LiturgicalInfo | null>(null);
 
   useEffect(() => {
+    // This ensures that the date is consistent and not affected by client-side re-renders.
     const now = new Date();
     setToday(now);
     setLiturgicalInfo(getLiturgicalInfo(now));
