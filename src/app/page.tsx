@@ -24,6 +24,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { LilyIcon } from '@/components/weekly-devotions';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, type CarouselApi } from '@/components/ui/carousel';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+import { ScrollArea } from '@/components/ui/scroll-area';
 
 export type Theme = 'theme-default' | 'theme-dark-gray' | 'theme-light-gray' | 'theme-red';
 
@@ -72,7 +73,7 @@ const marianDevotions = [
     { name: 'Apresentação de N.S.', imageUrl: 'https://i.postimg.cc/3Js86PzK/image.png', novenaId: 'apresentacao_ns', feastDay: '21 de Novembro' },
     { name: 'N.S. da Saúde', imageUrl: 'https://i.postimg.cc/RCdhqSqh/image.png', novenaId: 'ns_saude', feastDay: '21 de Novembro' },
     { name: 'N.S. das Graças', imageUrl: 'https://i.postimg.cc/SsBDK7HJ/Design-sem-nome-2.png', novenaId: 'gracas', feastDay: '27 de Novembro' },
-    { name: 'Imaculada Conceição', imageUrl: 'https://i.postimg.cc/k4xY3x3M/image.png', novenaId: 'imaculada_conceicao', feastDay: '08 de Dezembro' },
+    { name: 'Imaculada Conceição', imageUrl: 'https://iili.io/KpAtISf.png', novenaId: 'imaculada_conceicao', feastDay: '08 de Dezembro' },
 ]
 
 
@@ -215,7 +216,7 @@ export default function Home() {
         setSelectedMonth(saint.month);
         setSelectedSaintId(saint.id);
         setTimeout(() => {
-          novenaSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          novenaSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }, 100); // Small delay to allow state to update
     }
   }
@@ -334,7 +335,7 @@ export default function Home() {
                             {marianDevotions.map((devotion, index) => (
                             <CarouselItem key={index}>
                                 <div className="p-1">
-                                  <Collapsible open={devotion.novenaId === 'rosario' ? isRosarioDescriptionOpen : false} onOpenChange={devotion.novenaId === 'rosario' ? setIsRosarioDescriptionOpen : undefined}>
+                                  <Collapsible open={devotion.novenaId === 'rosario' ? isRosarioDescriptionOpen : undefined} onOpenChange={devotion.novenaId === 'rosario' ? setIsRosarioDescriptionOpen : undefined}>
                                     <div className="flex flex-col items-center justify-center p-4 bg-blue-900/50 rounded-lg relative">
                                         <Image 
                                             src={devotion.imageUrl}
@@ -355,8 +356,8 @@ export default function Home() {
                                             </CollapsibleTrigger>
                                         )}
                                         
-                                        {devotion.novenaId && (
-                                          <div className={cn("w-full text-center", devotion.description ? 'pt-2' : 'pt-4')}>
+                                         {devotion.novenaId && (
+                                          <div className="w-full text-center pt-4">
                                             <Button onClick={() => handleNavigateToNovena(devotion.novenaId)} size="sm" className="bg-blue-200 text-blue-900 hover:bg-white w-full sm:w-auto">
                                                 Rezar Novena
                                             </Button>
@@ -364,11 +365,13 @@ export default function Home() {
                                         )}
                                     </div>
                                      {devotion.description && (
-                                        <CollapsibleContent className="bg-blue-950/80 rounded-b-lg p-4 -mt-2">
+                                        <CollapsibleContent>
+                                          <ScrollArea className="h-48 w-full rounded-b-lg -mt-2 bg-blue-950/80">
                                             <div
-                                                className="text-xs text-blue-200/90 prose prose-sm max-w-none prose-p:my-2 prose-h4:text-blue-100 prose-h4:font-bold prose-h4:mb-1 prose-strong:text-blue-100"
+                                                className="p-4 text-xs text-blue-200/90 prose prose-sm max-w-none prose-p:my-2 prose-h4:text-blue-100 prose-h4:font-bold prose-h4:mb-1 prose-strong:text-blue-100"
                                                 dangerouslySetInnerHTML={{ __html: devotion.description }}
                                             />
+                                           </ScrollArea>
                                         </CollapsibleContent>
                                     )}
                                   </Collapsible>
@@ -376,8 +379,8 @@ export default function Home() {
                             </CarouselItem>
                             ))}
                         </CarouselContent>
-                         <CarouselPrevious className={cn('text-white border-white/50 hover:bg-white hover:text-blue-800 -left-8', marianCarouselApi?.canScrollPrev() ? 'bg-white text-blue-800' : 'bg-transparent text-white')} />
-                         <CarouselNext className={cn('text-white border-white/50 hover:bg-white hover:text-blue-800 -right-8', marianCarouselApi?.canScrollNext() ? 'bg-white text-blue-800' : 'bg-transparent text-white')} />
+                         <CarouselPrevious className={cn('text-white border-white/50 hover:bg-white/90 hover:text-blue-800 -left-8', marianCarouselApi?.canScrollPrev() ? 'bg-white text-blue-800' : 'bg-transparent text-white')} />
+                         <CarouselNext className={cn('text-white border-white/50 hover:bg-white/90 hover:text-blue-800 -right-8', marianCarouselApi?.canScrollNext() ? 'bg-white text-blue-800' : 'bg-transparent text-white')} />
                     </Carousel>
                      <div className="py-2 text-center text-sm text-blue-200">
                         {marianCarouselApi && `Devoção ${marianCarouselCurrent + 1} de ${marianCarouselApi.scrollSnapList().length}`}
@@ -436,4 +439,3 @@ export default function Home() {
   );
 
     
-
