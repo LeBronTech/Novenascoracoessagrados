@@ -73,7 +73,7 @@ const marianDevotions = [
     { name: 'Apresentação de N.S.', imageUrl: 'https://i.postimg.cc/3Js86PzK/image.png', novenaId: 'apresentacao_ns', feastDay: '21 de Novembro' },
     { name: 'N.S. da Saúde', imageUrl: 'https://i.postimg.cc/RCdhqSqh/image.png', novenaId: 'ns_saude', feastDay: '21 de Novembro' },
     { name: 'N.S. das Graças', imageUrl: 'https://i.postimg.cc/SsBDK7HJ/Design-sem-nome-2.png', novenaId: 'gracas', feastDay: '27 de Novembro' },
-    { name: 'Imaculada Conceição', imageUrl: 'https://i.postimg.cc/VL03f360/Design-sem-nome-3.png', novenaId: 'imaculada_conceicao', feastDay: '08 de Dezembro' },
+    { name: 'Imaculada Conceição', imageUrl: 'https://iili.io/KpAtISf.png', novenaId: 'imaculada_conceicao', feastDay: '08 de Dezembro' },
 ]
 
 
@@ -92,6 +92,7 @@ export default function Home() {
   const [marianCarouselApi, setMarianCarouselApi] = useState<CarouselApi>()
   const [marianCarouselCurrent, setMarianCarouselCurrent] = useState(0)
   const [isRosarioDescriptionOpen, setIsRosarioDescriptionOpen] = useState(false);
+  const [shouldScrollToNovena, setShouldScrollToNovena] = useState(false);
 
   useEffect(() => {
     if (!marianCarouselApi) return
@@ -180,8 +181,14 @@ export default function Home() {
   useEffect(() => {
     if (selectedSaintId && hydrated) {
       history.pushState({ novenaId: selectedSaintId }, '', '#' + selectedSaintId);
+      if (shouldScrollToNovena) {
+        requestAnimationFrame(() => {
+            novenaSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            setShouldScrollToNovena(false);
+        });
+      }
     }
-  }, [selectedSaintId, hydrated]);
+  }, [selectedSaintId, hydrated, shouldScrollToNovena]);
 
   const selectedNovena = useMemo(
     () => (selectedSaintId ? novenaData[selectedSaintId] : null),
@@ -223,10 +230,8 @@ export default function Home() {
     const saint = saints.find(s => s.id === saintId);
     if(saint) {
         setSelectedMonth(saint.month);
-        setSelectedSaintId(saint.id);
-        setTimeout(() => {
-          novenaSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }, 100); // Small delay to allow state to update
+        setSelectedSaintId(saintId);
+        setShouldScrollToNovena(true);
     }
   }
 
@@ -446,8 +451,4 @@ export default function Home() {
       </AlertDialog>
     </>
   );
-
-    
-
-
-    
+}
