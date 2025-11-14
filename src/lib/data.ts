@@ -521,18 +521,7 @@ export const novenaData: Record<string, Novena> = {
       content: `<div class="day-specific-content"><p>Conteúdo da oração para o ${i + 1}º dia da novena.</p></div>`
     }))
   },
-  imaculada_conceicao: {
-    saintName: 'Imaculada Conceição',
-    novenaTitle: 'Novena à Imaculada Conceição',
-    description: 'Prepare seu coração com Maria para a vinda de Jesus, celebrando a concepção de Maria sem a mancha do pecado original.',
-    initialPrayer: `<div class="prayer-block"><p>Oração Inicial para todos os dias.</p></div>`,
-    finalPrayer: `<div class="prayer-block"><p>Oração Final para todos os dias.</p></div>`,
-     days: Array.from({ length: 9 }, (_, i) => ({
-      day: `${i + 1}º Dia`,
-      title: `Oração do ${i + 1}º Dia`,
-      content: `<div class="day-specific-content"><p>Conteúdo da oração para o ${i + 1}º dia da novena.</p></div>`
-    }))
-  },
+  /* imaculada_conceicao moved to the end of novenaData to appear last in lists */
   teresinha: {
     saintName: 'Santa Teresinha',
     novenaTitle: 'Novena Milagrosa de Santa Terezinha do Menino Jesus',
@@ -947,6 +936,19 @@ export const novenaData: Record<string, Novena> = {
       content: `<div class="day-specific-content"><p>Eterno Pai, eu Vos ofereço o Preciosíssimo Sangue de Vosso Divino Filho Jesus, em união com todas as Missas que hoje são celebradas em todo o mundo; por todas as santas almas do purgatório, pelos pecadores de todos os lugares, pelos pecadores de toda a Igreja, pelos de minha casa e de meus vizinhos. Amém.</p><p>Dai-lhes, Senhor, o descanso eterno, e a luz perpétua os ilumine. Descansem em paz. Amém.</p></div>`
     }))
   }
+  ,
+  imaculada_conceicao: {
+    saintName: 'Imaculada Conceição',
+    novenaTitle: 'Novena à Imaculada Conceição',
+    description: 'Prepare seu coração com Maria para a vinda de Jesus, celebrando a concepção de Maria sem a mancha do pecado original.',
+    initialPrayer: `<div class="prayer-block"><p>Oração Inicial para todos os dias.</p></div>`,
+    finalPrayer: `<div class="prayer-block"><p>Oração Final para todos os dias.</p></div>`,
+     days: Array.from({ length: 9 }, (_, i) => ({
+      day: `${i + 1}º Dia`,
+      title: `Oração do ${i + 1}º Dia`,
+      content: `<div class="day-specific-content"><p>Conteúdo da oração para o ${i + 1}º dia da novena.</p></div>`
+    }))
+  }
 };
 
 
@@ -982,8 +984,8 @@ export const saints: Saint[] = [
   { id: 'cristo_rei', name: 'Cristo Rei', imageUrl: 'https://iili.io/KpYFw6G.jpg', month: 'Novembro', startDate: '14/11', endDate: '22/11', feastDay: '23/Nov' },
   { id: 'catarina_alexandria', name: 'S. Catarina de Alexandria', imageUrl: 'https://i.postimg.cc/s2FFt7gs/image.png', month: 'Novembro', startDate: '16/11', endDate: '24/11', feastDay: '25/Nov', isMartyr: true },
   { id: 'gracas', name: 'N.S. das Graças', imageUrl: 'https://i.postimg.cc/SsBDK7HJ/Design-sem-nome-2.png', month: 'Novembro', startDate: '18/11', endDate: '26/11', feastDay: '27/Nov' },
-  { id: 'imaculada_conceicao', name: 'Imaculada Conceição', imageUrl: 'https://iili.io/KpAtISf.png', month: 'Novembro', startDate: '29/11', endDate: '07/12', feastDay: '08/Dez' },
   { id: 'santo_andre', name: 'S. André Apóstolo', imageUrl: 'https://iili.io/KpAtzcG.jpg', month: 'Novembro', startDate: '21/11', endDate: '29/11', feastDay: '30/Nov', isMartyr: true },
+  { id: 'imaculada_conceicao', name: 'Imaculada Conceição', imageUrl: 'https://iili.io/KpAtISf.png', month: 'Novembro/Dezembro', startDate: '29/11', endDate: '07/12', feastDay: '08/Dez' },
 ];
 
 export const months: string[] = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
