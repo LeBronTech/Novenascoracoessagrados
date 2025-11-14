@@ -449,14 +449,65 @@ export const novenaData: Record<string, Novena> = {
   catarina_alexandria: {
     saintName: 'Santa Catarina de Alexandria',
     novenaTitle: 'Novena a Santa Catarina de Alexandria',
-    description: 'Virgem e mártir, Santa Catarina é padroeira dos estudantes e filósofos. Peça sua intercessão por sabedoria e fé inabalável.',
-    initialPrayer: `<div class="prayer-block"><p>Oração Inicial para todos os dias.</p></div>`,
-    finalPrayer: `<div class="prayer-block"><p>Oração Final para todos os dias.</p></div>`,
-     days: Array.from({ length: 9 }, (_, i) => ({
-      day: `${i + 1}º Dia`,
-      title: `Oração do ${i + 1}º Dia`,
-      content: `<div class="day-specific-content"><p>Conteúdo da oração para o ${i + 1}º dia da novena.</p></div>`
-    }))
+    description: 'Conheça a história inspiradora de Santa Catarina de Alexandria, virgem e mártir. Virgin e mártir da Igreja, exemplo de humildade, coragem e vida de oração.',
+    initialPrayer: ` <div class="prayer-block">
+        <h4 class="section-title">Oração preparatória</h4>
+        <p>Altíssimo e soberano Senhor, sempre admirável em Vossos santos, e que podeis fazer das pedras filhos de Abraão, e de instrumentos fracos e de nenhuma consideração perante os homens, Vos servis para efeitos estupendos continuando até agora a Vossa obra, que já assim começastes com os Vossos Apóstolos, homens de nenhuma consideração perante o mundo. Em S. Catarina, Vossa esposa, virgem e mártir, Vos dignastes, Senhor, manifestar a Vossa onipotência dotando-a, não só do dom da castidade e constância necessária para o martírio, mas também de uma extraordinária sabedoria e inteligência incomuns às pessoas do seu sexo. Nesta novena Vos pedimos a graça de nos dar um ardor à santíssima religião que professamos, a fim de que, se não temos o ânimo e constância de morrer mártires como ela, tenhamos ao menos um ardente zelo para viver na observância dos Vossos preceitos, e dos mandamentos da Santa Madre Igreja. Mostre, ao menos, o nosso procedimento a verdade da religião santa que professamos, já que não a mostramos com invencíveis argumentos teológicos, e filosóficos, como a gloriosa S. Catarina perante os tiranos. Mas não sirvam de obstáculo os nossos pecados à Vossa graça, para o que Vos pedimos humildemente perdão de todos eles pelos merecimentos e intercessão de tão gloriosa santa.</p>
+        <p class="mt-4">Seguem-se três Pai-Nossos, Ave-Marias e Glórias ao Pai.</p>
+        <p class="mt-4">V. Santa Catarina, mestra dos doutores.<br/>R. Rogai por todos os pecadores.</p>
+    </div>`,
+    finalPrayer: ` <div class="prayer-block">
+        <h4 class="section-title">Oferecimento</h4>
+        <p>V. Rogai por nós, Bem-aventurada Catarina.<br/>R. Para que sejamos dignos das promessas de Cristo.</p>
+        <p class="mt-4 font-semibold">Oremos: Ó Deus, que destes a Lei a Moisés no alto do monte Sinai, e que milagrosamente colocastes nesse mesmo lugar, por intermédio dos anjos, o corpo da Bem-aventurada Catarina, fazei que, pelos seus merecimentos e intercessão, possamos subir também àquele monte que é Jesus Cristo. Que convosco vive e reina por todos os séculos dos séculos. Amém.</p>
+    </div>`,
+    days: [
+      {
+        day: 'Primeiro Dia',
+        title: 'Meditação — 1º Dia',
+        content: `<div class="day-specific-content"><p>Consideremos que sendo Catarina nascida de nobres pais em Alexandria, foi educada nas artes liberais que ilustram o entendimento e na santa doutrina cristã, aprendendo a fundamento fundo as provas da religião. Que diferente educação tem entre nós muitas senhoras nobres, que só leem os folhetins e novelas? O resultado de tais leituras é funesto, como a experiência o mostra, infelizmente. Em S. Catarina, tão felizes princípios, como preciosa semente, produziram frutos de benção, que vem a ser: a virgindade ilibada, a confusão da idolatria, um glorioso martírio e a eterna felicidade, deixando edificante exemplo à mocidade cristã.</p></div>`
+      },
+      {
+        day: 'Segundo Dia',
+        title: 'Meditação — 2º Dia',
+        content: `<div class="day-specific-content"><p>Consideremos como S. Catarina, progredindo em seus conhecimentos e principalmente na sagrada teologia, quando chegou aos 18 anos de sua idade tinha já adquirido tal ciência, que facilmente arguia e vencia os sábios daquele tempo. Louvores sejam dados ao Senhor das ciências, que assim soube formar e ilustrar o entendimento de uma donzela, quando as outras gastam seu tempo nas galas e divertimentos profanos, com escândalo do mundo, e prejuízo próprio. A ciência da salvação deve ser a primeira ciência para tudo, como aquela cujas consequências são eternas, e sem a qual todas as outras, cujos efeitos ficam neste mundo, são vaidades e ninharias.</p></div>`
+      },
+      {
+        day: 'Terceiro Dia',
+        title: 'Meditação — 3º Dia',
+        content: `<div class="day-specific-content"><p>Consideremos como observando S. Catarina que o tirano Maximino, depois de ter atormentado com diversos gêneros de martírios a muitos cristãos por professarem a religião de Jesus Cristo, persistia em sua tirania, encheu-se de ânimo e se apresentou ao tirano, lançando-lhe em rosto a injustiça de fazer sofrer a sujeitos tão inocentes os castigos destinado aos ladrões e facinorosos. Que espetáculo! Que ânimo! Uma delicada donzela lançar em rosto ao imperador, cercado de algozes prontos a fazê-la em pedaços ao primeiro sinal de seu senhor, em seu proceder injusto e tirânico. Oh, como são admiráveis os efeitos do Espírito Santo, que pôde dar tanto valor a uma moça de 18 anos.</p></div>`
+      },
+      {
+        day: 'Quarto Dia',
+        title: 'Meditação — 4º Dia',
+        content: `<div class="day-specific-content"><p>Consideremos como o imperador, pasmado do valor e eloquência de Catarina, manda-a pôr em custódia, e que sejam chamados os sábios da gentilidade, para argumentarem e disputarem com a santa, a fim de a fazerem renegar a fé cristã, e a converterem ao culto dos falsos deuses. Concorrem, com efeito, os doutores gentios e começam as disputas. Está uma cordeirinha entre lobos. Mas quem é como Deus? Quem poderá pôr abaixo a doutrina daquele Senhor que disse: “Não prepareis as respostas que tendes de dar, porque naquela ocasião se vos inspirará o que haveis do responder.”. Assim aconteceu pontualmente, pois tais coisas disse a nossa santa, que convenceu aqueles sábios da verdade da religião de Santa Catarina.</p></div>`
+      },
+      {
+        day: 'Quinto Dia',
+        title: 'Meditação — 5º Dia',
+        content: `<div class="day-specific-content"><p>Consideremos como o resultado das disputas de S. Catarina não só foi o vencimento e palma que a santa conseguiu dos doutores gentios, mas tais razões lhe alegou a santa, que de doutores idólatras se tornaram cristãos fervorosos, confessores da fé, de modo que muitos deles morreram mártires, dando a vida por Jesus Cristo Nosso Senhor. Eis aqui os efeitos da sabedoria de S. Catarina. Reconheçamos que a ignorância dos princípios da religião é o motivo por que muitos meio sábios, ou que se persuadem que sabem outras matérias, dão regras sobre o que ignoram, e caem em palpáveis erros sobre matérias de religião, perdendo-se a si, e aos que os seguem, verificando-se que um cego conduz outro cego.</p></div>`
+      },
+      {
+        day: 'Sexto Dia',
+        title: 'Meditação — 6º Dia',
+        content: `<div class="day-specific-content"><p>Consideremos como o tirano, ao ver que Catarina vencia os sábios, e que deste modo perdia tempo, usou dos meios de brandura e de lisonjeiras promessas. Mas combatia sem fruto contra um rochedo: virou-se, pois, para os rigores que o Demônio lhe sugeria e mandou que a santa fosse açoitada cruelmente. Eis uma santa donzela no meio dos algozes, sofrendo como Jesus Cristo no palco de Pilatos. São inauditas os ardis e indústrias que o Demônio inventou contra os cristãos. Confessavam os sábios a verdade da Religião pelos argumentos e provas invencíveis da nossa santa, e o tirano lhe paga com uma chuva de açoites sobre o virginal e delicado corpo. Seja Deus bendito para sempre. Enchamo-nos de vergonha, pois nada queremos sofrer por Deus.</p></div>`
+      },
+      {
+        day: 'Sétimo Dia',
+        title: 'Meditação — 7º Dia',
+        content: `<div class="day-specific-content"><p>Consideremos como, depois da rigorosa flagelação da nossa santa, mandou o tirano encerrá-la no cárcere, e que lhe fosse negada toda comida e bebida: e assim esteve reclusa por onze dias; mas teve a consolação de converter a mulher do imperador, que a foi visitar, e a Porfírio, um dos oficiais generais do império, que tão firmes ficaram, que vieram a morrer mártires por ela. De modo que se serviu Deus de uma fraca donzela para converter os sábios do mundo, e os grandes, e até da família do mesmo imperador. Bendito seja o Deus de Israel que, assim por meios desproporcionados, aumentou o seu rebanho e povoou o Céu.</p></div>`
+      },
+      {
+        day: 'Oitavo Dia',
+        title: 'Meditação — 8º Dia',
+        content: `<div class="day-specific-content"><p>Consideremos como o tirano, não conseguindo o seu intento sobre S. Catarina, mandou armar uma roda de amiudadas navalhas, para dilacerar o santo corpo de Catarina. Começa a trabalhar a máquina, mas apenas a santa fez oração a Deus, tudo se desconjuntou e desfez: e Deus, por Sua misericórdia, se serviu deste desmancho para converter a muitos dos espectadores que ali estavam presentes a este horroroso espetáculo. Assim se servia Nosso Senhor para aumentar o número dos Seus filhos, dos mesmos meios que o Demônio inspirava aos perseguidores para os destruir. À vista do que devemos cada vez mais amar e agradecer a Deus o benefício que nos fez, ao nos chamar à verdadeira fé.</p></div>`
+      },
+      {
+        day: 'Nono Dia',
+        title: 'Meditação — 9º Dia',
+        content: `<div class="day-specific-content"><p>Consideremos como apesar de tantas provas de razões e milagres com que Deus mostrava a verdade da santa religião por meio de S. Catarina, estava cada vez mais obstinado o ímpio imperador, e assim mandou degolar a S. Catarina, cuja alma voou ao Céu, com a dobrada coroa de virgem e mártir. Dizem que seu corpo fora levado pelos anjos ao Monte Sinai. Veremos no dia do juízo como aparece o ímpio tirano Maximino e como aparece a virgem e mártir S. Catarina. Amemos a religião, que até agora não foi vencida, nem nunca o poderá ser.</p></div>`
+      }
+    ]
   },
   santo_andre: {
     saintName: 'Santo André Apóstolo',
