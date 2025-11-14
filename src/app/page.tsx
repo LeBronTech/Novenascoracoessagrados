@@ -85,6 +85,7 @@ export default function Home() {
   const saintOfTheDayRef = useRef<SaintOfTheDayRef>(null);
   const saintOfTheDaySectionRef = useRef<HTMLDivElement>(null);
   const novenaSectionRef = useRef<HTMLDivElement>(null);
+  const scrollTimeoutRef = useRef<number | null>(null);
   const [isSaintOfTheDayOpen, setIsSaintOfTheDayOpen] = useState(false);
   const [showJoseNovenaDialog, setShowJoseNovenaDialog] = useState(false);
   const [isJoseDialogOpen, setIsJoseDialogOpen] = useState(false);
@@ -181,14 +182,53 @@ export default function Home() {
   }, [toast]);
 
 
+  const smoothScrollToElement = (target: HTMLElement | null) => {
+    if (!target) return;
+
+    const isScrollable = (node: Element | null) => {
+      if (!node || node === document.documentElement) return false;
+      const style = getComputedStyle(node as Element);
+      const overflowY = style.overflowY;
+      return (overflowY === 'auto' || overflowY === 'scroll') && (node as HTMLElement).scrollHeight > (node as HTMLElement).clientHeight;
+    }
+
+    let ancestor: Element | null = target.parentElement;
+    while (ancestor && !isScrollable(ancestor)) {
+      ancestor = ancestor.parentElement;
+    }
+
+    const headerOffset = 8; // pequeno ajuste para evitar colisão com bordas fixas
+
+    if (!ancestor || ancestor === document.documentElement || ancestor === document.body) {
+      const top = target.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+      window.scrollTo({ top, behavior: 'smooth' });
+    } else {
+      const ancestorRect = (ancestor as HTMLElement).getBoundingClientRect();
+      const targetRect = target.getBoundingClientRect();
+      const topWithin = targetRect.top - ancestorRect.top + (ancestor as HTMLElement).scrollTop - headerOffset;
+      (ancestor as HTMLElement).scrollTo({ top: topWithin, behavior: 'smooth' });
+    }
+  }
+
   useEffect(() => {
     if (selectedSaintId && hydrated) {
       history.pushState({ novenaId: selectedSaintId }, '', '#' + selectedSaintId);
       if (shouldScrollToNovena) {
-        requestAnimationFrame(() => {
-            novenaSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // Run the scroll on next frames with a small delay to allow DOM updates/layout
+        if (scrollTimeoutRef.current) window.clearTimeout(scrollTimeoutRef.current);
+        scrollTimeoutRef.current = window.setTimeout(() => {
+          requestAnimationFrame(() => {
+            smoothScrollToElement(novenaSectionRef.current);
             setShouldScrollToNovena(false);
-        });
+          });
+        }, 350);
+      }
+    }
+
+    return () => {
+      if (scrollTimeoutRef.current) {
+        window.clearTimeout(scrollTimeoutRef.current);
+        scrollTimeoutRef.current = null;
       }
     }
   }, [selectedSaintId, hydrated, shouldScrollToNovena]);
@@ -234,7 +274,9 @@ export default function Home() {
     if(saint) {
         setSelectedMonth(saint.month);
         setSelectedSaintId(saintId);
-        setShouldScrollToNovena(true);
+        // Aguarda o fechamento do diálogo (animação) antes de rolar
+        // para garantir que a rolagem com comportamento 'smooth' fique visível.
+        setTimeout(() => setShouldScrollToNovena(true), 220);
     }
   }
 
