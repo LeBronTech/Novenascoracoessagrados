@@ -122,8 +122,11 @@ export default function Home() {
     const saintFromHash = saints.find(s => s.id === hash);
 
     if (saintFromHash) {
-        initialMonth = saintFromHash.month;
-        initialNovenaId = saintFromHash.id;
+      // Handle saints whose `month` may contain multiple months separated by '/'
+      const saintMonths = saintFromHash.month.split('/').map(m => m.trim());
+      const currentMonthName = months[new Date().getMonth()];
+      initialMonth = saintMonths.includes(currentMonthName) ? currentMonthName : saintMonths[0];
+      initialNovenaId = saintFromHash.id;
     } else {
         const currentYear = getYear(todayUTC);
         const closestSaint = saints.reduce((closest, saint) => {
@@ -208,7 +211,7 @@ export default function Home() {
   
   const handleMonthChange = (month: string) => {
     setSelectedMonth(month);
-    const saintsInNewMonth = saints.filter(s => s.month === month);
+    const saintsInNewMonth = saints.filter(s => s.month.split('/').map(m => m.trim()).includes(month));
     if (selectedSaintId && !saintsInNewMonth.some(s => s.id === selectedSaintId)) {
         setSelectedSaintId(null);
     }

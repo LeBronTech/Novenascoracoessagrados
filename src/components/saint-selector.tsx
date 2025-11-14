@@ -123,7 +123,7 @@ function SaintSelector({
   onSaintSelect,
 }: SaintSelectorProps) {
 
-  const saintsForMonth = saints.filter(s => s.month === selectedMonth);
+  const saintsForMonth = saints.filter(s => s.month.split('/').map(m => m.trim()).includes(selectedMonth));
 
   return (
     <section className="w-full">
