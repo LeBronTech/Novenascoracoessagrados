@@ -234,7 +234,7 @@ export default function NovenaDisplay({ saint, novena, theme, setTheme }: Novena
               <div className="animate-fade-in">
                 {initialPrayer && (
                   <div className={proseClasses}>
-                    <div className='initial-prayer-text'>
+                    <div className={cn('initial-prayer-text', !isLightTheme ? '[&_strong]:text-white' : '')}>
                       <NovenaContent htmlContent={initialPrayer} />
                     </div>
                   </div>
