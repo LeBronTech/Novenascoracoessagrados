@@ -1605,12 +1605,12 @@ export const saintsOfTheDay: SaintOfTheDayData[] = [
       saints: [
         {
           name: 'São Leonardo de Porto Maurício',
-          imageUrl: 'https://iili.io/fHuDZwN.png',
+          imageUrl: 'https://i.postimg.cc/wMP30BvF/image.png',
           story: '<p>São Leonardo, frade franciscano do século XVIII, foi um dos maiores pregadores de missões populares de seu tempo. Percorreu a Itália a pé, pregando com um fervor que convertia multidões. É conhecido sobretudo por sua devoção à Via-Sacra, tendo sido o grande promotor desta prática piedosa, erigindo mais de 500 Vias-Sacras por toda a Itália, incluindo a famosa do Coliseu de Roma. Sua vida nos ensina a importância de meditar na Paixão de Cristo.</p>'
         },
         {
           name: 'Beato Tiago Alberione',
-          imageUrl: 'https://iili.io/fHuD8ZP.jpg',
+          imageUrl: 'https://i.postimg.cc/Y97pLwM1/image.png',
           story: '<p>O Beato Tiago Alberione, sacerdote italiano, foi um apóstolo moderno que compreendeu a importância de evangelizar através dos meios de comunicação. Fundou a Família Paulina, um conjunto de congregações religiosas e institutos seculares dedicados ao apostolado da imprensa, do cinema, da rádio e da televisão. Sua visão profética continua a inspirar a Igreja a usar todas as tecnologias modernas para anunciar o Evangelho a todos os povos.</p>'
         }
       ]
@@ -1630,12 +1630,12 @@ export const saintsOfTheDay: SaintOfTheDayData[] = [
       saints: [
         {
           name: 'Santa Catarina Labouré',
-          imageUrl: 'https://iili.io/fHuDOyQ.jpg',
+          imageUrl: 'https://i.postimg.cc/44tN8X4p/image.png',
           story: '<p>Santa Catarina Labouré, a humilde Filha da Caridade a quem Nossa Senhora apareceu em 1830, viveu o resto de sua vida no anonimato, trabalhando num asilo de idosos em Paris. Ninguém, exceto seu diretor espiritual, sabia que ela era a vidente da Medalha Milagrosa. Sua vida foi um exemplo de humildade, silêncio e serviço. Ela guardou o "segredo da Rainha" em seu coração, mostrando que a verdadeira grandeza está em se apagar para que Deus possa brilhar.</p>'
         },
         {
           name: 'São Tiago da Marca',
-          imageUrl: 'https://iili.io/fHuDkuV.webp',
+          imageUrl: 'https://i.postimg.cc/Wb7F78rJ/image.png',
           story: '<p>São Tiago da Marca, franciscano do século XV, foi um pregador incansável e reformador da Ordem. Dotado de uma grande inteligência e de um zelo ardente, combateu as heresias de seu tempo e promoveu a paz entre as cidades italianas. Foi também um dos iniciadores dos "Montes de Piedade", uma espécie de banco de empréstimos sem juros para ajudar os pobres a escapar da usura, um testemunho de sua preocupação social.</p>'
         }
       ]
@@ -1646,12 +1646,12 @@ export const saintsOfTheDay: SaintOfTheDayData[] = [
       saints: [
         {
           name: 'São Francisco Antônio Fasani',
-          imageUrl: 'https://iili.io/fHuDi8v.jpg',
+          imageUrl: 'https://i.postimg.cc/pT3Y3KzW/image.png',
           story: '<p>São Francisco Antônio Fasani, frade franciscano conventual do século XVIII, foi um "doutor" para os humildes e um "pai" para os pobres. Dotado de grande sabedoria teológica, preferiu dedicar-se à pregação popular e ao confessionário, onde passava horas a fio. Sua caridade para com os necessitados era lendária. É um modelo de pastor que une a profundidade da doutrina à simplicidade do amor.</p>'
         },
         {
           name: 'São Saturnino de Tolosa',
-          imageUrl: 'https://iili.io/fHuDPcJ.jpg',
+          imageUrl: 'https://i.postimg.cc/BbrT1N34/image.png',
           story: '<p>São Saturnino foi o primeiro bispo de Tolosa, na Gália (atual França), no século III. Em um ambiente de paganismo dominante, ele pregou corajosamente o Evangelho. A tradição conta que, por se recusar a sacrificar aos ídolos, foi amarrado a um touro furioso e arrastado pelas escadas do Capitólio, consumando seu martírio. Sua coragem e fidelidade foram a semente da fé cristã naquela região.</p>',
           isMartyr: true
         }
