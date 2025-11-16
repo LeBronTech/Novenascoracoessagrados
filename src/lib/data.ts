@@ -978,8 +978,7 @@ export const novenaData: Record<string, Novena> = {
       title: 'Oração pelas Almas',
       content: `<div class="day-specific-content"><p>Eterno Pai, eu Vos ofereço o Preciosíssimo Sangue de Vosso Divino Filho Jesus, em união com todas as Missas que hoje são celebradas em todo o mundo; por todas as santas almas do purgatório, pelos pecadores de todos os lugares, pelos pecadores de toda a Igreja, pelos de minha casa e de meus vizinhos. Amém.</p><p>Dai-lhes, Senhor, o descanso eterno, e a luz perpétua os ilumine. Descansem em paz. Amém.</p></div>`
     }))
-  }
-  ,
+  },
   imaculada_conceicao: {
     saintName: 'Imaculada Conceição',
     novenaTitle: 'Novena à Imaculada Conceição',
@@ -1510,7 +1509,7 @@ export const saintsOfTheDay: SaintOfTheDayData[] = [
       month: 'Novembro',
       saints: [{
           name: 'Dedicação das Basílicas de S. Pedro e S. Paulo',
-          imageUrl: 'https://i.postimg.cc/8P2D03gZ/image.png',
+          imageUrl: 'https://iili.io/f9SNKiB.jpg',
           story: '<p>A celebração da dedicação das basílicas de São Pedro, no Vaticano, e de São Paulo Fora de Muros, em Roma, recorda-nos a importância dos dois Apóstolos que são as colunas da Igreja. Construídas sobre os túmulos dos mártires, estas basílicas são símbolos da fé apostólica, transmitida ao longo dos séculos. A Basílica de São Pedro representa o primado de Pedro, a unidade da Igreja. A Basílica de São Paulo representa a missão universal da Igreja, chamada a levar o Evangelho a todos os povos. Celebrar a sua dedicação é renovar a nossa fé na Igreja una, santa, católica e apostólica.</p>'
       }]
   },
@@ -1520,13 +1519,13 @@ export const saintsOfTheDay: SaintOfTheDayData[] = [
       saints: [
         {
           name: 'S. Roque González e Mártires',
-          imageUrl: 'https://i.postimg.cc/d11P3gCg/image.png',
+          imageUrl: 'https://iili.io/f9QNVmQ.png',
           story: '<p>São Roque González, jesuíta paraguaio, e seus companheiros Afonso Rodrigues e João de Castilho, foram missionários pioneiros nas "reduções" do Paraguai, aldeias criadas para evangelizar e proteger os índios guaranis da exploração dos colonizadores. Eles aprenderam a língua e os costumes do povo, e criaram comunidades justas e fraternas. O seu sucesso, no entanto, provocou a ira de um feiticeiro local, que os assassinou brutalmente. São os primeiros mártires da América do Sul.</p>',
           isMartyr: true
         },
         {
           name: 'São Rafael Kalinowski',
-          imageUrl: 'https://i.postimg.cc/L5vN1yHh/image.png',
+          imageUrl: 'https://iili.io/f9QXCSR.jpg',
           story: '<p>São Rafael Kalinowski, engenheiro militar e líder de uma insurreição polonesa contra o domínio russo, foi condenado à morte e depois exilado na Sibéria. Após dez anos de trabalhos forçados, onde foi um anjo de consolação para os outros prisioneiros, ingressou na Ordem dos Carmelitas Descalços. Como sacerdote, tornou-se um diretor espiritual muito procurado, conhecido pela sua sabedoria e discernimento. É um modelo de reconciliação e de fé que supera as maiores provações.</p>'
         }
       ]
@@ -1536,13 +1535,8 @@ export const saintsOfTheDay: SaintOfTheDayData[] = [
     month: 'Novembro',
     saints: [
       {
-        name: 'Apresentação de Nossa Senhora',
-        imageUrl: 'https://i.postimg.cc/0j6W7k0k/image.png',
-        story: '<p>A festa da Apresentação de Nossa Senhora no Templo celebra uma antiga tradição segundo a qual os pais de Maria, São Joaquim e Santa Ana, a levaram ao Templo de Jerusalém when era criança para a consagrarem a Deus. Embora este evento não esteja nos Evangelhos canónicos, tem um profundo significado espiritual. Celebra a total consagração de Maria a Deus desde a sua infância. Ela, que seria o Templo vivo onde o Verbo de Deus habitaria, foi desde sempre preparada para a sua missão única. Esta festa convida-nos a renovar a nossa própria consagração batismal, entregando toda a nossa vida ao serviço de Deus.</p>'
-      },
-      {
         name: 'São Félix de Valois',
-        imageUrl: 'https://i.postimg.cc/7YY9Qh7H/image.png',
+        imageUrl: 'https://iili.io/fHTsnqv.png',
         story: '<p>São Félix de Valois, príncipe francês, renunciou a uma vida na corte para viver como eremita. Juntamente com São João de Matha, fundou a Ordem da Santíssima Trindade, dedicada à redenção dos cristãos cativos dos mouros. Os trinitários dedicavam-se a recolher esmolas para pagar o resgate dos escravos, arriscando a própria vida em missões perigosas. São Félix é um exemplo de renúncia ao mundo e de amor heróico aos irmãos mais sofredores.</p>'
       }
     ]
@@ -1572,12 +1566,12 @@ export const saintsOfTheDay: SaintOfTheDayData[] = [
       saints: [
         {
           name: 'São Columbano',
-          imageUrl: 'https://i.postimg.cc/GhbB96S5/image.png',
+          imageUrl: 'https://iili.io/fHuYjt4.png',
           story: '<p>São Columbano foi um monge e missionário irlandês, uma das figuras mais influentes do cristianismo no início da Idade Média. Fundou numerosos mosteiros na Europa continental, que se tornaram centros de cultura, oração e evangelização. Era conhecido pela sua rigorosa disciplina monástica, mas também pelo seu zelo missionário e pela sua coragem em repreender os vícios dos reis e nobres. É um dos padroeiros da Europa.</p>'
         },
         {
           name: 'São Clemente I, Papa',
-          imageUrl: 'https://i.postimg.cc/sxGY7F09/image.png',
+          imageUrl: 'https://iili.io/fHuYhNf.jpg',
           story: '<p>São Clemente, terceiro sucessor de São Pedro, governou a Igreja no final do primeiro século. A sua "Carta aos Coríntios" é um dos documentos mais importantes da era pós-apostólica, um testemunho da autoridade do Bispo de Roma e da sua solicitude por todas as Igrejas. Foi martirizado no exílio, segundo a tradição, e é um elo precioso na cadeia da sucessão apostólica, que nos une diretamente a Cristo e aos Apóstolos.</p>',
           isMartyr: true
         }
@@ -1586,12 +1580,14 @@ export const saintsOfTheDay: SaintOfTheDayData[] = [
   {
       day: 24,
       month: 'Novembro',
-      saints: [{
-          name: 'Santo André Dung-Lac e Companheiros',
-          imageUrl: 'https://i.postimg.cc/pLXH0QY7/image.png',
-          story: '<p>A Igreja celebra hoje a memória de Santo André Dung-Lac e 116 companheiros mártires do Vietnã. Entre os séculos XVII e XIX, a comunidade cristã no Vietnã sofreu perseguições terríveis. Estes mártires - bispos, sacerdotes, religiosos e um grande número de leigos, incluindo pais e mães de família - preferiram enfrentar a tortura e a morte a renunciar à sua fé em Cristo. André Dung-Lac, um sacerdote, é o nome que lidera este grupo heroico. O seu testemunho é um poderoso lembrete de que a semente dos cristãos é o sangue dos mártires e inspira-nos a uma fidelidade corajosa ao Evangelho, mesmo nas maiores adversidades.</p>',
+      saints: [
+        {
+          name: 'S. André Dung-Lac e J. Teófanes Venard',
+          imageUrl: 'https://iili.io/fHuhIKG.png',
+          story: '<p>Santo André Dung-Lac (1795-1839) foi um sacerdote vietnamita e catequista que dedicou sua vida à evangelização e ao serviço pastoral no Vietnã. Como membro do clero nativo, enfrentou perseguições constantes durante o reinado do imperador Minh Mang, que perseguiu brutalmente os cristãos. André Dung-Lac não apenas celebrava os sacramentos secretamente, mas também guiava espiritualmente as comunidades cristãs perseguidas, demonstrando uma coragem extraordinária e uma fé inabalável. Foi capturado, torturado e finalmente martirizado em 1839.</p><p>João Teófanes Venard (1829-1861) foi um sacerdote e missionário francês pertencente à Sociedade das Missões Estrangeiras de Paris. Chegou ao Vietnã como missionário apostólico com o ardor de propagar o Evangelho. Seus escritos, especialmente sua correspondência, revelam uma alma profundamente apaixonada por Cristo e um amor genuíno pelo povo vietnamita. Teófanes trabalhou incansavelmente na evangelização, formando sacerdotes locais como André Dung-Lac. Durante a perseguição, oferecia-se voluntariamente para ser capturado a fim de poupar seus catequistas. Foi martirizado em 1861.</p><p>Estes dois santos, embora separados por gerações, estão unidos na memória da Igreja como símbolos da perseverança cristã no Vietnã. Seu martírio marca a fidelidade de inúmeros cristãos vietnamitas que preferiram a morte a renunciar à fé. Entre os séculos XVII e XIX, 117 mártires vietnamitas foram canonizados, representando bispos, sacerdotes, religiosos e leigos. Sua coragem inspira-nos a viver com autenticidade nossa fé, dispostos a testemunhar Cristo mesmo diante das maiores adversidades. O sangue dos mártires é semente de novos cristãos.</p>',
           isMartyr: true
-      }]
+        }
+      ]
   },
   {
       day: 25,
@@ -1609,12 +1605,12 @@ export const saintsOfTheDay: SaintOfTheDayData[] = [
       saints: [
         {
           name: 'São Leonardo de Porto Maurício',
-          imageUrl: 'https://i.postimg.cc/wMP30BvF/image.png',
+          imageUrl: 'https://iili.io/fHuDZwN.png',
           story: '<p>São Leonardo, frade franciscano do século XVIII, foi um dos maiores pregadores de missões populares de seu tempo. Percorreu a Itália a pé, pregando com um fervor que convertia multidões. É conhecido sobretudo por sua devoção à Via-Sacra, tendo sido o grande promotor desta prática piedosa, erigindo mais de 500 Vias-Sacras por toda a Itália, incluindo a famosa do Coliseu de Roma. Sua vida nos ensina a importância de meditar na Paixão de Cristo.</p>'
         },
         {
           name: 'Beato Tiago Alberione',
-          imageUrl: 'https://i.postimg.cc/Y97pLwM1/image.png',
+          imageUrl: 'https://iili.io/fHuD8ZP.jpg',
           story: '<p>O Beato Tiago Alberione, sacerdote italiano, foi um apóstolo moderno que compreendeu a importância de evangelizar através dos meios de comunicação. Fundou a Família Paulina, um conjunto de congregações religiosas e institutos seculares dedicados ao apostolado da imprensa, do cinema, da rádio e da televisão. Sua visão profética continua a inspirar a Igreja a usar todas as tecnologias modernas para anunciar o Evangelho a todos os povos.</p>'
         }
       ]
@@ -1634,12 +1630,12 @@ export const saintsOfTheDay: SaintOfTheDayData[] = [
       saints: [
         {
           name: 'Santa Catarina Labouré',
-          imageUrl: 'https://i.postimg.cc/44tN8X4p/image.png',
+          imageUrl: 'https://iili.io/fHuDOyQ.jpg',
           story: '<p>Santa Catarina Labouré, a humilde Filha da Caridade a quem Nossa Senhora apareceu em 1830, viveu o resto de sua vida no anonimato, trabalhando num asilo de idosos em Paris. Ninguém, exceto seu diretor espiritual, sabia que ela era a vidente da Medalha Milagrosa. Sua vida foi um exemplo de humildade, silêncio e serviço. Ela guardou o "segredo da Rainha" em seu coração, mostrando que a verdadeira grandeza está em se apagar para que Deus possa brilhar.</p>'
         },
         {
           name: 'São Tiago da Marca',
-          imageUrl: 'https://i.postimg.cc/Wb7F78rJ/image.png',
+          imageUrl: 'https://iili.io/fHuDkuV.webp',
           story: '<p>São Tiago da Marca, franciscano do século XV, foi um pregador incansável e reformador da Ordem. Dotado de uma grande inteligência e de um zelo ardente, combateu as heresias de seu tempo e promoveu a paz entre as cidades italianas. Foi também um dos iniciadores dos "Montes de Piedade", uma espécie de banco de empréstimos sem juros para ajudar os pobres a escapar da usura, um testemunho de sua preocupação social.</p>'
         }
       ]
@@ -1650,12 +1646,12 @@ export const saintsOfTheDay: SaintOfTheDayData[] = [
       saints: [
         {
           name: 'São Francisco Antônio Fasani',
-          imageUrl: 'https://i.postimg.cc/pT3Y3KzW/image.png',
+          imageUrl: 'https://iili.io/fHuDi8v.jpg',
           story: '<p>São Francisco Antônio Fasani, frade franciscano conventual do século XVIII, foi um "doutor" para os humildes e um "pai" para os pobres. Dotado de grande sabedoria teológica, preferiu dedicar-se à pregação popular e ao confessionário, onde passava horas a fio. Sua caridade para com os necessitados era lendária. É um modelo de pastor que une a profundidade da doutrina à simplicidade do amor.</p>'
         },
         {
           name: 'São Saturnino de Tolosa',
-          imageUrl: 'https://i.postimg.cc/BbrT1N34/image.png',
+          imageUrl: 'https://iili.io/fHuDPcJ.jpg',
           story: '<p>São Saturnino foi o primeiro bispo de Tolosa, na Gália (atual França), no século III. Em um ambiente de paganismo dominante, ele pregou corajosamente o Evangelho. A tradição conta que, por se recusar a sacrificar aos ídolos, foi amarrado a um touro furioso e arrastado pelas escadas do Capitólio, consumando seu martírio. Sua coragem e fidelidade foram a semente da fé cristã naquela região.</p>',
           isMartyr: true
         }
