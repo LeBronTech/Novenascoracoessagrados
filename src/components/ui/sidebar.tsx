@@ -18,6 +18,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
+import { ConfessionTimesModal } from "@/components/confession-times-modal"
 
 const SIDEBAR_COOKIE_NAME = "sidebar_state"
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7
@@ -198,15 +199,16 @@ const Sidebar = React.forwardRef<
           <SheetContent
             data-sidebar="sidebar"
             data-mobile="true"
-            className="w-[--sidebar-width] bg-sidebar p-0 text-sidebar-foreground [&>button]:hidden"
-            style={
-              {
-                "--sidebar-width": SIDEBAR_WIDTH_MOBILE,
-              } as React.CSSProperties
-            }
             side={side}
+            className="flex h-full w-[--sidebar-width-mobile] flex-col bg-sidebar p-4 pt-8 text-sidebar-foreground"
+            {...props}
           >
-            <div className="flex h-full w-full flex-col">{children}</div>
+            {children}
+            <ConfessionTimesModal>
+              <Button variant="ghost" className="w-full justify-start mt-4">
+                Horários de confissão em Brasília
+              </Button>
+            </ConfessionTimesModal>
           </SheetContent>
         </Sheet>
       )
@@ -251,6 +253,11 @@ const Sidebar = React.forwardRef<
             className="flex h-full w-full flex-col bg-sidebar group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:border-sidebar-border group-data-[variant=floating]:shadow"
           >
             {children}
+            <ConfessionTimesModal>
+              <Button variant="ghost" className="w-full justify-start mt-4">
+                Horários de confissão em Brasília
+              </Button>
+            </ConfessionTimesModal>
           </div>
         </div>
       </div>

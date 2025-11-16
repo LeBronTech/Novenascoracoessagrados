@@ -1,7 +1,6 @@
-
 'use client';
 
-import { useState, useMemo, useEffect, useRef } from 'react';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
 import SaintSelector from '@/components/saint-selector';
@@ -12,7 +11,7 @@ import { saints, months, novenaData } from '@/lib/data';
 import type { Saint } from '@/lib/data';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetTrigger } from '@/components/ui/sheet';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogClose } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Menu, ChevronLeft, ChevronRight, BookOpen } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -25,6 +24,7 @@ import { LilyIcon } from '@/components/weekly-devotions';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, type CarouselApi } from '@/components/ui/carousel';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { ConfessionTimesModal } from '@/components/confession-times-modal';
 
 export type Theme = 'theme-default' | 'theme-dark-gray' | 'theme-light-gray' | 'theme-red';
 
@@ -281,7 +281,7 @@ export default function Home() {
   }
 
   return (
-    <>
+    <React.Fragment>
       <LoadingScreen isLoading={!hydrated} />
       <div className={cn("transition-opacity duration-1000", hydrated ? "opacity-100" : "opacity-0")}>
         <div className="container mx-auto p-4 md:p-8 max-w-5xl text-stone-900">
@@ -299,6 +299,11 @@ export default function Home() {
               </SheetHeader>
               <div className="h-[calc(100vh-80px)] overflow-y-auto">
                 <SaintOfTheDay triggerTheme={theme} isOpenInitially={isSaintOfTheDayOpen} onToggle={setIsSaintOfTheDayOpen} />
+                <ConfessionTimesModal>
+                  <Button variant="ghost" className="w-full justify-start mt-4">
+                    Horários de confissão em Brasília
+                  </Button>
+                </ConfessionTimesModal>
               </div>
             </SheetContent>
           </Sheet>
@@ -365,8 +370,7 @@ export default function Home() {
                                 </TabsContent>
                                 <TabsContent value="tradicional" className="prose prose-sm text-green-100 max-w-none mt-4 text-left">
                                     <p>Glorioso São José, que fostes exaltado pelo Eterno Pai, obedecido pelo Verbo Encarnado, favorecido pelo Espírito Santo e amado pela Virgem Maria; louvo e bendigo a Santíssima Trindade pelos privilégios e méritos com que vos enriqueceu. Sois poderosíssimo e jamais se ouviu dizer que alguém tenha recorrido a vós e fosse por vós desamparado.</p>
-                                    <p>Sois o consolador dos aflitos, o amparo dos míseros e o advogado dos pecadores. Acolhei, pois, com bondade paternal a quem vos invoca com filial confiança e alcançai-me as graças que vos peço. Sede, depois de Jesus e Maria, minha consolação, meu refúgio, meu guia e meu pai. Obtende-me, finalmente, uma boa e santa morte. Amém.</p>
-                                </TabsContent>
+                                    <p>Sois o consolador dos aflitos, o amparo dos míseros e o advogado dos pecadores. Acolhei, pois, com bondade paternal a quem vos invoca com filial confiança e alcançai-me as graças que vos peço. Sede, depois de Jesus e Maria, minha consolação, meu refúgio, meu guia e meu pai. Obtende-me, finalmente, uma boa e santa morte.</p>                                </TabsContent>
                             </Tabs>
                         </div>
                         <div className="text-center mt-4">
@@ -385,63 +389,65 @@ export default function Home() {
                       <span className="font-brand text-sm text-center font-semibold">Espaço Mariano</span>
                     </button>
                 </DialogTrigger>
-                <DialogContent className="sm:max-w-md md:max-w-lg bg-blue-900/95 text-white border-blue-700/50">
-                    <DialogHeader>
+                <DialogContent className="sm:max-w-xl md:max-w-2xl lg:max-w-3xl bg-blue-900/95 text-white border-blue-700/50">
+                    <DialogHeader className="sticky top-0 z-10 bg-blue-900/95 p-6 rounded-t-lg">
                        <DialogTitle className="font-brand text-xl text-center text-white">Espaço Mariano</DialogTitle>
                     </DialogHeader>
-                    <Carousel setApi={setMarianCarouselApi} className="w-full max-w-xs mx-auto">
-                        <CarouselContent>
-                            {marianDevotions.map((devotion, index) => (
-                            <CarouselItem key={index}>
-                                <div className="p-1">
-                                  <Collapsible open={devotion.novenaId === 'rosario' ? isRosarioDescriptionOpen : undefined} onOpenChange={devotion.novenaId === 'rosario' ? setIsRosarioDescriptionOpen : undefined}>
-                                    <div className="flex flex-col items-center justify-center p-4 bg-blue-900/50 rounded-lg relative">
-                                        <Image 
-                                            src={devotion.imageUrl}
-                                            alt={devotion.name}
-                                            width={150}
-                                            height={150}
-                                            className="w-36 h-36 rounded-full object-cover border-4 border-blue-400/50 shadow-lg"
-                                        />
-                                        <h3 className="mt-4 text-xl font-brand text-white">{devotion.name}</h3>
-                                        <p className="text-sm text-blue-200">Festa: {devotion.feastDay}</p>
-                                        
-                                        {devotion.description && (
-                                          <div className="flex gap-2 mt-3">
-                                            <CollapsibleTrigger asChild>
-                                              <Button variant="outline" size="sm" className="bg-blue-800/70 border-blue-600 text-white hover:bg-blue-700 hover:text-white">
-                                                <BookOpen className="mr-2 h-4 w-4"/>
-                                                Ver História
+                    <div className="max-h-[calc(90vh-100px)] overflow-y-auto">
+                      <Carousel setApi={setMarianCarouselApi} className="w-full max-w-xs mx-auto">
+                          <CarouselContent>
+                              {marianDevotions.map((devotion, index) => (
+                              <CarouselItem key={index}>
+                                  <div className="p-1">
+                                    <Collapsible open={devotion.novenaId === 'rosario' ? isRosarioDescriptionOpen : undefined} onOpenChange={devotion.novenaId === 'rosario' ? setIsRosarioDescriptionOpen : undefined}>
+                                      <div className="flex flex-col items-center justify-center p-4 bg-blue-900/50 rounded-lg relative">
+                                          <Image 
+                                              src={devotion.imageUrl}
+                                              alt={devotion.name}
+                                              width={150}
+                                              height={150}
+                                              className="w-36 h-36 rounded-full object-cover border-4 border-blue-400/50 shadow-lg"
+                                          />
+                                          <h3 className="mt-4 text-xl font-brand text-white">{devotion.name}</h3>
+                                          <p className="text-sm text-blue-200">Festa: {devotion.feastDay}</p>
+                                          
+                                          {devotion.description && (
+                                            <div className="flex gap-2 mt-3">
+                                              <CollapsibleTrigger asChild>
+                                                <Button variant="outline" size="sm" className="bg-blue-800/70 border-blue-600 text-white hover:bg-blue-700 hover:text-white">
+                                                  <BookOpen className="mr-2 h-4 w-4"/>
+                                                  Ver História
+                                                </Button>
+                                              </CollapsibleTrigger>
+                                              {devotion.novenaId && (
+                                              <Button onClick={() => handleNavigateToNovena(devotion.novenaId)} size="sm" className="bg-blue-200 text-blue-900 hover:bg-white">
+                                                Rezar Novena
                                               </Button>
-                                            </CollapsibleTrigger>
-                                            {devotion.novenaId && (
-                                            <Button onClick={() => handleNavigateToNovena(devotion.novenaId)} size="sm" className="bg-blue-200 text-blue-900 hover:bg-white">
-                                              Rezar Novena
-                                            </Button>
-                                            )}
-                                          </div>
-                                        )}
-                                    </div>
-                                     {devotion.description && (
-                                        <CollapsibleContent>
-                                          <ScrollArea className="h-48 w-full rounded-b-lg -mt-2 bg-blue-950/80">
-                                            <div
-                                              className="p-4 text-blue-200/90 prose prose-lg max-w-none prose-p:my-2 prose-h4:text-blue-100 prose-h4:font-bold prose-h4:mb-1 prose-strong:text-blue-100"
-                                              dangerouslySetInnerHTML={{ __html: devotion.description }}
-                                            />
-                                           </ScrollArea>
-                                        </CollapsibleContent>
-                                    )}
-                                  </Collapsible>
-                                </div>
-                            </CarouselItem>
-                            ))}
-                        </CarouselContent>
-                         <CarouselPrevious className={cn('text-white border-white/50 bg-transparent hover:bg-white/90 hover:text-blue-800 -left-8', !marianCarouselApi?.canScrollPrev() && 'opacity-50 cursor-default hover:bg-transparent hover:text-white')} />
-                         <CarouselNext className={cn('text-white border-white/50 bg-transparent hover:bg-white/90 hover:text-blue-800 -right-8', !marianCarouselApi?.canScrollNext() && 'opacity-50 cursor-default hover:bg-transparent hover:text-white')} />
-                    </Carousel>
-                     <div className="py-2 text-center text-sm text-blue-200">
-                        {marianCarouselApi && `Devoção ${marianCarouselCurrent + 1} de ${marianCarouselApi.scrollSnapList().length}`}
+                                              )}
+                                            </div>
+                                          )}
+                                      </div>
+                                       {devotion.description && (
+                                          <CollapsibleContent>
+                                            <ScrollArea className="h-96 w-full rounded-b-lg -mt-2 bg-blue-950/80">
+                                              <div
+                                                className="p-4 text-blue-200/90 prose prose-lg max-w-none prose-p:my-2 prose-h4:text-blue-100 prose-h4:font-bold prose-h4:mb-1 prose-strong:text-blue-100"
+                                                dangerouslySetInnerHTML={{ __html: devotion.description }}
+                                              />
+                                             </ScrollArea>
+                                          </CollapsibleContent>
+                                      )}
+                                    </Collapsible>
+                                  </div>
+                              </CarouselItem>
+                              ))}
+                          </CarouselContent>
+                           <CarouselPrevious className={cn('text-white border-white/50 bg-transparent hover:bg-white/90 hover:text-blue-800 -left-8', !marianCarouselApi?.canScrollPrev() && 'opacity-50 cursor-default hover:bg-transparent hover:text-white')} />
+                           <CarouselNext className={cn('text-white border-white/50 bg-transparent hover:bg-white/90 hover:text-blue-800 -right-8', !marianCarouselApi?.canScrollNext() && 'opacity-50 cursor-default hover:bg-transparent hover:text-white')} />
+                      </Carousel>
+                       <div className="py-2 text-center text-sm text-blue-200">
+                          {marianCarouselApi && `Devoção ${marianCarouselCurrent + 1} de ${marianCarouselApi.scrollSnapList().length}`}
+                      </div>
                     </div>
                 </DialogContent>
             </Dialog>
@@ -493,6 +499,6 @@ export default function Home() {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
-    </>
+    </React.Fragment>
   );
 }
