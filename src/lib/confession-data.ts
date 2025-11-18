@@ -38,5 +38,42 @@ export const confessionData = [
         location: 'https://www.google.com/maps/search/?api=1&query=-15.8188,-48.1102'
       }
     ]
+  },
+  {
+    city: 'Arniqueiras & Riacho Fundo',
+    parishes: [
+      {
+        name: 'Paróquia Maria Auxiliadora',
+        address: 'Arniqueiras',
+        times: 'Terça e quinta: a partir de 19:00',
+        location: 'https://www.google.com/maps/search/?api=1&query=Paróquia+Maria+Auxiliadora+Arniqueiras',
+        instagram: 'https://www.instagram.com/mariaauxiliadoraarniqueira'
+      },
+      {
+        name: 'Capela Nossa Senhora das Graças',
+        address: 'Arniqueiras',
+        times: 'Quarta: a partir de 19:00',
+        location: 'https://www.google.com/maps/search/?api=1&query=Capela+Nossa+Senhora+das+Graças+Arniqueiras'
+      },
+      {
+        name: 'Capela Maria Mãe do Bom Pastor',
+        address: 'Arniqueiras',
+        times: 'Sexta: a partir de 19:00',
+        location: 'https://www.google.com/maps/search/?api=1&query=Capela+Maria+Mãe+do+Bom+Pastor+Arniqueiras'
+      },
+      {
+        name: 'Paróquia São Miguel Arcanjo',
+        address: 'Riacho Fundo I',
+        times: 'Terça de 20:00 às 21:00, Quinta de 18:00 às 19:15, Sexta de 08:00 às 09:30, Primeiro sábado do mês: depois da missa das 19:30',
+        location: 'https://www.google.com/maps/search/?api=1&query=Paróquia+São+Miguel+Arcanjo+Riacho+Fundo+I',
+        instagram: 'https://www.instagram.com/saomiguelrf1'
+      },
+      {
+        name: 'Paróquia São Domingos Sávio',
+        address: 'Riacho Fundo I',
+        times: 'Quarta e quinta de 18:00 às 19:15',
+        location: 'https://www.google.com/maps/search/?api=1&query=Paróquia+São+Domingos+Sávio+Riacho+Fundo+I'
+      }
+    ]
   }
 ];
