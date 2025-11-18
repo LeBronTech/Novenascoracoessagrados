@@ -63,7 +63,7 @@ const marianDevotions = [
             <p>No século XIX, o Vale de Pompeia, sobre as ruínas da antiga cidade romana, era um local de <strong>miséria social e abandono espiritual</strong>.</p>
             
             <h4>3. A Figura de Bartolo Longo e o Rosário</h4>
-            <p>Em 1872, o advogado <strong>Bartolo Longo</strong> (hoje Beato), recém-convertido, sentiu o chamado para evangelizar a região. Uma inspiração divina o guiou: <strong>"Salva esta gente, Bartolo! Propaga o Rosário."</strong> Ele dedicou-se a ensinar esta oração aos camponeses.</p>
+            <p>Em 1872, o advogado <strong>Bartolo Longo</strong> (hoje Beato), recém-convertido, sentiu o chamado para evangelizar a região. Uma inspiração divina o guiou: <strong>\'Salva esta gente, Bartolo! Propaga o Rosário.\'</strong> Ele dedicou-se a ensinar esta oração aos camponeses.</p>
 
             <h4>4. O Santuário e a Devoção em Pompeia</h4>
             <p>Em 1875, Bartolo Longo adquiriu um quadro deteriorado da Virgem do Rosário. Após ser restaurado, a devoção cresceu rapidamente devido a inúmeros milagres. Isso levou à construção do imponente <strong>Santuário de Nossa Senhora do Rosário de Pompeia</strong>. Bartolo Longo também fundou importantes obras de caridade, estabelecendo-se como o "Apóstolo do Rosário".</p>
@@ -299,11 +299,6 @@ export default function Home() {
               </SheetHeader>
               <div className="h-[calc(100vh-80px)] overflow-y-auto">
                 <SaintOfTheDay triggerTheme={theme} isOpenInitially={isSaintOfTheDayOpen} onToggle={setIsSaintOfTheDayOpen} />
-                <ConfessionTimesModal>
-                  <Button variant="ghost" className="w-full justify-start mt-4">
-                    Horários de confissão em Brasília
-                  </Button>
-                </ConfessionTimesModal>
               </div>
             </SheetContent>
           </Sheet>
@@ -499,6 +494,7 @@ export default function Home() {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
+      <ConfessionTimesModal />
     </React.Fragment>
   );
 }
