@@ -38,11 +38,11 @@ export function ConfessionTimesModal() {
   return (
     <>
       <div
-        className={`fixed left-0 top-1/3 -translate-y-1/2 bg-red-800/90 text-white p-4 shadow-lg rounded-r-lg cursor-pointer transition-all duration-300 ${isExpanded ? 'translate-x-0' : '-translate-x-full'}`}
+        className={`fixed left-0 top-1/3 -translate-y-1/2 bg-red-800/90 text-white p-1 md:p-4 shadow-lg rounded-r-lg cursor-pointer transition-all duration-300 ${isExpanded ? 'translate-x-0' : '-translate-x-full'}`}
         onClick={() => setIsOpen(true)}
       >
-        <p className="font-bold text-lg mb-2">Horários de Confissões</p>
-        <p>Clique para ver os horários</p>
+        <p className="font-bold text-base md:text-lg mb-0 md:mb-2">Horários de Confissões</p>
+        <p className="text-sm hidden md:block">Clique para ver os horários</p>
       </div>
       {!isExpanded && (
         <div
