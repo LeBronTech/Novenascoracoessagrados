@@ -11,6 +11,12 @@ export function ConfessionTimesModal() {
   const saintsNavRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (window.location.hash === '#confissoes') {
+      setIsOpen(true);
+    }
+  }, []);
+
+  useEffect(() => {
     const timer = setTimeout(() => {
       setIsExpanded(false);
     }, 4000);
@@ -42,13 +48,14 @@ export function ConfessionTimesModal() {
 
   return (
     <>
-      <div
+      <a
+        href="#confissoes"
         className={`fixed left-0 top-1/2 -translate-y-1/2 bg-red-800/90 text-white p-1 md:p-4 shadow-lg rounded-r-lg cursor-pointer transition-all duration-300 ${isExpanded ? 'translate-x-0' : '-translate-x-full'}`}
         onClick={() => setIsOpen(true)}
       >
         <p className="font-bold text-base md:text-lg mb-0 md:mb-2">Horários de Confissões</p>
         <p style={{ fontFamily: 'Cinzel Decorative, cursive' }} className="text-xs md:text-sm">Clique para abrir</p>
-      </div>
+      </a>
       {!isExpanded && (
         <div
           className="fixed left-0 top-1/2 -translate-y-1/2 bg-red-800/90 text-white p-2 shadow-lg rounded-r-lg cursor-pointer"
@@ -73,6 +80,7 @@ export function ConfessionTimesModal() {
 
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogContent 
+          id="confissoes"
           className="max-h-[90vh] overflow-y-auto w-[95vw] sm:w-[90vw] md:max-w-2xl rounded-lg flex flex-col items-center"
           style={{ backgroundImage: 'linear-gradient(to bottom, #ffffff 0%, #e0e0e0 25%, #c3c3c3 50%, #949da4 100%)' }}
         >
