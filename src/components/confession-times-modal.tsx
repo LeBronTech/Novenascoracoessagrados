@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { confessionData } from '@/lib/confession-data';
 
@@ -8,6 +8,7 @@ export function ConfessionTimesModal() {
   const [isOpen, setIsOpen] = useState(false);
   const [isExpanded, setIsExpanded] = useState(true);
   const [selectedCity, setSelectedCity] = useState('Arniqueiras & Riacho Fundo');
+  const saintsNavRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -31,6 +32,10 @@ export function ConfessionTimesModal() {
 
   const handleCityChange = (city: string) => {
     setSelectedCity(city);
+    const selectedButton = saintsNavRef.current?.querySelector(`[data-city="${city}"]`);
+    if (selectedButton) {
+      selectedButton.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
   };
 
   const selectedData = confessionData.find((data) => data.city === selectedCity);
@@ -83,11 +88,12 @@ export function ConfessionTimesModal() {
           <div className="p-4 w-full">
             <div className="mb-4">
               <label className="block font-bold mb-2 text-gray-800 text-center">Filtre por cidade:</label>
-              <div className="overflow-x-auto pb-2 saints-nav-container">
+              <div className="overflow-x-auto pb-2 saints-nav-container" ref={saintsNavRef}>
                 <div className="flex flex-nowrap px-4">
                   {confessionData.map((data) => (
                     <button
                       key={data.city}
+                      data-city={data.city}
                       onClick={() => handleCityChange(data.city)}
                       className={`flex-shrink-0 px-3 py-2 md:px-4 text-sm md:text-base mr-2 rounded-full border-2 font-semibold transition-colors duration-200 ${selectedCity === data.city ? 'bg-red-800 text-white border-red-800' : 'text-red-800 border-red-800'}`}>
                       {data.city}
