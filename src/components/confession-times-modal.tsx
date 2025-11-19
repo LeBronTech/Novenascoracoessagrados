@@ -68,7 +68,7 @@ export function ConfessionTimesModal() {
 
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogContent 
-          className="max-h-[90vh] overflow-y-auto w-11/12 max-w-2xl rounded-lg"
+          className="max-h-[90vh] overflow-y-auto w-[95vw] sm:w-[90vw] md:max-w-2xl rounded-lg flex flex-col items-center"
           style={{ backgroundImage: 'linear-gradient(to bottom, #ffffff 0%, #e0e0e0 25%, #c3c3c3 50%, #949da4 100%)' }}
         >
           <button onClick={() => setIsOpen(false)} className="absolute top-2 right-2 p-1 text-red-600 hover:text-red-800 transition-colors duration-200 z-20">
@@ -80,11 +80,11 @@ export function ConfessionTimesModal() {
             <DialogTitle className="text-center">Horários de Confissão</DialogTitle>
           </DialogHeader>
           
-          <div className="p-4">
+          <div className="p-4 w-full">
             <div className="mb-4">
-              <label className="block font-bold mb-2 text-gray-800">Filtre por cidade:</label>
-              <div className="flex overflow-x-auto pb-2 saints-nav-container">
-                <div className="flex flex-nowrap">
+              <label className="block font-bold mb-2 text-gray-800 text-center">Filtre por cidade:</label>
+              <div className="overflow-x-auto pb-2 saints-nav-container">
+                <div className="flex flex-nowrap px-4">
                   {confessionData.map((data) => (
                     <button
                       key={data.city}
@@ -96,7 +96,7 @@ export function ConfessionTimesModal() {
                 </div>
               </div>
             </div>
-            <div>
+            <div className="w-full">
               {selectedData && (
                 <div>
                   {selectedData.parishes.map((parish, index) => {
@@ -105,10 +105,10 @@ export function ConfessionTimesModal() {
                       <div 
                         key={parish.name} 
                         className={`mb-4 p-4 rounded-lg shadow-lg ${isRedBg ? 'bg-red-800 text-white' : 'bg-white text-gray-800'}`}>
-                        <h3 className="text-xl font-bold">{parish.name}</h3>
-                        <p>{parish.address}</p>
-                        <p>{parish.times}</p>
-                        <div className="flex items-center flex-wrap mt-2">
+                        <h3 className="text-xl font-bold break-words text-center">{parish.name}</h3>
+                        <p className="break-words text-center">{parish.address}</p>
+                        <p className="break-words text-center">{parish.times}</p>
+                        <div className="flex items-center justify-center flex-wrap mt-2">
                           <a 
                             href={parish.location} 
                             target="_blank" 
