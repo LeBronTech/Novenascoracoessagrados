@@ -104,10 +104,13 @@ export function ConfessionTimesModal() {
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogContent 
           id="confissoes"
-          className="max-h-[90vh] overflow-y-auto w-[95vw] sm:w-[90vw] md:max-w-2xl rounded-lg flex flex-col items-center"
+          className="max-h-[90vh] overflow-y-auto w-[95vw] sm:w-[90vw] md:max-w-2xl rounded-lg flex flex-col items-center [&>button:not(.custom-close-button)]:hidden"
           style={{ backgroundImage: 'linear-gradient(to bottom, #ffffff 0%, #e0e0e0 25%, #c3c3c3 50%, #949da4 100%)' }}
         >
-          <button onClick={() => setIsOpen(false)} className="absolute top-4 right-2 p-1 text-red-600 hover:text-red-800 transition-colors duration-200 z-20">
+          <button 
+            onClick={() => setIsOpen(false)} 
+            className="custom-close-button absolute top-12 right-4 p-2 text-red-600 border-2 border-red-600 rounded-full hover:bg-red-50 transition-colors duration-200 z-50 bg-white/80 backdrop-blur-sm shadow-sm"
+          >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
