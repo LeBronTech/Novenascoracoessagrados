@@ -381,9 +381,9 @@ export default function Home() {
                 <DialogContent className="sm:max-w-[625px] bg-green-800/95 text-white border-green-600/50 [&>button:not(.custom-close-button)]:hidden">
                     <button 
                         onClick={() => setIsJoseDialogOpen(false)} 
-                        className="custom-close-button absolute top-12 right-4 p-2 text-white border-2 border-white rounded-full hover:bg-white/10 transition-colors duration-200 z-50 bg-green-800/80 backdrop-blur-sm shadow-sm"
+                        className="custom-close-button absolute top-16 right-4 p-1.5 text-white border-2 border-white rounded-full hover:bg-white/10 transition-colors duration-200 z-50 bg-green-800/80 backdrop-blur-sm shadow-md"
                     >
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                         </svg>
                     </button>
@@ -427,9 +427,9 @@ export default function Home() {
                 <DialogContent className="sm:max-w-xl md:max-w-2xl lg:max-w-3xl bg-blue-900/95 text-white border-blue-700/50 [&>button:not(.custom-close-button)]:hidden">
                      <button 
                         onClick={() => setIsMarianDialogOpen(false)} 
-                        className="custom-close-button absolute top-12 right-4 p-2 text-white border-2 border-white rounded-full hover:bg-white/10 transition-colors duration-200 z-50 bg-blue-900/80 backdrop-blur-sm shadow-sm"
+                        className="custom-close-button absolute top-16 right-4 p-1.5 text-white border-2 border-white rounded-full hover:bg-white/10 transition-colors duration-200 z-50 bg-blue-900/80 backdrop-blur-sm shadow-md"
                     >
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                         </svg>
                     </button>

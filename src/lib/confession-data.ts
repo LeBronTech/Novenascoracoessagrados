@@ -142,13 +142,167 @@ export const confessionData = [
     ]
   },
   {
-    city: 'Ceilândia',
+    city: 'Ceilândia & Sol Nascente',
     parishes: [
       {
         name: 'Paróquia Nossa Senhora da Glória',
-        address: 'QNM 15, Lote A, Ceilândia Sul - DF, 72215-150',
-        times: 'Sextas: 9h às 11h e 19h às 20h',
-        location: 'https://www.google.com/maps/search/?api=1&query=-15.8188,-48.1102'
+        address: 'Ceilândia',
+        times: 'Terça a Sexta: 30 minutos antes das missas e logo após as missas. Sábado e Domingo: Depois das missas.',
+        instagram: 'https://www.instagram.com/pnsg.oficial'
+      },
+      {
+        name: 'Paróquia São José Operário',
+        address: 'Ceilândia',
+        times: 'Terça a Sexta: Depois das missas.'
+      },
+      {
+        name: 'Capela São José Operário',
+        address: 'Ceilândia',
+        times: 'Quarta, Sexta e Sábado: De 16:00 às 18:00.'
+      },
+      {
+        name: 'Comunidade Espírito Santo',
+        address: 'Ceilândia',
+        times: 'Terça: De 16:00 às 18:00.'
+      },
+      {
+        name: 'Comunidade Santo Antônio',
+        address: 'Ceilândia',
+        times: 'Terça: De 19:00 às 20:00.'
+      },
+      {
+        name: 'Comunidade Nossa Senhora da Anunciação',
+        address: 'Ceilândia',
+        times: 'Quinta: De 19:00 às 20:00.'
+      },
+      {
+        name: 'Comunidade Santa Clara',
+        address: 'Ceilândia',
+        times: 'Sexta: De 19:00 às 20:00.'
+      },
+      {
+        name: 'Comunidade Nossa Senhora da Abadia',
+        address: 'Ceilândia',
+        times: 'Sábado: Antes da missa.'
+      },
+      {
+        name: 'Paróquia São Francisco de Assis',
+        address: 'Ceilândia',
+        times: 'Quarta a Sábado: De 17:30 às 19:00.',
+        instagram: 'https://www.instagram.com/psfranciscocsul'
+      },
+      {
+        name: 'Capela Nossa Senhora de Fátima',
+        address: 'Ceilândia',
+        times: 'Terça: De 17:30 às 19:00.'
+      },
+      {
+        name: 'Paróquia da Ressurreição',
+        address: 'Ceilândia',
+        times: 'Terça, Quinta e Sexta: A partir das 16:00. Quarta: Depois da missa das 19:00. Sábado: A partir de 09:00.',
+        instagram: 'https://www.instagram.com/paroquia daressurreicaop'
+      },
+      {
+        name: 'Capela do Divino Espírito Santo',
+        address: 'Ceilândia',
+        times: 'Quinta: A partir de 17:00.'
+      },
+      {
+        name: 'Paróquia São Marcos e São Lucas',
+        address: 'Ceilândia',
+        times: 'Quarta e Quinta: A partir de 19:00. Sexta: A partir de 15:00. Sábado: A partir de 17:00. Domingo: 17:00 e 19:00.',
+        instagram: 'https://www.instagram.com/psmsl.qfm'
+      },
+      {
+        name: 'Paróquia Nossa Senhora da Natividade',
+        address: 'Ceilândia',
+        times: 'Terça a Sexta: A partir de 16:00.'
+      },
+      {
+        name: 'Paróquia Sagrado Coração de Jesus e São José',
+        address: 'Ceilândia',
+        times: 'Terça a Sexta: De 17:00 às 19:00.',
+        instagram: 'https://www.instagram.com/sagrado.coracao'
+      },
+      {
+        name: 'Paróquia Nossa Senhora de Lourdes',
+        address: 'Ceilândia',
+        times: 'Terça, Quinta e Sexta: De 18:00 às 19:00.',
+        instagram: 'https://www.instagram.com/paroquialourdes'
+      },
+      {
+        name: 'Capela São José',
+        address: 'Ceilândia',
+        times: 'Sábado: De 18:00 às 19:00.'
+      },
+      {
+        name: 'Capela Nossa Senhora Aparecida',
+        address: 'Ceilândia',
+        times: 'Domingo: De 11:00 às 12:00.'
+      },
+      {
+        name: 'Paróquia Nossa Senhora da Paz',
+        address: 'Ceilândia',
+        times: 'Terça e Quarta: Depois da missa. Quinta: A partir de 17:00 e depois da missa. Sábado: A partir de 09:00 (confissões por agendamento).',
+        instagram: 'https://www.instagram.com/nsenhoradapaz'
+      },
+      {
+        name: 'Paróquia Santa Clara de Assis',
+        address: 'Ceilândia',
+        times: 'Sexta: De 15:00 às 19:00. Sábado: A partir de 09:00.',
+        instagram: 'https://www.instagram.com/p.santaclara.oiconv'
+      },
+      {
+        name: 'Paróquia Nossa Senhora do Perpétuo Socorro',
+        address: 'Ceilândia',
+        times: 'Terça e Quinta: De 09:00 às 11:00 e de 14:30 às 17:00. Sábado: De 09:00 às 11:00.',
+        instagram: 'https://www.instagram.com/perpetuo_socorro_capuchinhos'
+      },
+      {
+        name: 'Paróquia São Pedro Apóstolo',
+        address: 'Ceilândia',
+        times: 'Terça: De 09:30 às 11:00. Quarta, Quinta e Sexta: De 17:00 às 18:30. Sábado: De 10:00 às 12:00.',
+        instagram: 'https://www.instagram.com/paroquiasaopedropsul'
+      },
+      {
+        name: 'Paróquia Cristo Rei',
+        address: 'Ceilândia',
+        times: 'Terça, Quarta e Sexta: De 09:00 às 12:00 e de 15:00 às 18:00. Quinta: De 15:00 às 18:00. Sábado: De 09:00 às 12:00.',
+        instagram: 'https://www.instagram.com/paroquia_cristorei'
+      },
+      {
+        name: 'Paróquia Senhor Bom Jesus',
+        address: 'Ceilândia',
+        times: 'Terça a Sexta: A partir de 18:00. Domingo: A partir de 09:00.',
+        instagram: 'https://www.instagram.com/p.senhorbomjesus'
+      },
+      {
+        name: 'Capela Sant\'Ana e São Joaquim',
+        address: 'Ceilândia',
+        times: 'Sábado: A partir de 18:00.'
+      },
+      {
+        name: 'Paróquia Nossa Senhora da Expectação',
+        address: 'Ceilândia',
+        times: 'Terça a Sexta: De 16:00 às 18:00. Sábado: De 09:00 às 12:00.',
+        instagram: 'https://www.instagram.com/paroquiaexpectacaodeceilandia'
+      },
+      {
+        name: 'Paróquia Santo Antônio',
+        address: 'Ceilândia',
+        times: 'Terça a Sexta: De 17:00 às 18:45. Sábado: De 10:00 às 12:00.',
+        instagram: 'https://www.instagram.com/paroquiasantoantoniodf'
+      },
+      {
+        name: 'Paróquia Santíssima Trindade',
+        address: 'Ceilândia',
+        times: 'Terça e Quinta: De 10:00 às 12:00 e de 18:00 às 19:15.',
+        instagram: 'https://www.instagram.com/santissima.trindade'
+      },
+      {
+        name: 'Capela de Todos os Santos',
+        address: 'Ceilândia',
+        times: 'Quarta e Sexta: De 18:00 às 19:15.'
       }
     ]
   },
