@@ -1,7 +1,6 @@
-
 'use client';
 
-import { useState, useEffect, useMemo, useCallback, forwardRef, useImperativeHandle, useRef } from 'react';
+import { useState, useEffect, useMemo, useCallback, forwardRef, useImperativeHandle } from 'react';
 import Image from 'next/image';
 import { saintsOfTheDay, months as allMonths } from '@/lib/data';
 import type { SaintStory } from '@/lib/data';
@@ -116,6 +115,26 @@ const SaintOfTheDay = forwardRef<SaintOfTheDayRef, SaintOfTheDayProps>(({ trigge
   const months = useMemo(() => ['Outubro', 'Novembro'], []);
   const [selectedMonth, setSelectedMonth] = useState<string | null>(null);
   const [monthCarouselRef, monthCarouselApi] = useEmblaCarousel(MONTH_CAROUSEL_OPTIONS);
+
+  useEffect(() => {
+    const handlePopState = () => {
+      if (openAccordion) {
+        setOpenAccordion(false);
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+    };
+  }, [openAccordion]);
+
+  useEffect(() => {
+    if (openAccordion) {
+      window.history.pushState({ modal: 'saintOfTheDay' }, '');
+    }
+  }, [openAccordion]);
 
   const saintsForCurrentMonth = useMemo(() => {
     if (!selectedMonth) return [];
@@ -269,7 +288,12 @@ const SaintOfTheDay = forwardRef<SaintOfTheDayRef, SaintOfTheDayProps>(({ trigge
           </button>
           
           {isOpen && (
-              <div className={cn("relative p-6 pt-12 rounded-b-lg shadow-inner-top saint-day-content", `theme-${theme}`)}>
+            <div className={cn("relative p-6 pt-12 rounded-b-lg shadow-inner-top saint-day-content", `theme-${theme}`)}>
+              <button onClick={toggleAccordion} className="absolute top-4 right-2 p-1 text-gray-600 hover:text-gray-800 transition-colors duration-200 z-20">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
               <ThemeSelector theme={theme} setTheme={setTheme} />
               
               {dayData.saints.length > 1 && (

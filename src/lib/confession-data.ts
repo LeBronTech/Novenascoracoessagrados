@@ -178,6 +178,23 @@ export const confessionData = [
     ]
   },
   {
+    city: 'Fercal & Itapoã',
+    parishes: [
+      {
+        name: 'Paróquia Nossa Senhora Aparecida',
+        address: 'Fercal',
+        times: 'Quintas e sextas-feiras, das 17h00 às 18h30, e aos sábados, das 10h00 às 12h00. Outors horarios por agendamento na secretaria',
+        instagram: 'https://www.instagram.com/pnsafercal'
+      },
+      {
+        name: 'Paróquia São Luís Orione',
+        address: 'Itapoã',
+        times: 'Terças e quintas-feiras, das 09h00 às 11h00 e das 15h00 às 16h00. sabado por agendamento',
+        instagram: 'https://www.instagram.com/paroquiaslo'
+      }
+    ]
+  },
+  {
     city: 'Lago Norte',
     parishes: [
       {
@@ -232,6 +249,71 @@ export const confessionData = [
         address: 'QNJ 34, Lote 1, Taguatinga Norte - DF, 72140-340',
         times: 'Terças e quintas: 16h às 18h',
         location: 'https://www.google.com/maps/search/?api=1&query=-15.8291,-48.0601'
+      }
+    ]
+  },
+  {
+    city: 'Vicente Pires & 26 de Setembro',
+    parishes: [
+      {
+        name: 'Paróquia Nossa Senhora das Vitórias',
+        address: 'Vicente Pires',
+        times: 'Terça: após a missa das 19:30. Quarta: a partir das 09:30. Sexta e Sábado: após a missa das 07:00.',
+        instagram: 'https://www.instagram.com/pnsdasvitorias'
+      },
+      {
+        name: 'Paróquia Nossa Senhora da Esperança',
+        address: 'Vicente Pires',
+        times: 'Terça e Sexta: a partir das 18:30. Quinta: após a missa das 19:30.',
+        instagram: 'https://www.instagram.com/pnse_vp'
+      },
+      {
+        name: 'Capela Nossa Senhora Aparecida (pertence a P. N. S. da Esperança)',
+        address: 'Vicente Pires',
+        times: 'Quinta: após a missa das 07:00.'
+      },
+      {
+        name: 'Paróquia Nossa Senhora Auxiliadora',
+        address: 'Vicente Pires',
+        times: 'Terça a Sexta: de 14:30 às 17:00.',
+        instagram: 'https://www.instagram.com/pnsauxiliadora.brasilia'
+      },
+      {
+        name: 'Paróquia São Francisco de Assis',
+        address: 'Vicente Pires',
+        times: 'Terça e Sexta: após a missa. Quarta e Quinta: de 17:00 às 19:00. Sábado: de 17:00 às 18:30.',
+        instagram: 'https://www.instagram.com/saofranciscovp'
+      },
+      {
+        name: 'Paróquia São José Operário',
+        address: 'Vicente Pires',
+        times: 'Quinta: de 18:00 às 19:15.',
+        instagram: 'https://www.instagram.com/paroquiasaojose.vp'
+      },
+      {
+        name: 'Paróquia Santa Bernardete',
+        address: '26 de Setembro',
+        times: 'Terça a Domingo: 40 minutos antes das missas.'
+      },
+      {
+        name: 'Capela Nossa Senhora das Lágrimas (pertence a P. Santa Bernardete)',
+        address: '26 de Setembro',
+        times: 'Terça a Sexta e Domingo: 40 minutos antes das missas.'
+      },
+      {
+        name: 'Capela Santa Dulce dos Pobres (pertence a P. Santa Bernardete)',
+        address: '26 de Setembro',
+        times: 'Sábado: 40 minutos antes da missa.'
+      },
+      {
+        name: 'Capela Divina Misericórdia (pertence a P. Santa Bernardete)',
+        address: '26 de Setembro',
+        times: 'Domingo: 40 minutos antes da missa.'
+      },
+      {
+        name: 'Capela Nossa Senhora da Piedade (pertence a P. Santa Bernardete)',
+        address: '26 de Setembro',
+        times: 'Domingo: 40 minutos antes da missa.'
       }
     ]
   }
